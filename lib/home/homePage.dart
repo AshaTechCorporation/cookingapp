@@ -1,3 +1,6 @@
+import 'package:cookingapp/Graphs/graphsPage.dart';
+import 'package:cookingapp/Graphs/test3.dart';
+import 'package:cookingapp/Graphs/testGraphs.dart';
 import 'package:cookingapp/constants.dart';
 import 'package:cookingapp/home/detailFoodPage.dart';
 import 'package:cookingapp/home/widgets/CardFoodWidget.dart';
@@ -313,6 +316,36 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold),
                   ),
                 ),
+                GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return LineChartSample2();
+                      }));
+                    },
+                    child: Image.asset(
+                      'assets/icons/cam.png',
+                      scale: 2,
+                    )),
+                GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return LineChartSample11();
+                      }));
+                    },
+                    child: Image.asset(
+                      'assets/icons/cam.png',
+                      scale: 2,
+                    )),
+                GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return LineChartSample1();
+                      }));
+                    },
+                    child: Image.asset(
+                      'assets/icons/cam.png',
+                      scale: 2,
+                    )),
               ],
             ),
             SizedBox(
