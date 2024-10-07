@@ -1,4 +1,10 @@
 import 'package:cookingapp/constants.dart';
+import 'package:cookingapp/track/canclecard.dart';
+import 'package:cookingapp/track/duringpurchase.dart';
+import 'package:cookingapp/track/readytosend.dart';
+import 'package:cookingapp/track/sended.dart';
+import 'package:cookingapp/track/waitpurchase.dart';
+import 'package:cookingapp/track/waitsumcard.dart';
 import 'package:flutter/material.dart';
 
 class Palceanorderpage extends StatelessWidget {
@@ -39,12 +45,54 @@ class Palceanorderpage extends StatelessWidget {
                   final order = palceanorder[index];
                   return GestureDetector(
                     onTap: () {
-                      if (index == 0) {}
-                      if (index == 1) {}
-                      if (index == 2) {}
-                      if (index == 3) {}
-                      if (index == 4) {}
-                      if (index == 5) {}
+                      if (index == 0) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Waitsumcard(),
+                          ),
+                        );
+                      }
+                      if (index == 1) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Waitpurchase(),
+                          ),
+                        );
+                      }
+                      if (index == 2) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Duringpurchase(),
+                          ),
+                        );
+                      }
+                      if (index == 3) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Readytosend(),
+                          ),
+                        );
+                      }
+                      if (index == 4) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Sended(),
+                          ),
+                        );
+                      }
+                      if (index == 5) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Canclecard(),
+                          ),
+                        );
+                      }
                     },
                     child: Container(
                       margin: EdgeInsets.symmetric(vertical: size.height * 0.01),
