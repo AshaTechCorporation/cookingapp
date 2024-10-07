@@ -67,10 +67,22 @@ final Map<String, String> yiwuInfo = {
 };
 
 const List<Map<String, dynamic>> tracktransport = [
+  // {
+  //   'id': 1,
+  //   'images': 'assets/icons/atwerehousechinese.png',
+  //   'title': 'ถึงโกดังจีน',
+  //   'process': 'x',
+  // },
+  // {
+  //   'id': 2,
+  //   'images': 'assets/icons/duringimport.png',
+  //   'title': 'อยู่ระหว่างการขนส่ง',
+  //   'process': 'x',
+  // },
   {
     'id': 1,
-    'images': 'assets/icons/atwerehousechinese.png',
-    'title': 'ถึงโกดังจีน',
+    'images': 'assets/icons/atwerehousethai.png',
+    'title': 'ร้านค้า',
     'process': 'x',
   },
   {
@@ -81,18 +93,12 @@ const List<Map<String, dynamic>> tracktransport = [
   },
   {
     'id': 3,
-    'images': 'assets/icons/atwerehousethai.png',
-    'title': 'ถึงโกดังไทย',
-    'process': 'x',
-  },
-  {
-    'id': 4,
     'images': 'assets/icons/waitingorderpayment.png',
     'title': 'รอชำระคำขนส่ง',
     'process': 'x',
   },
   {
-    'id': 5,
+    'id': 4,
     'images': 'assets/icons/delivery.png',
     'title': 'จัดส่งสำเร็จ',
     'process': 'x',

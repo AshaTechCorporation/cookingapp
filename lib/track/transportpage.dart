@@ -1,4 +1,9 @@
 import 'package:cookingapp/constants.dart';
+import 'package:cookingapp/track/widgets/chineseWarehouse.dart';
+import 'package:cookingapp/track/widgets/inTransitPage.dart';
+import 'package:cookingapp/track/widgets/successfulDelivery.dart';
+import 'package:cookingapp/track/widgets/thaiWarehouse.dart';
+import 'package:cookingapp/track/widgets/waitShippingPayment.dart';
 import 'package:flutter/material.dart';
 
 class Transporttrackpage extends StatefulWidget {
@@ -57,15 +62,18 @@ class _TransporttrackpageState extends State<Transporttrackpage> {
                   return GestureDetector(
                     onTap: () {
                       if (order['id'] == 1) {
-                        //Navigator.push(context, MaterialPageRoute(builder: (context)=>ChineseWarehouse()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>ChineseWarehouse()));
                       } else if (order['id'] == 2) {
                         //Navigator.push(context, MaterialPageRoute(builder: (context)=>InTransitPage()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>ThaiWarehouse()));
                       } else if (order['id'] == 3) {
                         //Navigator.push(context, MaterialPageRoute(builder: (context)=>ThaiWarehouse()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>WaitShippingPayment()));
                       } else if (order['id'] == 4) {
                         //Navigator.push(context, MaterialPageRoute(builder: (context)=>WaitShippingPayment()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>SuccessfulDelivery()));
                       } else {
-                        //Navigator.push(context, MaterialPageRoute(builder: (context)=>SuccessfulDelivery()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>SuccessfulDelivery()));
                       }
                     },
                     child: Container(
