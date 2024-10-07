@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class _LineChart extends StatelessWidget {
   const _LineChart({required this.isShowingMainData});
@@ -484,6 +485,203 @@ class LineChartSample1State extends State<LineChartSample1> {
                       letterSpacing: 2,
                     ),
                     textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+              SizedBox(
+                width: double.infinity,
+                height: 250,
+                child: SfRadialGauge(
+                  axes: <RadialAxis>[
+                    RadialAxis(
+                      centerX: 0.5,
+                      centerY: 0.8,
+                      startAngle: 180,
+                      endAngle: 0,
+                      showLabels: false,
+                      showAxisLine: false,
+                      showTicks: false,
+                      ticksPosition: ElementsPosition.outside,
+                      labelsPosition: ElementsPosition.outside,
+                      minimum: 1,
+                      maximum: 101,
+                      ranges: <GaugeRange>[
+                        GaugeRange(
+                          startValue: 0,
+                          endValue: 20,
+                          color: Colors.red,
+                          sizeUnit: GaugeSizeUnit.factor,
+                          // label: 'Slow',
+                          // labelStyle: GaugeTextStyle(fontSize: 12),
+                          startWidth: 0.4,
+                          endWidth: 0.4,
+                        ),
+                        GaugeRange(
+                          startValue: 21,
+                          endValue: 40,
+                          color: Color.fromARGB(255, 255, 136, 0),
+                          sizeUnit: GaugeSizeUnit.factor,
+                          // label: 'Slow',
+                          // labelStyle: GaugeTextStyle(fontSize: 12),
+                          startWidth: 0.4,
+                          endWidth: 0.4,
+                        ),
+                        GaugeRange(
+                          startValue: 41,
+                          endValue: 60,
+                          color: Color(0xFFFFBA00),
+                          // label: 'Moderate',
+                          // labelStyle: GaugeTextStyle(fontSize: 12),
+                          startWidth: 0.4,
+                          endWidth: 0.4,
+                          sizeUnit: GaugeSizeUnit.factor,
+                        ),
+                        GaugeRange(
+                          startValue: 61,
+                          endValue: 80,
+                          color: Color.fromARGB(255, 148, 171, 0),
+                          // label: 'Fast',
+                          // labelStyle: GaugeTextStyle(fontSize: 12),
+                          sizeUnit: GaugeSizeUnit.factor,
+                          startWidth: 0.4,
+                          endWidth: 0.4,
+                        ),
+                        GaugeRange(
+                          startValue: 81,
+                          endValue: 101,
+                          color: Color.fromARGB(255, 0, 118, 49),
+                          // label: 'Fast',
+                          // labelStyle: GaugeTextStyle(fontSize: 12),
+                          sizeUnit: GaugeSizeUnit.factor,
+                          startWidth: 0.4,
+                          endWidth: 0.4,
+                        ),
+                      ],
+                      pointers: <GaugePointer>[NeedlePointer(value: 60)],
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                children: [
+                  Container(
+                    width: 10,
+                    height: 10,
+                    color: Colors.red,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'ขาดทุน',
+                    style: TextStyle(
+                      fontSize: 20,
+                      letterSpacing: 2,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    width: 30,
+                  ),
+                  Container(
+                    width: 10,
+                    height: 10,
+                    color: Color.fromARGB(255, 255, 136, 0),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'ขาดทุดน้อย',
+                    style: TextStyle(
+                      fontSize: 20,
+                      letterSpacing: 2,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Container(
+                    width: 10,
+                    height: 10,
+                    color: Color(0xFFFFBA00),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'เท่าทุน',
+                    style: TextStyle(
+                      fontSize: 20,
+                      letterSpacing: 2,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    width: 30,
+                  ),
+                  Container(
+                    width: 10,
+                    height: 10,
+                    color: Color.fromARGB(255, 148, 171, 0),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'กำลังพอประมาณ',
+                    style: TextStyle(
+                      fontSize: 20,
+                      letterSpacing: 2,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Container(
+                    width: 10,
+                    height: 10,
+                    color: Color.fromARGB(255, 0, 118, 49),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'กำไรเยอะ',
+                    style: TextStyle(
+                      fontSize: 20,
+                      letterSpacing: 2,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+              // SfLinearGauge(
+              //     minimum: 0.0,
+              //     maximum: 100.0,
+              //     orientation: LinearGaugeOrientation.horizontal,
+              //     majorTickStyle: LinearTickStyle(length: 20),
+              //     axisLabelStyle: TextStyle(fontSize: 12.0, color: Colors.black),
+              //     axisTrackStyle: LinearAxisTrackStyle(color: Colors.cyan, edgeStyle: LinearEdgeStyle.bothFlat, thickness: 15.0, borderColor: Colors.grey)),
+              SfRadialGauge(
+                title: GaugeTitle(text: 'ยอดการสั่งอาหาร', textStyle: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                axes: <RadialAxis>[
+                  RadialAxis(
+                    minimum: 0,
+                    maximum: 2000,
+                    ranges: <GaugeRange>[
+                      GaugeRange(startValue: 0, endValue: 650, color: Colors.green, startWidth: 10, endWidth: 10),
+                      GaugeRange(startValue: 651, endValue: 1300, color: Colors.orange, startWidth: 10, endWidth: 10),
+                      GaugeRange(startValue: 1301, endValue: 2000, color: Colors.red, startWidth: 10, endWidth: 10)
+                    ],
+                    pointers: <GaugePointer>[NeedlePointer(value: 800)],
+                    annotations: <GaugeAnnotation>[
+                      GaugeAnnotation(widget: Container(child: const Text('800', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold))), angle: 90, positionFactor: 0.5)
+                    ],
                   ),
                 ],
               ),
