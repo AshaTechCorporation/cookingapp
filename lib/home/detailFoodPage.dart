@@ -329,7 +329,6 @@ class _DetailFoodPageState extends State<DetailFoodPage> {
                 ],
               ),
             ),
-
             SizedBox(
               height: size.height * 0.4,
             ),
@@ -400,59 +399,10 @@ class _DetailFoodPageState extends State<DetailFoodPage> {
                   ),
                 ),
               ),
-              // child: GridView.builder(
-              //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              //     crossAxisCount: 2,
-              //     crossAxisSpacing: 10,
-              //     mainAxisExtent: 200,
-              //     mainAxisSpacing: 10,
-              //   ),
-              //   itemCount: listFood.length,
-              //   itemBuilder: (context, index) => Column(
-              //     crossAxisAlignment: CrossAxisAlignment.start,
-              //     children: [
-              //       Container(
-              //         height: 150,
-              //         decoration: BoxDecoration(
-              //           border: Border.all(color: Colors.grey),
-              //           borderRadius: BorderRadius.circular(15),
-              //           image: DecorationImage(
-              //             image: AssetImage(
-              //               listFood[index]['image'],
-              //             ),
-              //             fit: BoxFit.fill,
-              //           ),
-              //         ),
-              //       ),
-              //       Text(listFood[index]['name']),
-              //       Text('${listFood[index]['price']}')
-              //     ],
-              //   ),
-              // ),
             ),
             SizedBox(
               height: size.height * 0.05,
             ),
-            // Column(
-            //   crossAxisAlignment: CrossAxisAlignment.start,
-            //   children: [
-            //     Container(
-            //       height: 150,
-            //       decoration: BoxDecoration(
-            //         border: Border.all(color: Colors.grey),
-            //         borderRadius: BorderRadius.circular(15),
-            //         image: DecorationImage(
-            //           image: AssetImage(
-            //             listFood[index]['image'],
-            //           ),
-            //           fit: BoxFit.fill,
-            //         ),
-            //       ),
-            //     ),
-            //     Text(listFood[index]['name']),
-            //     Text('${listFood[index]['price']}')
-            //   ],
-            // ),
           ],
         ),
       ),
