@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cookingapp/home/firstPage.dart';
+import 'package:cookingapp/login/loginPage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,9 +21,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
-          appBarTheme: AppBarTheme(titleTextStyle: TextStyle(fontFamily: 'SukhumvitSet', fontSize: 17,color: Colors.black,fontWeight: FontWeight.bold)),
+          appBarTheme: AppBarTheme(titleTextStyle: TextStyle(fontFamily: 'SukhumvitSet', fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold)),
           fontFamily: 'SukhumvitSet'),
-      home: FirstPage(),
+      home: LoginPage(),
     );
   }
 }
@@ -33,4 +34,3 @@ class MyHttpOverrides extends HttpOverrides {
     return super.createHttpClient(context)..badCertificateCallback = (X509Certificate cert, String host, int port) => true;
   }
 }
-

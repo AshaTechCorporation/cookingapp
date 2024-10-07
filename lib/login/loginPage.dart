@@ -1,5 +1,6 @@
 import 'package:cookingapp/constants.dart';
 import 'package:cookingapp/home/firstPage.dart';
+import 'package:cookingapp/login/regisPage.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -16,9 +17,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: background,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: background,
+        backgroundColor: Colors.white,
         title: Text(
           'เข้าสู่ระบบ',
           style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold, color: Colors.black),
@@ -42,34 +43,26 @@ class _LoginPageState extends State<LoginPage> {
                 height: size.height * 0.001,
               ),
               Container(
-                height: size.height * 0.12,
-                width: size.width * 0.23,
+                height: size.height * 0.25,
+                width: size.width * 0.35,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/icons/Frame 61.png'),
-                    fit: BoxFit.fill,
+                    image: AssetImage('assets/images/Screenshot 2024-10-05 161407.png'),
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
               SizedBox(
                 height: size.height * 0.02,
               ),
-              Container(
-                height: size.height * 0.055,
-                width: size.width * 0.45,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/icons/Frame 76.png'),
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              ),
+
               SizedBox(height: size.height * 0.02),
               SizedBox(
                 height: size.height * 0.06,
                 child: TextField(
                   controller: email,
-                  decoration: InputDecoration(prefixIcon: Image.asset('assets/images/userlogin.png'), labelText: 'รหัสผู้นำเข้า', labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
+                  decoration: InputDecoration(
+                      prefixIcon: Image.asset('assets/images/userlogin.png'), labelText: 'รหัสผู้นำเข้า', labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
                 ),
               ),
               SizedBox(height: size.height * 0.02),
@@ -113,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: size.height * 0.005,
               ),
               SizedBox(
-                height: size.height * 0.059,
+                height: size.height * 0.07,
                 width: size.width * 0.87,
                 child: ElevatedButton(
                   onPressed: () {
@@ -122,8 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 219, 18, 4),
-                    padding: const EdgeInsets.symmetric(horizontal: 135, vertical: 8),
+                    backgroundColor: brown,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -135,188 +127,194 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               SizedBox(height: size.height * 0.01),
-              OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: Color.fromARGB(255, 219, 18, 4),
-                  backgroundColor: Colors.white,
-                  padding: EdgeInsets.symmetric(horizontal: 120, vertical: 12),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+              SizedBox(
+                height: size.height * 0.07,
+                width: size.width * 0.87,
+                child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: Color.fromARGB(255, 219, 18, 4),
+                    backgroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    side: BorderSide(
+                      color: Color.fromARGB(255, 219, 18, 4), // สีของขอบ
+                      width: 1,
+                    ),
                   ),
-                  side: BorderSide(
-                    color: Color.fromARGB(255, 219, 18, 4), // สีของขอบ
-                    width: 1,
-                  ),
-                ),
-                onPressed: () {
-                  _showSelectionDialog(context);
-                },
-                child: const Text(
-                  'ลงทะเบียนผู้ใช้ใหม่',
-                  style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 219, 18, 4),
+                  onPressed: () {
+                    // _showSelectionDialog(context);
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return Registerpage();
+                    }));
+                  },
+                  child: const Text(
+                    'ลงทะเบียนผู้ใช้ใหม่',
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 219, 18, 4),
+                    ),
                   ),
                 ),
               ),
               SizedBox(
                 height: size.height * 0.018,
               ),
-              Text(
-                'หรือ',
-                style: TextStyle(fontSize: 15),
-              ),
-              SizedBox(
-                height: size.height * 0.020,
-              ),
-              Container(
-                height: size.height * 0.06,
-                width: size.width * 0.91,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      spreadRadius: 1,
-                      blurRadius: 1,
-                      offset: Offset(0, 1),
-                    ),
-                  ],
-                ),
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 20),
-                        child: Image.asset('assets/icons/google.png'),
-                      ),
-                      SizedBox(
-                        width: size.width * 0.03,
-                      ),
-                      Text(
-                        'ดำเนินการต่อด้วยบัญชี Google',
-                        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: size.height * 0.01),
-              Container(
-                height: size.height * 0.06,
-                width: size.width * 0.91,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      spreadRadius: 1,
-                      blurRadius: 1,
-                      offset: Offset(0, 1),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 6),
-                      child: Image.asset('assets/icons/facebook.png'),
-                    ),
-                    // SizedBox(
-                    //   width: size.width * 0.03,
-                    // ),
-                    Container(
-                      margin: EdgeInsets.only(left: 10),
-                      child: Text(
-                        'ดำเนินการต่อด้วยบัญชี Facebook',
-                        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(height: size.height * 0.01),
-              Container(
-                height: size.height * 0.06,
-                width: size.width * 0.91,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      spreadRadius: 1,
-                      blurRadius: 1,
-                      offset: Offset(0, 1),
-                    ),
-                  ],
-                ),
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 50),
-                        child: Image.asset(
-                          'assets/icons/linelogin.png',
-                          height: size.height * 0.03,
-                        ),
-                      ),
-                      // SizedBox(
-                      //   width: size.width * 0.03,
-                      // ),
-                      Text(
-                        'ดำเนินการต่อด้วยบัญชี Line',
-                        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: size.height * 0.01),
-              Container(
-                height: size.height * 0.06,
-                width: size.width * 0.91,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      spreadRadius: 1,
-                      blurRadius: 1,
-                      offset: Offset(0, 1),
-                    ),
-                  ],
-                ),
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 38),
-                        child: Image.asset(
-                          'assets/icons/applelogin.png',
-                          height: size.height * 0.03,
-                        ),
-                      ),
-                      // SizedBox(
-                      //   width: size.width * 0.03,
-                      // ),
-                      Text(
-                        'ดำเนินการต่อด้วยบัญชี Apple',
-                        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+              // Text(
+              //   'หรือ',
+              //   style: TextStyle(fontSize: 15),
+              // ),
+              // SizedBox(
+              //   height: size.height * 0.020,
+              // ),
+              // Container(
+              //   height: size.height * 0.06,
+              //   width: size.width * 0.91,
+              //   decoration: BoxDecoration(
+              //     color: Colors.white,
+              //     borderRadius: BorderRadius.circular(10),
+              //     boxShadow: [
+              //       BoxShadow(
+              //         color: Colors.black.withOpacity(0.1),
+              //         spreadRadius: 1,
+              //         blurRadius: 1,
+              //         offset: Offset(0, 1),
+              //       ),
+              //     ],
+              //   ),
+              //   child: Center(
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.center,
+              //       children: [
+              //         Padding(
+              //           padding: const EdgeInsets.only(right: 20),
+              //           child: Image.asset('assets/icons/google.png'),
+              //         ),
+              //         SizedBox(
+              //           width: size.width * 0.03,
+              //         ),
+              //         Text(
+              //           'ดำเนินการต่อด้วยบัญชี Google',
+              //           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+              //         )
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(height: size.height * 0.01),
+              // Container(
+              //   height: size.height * 0.06,
+              //   width: size.width * 0.91,
+              //   decoration: BoxDecoration(
+              //     color: Colors.white,
+              //     borderRadius: BorderRadius.circular(10),
+              //     boxShadow: [
+              //       BoxShadow(
+              //         color: Colors.black.withOpacity(0.1),
+              //         spreadRadius: 1,
+              //         blurRadius: 1,
+              //         offset: Offset(0, 1),
+              //       ),
+              //     ],
+              //   ),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     crossAxisAlignment: CrossAxisAlignment.center,
+              //     children: [
+              //       Padding(
+              //         padding: const EdgeInsets.only(right: 6),
+              //         child: Image.asset('assets/icons/facebook.png'),
+              //       ),
+              //       // SizedBox(
+              //       //   width: size.width * 0.03,
+              //       // ),
+              //       Container(
+              //         margin: EdgeInsets.only(left: 10),
+              //         child: Text(
+              //           'ดำเนินการต่อด้วยบัญชี Facebook',
+              //           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+              //         ),
+              //       )
+              //     ],
+              //   ),
+              // ),
+              // SizedBox(height: size.height * 0.01),
+              // Container(
+              //   height: size.height * 0.06,
+              //   width: size.width * 0.91,
+              //   decoration: BoxDecoration(
+              //     color: Colors.white,
+              //     borderRadius: BorderRadius.circular(10),
+              //     boxShadow: [
+              //       BoxShadow(
+              //         color: Colors.black.withOpacity(0.1),
+              //         spreadRadius: 1,
+              //         blurRadius: 1,
+              //         offset: Offset(0, 1),
+              //       ),
+              //     ],
+              //   ),
+              //   child: Center(
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.center,
+              //       children: [
+              //         Padding(
+              //           padding: const EdgeInsets.only(right: 50),
+              //           child: Image.asset(
+              //             'assets/icons/linelogin.png',
+              //             height: size.height * 0.03,
+              //           ),
+              //         ),
+              //         // SizedBox(
+              //         //   width: size.width * 0.03,
+              //         // ),
+              //         Text(
+              //           'ดำเนินการต่อด้วยบัญชี Line',
+              //           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+              //         )
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(height: size.height * 0.01),
+              // Container(
+              //   height: size.height * 0.06,
+              //   width: size.width * 0.91,
+              //   decoration: BoxDecoration(
+              //     color: Colors.white,
+              //     borderRadius: BorderRadius.circular(10),
+              //     boxShadow: [
+              //       BoxShadow(
+              //         color: Colors.black.withOpacity(0.1),
+              //         spreadRadius: 1,
+              //         blurRadius: 1,
+              //         offset: Offset(0, 1),
+              //       ),
+              //     ],
+              //   ),
+              //   child: Center(
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.center,
+              //       children: [
+              //         Padding(
+              //           padding: const EdgeInsets.only(right: 38),
+              //           child: Image.asset(
+              //             'assets/icons/applelogin.png',
+              //             height: size.height * 0.03,
+              //           ),
+              //         ),
+              //         // SizedBox(
+              //         //   width: size.width * 0.03,
+              //         // ),
+              //         Text(
+              //           'ดำเนินการต่อด้วยบัญชี Apple',
+              //           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+              //         )
+              //       ],
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

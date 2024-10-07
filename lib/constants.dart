@@ -5,7 +5,7 @@ const kbackgroundColor = Color(0xffEEF1F6);
 const kprimaryColor = Color(0xff568A9F);
 Color color1 = Color(int.parse('0xffcd7f32'));
 Color color2 = Color(int.parse('0xfffbbc80'));
-Color red1 = Color(0xffde1e26);
+Color red1 = Color(0xffcb800b);
 Color arrowcolor = Color(0xffd9d9d9);
 Color background = Color(0xfff5f5f5);
 Color white = Color(0xffffffff);
@@ -20,6 +20,7 @@ Color green = Color(0xff3ace01);
 Color blue = Color(0xff3c5a9a);
 Color pinkser = Color(0xffffefe0);
 Color pinkmessSixper = Color(0xffDE1E26);
+Color brown = Color(0xff431d0a);
 LinearGradient backgroundColor = LinearGradient(
   begin: Alignment.topCenter,
   end: Alignment.bottomCenter,
