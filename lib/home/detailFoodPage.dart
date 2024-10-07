@@ -133,6 +133,7 @@ class _DetailFoodPageState extends State<DetailFoodPage> {
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(
                                   height: size.height * 0.02,
@@ -152,7 +153,7 @@ class _DetailFoodPageState extends State<DetailFoodPage> {
                                       Expanded(
                                         flex: 1,
                                         child: Icon(
-                                          Icons.arrow_forward_ios,
+                                          Icons.keyboard_arrow_right,
                                           size: 20,
                                         ),
                                       ),
@@ -161,7 +162,9 @@ class _DetailFoodPageState extends State<DetailFoodPage> {
                                 ),
                                 Divider(),
                                 Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.02,),
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.02,
+                                  ),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
@@ -178,13 +181,147 @@ class _DetailFoodPageState extends State<DetailFoodPage> {
                                         ],
                                       ),
                                       Icon(
-                                        Icons.arrow_forward_ios,
+                                        Icons.keyboard_arrow_right,
                                         size: 20,
                                       )
                                     ],
                                   ),
                                 ),
                                 Divider(),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.02,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Container(
+                                            width: 40.0,
+                                            height: 40.0,
+                                            decoration: BoxDecoration(shape: BoxShape.circle, color: Color.fromARGB(255, 205, 248, 255)),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                              horizontal: size.width * 0.01,
+                                            ),
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                  '6 กม.(30 นาทีขึ้นไป)',
+                                                  style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black, fontSize: 16),
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      'จัดส่งตอนนี้',
+                                                      style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black, fontSize: 16),
+                                                    ),
+                                                    VerticalDivider(
+                                                      thickness: 2,
+                                                    ),
+                                                    Text(
+                                                      'ฟรี ฿17',
+                                                      style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black, fontSize: 16),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Icon(
+                                        Icons.keyboard_arrow_right,
+                                        size: 20,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Divider(),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.02,
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.tag,
+                                        size: 25,
+                                        color: Colors.orange,
+                                      ),
+                                      Text(
+                                        'ร้านใช้โค้ดได้',
+                                        style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black, fontSize: 16),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.02,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.tag,
+                                            size: 25,
+                                            color: Colors.orange,
+                                          ),
+                                          Text(
+                                            'ส่วนลดรายการที่ร่วมโปรโมชั่น',
+                                            style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black, fontSize: 16),
+                                          ),
+                                        ],
+                                      ),
+                                      Icon(
+                                        Icons.keyboard_arrow_right,
+                                        size: 20,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.01,
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.02,
+                                  ),
+                                  child: SizedBox(
+                                    height: size.height * 0.1,
+                                    child: ListView(
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.horizontal,
+                                      physics: ClampingScrollPhysics(),
+                                      children: [
+                                        Container(
+                                          height: size.height * 0.09,
+                                          width: size.width * 0.90,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(5),
+                                            color: Color.fromARGB(255, 227, 244, 248),
+                                          ),
+                                          child: Center(
+                                              child: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                              horizontal: size.width * 0.02,
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                Text('ปิดเร็วๆ นี้ - สั่งก่อน 21:30 น.'),
+                                              ],
+                                            ),
+                                          )),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           )
