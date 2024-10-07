@@ -1,0 +1,265 @@
+import 'package:cookingapp/account/accountPage.dart';
+import 'package:flutter/material.dart';
+
+const kbackgroundColor = Color(0xffEEF1F6);
+const kprimaryColor = Color(0xff568A9F);
+Color color1 = Color(int.parse('0xffcd7f32'));
+Color color2 = Color(int.parse('0xfffbbc80'));
+Color red1 = Color(0xffde1e26);
+Color arrowcolor = Color(0xffd9d9d9);
+Color background = Color(0xfff5f5f5);
+Color white = Color(0xffffffff);
+Color headingtext = Color(0xff606060);
+Color pinkmess = Color(0xfff8d2d4);
+Color greymess = Color(0xffe5e5ea);
+Color greyuserinfo = Color(0xff606060);
+Color skyorange = Color(0xffffe7d1);
+Color oldred = Color(0xff8a1015);
+Color youngpink = Color(0xffffe6e7);
+Color green = Color(0xff3ace01);
+Color blue = Color(0xff3c5a9a);
+Color pinkser = Color(0xffffefe0);
+Color pinkmessSixper = Color(0xffDE1E26);
+LinearGradient backgroundColor = LinearGradient(
+  begin: Alignment.topCenter,
+  end: Alignment.bottomCenter,
+  colors: [
+    Color(0xFFFFFFFF), // สีขาว (#FFFFFF)
+    Color(0xFFF5F5F5), // สีเทาอ่อน (#F5F5F5)
+  ],
+  stops: [0.6, 1.0],
+);
+
+const kBackgroundColor = Color(0xff1B58B1);
+const kSecondTextColor = Color(0xff7B7B7B);
+const kConkgroundColor = Color(0xffFFFFFF);
+
+List<MenuItem> menuItems = [
+  MenuItem(imagePath: 'assets/icons/fav.png', text: 'รายการโปรด'),
+  MenuItem(imagePath: 'assets/icons/yellomoney.png', text: 'ประวัติธุรกรรม'),
+  MenuItem(imagePath: 'assets/icons/article.png', text: 'บทความ'),
+  MenuItem(imagePath: 'assets/icons/guide.png', text: 'คู่มือการใช้งาน'),
+  MenuItem(imagePath: 'assets/icons/report.png', text: 'แจ้งปัญหา'),
+  MenuItem(imagePath: 'assets/icons/help.png', text: 'ช่วยเหลือ'),
+  MenuItem(imagePath: 'assets/icons/contact.png', text: 'ติดต่อเรา'),
+  MenuItem(imagePath: 'assets/icons/setting.png', text: 'ตั้งค่า'),
+];
+
+const List<Map<String, dynamic>> tracktransport = [
+  {
+    'id': 1,
+    'images': 'assets/icons/atwerehousechinese.png',
+    'title': 'ถึงโกดังจีน',
+    'process': 'x',
+  },
+  {
+    'id': 2,
+    'images': 'assets/icons/duringimport.png',
+    'title': 'อยู่ระหว่างการขนส่ง',
+    'process': 'x',
+  },
+  {
+    'id': 3,
+    'images': 'assets/icons/atwerehousethai.png',
+    'title': 'ถึงโกดังไทย',
+    'process': 'x',
+  },
+  {
+    'id': 4,
+    'images': 'assets/icons/waitingorderpayment.png',
+    'title': 'รอชำระคำขนส่ง',
+    'process': 'x',
+  },
+  {
+    'id': 5,
+    'images': 'assets/icons/delivery.png',
+    'title': 'จัดส่งสำเร็จ',
+    'process': 'x',
+  },
+];
+
+const List<Map<String, dynamic>> palceanorder = [
+  {
+    'id': 1,
+    'images': 'assets/icons/waitsum.png',
+    'title': 'รอสรุปยอด',
+    'process': 'x',
+  },
+  {
+    'id': 2,
+    'images': 'assets/icons/waitingorderpayment.png',
+    'title': 'รอชำระคำสั่งซื้อ',
+    'process': 'x',
+  },
+  {
+    'id': 3,
+    'images': 'assets/icons/orderpending.png',
+    'title': 'อยู่ระหว่างการสั่งซื้อ',
+    'process': 'x',
+  },
+  {
+    'id': 4,
+    'images': 'assets/icons/packingtrack.png',
+    'title': 'สินค้าเตรียมจัดส่ง',
+    'process': 'x',
+  },
+  {
+    'id': 5,
+    'images': 'assets/icons/delivery.png',
+    'title': 'จัดส่งสินค้าแล้ว',
+    'process': 'x',
+  },
+  {
+    'id': 6,
+    'images': 'assets/icons/cancle.png',
+    'title': 'ยกเลิก/ล้มเหลว',
+    'process': 'x',
+  },
+];
+
+const List<Map<String, dynamic>> importwidget = [
+  {
+    'id': 1,
+    'name': 'นำเข้าถูกต้อง',
+    'images': 'assets/icons/correctimport1.png',
+  },
+  {
+    'id': 2,
+    'name': '',
+    'images': 'assets/icons/tegmall.png',
+  },
+];
+
+const List<String> titleData = [
+  'ขนส่งทางบก\nและทางทะเล',
+  'จัดส่งแบบ\nเหมาตู้ FCL',
+  'จัดส่งแบบ FCL',
+  'ส่งถึงหน้าบ้าน',
+  'ขนส่งพร้อม\nออกหนังสือ',
+  'ล่าม ไกด์ทัวร์\nตั๋วเครื่องบิน',
+  'การคำนวน\nค่าขนส่ง',
+  'เรทราคานำเข้า'
+];
+
+List<String> Imgservice = [
+  'assets/icons/exportboktale.png',
+  'assets/icons/fcl.png',
+  'assets/icons/lcl.png',
+  'assets/icons/dellitohome.png',
+  'assets/icons/withlisecse.png',
+  'assets/icons/translater.png',
+  'assets/icons/calculator.png',
+  'assets/icons/priceimport.png',
+  'assets/icons/etc.png',
+];
+
+List<String> payment = [
+  'assets/images/leaveorder.png',
+  'assets/images/alipay.png',
+  'assets/images/paymentcomp.png',
+];
+
+const List<Map<String, dynamic>> importcard = [
+  {
+    'id': 1,
+    'Importercode': 'AAAA',
+    'Sendbycar': 'AAAA/EK',
+    'Sendbyboat': 'AAAA/SEA',
+  },
+];
+
+List<String> catagoryrecom = [
+  'เสื้อผ้า',
+  'เครื่องประดับ',
+  'อุปกรณ์กีฬา',
+  'สินค้าเด็ก',
+  'เครื่องใช้ในบ้าน', 
+  'อุปกรณ์สวนและสำนักงาน', 
+  'อาหาร',
+  'เครื่องสำอาง'
+];
+
+const List<String> catagoryimg = [
+  'assets/images/cloth.png',
+  'assets/images/accessory.png',
+  'assets/images/sport.png',
+  'assets/images/kids.png',
+  'assets/images/hometools.png',
+  'assets/images/garden.png',
+  'assets/images/food.png',
+  'assets/images/makeup.png',
+];
+
+const List<Map<String, dynamic>> listProducts = [
+  {
+    'id': 1,
+    'image': 'assets/images/shelf.png',
+    'imagedetail1': 'assets/images/image23.png',
+    'imagedetail2': 'assets/images/image25.png',
+    'imagedetail3': 'assets/images/image26.png',
+    'price': 4.88,
+    'detail':
+        'ชั้นวางพลาสติกในครัว, ชั้นวางของในห้องน้ําแบบไม่มีรูพรุน, สุขโครกติดผนัง, เครื่องใช้ในห้องน้ํา, กล่องเก็บของ',
+    'send': '48 ชั่วโมง',
+    'sale': '5000+ '
+  },
+  {
+    'id': 2,
+    'image': 'assets/images/box.png',
+    'imagedetail1': 'assets/images/image23.png',
+    'imagedetail2': 'assets/images/image25.png',
+    'imagedetail3': 'assets/images/image26.png',
+    'price': 11.19,
+    'detail':
+        'กล่องเก็บผ้าฝ้ายและผ้าลินิน Tianshan, ตะกร้าเก็บเสื้อผ้าในครัวเรือน,กล่องเก็บกํามะหยี่,ที่เก็บผ้านวม',
+    'send': '48 ชั่วโมง',
+    'sale': '4000+ '
+  },
+  {
+    'id': 3,
+    'image': 'assets/images/pant.png',
+    'imagedetail1': 'assets/images/image23.png',
+    'imagedetail2': 'assets/images/image25.png',
+    'imagedetail3': 'assets/images/image26.png',
+    'price': 9.40,
+    'detail':
+        'กางเกงขาสั้นผู้ชาย, กางเกงขาสั้นลําลอง, กางเกงใหญ่ผู้ชาย, ฤดูร้อนผู้ชาย, วัยรุ่น, วัยกลางคนและผู้สูงอายุ',
+    'send': '48 ชั่วโมง',
+    'sale': '3000+ '
+  },
+  {
+    'id': 4,
+    'image': 'assets/images/headband.png',
+    'imagedetail1': 'assets/images/image23.png',
+    'imagedetail2': 'assets/images/image25.png',
+    'imagedetail3': 'assets/images/image26.png',
+    'price': 3,
+    'detail': 'ผ้าพันคอลายพรางผ้าไหมมัลติฟังก์ชั่น, ผ้าพันคอฤดูร้อนปั่นจักรยาน',
+    'send': '48 ชั่วโมง',
+    'sale': '3000+ '
+  },
+  {
+    'id': 5,
+    'image': 'assets/images/bellser.png',
+    'imagedetail1': 'assets/images/image23.png',
+    'imagedetail2': 'assets/images/image25.png',
+    'imagedetail3': 'assets/images/image26.png',
+    'price': 55.60,
+    'detail':
+        'เสื้อเบลเซอร์สีกาแฟผู้หญิง 2023 ฤดูใบไม้ผลิและฤดูใบไม้ร่วงชายตัวน้อยทอดถนนแฟชั่นใหม่',
+    'send': '48 ชั่วโมง',
+    'sale': '2000+ '
+  },
+  {
+    'id': 6,
+    'image': 'assets/images/cardigan.png',
+    'imagedetail1': 'assets/images/image23.png',
+    'imagedetail2': 'assets/images/image25.png',
+    'imagedetail3': 'assets/images/image26.png',
+    'price': 23,
+    'detail':
+        'เสื้อคาร์ดิแกนเสื้อถักทับแจ็คเก็ตผู้หญิงรุ่นเกาหลีของฤดูใบไม้ร่วง',
+    'send': '48 ชั่วโมง',
+    'sale': '1000+ '
+  },
+];
