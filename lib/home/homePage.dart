@@ -3,20 +3,14 @@ import 'package:cookingapp/Graphs/test3.dart';
 import 'package:cookingapp/Graphs/testGraphs.dart';
 import 'package:cookingapp/constants.dart';
 import 'package:cookingapp/home/detailFoodPage.dart';
+import 'package:cookingapp/home/services/homeApi.dart';
 import 'package:cookingapp/home/widgets/CardFoodWidget.dart';
-import 'package:cookingapp/home/widgets/OurItem.dart';
-import 'package:cookingapp/home/widgets/OurServicesWidget.dart';
-import 'package:cookingapp/home/widgets/ProductCategories.dart';
-import 'package:cookingapp/home/widgets/ShowAddressWidget.dart';
-import 'package:cookingapp/home/widgets/ShowContentEKWidget.dart';
-import 'package:cookingapp/home/widgets/ShowContentSEAWidget.dart';
+import 'package:cookingapp/home/widgets/CardRestaurantWidget.dart';
 import 'package:cookingapp/home/widgets/importwidget.dart';
-import 'package:cookingapp/home/widgets/payment.dart';
+import 'package:cookingapp/models/restaurant.dart';
+import 'package:cookingapp/widgets/LoadingDialog.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -36,9 +30,14 @@ class _HomePageState extends State<HomePage> {
   String selectedValue = 'taobao';
   String selectedLanguage = 'ไทย';
 
+  List<Restaurant> restaurants = [];
+
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await getlistRestaurants();
+    });
 
     // เพิ่ม Listener เพื่อตรวจจับการเลื่อน
     scrollController.addListener(() {
@@ -51,6 +50,25 @@ class _HomePageState extends State<HomePage> {
         });
       }
     });
+  }
+
+  //ดึงข้อมูล api Restaurants
+  Future<void> getlistRestaurants() async {
+    try {
+      LoadingDialog.open(context);
+      final _restaurants = await HomeApi.getRestaurants();
+      if (!mounted) return;
+
+      setState(() {
+        restaurants = _restaurants;
+      });
+      //inspect(categories);
+      LoadingDialog.close(context);
+    } on Exception catch (e) {
+      if (!mounted) return;
+      LoadingDialog.close(context);
+      print(e);
+    }
   }
 
   @override
@@ -256,6 +274,8 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         controller: scrollController,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
               height: size.height * 0.2,
@@ -473,91 +493,114 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: size.height * 0.02,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-              child: SizedBox(
-                height: size.height * 0.30,
-                child: ListView(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  children: List.generate(
-                    8,
-                    (index) => Padding(
-                      padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => DetailFoodPage()));
-                        },
-                        child: Container(
-                          height: size.height * 0.30,
-                          width: size.width * 0.41,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            //color: Colors.amber
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                height: size.height * 0.15,
-                                width: size.width * 0.41,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  image: DecorationImage(
-                                    fit: BoxFit.fill,
-                                    image: AssetImage("assets/images/ramen-noodles.jpg"),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: size.height * 0.01,
-                              ),
-                              Text('โปรโมชั่น'),
-                              Text(
-                                'Spicy Ramen Noodles',
-                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              Text(
-                                '45 นาที - 3 กม.',
-                                style: TextStyle(fontSize: 15),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    height: size.height * 0.03,
-                                    width: size.width * 0.22,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: Color.fromARGB(255, 241, 214, 132),
-                                    ),
-                                    child: Center(child: Text('ร้านใช้โค้ดได้')),
-                                  ),
-                                  SizedBox(
-                                    width: size.width * 0.01,
-                                  ),
-                                  Container(
-                                    height: size.height * 0.03,
-                                    width: size.width * 0.14,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: Color.fromARGB(255, 241, 214, 132),
-                                    ),
-                                    child: Center(child: Text('ลด 30%')),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+            restaurants.isNotEmpty
+                ? Padding(
+                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+                    child: SizedBox(
+                      height: size.height * 0.30,
+                      child: ListView(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        children: List.generate(
+                          restaurants.length,
+                          (index) => CardRestaurantWidget(
+                              size: size,
+                              name: restaurants[index].name!,
+                              address: restaurants[index].address!,
+                              image: 'assets/images/ramen-noodles.jpg',
+                              press: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => DetailFoodPage(restaurant_id: restaurants[index].id,)));
+                              }),
                         ),
                       ),
                     ),
-                  ),
-                ),
-              ),
-            ),
+                  )
+                : SizedBox(),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+            //   child: SizedBox(
+            //     height: size.height * 0.30,
+            //     child: ListView(
+            //       shrinkWrap: true,
+            //       scrollDirection: Axis.horizontal,
+            //       children: List.generate(
+            //         8,
+            //         (index) => Padding(
+            //           padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
+            //           child: GestureDetector(
+            //             onTap: () {
+            //               Navigator.push(context, MaterialPageRoute(builder: (context) => DetailFoodPage()));
+            //             },
+            //             child: Container(
+            //               height: size.height * 0.30,
+            //               width: size.width * 0.41,
+            //               decoration: BoxDecoration(
+            //                 borderRadius: BorderRadius.circular(10),
+            //                 //color: Colors.amber
+            //               ),
+            //               child: Column(
+            //                 mainAxisAlignment: MainAxisAlignment.start,
+            //                 crossAxisAlignment: CrossAxisAlignment.start,
+            //                 children: [
+            //                   Container(
+            //                     height: size.height * 0.15,
+            //                     width: size.width * 0.41,
+            //                     decoration: BoxDecoration(
+            //                       borderRadius: BorderRadius.circular(10),
+            //                       image: DecorationImage(
+            //                         fit: BoxFit.fill,
+            //                         image: AssetImage("assets/images/ramen-noodles.jpg"),
+            //                       ),
+            //                     ),
+            //                   ),
+            //                   SizedBox(
+            //                     height: size.height * 0.01,
+            //                   ),
+            //                   Text('โปรโมชั่น'),
+            //                   Text(
+            //                     'Spicy Ramen Noodles',
+            //                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            //                     overflow: TextOverflow.ellipsis,
+            //                   ),
+            //                   Text(
+            //                     '45 นาที - 3 กม.',
+            //                     style: TextStyle(fontSize: 15),
+            //                     overflow: TextOverflow.ellipsis,
+            //                   ),
+            //                   Row(
+            //                     children: [
+            //                       Container(
+            //                         height: size.height * 0.03,
+            //                         width: size.width * 0.22,
+            //                         decoration: BoxDecoration(
+            //                           borderRadius: BorderRadius.circular(5),
+            //                           color: Color.fromARGB(255, 241, 214, 132),
+            //                         ),
+            //                         child: Center(child: Text('ร้านใช้โค้ดได้')),
+            //                       ),
+            //                       SizedBox(
+            //                         width: size.width * 0.01,
+            //                       ),
+            //                       Container(
+            //                         height: size.height * 0.03,
+            //                         width: size.width * 0.14,
+            //                         decoration: BoxDecoration(
+            //                           borderRadius: BorderRadius.circular(5),
+            //                           color: Color.fromARGB(255, 241, 214, 132),
+            //                         ),
+            //                         child: Center(child: Text('ลด 30%')),
+            //                       ),
+            //                     ],
+            //                   ),
+            //                 ],
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
             SizedBox(
               height: size.height * 0.02,
             ),
