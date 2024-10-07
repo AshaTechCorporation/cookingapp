@@ -5,7 +5,7 @@ const kbackgroundColor = Color(0xffEEF1F6);
 const kprimaryColor = Color(0xff568A9F);
 Color color1 = Color(int.parse('0xffcd7f32'));
 Color color2 = Color(int.parse('0xfffbbc80'));
-Color red1 = Color(0xffde1e26);
+Color red1 = Color(0xffcb800b);
 Color arrowcolor = Color(0xffd9d9d9);
 Color background = Color(0xfff5f5f5);
 Color white = Color(0xffffffff);
@@ -20,6 +20,7 @@ Color green = Color(0xff3ace01);
 Color blue = Color(0xff3c5a9a);
 Color pinkser = Color(0xffffefe0);
 Color pinkmessSixper = Color(0xffDE1E26);
+Color brown = Color(0xff431d0a);
 LinearGradient backgroundColor = LinearGradient(
   begin: Alignment.topCenter,
   end: Alignment.bottomCenter,
@@ -188,16 +189,7 @@ const List<Map<String, dynamic>> importcard = [
   },
 ];
 
-List<String> catagoryrecom = [
-  'เสื้อผ้า',
-  'เครื่องประดับ',
-  'อุปกรณ์กีฬา',
-  'สินค้าเด็ก',
-  'เครื่องใช้ในบ้าน', 
-  'อุปกรณ์สวนและสำนักงาน', 
-  'อาหาร',
-  'เครื่องสำอาง'
-];
+List<String> catagoryrecom = ['เสื้อผ้า', 'เครื่องประดับ', 'อุปกรณ์กีฬา', 'สินค้าเด็ก', 'เครื่องใช้ในบ้าน', 'อุปกรณ์สวนและสำนักงาน', 'อาหาร', 'เครื่องสำอาง'];
 
 const List<String> catagoryimg = [
   'assets/images/cloth.png',
@@ -218,8 +210,7 @@ const List<Map<String, dynamic>> listProducts = [
     'imagedetail2': 'assets/images/image25.png',
     'imagedetail3': 'assets/images/image26.png',
     'price': 4.88,
-    'detail':
-        'ชั้นวางพลาสติกในครัว, ชั้นวางของในห้องน้ําแบบไม่มีรูพรุน, สุขโครกติดผนัง, เครื่องใช้ในห้องน้ํา, กล่องเก็บของ',
+    'detail': 'ชั้นวางพลาสติกในครัว, ชั้นวางของในห้องน้ําแบบไม่มีรูพรุน, สุขโครกติดผนัง, เครื่องใช้ในห้องน้ํา, กล่องเก็บของ',
     'send': '48 ชั่วโมง',
     'sale': '5000+ '
   },
@@ -230,8 +221,7 @@ const List<Map<String, dynamic>> listProducts = [
     'imagedetail2': 'assets/images/image25.png',
     'imagedetail3': 'assets/images/image26.png',
     'price': 11.19,
-    'detail':
-        'กล่องเก็บผ้าฝ้ายและผ้าลินิน Tianshan, ตะกร้าเก็บเสื้อผ้าในครัวเรือน,กล่องเก็บกํามะหยี่,ที่เก็บผ้านวม',
+    'detail': 'กล่องเก็บผ้าฝ้ายและผ้าลินิน Tianshan, ตะกร้าเก็บเสื้อผ้าในครัวเรือน,กล่องเก็บกํามะหยี่,ที่เก็บผ้านวม',
     'send': '48 ชั่วโมง',
     'sale': '4000+ '
   },
@@ -242,8 +232,7 @@ const List<Map<String, dynamic>> listProducts = [
     'imagedetail2': 'assets/images/image25.png',
     'imagedetail3': 'assets/images/image26.png',
     'price': 9.40,
-    'detail':
-        'กางเกงขาสั้นผู้ชาย, กางเกงขาสั้นลําลอง, กางเกงใหญ่ผู้ชาย, ฤดูร้อนผู้ชาย, วัยรุ่น, วัยกลางคนและผู้สูงอายุ',
+    'detail': 'กางเกงขาสั้นผู้ชาย, กางเกงขาสั้นลําลอง, กางเกงใหญ่ผู้ชาย, ฤดูร้อนผู้ชาย, วัยรุ่น, วัยกลางคนและผู้สูงอายุ',
     'send': '48 ชั่วโมง',
     'sale': '3000+ '
   },
@@ -265,8 +254,7 @@ const List<Map<String, dynamic>> listProducts = [
     'imagedetail2': 'assets/images/image25.png',
     'imagedetail3': 'assets/images/image26.png',
     'price': 55.60,
-    'detail':
-        'เสื้อเบลเซอร์สีกาแฟผู้หญิง 2023 ฤดูใบไม้ผลิและฤดูใบไม้ร่วงชายตัวน้อยทอดถนนแฟชั่นใหม่',
+    'detail': 'เสื้อเบลเซอร์สีกาแฟผู้หญิง 2023 ฤดูใบไม้ผลิและฤดูใบไม้ร่วงชายตัวน้อยทอดถนนแฟชั่นใหม่',
     'send': '48 ชั่วโมง',
     'sale': '2000+ '
   },
@@ -277,8 +265,7 @@ const List<Map<String, dynamic>> listProducts = [
     'imagedetail2': 'assets/images/image25.png',
     'imagedetail3': 'assets/images/image26.png',
     'price': 23,
-    'detail':
-        'เสื้อคาร์ดิแกนเสื้อถักทับแจ็คเก็ตผู้หญิงรุ่นเกาหลีของฤดูใบไม้ร่วง',
+    'detail': 'เสื้อคาร์ดิแกนเสื้อถักทับแจ็คเก็ตผู้หญิงรุ่นเกาหลีของฤดูใบไม้ร่วง',
     'send': '48 ชั่วโมง',
     'sale': '1000+ '
   },

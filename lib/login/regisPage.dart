@@ -112,7 +112,7 @@ class _RegisterpageState extends State<Registerpage> {
                   height: size.height * 0.02,
                 ),
                 Image.asset(
-                  'assets/images/logofull.png',
+                  'assets/images/Screenshot 2024-10-05 161407.png',
                   width: size.width * 0.59,
                 ),
                 SizedBox(
@@ -267,7 +267,8 @@ class _RegisterpageState extends State<Registerpage> {
                           child: Container(
                             height: size.height * 0.043,
                             width: size.width * 0.2,
-                            decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.grey, width: size.width * 0.001)),
+                            decoration:
+                                BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.grey, width: size.width * 0.001)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -612,37 +613,37 @@ class _RegisterpageState extends State<Registerpage> {
                   ),
                 ),
                 SizedBox(height: size.height * 0.01),
-                InkWell(
-                  onTap: () {
-                    print('map');
-                  },
-                  child: Container(
-                      height: size.height * 0.055,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: white,
-                          border: Border.all(
-                            color: Colors.grey,
-                            width: 0.5,
-                          )),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: size.width * 0.02,
-                          ),
-                          Image.asset('assets/icons/pin.png'),
-                          SizedBox(
-                            width: size.width * 0.02,
-                          ),
-                          Text(
-                            'พิกัด Google map',
-                            style: TextStyle(
-                              fontSize: 15,
-                            ),
-                          )
-                        ],
-                      )),
-                ),
+                // InkWell(
+                //   onTap: () {
+                //     print('map');
+                //   },
+                //   child: Container(
+                //       height: size.height * 0.055,
+                //       decoration: BoxDecoration(
+                //           borderRadius: BorderRadius.circular(10),
+                //           color: white,
+                //           border: Border.all(
+                //             color: Colors.grey,
+                //             width: 0.5,
+                //           )),
+                //       child: Row(
+                //         children: [
+                //           SizedBox(
+                //             width: size.width * 0.02,
+                //           ),
+                //           Image.asset('assets/icons/pin.png'),
+                //           SizedBox(
+                //             width: size.width * 0.02,
+                //           ),
+                //           Text(
+                //             'พิกัด Google map',
+                //             style: TextStyle(
+                //               fontSize: 15,
+                //             ),
+                //           )
+                //         ],
+                //       )),
+                // ),
                 SizedBox(height: size.height * 0.035),
                 DropdownButtonFormField2<String>(
                   isExpanded: true,
@@ -1157,117 +1158,117 @@ class _RegisterpageState extends State<Registerpage> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: size.height * 0.015,
-                ),
-                Text(
-                  'หรือ',
-                  style: TextStyle(fontSize: 15),
-                ),
-                SizedBox(
-                  height: size.height * 0.012,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      height: size.height * 0.05,
-                      width: size.width * 0.2,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            spreadRadius: 1,
-                            blurRadius: 1,
-                            offset: Offset(0, 1),
-                          ),
-                        ],
-                      ),
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset('assets/icons/google.png'),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: size.height * 0.05,
-                      width: size.width * 0.2,
-                      decoration: BoxDecoration(
-                        color: Color(0xff3c5a9a),
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            spreadRadius: 1,
-                            blurRadius: 1,
-                            offset: Offset(0, 1),
-                          ),
-                        ],
-                      ),
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset('assets/icons/facebook.png'),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: size.height * 0.05,
-                      width: size.width * 0.2,
-                      decoration: BoxDecoration(
-                        color: Color(0xff00b900),
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            spreadRadius: 1,
-                            blurRadius: 1,
-                            offset: Offset(0, 1),
-                          ),
-                        ],
-                      ),
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset('assets/icons/line.png'),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: size.height * 0.05,
-                      width: size.width * 0.2,
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            spreadRadius: 1,
-                            blurRadius: 1,
-                            offset: Offset(0, 1),
-                          ),
-                        ],
-                      ),
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset('assets/icons/apple.png'),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                // SizedBox(
+                //   height: size.height * 0.015,
+                // ),
+                // Text(
+                //   'หรือ',
+                //   style: TextStyle(fontSize: 15),
+                // ),
+                // SizedBox(
+                //   height: size.height * 0.012,
+                // ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Container(
+                //       height: size.height * 0.05,
+                //       width: size.width * 0.2,
+                //       decoration: BoxDecoration(
+                //         color: Colors.white,
+                //         borderRadius: BorderRadius.circular(20),
+                //         boxShadow: [
+                //           BoxShadow(
+                //             color: Colors.black.withOpacity(0.1),
+                //             spreadRadius: 1,
+                //             blurRadius: 1,
+                //             offset: Offset(0, 1),
+                //           ),
+                //         ],
+                //       ),
+                //       child: Center(
+                //         child: Row(
+                //           mainAxisAlignment: MainAxisAlignment.center,
+                //           children: [
+                //             Image.asset('assets/icons/google.png'),
+                //           ],
+                //         ),
+                //       ),
+                //     ),
+                //     Container(
+                //       height: size.height * 0.05,
+                //       width: size.width * 0.2,
+                //       decoration: BoxDecoration(
+                //         color: Color(0xff3c5a9a),
+                //         borderRadius: BorderRadius.circular(20),
+                //         boxShadow: [
+                //           BoxShadow(
+                //             color: Colors.black.withOpacity(0.1),
+                //             spreadRadius: 1,
+                //             blurRadius: 1,
+                //             offset: Offset(0, 1),
+                //           ),
+                //         ],
+                //       ),
+                //       child: Center(
+                //         child: Row(
+                //           mainAxisAlignment: MainAxisAlignment.center,
+                //           children: [
+                //             Image.asset('assets/icons/facebook.png'),
+                //           ],
+                //         ),
+                //       ),
+                //     ),
+                //     Container(
+                //       height: size.height * 0.05,
+                //       width: size.width * 0.2,
+                //       decoration: BoxDecoration(
+                //         color: Color(0xff00b900),
+                //         borderRadius: BorderRadius.circular(20),
+                //         boxShadow: [
+                //           BoxShadow(
+                //             color: Colors.black.withOpacity(0.1),
+                //             spreadRadius: 1,
+                //             blurRadius: 1,
+                //             offset: Offset(0, 1),
+                //           ),
+                //         ],
+                //       ),
+                //       child: Center(
+                //         child: Row(
+                //           mainAxisAlignment: MainAxisAlignment.center,
+                //           children: [
+                //             Image.asset('assets/icons/line.png'),
+                //           ],
+                //         ),
+                //       ),
+                //     ),
+                //     Container(
+                //       height: size.height * 0.05,
+                //       width: size.width * 0.2,
+                //       decoration: BoxDecoration(
+                //         color: Colors.black,
+                //         borderRadius: BorderRadius.circular(20),
+                //         boxShadow: [
+                //           BoxShadow(
+                //             color: Colors.black.withOpacity(0.1),
+                //             spreadRadius: 1,
+                //             blurRadius: 1,
+                //             offset: Offset(0, 1),
+                //           ),
+                //         ],
+                //       ),
+                //       child: Center(
+                //         child: Row(
+                //           mainAxisAlignment: MainAxisAlignment.center,
+                //           children: [
+                //             Image.asset('assets/icons/apple.png'),
+                //           ],
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
               ],
             ),
           ),
@@ -1277,7 +1278,7 @@ class _RegisterpageState extends State<Registerpage> {
         child: Container(
           width: double.infinity,
           height: size.height * 0.073,
-          decoration: BoxDecoration(color: red1, borderRadius: BorderRadius.circular(10)),
+          decoration: BoxDecoration(color: brown, borderRadius: BorderRadius.circular(10)),
           child: Center(
             child: TextButton(
               onPressed: () {
