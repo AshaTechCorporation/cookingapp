@@ -45,6 +45,26 @@ List<MenuItem> menuItems = [
   MenuItem(imagePath: 'assets/icons/setting.png', text: 'ตั้งค่า'),
 ];
 
+const List<String> topup = ['เติมเงิน', 'ถอนเงิน'];
+const List<String> fistpagewidget = [
+  'นำเข้าถูกต้อง',
+  'นำเข้าเหมาภาษี',
+];
+
+final Map<String, String> guangzhouInfo = {
+  '收货人': '阿苏 (AAAA)',
+  '详细地址': 'TEG CARGO仓广东省广州市白云区唐自头村105A仓28号3栋',
+  '邮编': '510450',
+  '手机': '18520290139',
+};
+
+final Map<String, String> yiwuInfo = {
+  '收货人': '王五 (AAAA)',
+  '详细地址': 'TEG CARGO仓浙江省义乌市佛堂镇 105B仓22号1栋',
+  '邮编': '322000',
+  '手机': '18520290139',
+};
+
 const List<Map<String, dynamic>> tracktransport = [
   {
     'id': 1,
