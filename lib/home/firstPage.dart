@@ -89,6 +89,7 @@ class _FirstPageState extends State<FirstPage> {
                             'assets/icons/Frame 61.png',
                             width: 24,
                             height: 27,
+                            color: red1,
                           ),
                           Text(
                             'หน้าหลัก',
@@ -127,6 +128,7 @@ class _FirstPageState extends State<FirstPage> {
                             'assets/icons/redgroup.png',
                             width: 30,
                             height: 30,
+                            color: red1,
                           ),
                           Text(
                             'ร้านค้า',
@@ -164,6 +166,7 @@ class _FirstPageState extends State<FirstPage> {
                               'assets/icons/redcart.png',
                               width: 20, // Adjust the width as needed
                               height: 20, // Adjust the height as needed
+                              color: red1,
                             ),
                             // Text(
                             //   'รถเข็น',
@@ -198,6 +201,7 @@ class _FirstPageState extends State<FirstPage> {
                               'assets/icons/redcart.png',
                               width: 30, // Adjust the width as needed
                               height: 30, // Adjust the height as needed
+                              color: red1,
                             ),
                             Text(
                               'รถเข็น',
@@ -232,6 +236,7 @@ class _FirstPageState extends State<FirstPage> {
                               'assets/icons/reduser.png',
                               width: 30, // Adjust the width as needed
                               height: 30, // Adjust the height as needed
+                              color: red1,
                             ),
                             Text(
                               'บัญชี',
