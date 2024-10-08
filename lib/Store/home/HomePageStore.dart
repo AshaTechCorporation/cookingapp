@@ -122,60 +122,60 @@ class _HomePageStoreState extends State<HomePageStore> {
                               ),
                             ),
                           ),
-                          Image.asset('assets/icons/cam.png'),
-                          SizedBox(
-                            height: size.height * 0.05,
-                            width: size.width * 0.225,
-                            child: DropdownButtonHideUnderline(
-                              child: DecoratedBox(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(color: Colors.white, width: 2),
-                                ),
-                                child: DropdownButton2<String>(
-                                  isExpanded: true,
-                                  hint: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      'เลือกสินค้า',
-                                      style: TextStyle(
-                                        fontSize: 11,
-                                        color: red1,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  items: items
-                                      .map((String item) => DropdownMenuItem<String>(
-                                            value: item,
-                                            child: Text(
-                                              item,
-                                              style: TextStyle(fontSize: 14, color: red1),
-                                            ),
-                                          ))
-                                      .toList(),
-                                  value: selectedValue,
-                                  onChanged: (String? value) {
-                                    setState(() {
-                                      selectedValue = value!;
-                                    });
-                                    // getlistCategories(name: selectedValue);
-                                  },
-                                  buttonStyleData: ButtonStyleData(
-                                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-                                    width: size.width * 0.1,
-                                  ),
-                                  menuItemStyleData: MenuItemStyleData(
-                                    height: size.height * 0.1,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: size.width * 0.001,
-                          ),
+                          // Image.asset('assets/icons/cam.png'),
+                          // SizedBox(
+                          //   height: size.height * 0.05,
+                          //   width: size.width * 0.225,
+                          //   child: DropdownButtonHideUnderline(
+                          //     child: DecoratedBox(
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.white,
+                          //         borderRadius: BorderRadius.circular(8),
+                          //         border: Border.all(color: Colors.white, width: 2),
+                          //       ),
+                          //       child: DropdownButton2<String>(
+                          //         isExpanded: true,
+                          //         hint: Align(
+                          //           alignment: Alignment.centerLeft,
+                          //           child: Text(
+                          //             'เลือกสินค้า',
+                          //             style: TextStyle(
+                          //               fontSize: 11,
+                          //               color: red1,
+                          //               fontWeight: FontWeight.bold,
+                          //             ),
+                          //           ),
+                          //         ),
+                          //         items: items
+                          //             .map((String item) => DropdownMenuItem<String>(
+                          //                   value: item,
+                          //                   child: Text(
+                          //                     item,
+                          //                     style: TextStyle(fontSize: 14, color: red1),
+                          //                   ),
+                          //                 ))
+                          //             .toList(),
+                          //         value: selectedValue,
+                          //         onChanged: (String? value) {
+                          //           setState(() {
+                          //             selectedValue = value!;
+                          //           });
+                          //           // getlistCategories(name: selectedValue);
+                          //         },
+                          //         buttonStyleData: ButtonStyleData(
+                          //           padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+                          //           width: size.width * 0.1,
+                          //         ),
+                          //         menuItemStyleData: MenuItemStyleData(
+                          //           height: size.height * 0.1,
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
+                          // SizedBox(
+                          //   width: size.width * 0.001,
+                          // ),
                           GestureDetector(
                             onTap: () {},
                             child: Container(

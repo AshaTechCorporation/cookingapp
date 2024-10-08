@@ -20,8 +20,7 @@ class _MessagePageState extends State<MessagePage> {
         backgroundColor: background,
         title: Text(
           'ช่วยเหลือ',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, color: Colors.black, fontSize: 17),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 17),
         ),
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(1.0),
@@ -83,19 +82,13 @@ class _MessagePageState extends State<MessagePage> {
             ),
             AnimatedContainer(
                 duration: Duration(milliseconds: 5000),
-                height: isExpanded
-                    ? size.height -
-                        kToolbarHeight -
-                        MediaQuery.of(context).padding.top -
-                        20
-                    : 500,
+                height: isExpanded ? size.height - kToolbarHeight - MediaQuery.of(context).padding.top - 20 : 500,
                 width: size.width * 0.99,
                 color: Colors.white,
                 child: Column(
                   children: [
                     Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: size.width * 0.05),
+                      padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -103,10 +96,7 @@ class _MessagePageState extends State<MessagePage> {
                             padding: EdgeInsets.only(top: size.height * 0.015),
                             child: Text(
                               'ข้อความ',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                  fontFamily: 'SukhumvitSet'),
+                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, fontFamily: 'SukhumvitSet'),
                             ),
                           ),
                           if (isExpanded)
@@ -117,10 +107,7 @@ class _MessagePageState extends State<MessagePage> {
                                 });
                               },
                               child: Container(
-                                  padding: EdgeInsets.all(size.height * 0.01),
-                                  margin: EdgeInsets.all(size.height * 0.01),
-                                  child: Image.asset(
-                                      'assets/icons/redcart.png')),
+                                  padding: EdgeInsets.all(size.height * 0.01), margin: EdgeInsets.all(size.height * 0.01), child: Image.asset('assets/icons/redcart.png')),
                             ),
                         ],
                       ),
@@ -129,8 +116,7 @@ class _MessagePageState extends State<MessagePage> {
                     //   height: size.height * 0.02,
                     // ),
                     Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: size.width * 0.04),
+                      padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -152,10 +138,9 @@ class _MessagePageState extends State<MessagePage> {
                                 height: size.height * 0.07,
                                 child: Center(
                                   child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 15, right: 7, top: 8),
+                                    padding: const EdgeInsets.only(left: 15, right: 7, top: 8),
                                     child: Text(
-                                      'สวัสดีครับ (username)TEG Cargo ยินดีให้บริการครับ',
+                                      'สวัสดีครับร้านสมหญิง ยินดีให้บริการครับ',
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 13,
@@ -174,15 +159,10 @@ class _MessagePageState extends State<MessagePage> {
                                 width: size.width * 0.66,
                                 height: size.height * 0.08,
                                 child: Padding(
-                                  padding: EdgeInsets.only(
-                                      left: size.width * 0.04,
-                                      top: size.height * 0.02),
+                                  padding: EdgeInsets.only(left: size.width * 0.04, top: size.height * 0.02, right: size.width * 0.02),
                                   child: Text(
                                     'ท่านสามารถเลือกคำถามจากปุ่มตัวเลือก หรือพิมพ์คำถามในช่องแชทได้เลยครับ',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.bold),
+                                    style: TextStyle(color: Colors.black, fontSize: 13, fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ),
@@ -201,16 +181,13 @@ class _MessagePageState extends State<MessagePage> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: size.width * 0.07),
+                                        padding: EdgeInsets.symmetric(horizontal: size.width * 0.07),
                                         child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
+                                          crossAxisAlignment: CrossAxisAlignment.end,
                                           children: [
                                             Container(
                                               decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
+                                                borderRadius: BorderRadius.circular(10),
                                                 color: greymess,
                                               ),
                                               width: size.width * 0.6,
@@ -222,7 +199,7 @@ class _MessagePageState extends State<MessagePage> {
                                                   top: size.height * 0.015,
                                                 ),
                                                 child: Text(
-                                                  'การรับส่งของแต่ละครั้งมีจำนวนขั้นต่ำไหม',
+                                                  'การสั่งอาหารมีจำนวนขั้นต่ำใหม',
                                                   style: TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 13,
@@ -231,24 +208,23 @@ class _MessagePageState extends State<MessagePage> {
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(
-                                                height: size.height * 0.01),
+                                            SizedBox(height: size.height * 0.01),
                                             Container(
                                               decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
+                                                borderRadius: BorderRadius.circular(10),
                                                 color: greymess,
                                               ),
                                               width: size.width * 0.6,
-                                              height: size.height * 0.07,
+                                              // height: size.height * 0.0,
                                               child: Padding(
                                                 padding: EdgeInsets.only(
                                                   left: size.width * 0.03,
                                                   right: size.width * 0.03,
                                                   top: size.height * 0.015,
+                                                  bottom: size.height * 0.015,
                                                 ),
                                                 child: Text(
-                                                  'ต้องการทราบราคาค่าขนส่งสินค้า ทั้งทาง รถ และทางเรือ',
+                                                  'เมื่อทำอาหารเสร็จเรียบร้อยแล้ว เราสามารถไปรับช้ากว่ากำหนด สัก 30 นาทีได้ใหมครับ',
                                                   style: TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 13,
@@ -257,12 +233,10 @@ class _MessagePageState extends State<MessagePage> {
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(
-                                                height: size.height * 0.01),
+                                            SizedBox(height: size.height * 0.01),
                                             Container(
                                               decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
+                                                borderRadius: BorderRadius.circular(10),
                                                 color: greymess,
                                               ),
                                               width: size.width * 0.6,
@@ -274,7 +248,7 @@ class _MessagePageState extends State<MessagePage> {
                                                   top: size.height * 0.015,
                                                 ),
                                                 child: Text(
-                                                  'วิธีการคิดค่าขนส่งจากราคาที่คิดเป็น CBM',
+                                                  'ค่าอาหารเป็นราคาที่ รวมค่าบริการด้วยเรียบร้อยแล้วใช่ใหมครับ',
                                                   style: TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 13,
@@ -300,48 +274,44 @@ class _MessagePageState extends State<MessagePage> {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        height: size.height * 0.073,
+      bottomNavigationBar: BottomAppBar(
         color: white,
-        child: BottomAppBar(
-          color: white,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              // Padding(
-              //   padding: const EdgeInsets.all(2.0),
-              //   child: Image.asset(
-              //     'assets/icons/plus.png',
-              //     width: size.width * 0.08,
-              //     height: size.height * 0.08,
-              //     fit: BoxFit.fill,
-              //   ),
-              // ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                        contentPadding: EdgeInsets.all(8.0),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        hintText: 'พิมข้อความเพื่อพูดคุย',
-                        hintStyle: TextStyle(fontSize: 13)),
-                  ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // Padding(
+            //   padding: const EdgeInsets.all(2.0),
+            //   child: Image.asset(
+            //     'assets/icons/plus.png',
+            //     width: size.width * 0.08,
+            //     height: size.height * 0.08,
+            //     fit: BoxFit.fill,
+            //   ),
+            // ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                      contentPadding: EdgeInsets.all(8.0),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      hintText: 'พิมข้อความเพื่อพูดคุย',
+                      hintStyle: TextStyle(fontSize: 13)),
                 ),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.all(4.0),
-              //   child: Image.asset(
-              //     'assets/icons/vecterup.png',
-              //     width: size.width * 0.08,
-              //     height: size.height * 0.08,
-              //     fit: BoxFit.fill,
-              //   ),
-              // ),
-            ],
-          ),
+            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(4.0),
+            //   child: Image.asset(
+            //     'assets/icons/vecterup.png',
+            //     width: size.width * 0.08,
+            //     height: size.height * 0.08,
+            //     fit: BoxFit.fill,
+            //   ),
+            // ),
+          ],
         ),
       ),
     );
