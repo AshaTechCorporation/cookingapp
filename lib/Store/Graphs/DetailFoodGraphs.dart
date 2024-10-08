@@ -206,7 +206,7 @@ class _DetailFoodGraphsState extends State<DetailFoodGraphs> {
             ),
             Center(
               child: Text(
-                'รายการ: แกงเขียวหวาน',
+                'รายการ: Steak',
                 style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
@@ -248,7 +248,7 @@ class _DetailFoodGraphsState extends State<DetailFoodGraphs> {
                   width: 10,
                 ),
                 Text(
-                  'ยอดที่ต้องการ: 50 ถุง',
+                  'ยอดที่ต้องการ: 25 ชิ้น',
                   style: TextStyle(
                     fontSize: 20,
                     letterSpacing: 2,
@@ -257,6 +257,10 @@ class _DetailFoodGraphsState extends State<DetailFoodGraphs> {
                 ),
               ],
             ),
+            SizedBox(
+              height: 10,
+            ),
+            Image.asset('assets/images/beaf-steak.jpg')
           ],
         ),
       ),
