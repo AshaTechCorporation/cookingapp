@@ -11,7 +11,7 @@ class ProductAppbar extends StatelessWidget {
     return Row(
       children: [
         const Text(
-          "What are you\ncooking today?",
+          "ร้านค้าของฉัน",
           style: TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.bold,
