@@ -13,7 +13,7 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   bool isSelected = false;
   final List<bool> storeItemsSelection = [false, false];
-  final List<String> storeNames = ['1688严选店', '1688严选店2'];
+  final List<String> storeNames = ['รายการอาหาร', 'รายการอาหาร'];
   final List<List<bool>> productItemsSelection = [
     [false, false],
     [false, false]

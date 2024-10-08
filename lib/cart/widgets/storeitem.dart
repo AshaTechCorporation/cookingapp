@@ -59,7 +59,7 @@ class _StoreItemState extends State<StoreItem> {
     required ValueChanged<bool?> onSelectionChanged,
     required VoidCallback onDelete,
     required int index, // รับ index โดยตรง
-    String dropdownValue = 'สีขาวมุก',
+    String dropdownValue = 'ธรรมดา',
     required ValueKey<int> key,
   }) {
     return Padding(
@@ -134,7 +134,7 @@ class _StoreItemState extends State<StoreItem> {
                           onChanged: (String? newValue) {
                             // ฟังก์ชันเปลี่ยนค่า dropdown
                           },
-                          items: <String>['สีขาวมุก', 'สีแดง', 'สีน้ำเงิน', 'สีเขียว'].map<DropdownMenuItem<String>>((String value) {
+                          items: <String>['ธรรมดา', 'พิเศษ',].map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
                               child: Text(value),
@@ -233,15 +233,15 @@ class _StoreItemState extends State<StoreItem> {
               for (int i = 0; i < widget.productItemsSelection.length; i++)
                 _buildProductItem(
                   key: ValueKey(i), // เพิ่ม Key เพื่อเพิ่มประสิทธิภาพ
-                  image: 'assets/images/shelf.png',
-                  name: 'ชั้นวางพลาสติกในครัว, ชั้นวางของในห้องน้ำ...',
+                  image: 'assets/images/ramen-noodles.jpg',
+                  name: 'Spicy Ramen Noodles',
                   price: '4.88',
                   quantity: quantities[i], // ส่งเป็น int
                   isSelected: widget.productItemsSelection[i],
                   onSelectionChanged: (isSelected) => widget.onProductSelectionChanged(i, isSelected),
                   onDelete: () => widget.onDeleteProduct(i),
                   index: i, // ส่งค่า index โดยตรง
-                  dropdownValue: i == 0 ? 'สีขาวมุก' : 'สีแดง',
+                  dropdownValue: i == 0 ? 'ธรรมดา' : 'พิเศษ',
                 ),
             ],
           ),

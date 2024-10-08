@@ -18,7 +18,7 @@ class _ChineseWarehouseState extends State<ChineseWarehouse> {
       appBar: AppBar(
         backgroundColor: white,
         title: Text(
-          'ถึงโกดังจีน',
+          'ถึงโกดังไทย',
           style: TextStyle(fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold),
         ),
         bottom: PreferredSize(

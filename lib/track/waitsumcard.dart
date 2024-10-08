@@ -214,6 +214,7 @@ class _WaitsumcardState extends State<Waitsumcard> {
                                 Image.asset(
                                   'assets/icons/byredcar.png',
                                   height: size.height * 0.03,
+                                  color: red1,
                                 ),
                                 SizedBox(
                                   width: size.width * 0.03,

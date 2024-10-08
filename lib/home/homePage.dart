@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> {
             top: Radius.circular(30),
           ),
           child: AppBar(
-            backgroundColor: Colors.red.withOpacity(appBarOpacity),
+            backgroundColor: red1.withOpacity(appBarOpacity),
             elevation: appBarOpacity > 0.5 ? 4.0 : 0.0,
             title: Padding(
               padding: EdgeInsets.only(top: size.height * 0.01),
@@ -303,10 +303,14 @@ class _HomePageState extends State<HomePage> {
                             (index) => GestureDetector(
                               onTap: () {
                                 if (index == 0) {
-                                  print(index);
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                    return LineChartSample1();
+                                  }));
                                 }
                                 if (index == 1) {
-                                  print(index);
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                    return LineChartSample1();
+                                  }));
                                 }
                               },
                               child: Importwidget(
@@ -336,36 +340,36 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold),
                   ),
                 ),
-                GestureDetector(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return LineChartSample2();
-                      }));
-                    },
-                    child: Image.asset(
-                      'assets/icons/cam.png',
-                      scale: 2,
-                    )),
-                GestureDetector(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return LineChartSample11();
-                      }));
-                    },
-                    child: Image.asset(
-                      'assets/icons/cam.png',
-                      scale: 2,
-                    )),
-                GestureDetector(
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) {
-                        return LineChartSample1();
-                      }));
-                    },
-                    child: Image.asset(
-                      'assets/icons/cam.png',
-                      scale: 2,
-                    )),
+                // GestureDetector(
+                //     onTap: () {
+                //       Navigator.push(context, MaterialPageRoute(builder: (context) {
+                //         return LineChartSample2();
+                //       }));
+                //     },
+                //     child: Image.asset(
+                //       'assets/icons/cam.png',
+                //       scale: 2,
+                //     )),
+                // GestureDetector(
+                //     onTap: () {
+                //       Navigator.push(context, MaterialPageRoute(builder: (context) {
+                //         return LineChartSample11();
+                //       }));
+                //     },
+                //     child: Image.asset(
+                //       'assets/icons/cam.png',
+                //       scale: 2,
+                //     )),
+                // GestureDetector(
+                //     onTap: () {
+                //       Navigator.push(context, MaterialPageRoute(builder: (context) {
+                //         return LineChartSample1();
+                //       }));
+                //     },
+                //     child: Image.asset(
+                //       'assets/icons/cam.png',
+                //       scale: 2,
+                //     )),
               ],
             ),
             SizedBox(
@@ -509,7 +513,12 @@ class _HomePageState extends State<HomePage> {
                               address: restaurants[index].address!,
                               image: 'assets/images/ramen-noodles.jpg',
                               press: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => DetailFoodPage(restaurant_id: restaurants[index].id,)));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => DetailFoodPage(
+                                              restaurant_id: restaurants[index].id,
+                                            )));
                               }),
                         ),
                       ),
@@ -652,7 +661,7 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   Icon(
                                     Icons.info_outline,
-                                    color: Colors.red,
+                                    color: brown,
                                   ),
                                   Text(
                                     '฿10 - ',
@@ -677,7 +686,7 @@ class _HomePageState extends State<HomePage> {
                                       children: [
                                         Icon(
                                           Icons.countertops_outlined,
-                                          color: Colors.red,
+                                          color: brown,
                                         ),
                                         Text('ลดพิเศษสำหรับสมาชิก'),
                                       ],
@@ -694,7 +703,7 @@ class _HomePageState extends State<HomePage> {
                                       children: [
                                         Icon(
                                           Icons.countertops_outlined,
-                                          color: Colors.red,
+                                          color: brown,
                                         ),
                                         Text('ลด ฿100'),
                                       ],

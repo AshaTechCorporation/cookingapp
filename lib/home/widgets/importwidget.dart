@@ -39,8 +39,8 @@ class Importwidget extends StatelessWidget {
               padding: EdgeInsets.all(size.height * 0.007),
               child: Image.asset(
                 imagePath,
-                height: id == 2 ? size.height * 0.07 : size.height * 0.05, // ปรับขนาดตาม id
-                width: id == 2 ? size.width * 0.15 : size.width * 0.07, // ปรับขนาดตาม id
+                height: size.height * 0.07, // ปรับขนาดตาม id
+                width: size.width * 0.07, // ปรับขนาดตาม id
               ),
             ),
             Text(
@@ -56,4 +56,3 @@ class Importwidget extends StatelessWidget {
     );
   }
 }
-

@@ -98,7 +98,7 @@ class _DetailFoodPageState extends State<DetailFoodPage> {
                         Icon(Icons.person_add),
                         SizedBox(width: 4),
                         Text(
-                          "ลดสูงสุด 15",
+                          "จำนวนจอง 15",
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.black,
@@ -134,7 +134,7 @@ class _DetailFoodPageState extends State<DetailFoodPage> {
                         Positioned.fill(
                           child: SizedBox(
                             child: Image.asset(
-                              'assets/images/french-toast.jpg',
+                              'assets/images/ramen-noodles.jpg',
                               fit: BoxFit.fill,
                             ),
                           ),

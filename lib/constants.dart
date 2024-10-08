@@ -149,13 +149,13 @@ const List<Map<String, dynamic>> palceanorder = [
 const List<Map<String, dynamic>> importwidget = [
   {
     'id': 1,
-    'name': 'นำเข้าถูกต้อง',
-    'images': 'assets/icons/correctimport1.png',
+    'name': 'กราฟสรุปจองอาหาร',
+    'images': 'assets/images/Screenshot2024.png',
   },
   {
     'id': 2,
-    'name': '',
-    'images': 'assets/icons/tegmall.png',
+    'name': 'กราฟสรุปรายงาน',
+    'images': 'assets/images/Screenshot2024.png',
   },
 ];
 

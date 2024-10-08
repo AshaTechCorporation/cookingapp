@@ -114,11 +114,14 @@ class _AccountPageState extends State<AccountPage> {
                         height: size.height * 0.009,
                       ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'TEG+ Point ',
+                                'Point ',
                                 style: TextStyle(
                                     color: white,
                                     fontSize: 14,
@@ -140,7 +143,7 @@ class _AccountPageState extends State<AccountPage> {
                                 padding:
                                     EdgeInsets.only(left: size.width * 0.2),
                                 child: Text(
-                                  'Wallet ',
+                                  ' ',
                                   style: TextStyle(
                                       color: white,
                                       fontSize: 13,
