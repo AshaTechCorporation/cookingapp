@@ -279,13 +279,13 @@ class _HomePageStoreState extends State<HomePageStore> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: size.height * 0.2,
+              height: size.height * 0.3,
               child: Stack(
                 clipBehavior: Clip.none,
                 children: [
                   Positioned.fill(
                     child: Image.asset(
-                      'assets/images/messageimages.png',
+                      'assets/images/79E865FC-C28A-4CA9-B7C6-BA428BF5E7FD.png',
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -330,7 +330,7 @@ class _HomePageStoreState extends State<HomePageStore> {
               ),
             ),
             SizedBox(
-              height: size.height * 0.06,
+              height: size.height * 0.02,
             ),
             Row(
               children: [

@@ -14,13 +14,10 @@ class ReportProblemPage extends StatefulWidget {
 class _ReportProblemPageState extends State<ReportProblemPage> {
   int _selectedChoice = 0;
 
-
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    String appBarTitle =
-        _selectedChoice == 0 ? 'แจ้งปัญหา' : 'ประวัติการแก้ไขปัญหา';
+    String appBarTitle = _selectedChoice == 0 ? 'แจ้งปัญหา' : 'ประวัติการแก้ไขปัญหา';
 
     return Scaffold(
       backgroundColor: background,
@@ -28,8 +25,7 @@ class _ReportProblemPageState extends State<ReportProblemPage> {
         backgroundColor: background,
         title: Text(
           appBarTitle,
-          style: TextStyle(
-              fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18),
         ),
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(1.0),
@@ -46,104 +42,103 @@ class _ReportProblemPageState extends State<ReportProblemPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _buildChoiceChip(size, 'แจ้งปัญหาใหม่', 0),
-                _buildChoiceChip(size, 'ประวัติการแก้ไขปัญหา', 1),
+                // _buildChoiceChip(size, 'แจ้งปัญหาใหม่', 0),
+                // _buildChoiceChip(size, 'ประวัติการแก้ไขปัญหา', 1),
               ],
             ),
           ),
           Expanded(
             child: _selectedChoice == 0
                 ? Column(
-  children: [
-    Padding(
-      padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
-      child: Column(
-        children: List.generate(
-          problemData.length,
-          (index) => GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ReportFormPage(),
-                ),
-              );
-            },
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              margin: const EdgeInsets.symmetric(vertical: 6.0),
-              elevation: 2,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(16.0),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: pinkmess,
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/icons/byredcar.png', // ระบุ path ของรูปภาพที่คุณต้องการ
-                          width: 24,
-                          height: 24,
-                          color: red1,
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          problemData[index]['title'],  // ต้องระบุ index เพื่อเข้าถึงข้อมูลในลิสต์
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: size.width * 0.04),
+                        child: Column(
+                          children: List.generate(
+                            problemData.length,
+                            (index) => GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ReportFormPage(),
+                                  ),
+                                );
+                              },
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                margin: const EdgeInsets.symmetric(vertical: 6.0),
+                                elevation: 2,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      padding: const EdgeInsets.all(16.0),
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        color: pinkmess,
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(10),
+                                          topRight: Radius.circular(10),
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Image.asset(
+                                            'assets/icons/byredcar.png', // ระบุ path ของรูปภาพที่คุณต้องการ
+                                            width: 24,
+                                            height: 24,
+                                            color: red1,
+                                          ),
+                                          const SizedBox(width: 8),
+                                          Text(
+                                            problemData[index]['title'], // ต้องระบุ index เพื่อเข้าถึงข้อมูลในลิสต์
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    // ส่วนแสดงผล options
+                                    Container(
+                                      padding: const EdgeInsets.all(16.0),
+                                      width: double.infinity,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(10),
+                                          bottomRight: Radius.circular(10),
+                                        ),
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: List.generate(
+                                          problemData[index]['options'].length,
+                                          (optionIndex) => Text(
+                                            problemData[index]['options'][optionIndex],
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                  // ส่วนแสดงผล options
-                  Container(
-                    padding: const EdgeInsets.all(16.0),
-                    width: double.infinity,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
                       ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: List.generate(
-                        problemData[index]['options'].length,
-                        (optionIndex) => Text(
-                          problemData[index]['options'][optionIndex],
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    ),
-  ],
-)
-
+                    ],
+                  )
                 : _buildHistoryTab(),
           ),
         ],
@@ -158,10 +153,7 @@ class _ReportProblemPageState extends State<ReportProblemPage> {
         alignment: Alignment.center,
         child: Text(
           label,
-          style: TextStyle(
-              color: _selectedChoice == value ? Colors.white : greyuserinfo,
-              fontSize: 13,
-              fontWeight: FontWeight.bold),
+          style: TextStyle(color: _selectedChoice == value ? Colors.white : greyuserinfo, fontSize: 13, fontWeight: FontWeight.bold),
         ),
       ),
       selected: _selectedChoice == value,
@@ -244,7 +236,7 @@ class _ReportProblemPageState extends State<ReportProblemPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                       '',
+                        '',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,

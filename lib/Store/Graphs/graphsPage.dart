@@ -458,7 +458,7 @@ class LineChartSample1State extends State<LineChartSample1> {
                     width: 10,
                   ),
                   Text(
-                    'กำไร: 800 บาท',
+                    'ยอดขาย: 800 บาท',
                     style: TextStyle(
                       fontSize: 20,
                       letterSpacing: 2,
@@ -479,7 +479,7 @@ class LineChartSample1State extends State<LineChartSample1> {
                     width: 10,
                   ),
                   Text(
-                    'กำลังจะกำไร: 650 บาท',
+                    'เป้าหมาย: 650 บาท',
                     style: TextStyle(
                       fontSize: 20,
                       letterSpacing: 2,
