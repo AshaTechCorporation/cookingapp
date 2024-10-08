@@ -416,7 +416,7 @@ const List<String> aboutQuestion = [
 List<Map<String, dynamic>> problemData = [
   {
     'id': 1,
-    // 'imagePath': 'assets/icons/bills.png',
+    'imagePath': 'assets/icons/byredcar.png',
     'title': 'ติดตามสถานะบิลสั่งซื้อ และสินค้า',
     'options': [
       'ติดตามการสั่งซื้อ',
@@ -427,7 +427,7 @@ List<Map<String, dynamic>> problemData = [
   },
   {
     'id': 2,
-    // 'imagePath': 'assets/icons/importproblem.png',
+    'imagePath': 'assets/icons/byredcar.png',
     'title': 'ปัญหาด้านการขนส่ง',
     'options': [
       'ติดตามการจัดส่งสินค้าในไทย',
@@ -439,7 +439,7 @@ List<Map<String, dynamic>> problemData = [
   },
   {
     'id': 3,
-    // 'imagePath': 'assets/icons/moneyproblem.png',
+    'imagePath': 'assets/icons/byredcar.png',
     'title': 'ปัญหาด้านการเงิน',
     'options': [
       'เพิ่มเงิน / คืนเงิน / ถอนเงิน',
