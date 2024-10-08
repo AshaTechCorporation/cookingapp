@@ -48,6 +48,39 @@ List<MenuItem> menuItems = [
   MenuItem(imagePath: 'assets/icons/setting.png', text: 'ตั้งค่า'),
 ];
 
+List<Map<String, dynamic>> itemfav = [
+  {
+    'storeName': 'ร้านค้าหนึ่ง',
+    'storeItems': [
+      {
+        'id': 1,
+        'name': 'Spicy Ramen Noodles',
+        'imageAssetPath': 'assets/images/ramen-noodles.jpg',
+      },
+      {
+        'id': 2,
+        'name': 'Spicy Ramen Noodles',
+        'imageAssetPath': 'assets/images/ramen-noodles.jpg',
+      },
+    ],
+  },
+  {
+    'storeName': 'ร้านค้าสอง',
+    'storeItems': [
+      {
+        'id': 1,
+        'name': 'Butter Chicken',
+        'imageAssetPath': 'assets/images/butter-chicken.jpg',
+      },
+      {
+        'id': 2,
+        'name': 'Butter Chicken',
+        'imageAssetPath': 'assets/images/butter-chicken.jpg',
+      },
+    ],
+  },
+];
+
 const List<String> topup = ['เติมเงิน', 'ถอนเงิน'];
 const List<String> fistpagewidget = [
   'นำเข้าถูกต้อง',

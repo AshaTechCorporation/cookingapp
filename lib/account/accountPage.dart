@@ -1,3 +1,4 @@
+import 'package:cookingapp/account/itemfav.dart';
 import 'package:cookingapp/account/widgets/topupwidget.dart';
 import 'package:cookingapp/constants.dart';
 import 'package:flutter/material.dart';
@@ -25,168 +26,142 @@ class _AccountPageState extends State<AccountPage> {
     return Scaffold(
       backgroundColor: white,
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(200.0),
-          child: ClipRRect(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(30.0),
-              topRight: Radius.circular(30.0),
-            ),
-            child: AppBar(
-              flexibleSpace: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Color(0xFFcd8032),
-                      Color(0xFFecc49d),
-                    ],
-                    begin: Alignment.center,
-                    end: Alignment.bottomCenter,
-                  ),
+        preferredSize: Size.fromHeight(200.0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30.0),
+            topRight: Radius.circular(30.0),
+          ),
+          child: AppBar(
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFFcd8032),
+                    Color(0xFFecc49d),
+                  ],
+                  begin: Alignment.center,
+                  end: Alignment.bottomCenter,
                 ),
-                child: Padding(
-                  padding: EdgeInsets.only(left: size.width * 0.03),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                'A123456',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                'Name Surname',
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          ),
-                          Spacer(),
-                          Container(
-                            width: size.width * 0.45,
-                            height: size.height * 0.06,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [color1, color2],
-                                begin: Alignment.centerRight,
-                                end: Alignment.centerLeft,
-                                stops: [0.3, 0.7],
-                              ),
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(30),
-                                bottomLeft: Radius.circular(30),
-                              ),
+              ),
+              child: Padding(
+                padding: EdgeInsets.only(left: size.width * 0.03),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                        Column(
+                          children: [
+                            Text(
+                              'A123456',
+                              style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Bronze',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white),
-                                ),
-                                SizedBox(width: size.width * 0.04),
-                                CircleAvatar(
-                                  backgroundColor: Colors.grey[300],
-                                  radius: 20,
-                                  child: Icon(
-                                    Icons.person,
-                                    size: 20,
-                                    color: Colors.grey[700],
-                                  ),
-                                ),
-                              ],
+                            Text(
+                              'Name Surname',
+                              style: TextStyle(fontSize: 14, color: Colors.white, fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                        Spacer(),
+                        Container(
+                          width: size.width * 0.45,
+                          height: size.height * 0.06,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [color1, color2],
+                              begin: Alignment.centerRight,
+                              end: Alignment.centerLeft,
+                              stops: [0.3, 0.7],
+                            ),
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(30),
+                              bottomLeft: Radius.circular(30),
                             ),
                           ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: size.height * 0.009,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'Point ',
-                                style: TextStyle(
-                                    color: white,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold),
+                                'สมาชิกทั่วไป',
+                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
                               ),
-                              Text(
-                                '150 คะแนน ',
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          ),
-                          Spacer(),
-                          Column(
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsets.only(left: size.width * 0.2),
-                                child: Text(
-                                  ' ',
-                                  style: TextStyle(
-                                      color: white,
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.bold),
+                              SizedBox(width: size.width * 0.04),
+                              CircleAvatar(
+                                backgroundColor: Colors.grey[300],
+                                radius: 20,
+                                child: Icon(
+                                  Icons.person,
+                                  size: 20,
+                                  color: Colors.grey[700],
                                 ),
                               ),
-                              Text(
-                                'คงเหลือ 1025 บาท',
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              )
                             ],
                           ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: size.height * 0.01,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: List.generate(
-                            fistpagewidget.length,
-                            (index) => Topupwidget(
-                                size: size,
-                                title: topup[index],
-                                press: () {
-                                  if (index == 0) {
-                                    
-                                  }
-                                  if (index == 1) {
-                                    
-                                  }
-                                })),
-                      ),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: size.height * 0.009,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Point ',
+                              style: TextStyle(color: white, fontSize: 14, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              '150 คะแนน ',
+                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                        Spacer(),
+                        Column(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: size.width * 0.2),
+                              child: Text(
+                                ' ',
+                                style: TextStyle(color: white, fontSize: 13, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Text(
+                              'คงเหลือ 1025 บาท',
+                              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    //   children: List.generate(
+                    //       fistpagewidget.length,
+                    //       (index) => Topupwidget(
+                    //           size: size,
+                    //           title: topup[index],
+                    //           press: () {
+                    //             if (index == 0) {}
+                    //             if (index == 1) {}
+                    //           })),
+                    // ),
+                  ],
                 ),
               ),
             ),
           ),
         ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -213,7 +188,9 @@ class _AccountPageState extends State<AccountPage> {
                       style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                     ),
                     onTap: () {
-                      if (index == 0) {}
+                      if (index == 0) {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Itemfav()));
+                      }
                       if (index == 1) {}
                       if (index == 2) {}
                       if (index == 3) {}
