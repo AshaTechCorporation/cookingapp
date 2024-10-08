@@ -1,4 +1,5 @@
 import 'package:cookingapp/constants.dart';
+import 'package:cookingapp/track/detailordertrackpage.dart';
 import 'package:flutter/material.dart';
 
 class Readytosend extends StatelessWidget {
@@ -77,12 +78,12 @@ class Readytosend extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => Sendingpage(),
-              //   ),
-              // );
+             Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Detailordertrackpage(),
+                  ),
+                );
             },
             child: Center(
               child: Stack(

@@ -48,7 +48,7 @@ class _ContactusState extends State<Contactus> {
                               fontFamily: 'SukhumvitSet'),
                           children: <TextSpan>[
                         TextSpan(
-                          text: ' TEG Cargo',
+                          text: ' กับข้าว',
                           style: TextStyle(
                               color: Colors.red,
                               fontWeight: FontWeight.w800,
@@ -58,21 +58,21 @@ class _ContactusState extends State<Contactus> {
                       ])),
                   SizedBox(height: size.height * 0.02),
                   Text(
-                    '   TEG  ชิปปิ้งจากจีนถึงไทย ส่งดีถูกใจ ใส่ใจถึงหน้าบ้าน เรามีบริการ ส่งของจากจีนครบจบทุกขั้นตอน ขนส่งด่วนที่สุด 4-7 วัน จากจีนถึงไทย ส่งตรงถึงหน้าบ้าน พร้อมผู้ดูแลส่วนตัว สามารถสั่งซื้อสินค้า ติดต่อ ประสานงาน ร้านค้า โรงงาน ติดตามสินค้า ชิปปิ้งจีน ราคาถูกพร้อม อำนวยความสะดวก มี  Application  แจ้งเตือนสถานะสินค้า 24 ชม.',
+                    '   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet porta lorem. Sed sollicitudin turpis nec hendrerit hendrerit. Praesent id tellus id leo sodales scelerisque nec id tellus. Ut justo justo, hendrerit nec risus sed, ornare dapibus est. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent sagittis elit ut nisl feugiat, eget convallis nunc efficitur. Praesent in lacus ac erat congue viverra.',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
                   ),
                   SizedBox(
                     height: size.height * 0.02,
                   ),
                   Text(
-                    '    TEG เป็นตัวแทนออกของ หรือ ชิปปิ้ง (Shipping) หมายถึง ผู้ทำหน้าที่ด้านพิธีการเอกสารผ่านธนาคาร พิธีการศุลกากร และบริษัทเรือเดินทะเลหรือบริษัทขนส่งทางบก เพื่อนำสินค้านำเข้าจาก ประเทศจีน รวมถึงการจัดหารถไปรับสินค้าจาก โกดังลูกค้าโดยมีบริการ เหมาตู้คอนเทนเนอร์(FCL) แชร์ตู้ร่วม(LCL)และบริการส่งตรงถึงหน้า บ้าน(Door to Door) โดยนอกจากนี้บริษัทฯของเรายังมีบริการ เสริมอื่นๆ เช่น บริการจัดหาไกด์ ล่ามติดต่อประสานงาน ร้านค้า โรงงาน พร้อมอำนวยความสะดวก',
+                    '   Nulla eu leo sagittis, accumsan nunc eget, scelerisque ipsum. Aliquam erat volutpat. Curabitur et fringilla mauris, sit amet suscipit nisl. Proin porta egestas sodales. Donec vitae semper ipsum. Nulla vel vulputate nunc. Nullam pretium accumsan metus a placerat.',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
                   ),
                   SizedBox(
                     height: size.height * 0.02,
                   ),
                   Text(
-                    '    ทางบริษัทฯยังเปิดรับ พาสเนอร์ร่วมธุรกิจ โดยให้บริการครบวงจร เช่น เอกสารรับสินค้าที่จีนเป็นของพาสเนอร์เองได้ การอัพเดตสถานะ เข้าโกดัง รวมถึงสรุปข้อมูลสินค้าเข้าโกดังแบบวันต่อวัน',
+                    'Cras pretium arcu ut elementum imperdiet. Quisque at eros dignissim, condimentum orci quis, hendrerit est. Suspendisse porta neque et interdum congue. Aenean luctus dui non augue congue, eget fringilla est tristique. Nullam pulvinar ex eget nisi consectetur mattis. Vestibulum varius, urna sit amet efficitur elementum, elit',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
                   ),
                   SizedBox(
@@ -110,14 +110,14 @@ class _ContactusState extends State<Contactus> {
                       size: size,
                       color: red1,
                       // imagePath: '',
-                      text: '061-9966663',
+                      text: '0000000000',
                     ),
                     SizedBox(height: size.height * 0.015),
                     _buildContactContainer(
                       size: size,
                       color: red1,
                       // imagePath: '',
-                      text: 'Sale@teglogistics.net',
+                      text: 'Sale@กับข้าว.net',
                     ),
                     SizedBox(height: size.height * 0.015),
                     _buildContactContainer(
@@ -131,14 +131,14 @@ class _ContactusState extends State<Contactus> {
                       size: size,
                       color: green,
                       // imagePath: '',
-                      text: '@TEGCargo',
+                      text: '@กับข้าว',
                     ),
                     SizedBox(height: size.height * 0.015),
                     _buildContactContainer(
                       size: size,
                       color: blue,
                       // imagePath: '',
-                      text: 'TEG CARGO',
+                      text: 'กับข้าว',
                     ),
                     SizedBox(
                       height: size.height * 0.01,
