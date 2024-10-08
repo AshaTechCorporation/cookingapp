@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:syncfusion_flutter_gauges/gauges.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class DetailFoodGraphs extends StatefulWidget {
   const DetailFoodGraphs({super.key});
@@ -31,81 +31,81 @@ class _DetailFoodGraphsState extends State<DetailFoodGraphs> {
             SizedBox(
               height: 20,
             ),
-            // SizedBox(
-            //   width: double.infinity,
-            //   height: 130,
-            //   child: SfRadialGauge(
-            //     axes: <RadialAxis>[
-            //       RadialAxis(
-            //         radiusFactor: 2,
-            //         centerX: 0.5,
-            //         centerY: 0.9,
-            //         startAngle: 180,
-            //         endAngle: 0,
-            //         showLabels: false,
-            //         showAxisLine: false,
-            //         showTicks: false,
-            //         ticksPosition: ElementsPosition.outside,
-            //         labelsPosition: ElementsPosition.outside,
-            //         minimum: 1,
-            //         maximum: 101,
-            //         ranges: <GaugeRange>[
-            //           GaugeRange(
-            //             startValue: 0,
-            //             endValue: 20,
-            //             color: Colors.red,
-            //             sizeUnit: GaugeSizeUnit.factor,
-            //             // label: 'Slow',
-            //             // labelStyle: GaugeTextStyle(fontSize: 12),
-            //             startWidth: 0.4,
-            //             endWidth: 0.4,
-            //           ),
-            //           GaugeRange(
-            //             startValue: 21,
-            //             endValue: 40,
-            //             color: Color.fromARGB(255, 255, 136, 0),
-            //             sizeUnit: GaugeSizeUnit.factor,
-            //             // label: 'Slow',
-            //             // labelStyle: GaugeTextStyle(fontSize: 12),
-            //             startWidth: 0.4,
-            //             endWidth: 0.4,
-            //           ),
-            //           GaugeRange(
-            //             startValue: 41,
-            //             endValue: 60,
-            //             color: Color(0xFFFFBA00),
-            //             // label: 'Moderate',
-            //             // labelStyle: GaugeTextStyle(fontSize: 12),
-            //             startWidth: 0.4,
-            //             endWidth: 0.4,
-            //             sizeUnit: GaugeSizeUnit.factor,
-            //           ),
-            //           GaugeRange(
-            //             startValue: 61,
-            //             endValue: 80,
-            //             color: Color.fromARGB(255, 148, 171, 0),
-            //             // label: 'Fast',
-            //             // labelStyle: GaugeTextStyle(fontSize: 12),
-            //             sizeUnit: GaugeSizeUnit.factor,
-            //             startWidth: 0.4,
-            //             endWidth: 0.4,
-            //           ),
-            //           GaugeRange(
-            //             startValue: 81,
-            //             endValue: 101,
-            //             color: Color.fromARGB(255, 0, 118, 49),
-            //             // label: 'Fast',
-            //             // labelStyle: GaugeTextStyle(fontSize: 12),
-            //             sizeUnit: GaugeSizeUnit.factor,
-            //             startWidth: 0.4,
-            //             endWidth: 0.4,
-            //           ),
-            //         ],
-            //         pointers: <GaugePointer>[NeedlePointer(value: 25)],
-            //       ),
-            //     ],
-            //   ),
-            // ),
+            SizedBox(
+              width: double.infinity,
+              height: 130,
+              child: SfRadialGauge(
+                axes: <RadialAxis>[
+                  RadialAxis(
+                    radiusFactor: 2,
+                    centerX: 0.5,
+                    centerY: 0.9,
+                    startAngle: 180,
+                    endAngle: 0,
+                    showLabels: false,
+                    showAxisLine: false,
+                    showTicks: false,
+                    ticksPosition: ElementsPosition.outside,
+                    labelsPosition: ElementsPosition.outside,
+                    minimum: 1,
+                    maximum: 101,
+                    ranges: <GaugeRange>[
+                      GaugeRange(
+                        startValue: 0,
+                        endValue: 20,
+                        color: Colors.red,
+                        sizeUnit: GaugeSizeUnit.factor,
+                        // label: 'Slow',
+                        // labelStyle: GaugeTextStyle(fontSize: 12),
+                        startWidth: 0.4,
+                        endWidth: 0.4,
+                      ),
+                      GaugeRange(
+                        startValue: 21,
+                        endValue: 40,
+                        color: Color.fromARGB(255, 255, 136, 0),
+                        sizeUnit: GaugeSizeUnit.factor,
+                        // label: 'Slow',
+                        // labelStyle: GaugeTextStyle(fontSize: 12),
+                        startWidth: 0.4,
+                        endWidth: 0.4,
+                      ),
+                      GaugeRange(
+                        startValue: 41,
+                        endValue: 60,
+                        color: Color(0xFFFFBA00),
+                        // label: 'Moderate',
+                        // labelStyle: GaugeTextStyle(fontSize: 12),
+                        startWidth: 0.4,
+                        endWidth: 0.4,
+                        sizeUnit: GaugeSizeUnit.factor,
+                      ),
+                      GaugeRange(
+                        startValue: 61,
+                        endValue: 80,
+                        color: Color.fromARGB(255, 148, 171, 0),
+                        // label: 'Fast',
+                        // labelStyle: GaugeTextStyle(fontSize: 12),
+                        sizeUnit: GaugeSizeUnit.factor,
+                        startWidth: 0.4,
+                        endWidth: 0.4,
+                      ),
+                      GaugeRange(
+                        startValue: 81,
+                        endValue: 101,
+                        color: Color.fromARGB(255, 0, 118, 49),
+                        // label: 'Fast',
+                        // labelStyle: GaugeTextStyle(fontSize: 12),
+                        sizeUnit: GaugeSizeUnit.factor,
+                        startWidth: 0.4,
+                        endWidth: 0.4,
+                      ),
+                    ],
+                    pointers: <GaugePointer>[NeedlePointer(value: 25)],
+                  ),
+                ],
+              ),
+            ),
             Row(
               children: [
                 Container(
