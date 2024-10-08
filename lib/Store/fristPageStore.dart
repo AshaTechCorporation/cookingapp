@@ -1,9 +1,7 @@
+import 'package:cookingapp/Store/Graphs/graphsPage.dart';
+import 'package:cookingapp/Store/home/HomePageStore.dart';
 import 'package:cookingapp/account/accountPage.dart';
-import 'package:cookingapp/cart/cartPage.dart';
 import 'package:cookingapp/constants.dart';
-import 'package:cookingapp/home/homePage.dart';
-import 'package:cookingapp/product/productPage.dart';
-import 'package:cookingapp/track/trackPage.dart';
 import 'package:flutter/material.dart';
 
 class FirstPageStore extends StatefulWidget {
@@ -16,20 +14,20 @@ class FirstPageStore extends StatefulWidget {
 class _FirstPageStoreState extends State<FirstPageStore> {
   int selectedIndex = 0;
   final PageStorageBucket bucket = PageStorageBucket();
-  Widget currentPage = HomePage();
+  Widget currentPage = HomePageStore();
 
   void onItemSelect(int index) {
     setState(() {
       selectedIndex = index;
       print(selectedIndex);
       if (selectedIndex == 0) {
-        currentPage = HomePage();
+        currentPage = HomePageStore();
       } else if (selectedIndex == 1) {
-        currentPage = ProductPage();
+        // currentPage = ProductPage();
       } else if (selectedIndex == 2) {
-        currentPage = TrackPage();
+        currentPage = LineChartSample1();
       } else if (selectedIndex == 3) {
-        currentPage = CartPage();
+        // currentPage = CartPage();
       } else if (selectedIndex == 4) {
         currentPage = AccountPage();
       }
@@ -59,12 +57,17 @@ class _FirstPageStoreState extends State<FirstPageStore> {
                   height: 90,
                   decoration: BoxDecoration(shape: BoxShape.circle, color: red1),
                   child: Center(
-                    child: Image.asset(
-                      'assets/icons/truck.png',
-                      // width: 10,
-                      height: 35,
-                      fit: BoxFit.fill,
+                    child: Icon(
+                      Icons.auto_graph,
+                      size: 50,
+                      color: Colors.white,
                     ),
+                    // child: Image.asset(
+                    //   'assets/icons/truck.png',
+                    //   // width: 10,
+                    //   height: 35,
+                    //   fit: BoxFit.fill,
+                    // ),
                   ),
                 ),
               )),
@@ -89,6 +92,7 @@ class _FirstPageStoreState extends State<FirstPageStore> {
                             'assets/icons/Frame 61.png',
                             width: 24,
                             height: 27,
+                            color: red1,
                           ),
                           Text(
                             'หน้าหลัก',
@@ -127,6 +131,7 @@ class _FirstPageStoreState extends State<FirstPageStore> {
                             'assets/icons/redgroup.png',
                             width: 30,
                             height: 30,
+                            color: red1,
                           ),
                           Text(
                             'ร้านค้า',
@@ -164,6 +169,7 @@ class _FirstPageStoreState extends State<FirstPageStore> {
                               'assets/icons/redcart.png',
                               width: 20, // Adjust the width as needed
                               height: 20, // Adjust the height as needed
+                              color: red1,
                             ),
                             // Text(
                             //   'รถเข็น',
@@ -198,6 +204,7 @@ class _FirstPageStoreState extends State<FirstPageStore> {
                               'assets/icons/redcart.png',
                               width: 30, // Adjust the width as needed
                               height: 30, // Adjust the height as needed
+                              color: red1,
                             ),
                             Text(
                               'รถเข็น',
@@ -232,6 +239,7 @@ class _FirstPageStoreState extends State<FirstPageStore> {
                               'assets/icons/reduser.png',
                               width: 30, // Adjust the width as needed
                               height: 30, // Adjust the height as needed
+                              color: red1,
                             ),
                             Text(
                               'บัญชี',

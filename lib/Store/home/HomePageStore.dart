@@ -1,3 +1,4 @@
+import 'package:cookingapp/Store/Graphs/DetailFoodGraphs.dart';
 import 'package:cookingapp/Store/Graphs/graphsPage.dart';
 import 'package:cookingapp/Store/Graphs/test3.dart';
 import 'package:cookingapp/Store/Graphs/testGraphs.dart';
@@ -12,14 +13,14 @@ import 'package:cookingapp/widgets/LoadingDialog.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePageStore extends StatefulWidget {
+  const HomePageStore({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePageStore> createState() => _HomePageStoreState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageStoreState extends State<HomePageStore> {
   final ScrollController scrollController = ScrollController();
   double appBarOpacity = 0.0;
   Color searchBarColor = Colors.transparent;
@@ -288,43 +289,43 @@ class _HomePageState extends State<HomePage> {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  Positioned(
-                    //bottom: MediaQuery.of(context).size.height * (-30 / 800),
-                    bottom: -20,
-                    left: 0,
-                    right: 0,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          ...List.generate(
-                            importwidget.length,
-                            (index) => GestureDetector(
-                              onTap: () {
-                                if (index == 0) {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                    return LineChartSample1();
-                                  }));
-                                }
-                                if (index == 1) {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                    return LineChartSample1();
-                                  }));
-                                }
-                              },
-                              child: Importwidget(
-                                size: size,
-                                title: importwidget[index]['name'],
-                                imagePath: importwidget[index]['images'],
-                                id: importwidget[index]['id'],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
+                  // Positioned(
+                  //   //bottom: MediaQuery.of(context).size.height * (-30 / 800),
+                  //   bottom: -20,
+                  //   left: 0,
+                  //   right: 0,
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  //     child: Row(
+                  //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  //       children: [
+                  //         ...List.generate(
+                  //           importwidget.length,
+                  //           (index) => GestureDetector(
+                  //             onTap: () {
+                  //               if (index == 0) {
+                  //                 Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  //                   return LineChartSample1();
+                  //                 }));
+                  //               }
+                  //               if (index == 1) {
+                  //                 Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  //                   return LineChartSample1();
+                  //                 }));
+                  //               }
+                  //             },
+                  //             child: Importwidget(
+                  //               size: size,
+                  //               title: importwidget[index]['name'],
+                  //               imagePath: importwidget[index]['images'],
+                  //               id: importwidget[index]['id'],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // )
                 ],
               ),
             ),
@@ -484,7 +485,7 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('ใส่ SMALL ลด 100.*', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20)),
+                  Text('รายการอาหาร', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20)),
                   Container(
                     width: 35.0,
                     height: 35.0,
@@ -513,12 +514,7 @@ class _HomePageState extends State<HomePage> {
                               address: restaurants[index].address!,
                               image: 'assets/images/ramen-noodles.jpg',
                               press: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => DetailFoodPage(
-                                              restaurant_id: restaurants[index].id,
-                                            )));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => DetailFoodGraphs()));
                               }),
                         ),
                       ),
@@ -610,114 +606,115 @@ class _HomePageState extends State<HomePage> {
             //     ),
             //   ),
             // ),
-            SizedBox(
-              height: size.height * 0.02,
-            ),
-            Column(
-              children: List.generate(
-                8,
-                (index) => Padding(
-                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.02, vertical: size.height * 0.01),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 3,
-                        child: Container(
-                          height: size.height * 0.15,
-                          width: size.width * 0.30,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: AssetImage("assets/images/beaf-steak.jpg"),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: size.width * 0.01,
-                      ),
-                      Expanded(
-                          flex: 7,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Beef Steak',
-                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.amber,
-                                  ),
-                                  Text('4.7 - อาหาร'),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.info_outline,
-                                    color: brown,
-                                  ),
-                                  Text(
-                                    '฿10 - ',
-                                    style: TextStyle(color: Colors.red),
-                                  ),
-                                  Text(
-                                    '30 นาทีขึ้นไป',
-                                    style: TextStyle(color: Colors.black),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    margin: EdgeInsets.all(3.0),
-                                    padding: EdgeInsets.all(2.0),
-                                    decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.blueAccent),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.countertops_outlined,
-                                          color: brown,
-                                        ),
-                                        Text('ลดพิเศษสำหรับสมาชิก'),
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.all(3.0),
-                                    padding: EdgeInsets.all(2.0),
-                                    decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.blueAccent),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.countertops_outlined,
-                                          color: brown,
-                                        ),
-                                        Text('ลด ฿100'),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          )),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            // SizedBox(
+            //   height: size.height * 0.02,
+            // ),
+            // Column(
+            //   children: List.generate(
+            //     8,
+            //     (index) => Padding(
+            //       padding: EdgeInsets.symmetric(horizontal: size.width * 0.02, vertical: size.height * 0.01),
+            //       child: Row(
+            //         children: [
+            //           Expanded(
+            //             flex: 3,
+            //             child: Container(
+            //               height: size.height * 0.15,
+            //               width: size.width * 0.30,
+            //               decoration: BoxDecoration(
+            //                 borderRadius: BorderRadius.circular(10),
+            //                 image: DecorationImage(
+            //                   fit: BoxFit.fill,
+            //                   image: AssetImage("assets/images/beaf-steak.jpg"),
+            //                 ),
+            //               ),
+            //             ),
+            //           ),
+            //           SizedBox(
+            //             width: size.width * 0.01,
+            //           ),
+            //           Expanded(
+            //               flex: 7,
+            //               child: Column(
+            //                 mainAxisAlignment: MainAxisAlignment.start,
+            //                 crossAxisAlignment: CrossAxisAlignment.start,
+            //                 children: [
+            //                   Text(
+            //                     'Beef Steak',
+            //                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            //                     overflow: TextOverflow.ellipsis,
+            //                   ),
+            //                   Row(
+            //                     children: [
+            //                       Icon(
+            //                         Icons.star,
+            //                         color: Colors.amber,
+            //                       ),
+            //                       Text('4.7 - อาหาร'),
+            //                     ],
+            //                   ),
+            //                   Row(
+            //                     children: [
+            //                       Icon(
+            //                         Icons.info_outline,
+            //                         color: brown,
+            //                       ),
+            //                       Text(
+            //                         '฿10 - ',
+            //                         style: TextStyle(color: Colors.red),
+            //                       ),
+            //                       Text(
+            //                         '30 นาทีขึ้นไป',
+            //                         style: TextStyle(color: Colors.black),
+            //                       ),
+            //                     ],
+            //                   ),
+            //                   Row(
+            //                     children: [
+            //                       Container(
+            //                         margin: EdgeInsets.all(3.0),
+            //                         padding: EdgeInsets.all(2.0),
+            //                         decoration: BoxDecoration(
+            //                           border: Border.all(color: Colors.blueAccent),
+            //                           borderRadius: BorderRadius.circular(10),
+            //                         ),
+            //                         child: Row(
+            //                           children: [
+            //                             Icon(
+            //                               Icons.countertops_outlined,
+            //                               color: brown,
+            //                             ),
+            //                             Text('ลดพิเศษสำหรับสมาชิก'),
+            //                           ],
+            //                         ),
+            //                       ),
+            //                       Container(
+            //                         margin: EdgeInsets.all(3.0),
+            //                         padding: EdgeInsets.all(2.0),
+            //                         decoration: BoxDecoration(
+            //                           border: Border.all(color: Colors.blueAccent),
+            //                           borderRadius: BorderRadius.circular(10),
+            //                         ),
+            //                         child: Row(
+            //                           children: [
+            //                             Icon(
+            //                               Icons.countertops_outlined,
+            //                               color: brown,
+            //                             ),
+            //                             Text('ลด ฿100'),
+            //                           ],
+            //                         ),
+            //                       )
+            //                     ],
+            //                   ),
+            //                 ],
+            //               )),
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // ),
+
             SizedBox(
               height: size.height * 0.05,
             ),
