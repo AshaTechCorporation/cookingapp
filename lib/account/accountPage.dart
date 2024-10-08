@@ -9,6 +9,7 @@ import 'package:cookingapp/account/tagpage.dart';
 import 'package:cookingapp/account/transactionshistory.dart';
 import 'package:cookingapp/account/widgets/topupwidget.dart';
 import 'package:cookingapp/constants.dart';
+import 'package:cookingapp/login/loginPage.dart';
 import 'package:flutter/material.dart';
 
 class AccountPage extends StatefulWidget {
@@ -218,9 +219,18 @@ class _AccountPageState extends State<AccountPage> {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => Contactus()));
                       }
                       if (index == 7) {
-                         Navigator.push(context, MaterialPageRoute(builder: (context) => Accsetting(title: item.text,)));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Accsetting(
+                                      title: item.text,
+                                    )));
                       }
-                      if (index == 8) {}
+                      if (index == 8) {
+                        Navigator.of(context, rootNavigator: true).pushReplacement(
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                        );
+                      }
                     },
                   );
                 }).toList(),

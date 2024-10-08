@@ -46,6 +46,7 @@ List<MenuItem> menuItems = [
   MenuItem(imagePath: 'assets/icons/help.png', text: 'ช่วยเหลือ'),
   MenuItem(imagePath: 'assets/icons/contact.png', text: 'ติดต่อเรา'),
   MenuItem(imagePath: 'assets/icons/setting.png', text: 'ตั้งค่า'),
+  MenuItem(imagePath: 'assets/images/Vector-2.png', text: 'ออกจากระบบ'),
 ];
 
 List<Map<String, dynamic>> itemfav = [
@@ -307,60 +308,18 @@ const List<Map<String, dynamic>> listProducts = [
 ];
 
 const List<Map<String, dynamic>> topuphis = [
-  {
-    'id': 1,
-    'date': '26 ก.ย. 67',
-    'time': '16:50:54',
-    'detailLink': 'ดูรายละเอียด',
-    'by': 'mobile banking',
-    'amount': '500.00'
-  },
-  {
-    'id': 2,
-    'date': '26 ก.ย. 67',
-    'time': '16:50:54',
-    'detailLink': 'ดูรายละเอียด',
-    'by': 'mobile banking',
-    'amount': '500.00'
-  }
+  {'id': 1, 'date': '26 ก.ย. 67', 'time': '16:50:54', 'detailLink': 'ดูรายละเอียด', 'by': 'mobile banking', 'amount': '500.00'},
+  {'id': 2, 'date': '26 ก.ย. 67', 'time': '16:50:54', 'detailLink': 'ดูรายละเอียด', 'by': 'mobile banking', 'amount': '500.00'}
 ];
 
 const List<Map<String, dynamic>> withdrownhis = [
-  {
-    'id': 1,
-    'date': '26 ก.ย. 67',
-    'time': '16:50:54',
-    'detailLink': 'ดูรายละเอียด',
-    'by': 'mobile banking',
-    'amount': '500.00'
-  },
-  {
-    'id': 2,
-    'date': '26 ก.ย. 67',
-    'time': '16:50:54',
-    'detailLink': 'ดูรายละเอียด',
-    'by': 'mobile banking',
-    'amount': '500.00'
-  }
+  {'id': 1, 'date': '26 ก.ย. 67', 'time': '16:50:54', 'detailLink': 'ดูรายละเอียด', 'by': 'mobile banking', 'amount': '500.00'},
+  {'id': 2, 'date': '26 ก.ย. 67', 'time': '16:50:54', 'detailLink': 'ดูรายละเอียด', 'by': 'mobile banking', 'amount': '500.00'}
 ];
 
 const List<Map<String, dynamic>> statement = [
-  {
-    'id': 1,
-    'po': ' A523456',
-    'time': '20 ส.ค. 67 10:00',
-    'detailLink': 'ดูรายละเอียด',
-    'by': 'ค่าบริการ',
-    'amount': '00,000'
-  },
-  {
-    'id': 2,
-    'po': ' A523226',
-    'time': '21 ส.ค. 67 12:02',
-    'detailLink': 'ดูรายละเอียด',
-    'by': 'ค่าสินค้า',
-    'amount': '00,000'
-  },
+  {'id': 1, 'po': ' A523456', 'time': '20 ส.ค. 67 10:00', 'detailLink': 'ดูรายละเอียด', 'by': 'ค่าบริการ', 'amount': '00,000'},
+  {'id': 2, 'po': ' A523226', 'time': '21 ส.ค. 67 12:02', 'detailLink': 'ดูรายละเอียด', 'by': 'ค่าสินค้า', 'amount': '00,000'},
 ];
 
 const List<Map<String, dynamic>> accumulatedpoints = [
