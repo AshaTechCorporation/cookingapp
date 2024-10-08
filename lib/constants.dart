@@ -144,37 +144,31 @@ const List<Map<String, dynamic>> palceanorder = [
   {
     'id': 1,
     'images': 'assets/icons/waitsum.png',
-    'title': 'รอสรุปยอด',
+    'title': 'สั่งซื้อ',
     'process': 'x',
   },
   {
     'id': 2,
     'images': 'assets/icons/waitingorderpayment.png',
-    'title': 'รอชำระคำสั่งซื้อ',
+    'title': 'ชำระเงิน',
     'process': 'x',
   },
   {
     'id': 3,
     'images': 'assets/icons/orderpending.png',
-    'title': 'อยู่ระหว่างการสั่งซื้อ',
+    'title': 'รอผลิต',
     'process': 'x',
   },
   {
     'id': 4,
     'images': 'assets/icons/packingtrack.png',
-    'title': 'สินค้าเตรียมจัดส่ง',
+    'title': 'รอรับ',
     'process': 'x',
   },
   {
     'id': 5,
-    'images': 'assets/icons/delivery.png',
-    'title': 'จัดส่งสินค้าแล้ว',
-    'process': 'x',
-  },
-  {
-    'id': 6,
-    'images': 'assets/icons/cancle.png',
-    'title': 'ยกเลิก/ล้มเหลว',
+    'images': 'assets/icons/sended.png',
+    'title': 'เสร็จสิ้น',
     'process': 'x',
   },
 ];
