@@ -236,6 +236,7 @@ class _ItemfavState extends State<Itemfav> {
               width: size.width * 0.12,
               height: size.height * 0.044,
               fit: BoxFit.fill,
+              color: red1,
             ),
           ],
         ),
