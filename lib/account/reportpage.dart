@@ -92,7 +92,7 @@ class _ReportProblemPageState extends State<ReportProblemPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
-                          'assets/icons/byredcar.pn', // ระบุ path ของรูปภาพที่คุณต้องการ
+                          'assets/icons/byredcar.png', // ระบุ path ของรูปภาพที่คุณต้องการ
                           width: 24,
                           height: 24,
                           color: red1,
