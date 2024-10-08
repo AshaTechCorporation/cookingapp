@@ -183,161 +183,43 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ],
               ),
-            )
-            // Text(
-            //   'หรือ',
-            //   style: TextStyle(fontSize: 15),
-            // ),
-            // SizedBox(
-            //   height: size.height * 0.020,
-            // ),
-            // Container(
-            //   height: size.height * 0.06,
-            //   width: size.width * 0.91,
-            //   decoration: BoxDecoration(
-            //     color: Colors.white,
-            //     borderRadius: BorderRadius.circular(10),
-            //     boxShadow: [
-            //       BoxShadow(
-            //         color: Colors.black.withOpacity(0.1),
-            //         spreadRadius: 1,
-            //         blurRadius: 1,
-            //         offset: Offset(0, 1),
-            //       ),
-            //     ],
-            //   ),
-            //   child: Center(
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.center,
-            //       children: [
-            //         Padding(
-            //           padding: const EdgeInsets.only(right: 20),
-            //           child: Image.asset('assets/icons/google.png'),
-            //         ),
-            //         SizedBox(
-            //           width: size.width * 0.03,
-            //         ),
-            //         Text(
-            //           'ดำเนินการต่อด้วยบัญชี Google',
-            //           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-            //         )
-            //       ],
-            //     ),
-            //   ),
-            // ),
-            // SizedBox(height: size.height * 0.01),
-            // Container(
-            //   height: size.height * 0.06,
-            //   width: size.width * 0.91,
-            //   decoration: BoxDecoration(
-            //     color: Colors.white,
-            //     borderRadius: BorderRadius.circular(10),
-            //     boxShadow: [
-            //       BoxShadow(
-            //         color: Colors.black.withOpacity(0.1),
-            //         spreadRadius: 1,
-            //         blurRadius: 1,
-            //         offset: Offset(0, 1),
-            //       ),
-            //     ],
-            //   ),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     crossAxisAlignment: CrossAxisAlignment.center,
-            //     children: [
-            //       Padding(
-            //         padding: const EdgeInsets.only(right: 6),
-            //         child: Image.asset('assets/icons/facebook.png'),
-            //       ),
-            //       // SizedBox(
-            //       //   width: size.width * 0.03,
-            //       // ),
-            //       Container(
-            //         margin: EdgeInsets.only(left: 10),
-            //         child: Text(
-            //           'ดำเนินการต่อด้วยบัญชี Facebook',
-            //           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-            //         ),
-            //       )
-            //     ],
-            //   ),
-            // ),
-            // SizedBox(height: size.height * 0.01),
-            // Container(
-            //   height: size.height * 0.06,
-            //   width: size.width * 0.91,
-            //   decoration: BoxDecoration(
-            //     color: Colors.white,
-            //     borderRadius: BorderRadius.circular(10),
-            //     boxShadow: [
-            //       BoxShadow(
-            //         color: Colors.black.withOpacity(0.1),
-            //         spreadRadius: 1,
-            //         blurRadius: 1,
-            //         offset: Offset(0, 1),
-            //       ),
-            //     ],
-            //   ),
-            //   child: Center(
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.center,
-            //       children: [
-            //         Padding(
-            //           padding: const EdgeInsets.only(right: 50),
-            //           child: Image.asset(
-            //             'assets/icons/linelogin.png',
-            //             height: size.height * 0.03,
-            //           ),
-            //         ),
-            //         // SizedBox(
-            //         //   width: size.width * 0.03,
-            //         // ),
-            //         Text(
-            //           'ดำเนินการต่อด้วยบัญชี Line',
-            //           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-            //         )
-            //       ],
-            //     ),
-            //   ),
-            // ),
-            // SizedBox(height: size.height * 0.01),
-            // Container(
-            //   height: size.height * 0.06,
-            //   width: size.width * 0.91,
-            //   decoration: BoxDecoration(
-            //     color: Colors.white,
-            //     borderRadius: BorderRadius.circular(10),
-            //     boxShadow: [
-            //       BoxShadow(
-            //         color: Colors.black.withOpacity(0.1),
-            //         spreadRadius: 1,
-            //         blurRadius: 1,
-            //         offset: Offset(0, 1),
-            //       ),
-            //     ],
-            //   ),
-            //   child: Center(
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.center,
-            //       children: [
-            //         Padding(
-            //           padding: const EdgeInsets.only(right: 38),
-            //           child: Image.asset(
-            //             'assets/icons/applelogin.png',
-            //             height: size.height * 0.03,
-            //           ),
-            //         ),
-            //         // SizedBox(
-            //         //   width: size.width * 0.03,
-            //         // ),
-            //         Text(
-            //           'ดำเนินการต่อด้วยบัญชี Apple',
-            //           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-            //         )
-            //       ],
-            //     ),
-            //   ),
-            // ),
+            ),
+            Text(
+              'หรือ',
+              style: TextStyle(fontSize: 15),
+            ),
+            Container(
+              height: size.height * 0.06,
+              width: size.width * 0.91,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Image.asset(
+                      'assets/icons/google.png',
+                      height: size.height * 0.08,
+                    ),
+                    Image.asset(
+                      'assets/icons/linelogin.png',
+                      height: size.height * 0.03,
+                    ),
+                    Image.asset(
+                      'assets/icons/facebook.png',
+                      height: size.height * 0.10,
+                    ),
+                    Image.asset(
+                      'assets/icons/applelogin.png',
+                      height: size.height * 0.03,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: size.height * 0.01),
           ],
         ),
       ),

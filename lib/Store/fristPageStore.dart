@@ -80,6 +80,10 @@ class _FirstPageStoreState extends State<FirstPageStore> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(
+                width: 20, // Adjust the width as needed
+                height: 30,
+              ),
               GestureDetector(
                 onTap: () {
                   onItemSelect(0);
@@ -116,117 +120,127 @@ class _FirstPageStoreState extends State<FirstPageStore> {
                         ),
                       ),
               ),
+              SizedBox(
+                width: 50, // Adjust the width as needed
+                height: 30,
+              ),
               // SizedBox(
               //   width: 1,
               // ),
-              GestureDetector(
-                onTap: () {
-                  onItemSelect(1);
-                },
-                child: selectedIndex == 1
-                    ? Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'assets/icons/redgroup.png',
-                            width: 30,
-                            height: 30,
-                            color: red1,
-                          ),
-                          Text(
-                            'ร้านค้า',
-                            style: TextStyle(fontSize: 14, color: red1),
-                          )
-                        ],
-                      )
-                    : Center(
-                        child: Column(
-                          children: [
-                            Image.asset(
-                              'assets/icons/group.png',
-                              width: 30,
-                              height: 30,
-                            ),
-                            Text(
-                              'ร้านค้า',
-                              style: TextStyle(fontSize: 14),
-                            )
-                          ],
-                        ),
-                      ),
-              ),
+              // GestureDetector(
+              //   onTap: () {
+              //     onItemSelect(1);
+              //   },
+              //   child: selectedIndex == 1
+              //       ? Column(
+              //           mainAxisAlignment: MainAxisAlignment.center,
+              //           children: [
+              //             Image.asset(
+              //               'assets/icons/redgroup.png',
+              //               width: 30,
+              //               height: 30,
+              //               color: red1,
+              //             ),
+              //             Text(
+              //               'ร้านค้า',
+              //               style: TextStyle(fontSize: 14, color: red1),
+              //             )
+              //           ],
+              //         )
+              //       : Center(
+              //           child: Column(
+              //             children: [
+              //               Image.asset(
+              //                 'assets/icons/group.png',
+              //                 width: 30,
+              //                 height: 30,
+              //               ),
+              //               Text(
+              //                 'ร้านค้า',
+              //                 style: TextStyle(fontSize: 14),
+              //               )
+              //             ],
+              //           ),
+              //         ),
+              // ),
+
+              // SizedBox(
+              //   width: 5,
+              // ),
+              // GestureDetector(
+              //     onTap: () {
+              //       onItemSelect(3);
+              //     },
+              //     child: selectedIndex == 3
+              //         ? Column(
+              //             children: [
+              //               Image.asset(
+              //                 'assets/icons/redcart.png',
+              //                 width: 20, // Adjust the width as needed
+              //                 height: 20, // Adjust the height as needed
+              //                 color: red1,
+              //               ),
+              //               // Text(
+              //               //   'รถเข็น',
+              //               //   style: TextStyle(color: red1),
+              //               // )
+              //             ],
+              //           )
+              //         : Column(
+              //             children: [
+              //               Image.asset(
+              //                 'assets/icons/shipping.png',
+              //                 width: 20, // Adjust the width as needed
+              //                 height: 20, // Adjust the height as needed
+              //               ),
+              //               // Text(
+              //               //   'รถเข็น',
+              //               //   style: TextStyle(),
+              //               // )
+              //             ],
+              //           )),
+
+              // SizedBox(
+              //   width: 5,
+              // ),
+              // GestureDetector(
+              //     onTap: () {
+              //       onItemSelect(3);
+              //     },
+              //     child: selectedIndex == 3
+              //         ? Column(
+              //             children: [
+              //               Image.asset(
+              //                 'assets/icons/redcart.png',
+              //                 width: 30, // Adjust the width as needed
+              //                 height: 30, // Adjust the height as needed
+              //                 color: red1,
+              //               ),
+              //               Text(
+              //                 'รถเข็น',
+              //                 style: TextStyle(color: red1, fontSize: 14),
+              //               )
+              //             ],
+              //           )
+              //         : Column(
+              //             children: [
+              //               Image.asset(
+              //                 'assets/icons/addtocart.png',
+              //                 width: 30, // Adjust the width as needed
+              //                 height: 30, // Adjust the height as needed
+              //               ),
+              //               Text(
+              //                 'รถเข็น',
+              //                 style: TextStyle(fontSize: 14),
+              //               )
+              //             ],
+              //           )),
+              // SizedBox(
+              //   width: 1,
+              // ),
               SizedBox(
-                width: 5,
-              ),
-              GestureDetector(
-                  onTap: () {
-                    onItemSelect(3);
-                  },
-                  child: selectedIndex == 3
-                      ? Column(
-                          children: [
-                            Image.asset(
-                              'assets/icons/redcart.png',
-                              width: 20, // Adjust the width as needed
-                              height: 20, // Adjust the height as needed
-                              color: red1,
-                            ),
-                            // Text(
-                            //   'รถเข็น',
-                            //   style: TextStyle(color: red1),
-                            // )
-                          ],
-                        )
-                      : Column(
-                          children: [
-                            Image.asset(
-                              'assets/icons/shipping.png',
-                              width: 20, // Adjust the width as needed
-                              height: 20, // Adjust the height as needed
-                            ),
-                            // Text(
-                            //   'รถเข็น',
-                            //   style: TextStyle(),
-                            // )
-                          ],
-                        )),
-              SizedBox(
-                width: 5,
-              ),
-              GestureDetector(
-                  onTap: () {
-                    onItemSelect(3);
-                  },
-                  child: selectedIndex == 3
-                      ? Column(
-                          children: [
-                            Image.asset(
-                              'assets/icons/redcart.png',
-                              width: 30, // Adjust the width as needed
-                              height: 30, // Adjust the height as needed
-                              color: red1,
-                            ),
-                            Text(
-                              'รถเข็น',
-                              style: TextStyle(color: red1, fontSize: 14),
-                            )
-                          ],
-                        )
-                      : Column(
-                          children: [
-                            Image.asset(
-                              'assets/icons/addtocart.png',
-                              width: 30, // Adjust the width as needed
-                              height: 30, // Adjust the height as needed
-                            ),
-                            Text(
-                              'รถเข็น',
-                              style: TextStyle(fontSize: 14),
-                            )
-                          ],
-                        )),
-              SizedBox(
-                width: 1,
+                width: 100, // Adjust the width as needed
+                height: 30,
               ),
               GestureDetector(
                   onTap: () {
@@ -260,6 +274,10 @@ class _FirstPageStoreState extends State<FirstPageStore> {
                             )
                           ],
                         )),
+              SizedBox(
+                width: 30, // Adjust the width as needed
+                height: 30,
+              ),
               // SizedBox(
               //   width: 10,
               // ),
