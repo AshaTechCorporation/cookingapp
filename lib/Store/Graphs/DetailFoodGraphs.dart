@@ -1,3 +1,4 @@
+import 'package:cookingapp/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
@@ -24,243 +25,287 @@ class _DetailFoodGraphsState extends State<DetailFoodGraphs> {
           textAlign: TextAlign.center,
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            SizedBox(
-              width: double.infinity,
-              height: 130,
-              child: SfRadialGauge(
-                axes: <RadialAxis>[
-                  RadialAxis(
-                    radiusFactor: 2,
-                    centerX: 0.5,
-                    centerY: 0.9,
-                    startAngle: 180,
-                    endAngle: 0,
-                    showLabels: false,
-                    showAxisLine: false,
-                    showTicks: false,
-                    ticksPosition: ElementsPosition.outside,
-                    labelsPosition: ElementsPosition.outside,
-                    minimum: 1,
-                    maximum: 101,
-                    ranges: <GaugeRange>[
-                      GaugeRange(
-                        startValue: 0,
-                        endValue: 20,
-                        color: Colors.red,
-                        sizeUnit: GaugeSizeUnit.factor,
-                        // label: 'Slow',
-                        // labelStyle: GaugeTextStyle(fontSize: 12),
-                        startWidth: 0.4,
-                        endWidth: 0.4,
-                      ),
-                      GaugeRange(
-                        startValue: 21,
-                        endValue: 40,
-                        color: Color.fromARGB(255, 255, 136, 0),
-                        sizeUnit: GaugeSizeUnit.factor,
-                        // label: 'Slow',
-                        // labelStyle: GaugeTextStyle(fontSize: 12),
-                        startWidth: 0.4,
-                        endWidth: 0.4,
-                      ),
-                      GaugeRange(
-                        startValue: 41,
-                        endValue: 60,
-                        color: Color(0xFFFFBA00),
-                        // label: 'Moderate',
-                        // labelStyle: GaugeTextStyle(fontSize: 12),
-                        startWidth: 0.4,
-                        endWidth: 0.4,
-                        sizeUnit: GaugeSizeUnit.factor,
-                      ),
-                      GaugeRange(
-                        startValue: 61,
-                        endValue: 80,
-                        color: Color.fromARGB(255, 148, 171, 0),
-                        // label: 'Fast',
-                        // labelStyle: GaugeTextStyle(fontSize: 12),
-                        sizeUnit: GaugeSizeUnit.factor,
-                        startWidth: 0.4,
-                        endWidth: 0.4,
-                      ),
-                      GaugeRange(
-                        startValue: 81,
-                        endValue: 101,
-                        color: Color.fromARGB(255, 0, 118, 49),
-                        // label: 'Fast',
-                        // labelStyle: GaugeTextStyle(fontSize: 12),
-                        sizeUnit: GaugeSizeUnit.factor,
-                        startWidth: 0.4,
-                        endWidth: 0.4,
-                      ),
-                    ],
-                    pointers: <GaugePointer>[NeedlePointer(value: 25)],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                width: double.infinity,
+                height: 130,
+                child: SfRadialGauge(
+                  axes: <RadialAxis>[
+                    RadialAxis(
+                      radiusFactor: 2,
+                      centerX: 0.5,
+                      centerY: 0.9,
+                      startAngle: 180,
+                      endAngle: 0,
+                      showLabels: false,
+                      showAxisLine: false,
+                      showTicks: false,
+                      ticksPosition: ElementsPosition.outside,
+                      labelsPosition: ElementsPosition.outside,
+                      minimum: 1,
+                      maximum: 101,
+                      ranges: <GaugeRange>[
+                        GaugeRange(
+                          startValue: 0,
+                          endValue: 20,
+                          color: Colors.red,
+                          sizeUnit: GaugeSizeUnit.factor,
+                          // label: 'Slow',
+                          // labelStyle: GaugeTextStyle(fontSize: 12),
+                          startWidth: 0.4,
+                          endWidth: 0.4,
+                        ),
+                        GaugeRange(
+                          startValue: 21,
+                          endValue: 40,
+                          color: Color.fromARGB(255, 255, 136, 0),
+                          sizeUnit: GaugeSizeUnit.factor,
+                          // label: 'Slow',
+                          // labelStyle: GaugeTextStyle(fontSize: 12),
+                          startWidth: 0.4,
+                          endWidth: 0.4,
+                        ),
+                        GaugeRange(
+                          startValue: 41,
+                          endValue: 60,
+                          color: Color(0xFFFFBA00),
+                          // label: 'Moderate',
+                          // labelStyle: GaugeTextStyle(fontSize: 12),
+                          startWidth: 0.4,
+                          endWidth: 0.4,
+                          sizeUnit: GaugeSizeUnit.factor,
+                        ),
+                        GaugeRange(
+                          startValue: 61,
+                          endValue: 80,
+                          color: Color.fromARGB(255, 148, 171, 0),
+                          // label: 'Fast',
+                          // labelStyle: GaugeTextStyle(fontSize: 12),
+                          sizeUnit: GaugeSizeUnit.factor,
+                          startWidth: 0.4,
+                          endWidth: 0.4,
+                        ),
+                        GaugeRange(
+                          startValue: 81,
+                          endValue: 101,
+                          color: Color.fromARGB(255, 0, 118, 49),
+                          // label: 'Fast',
+                          // labelStyle: GaugeTextStyle(fontSize: 12),
+                          sizeUnit: GaugeSizeUnit.factor,
+                          startWidth: 0.4,
+                          endWidth: 0.4,
+                        ),
+                      ],
+                      pointers: <GaugePointer>[NeedlePointer(value: 25)],
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                children: [
+                  Container(
+                    width: 10,
+                    height: 10,
+                    color: Colors.red,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'ขาดทุน',
+                    style: TextStyle(
+                      fontSize: 20,
+                      letterSpacing: 2,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    width: 30,
+                  ),
+                  Container(
+                    width: 10,
+                    height: 10,
+                    color: Color.fromARGB(255, 255, 136, 0),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'ขาดทุดน้อย',
+                    style: TextStyle(
+                      fontSize: 20,
+                      letterSpacing: 2,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ],
               ),
-            ),
-            Row(
-              children: [
-                Container(
-                  width: 10,
-                  height: 10,
-                  color: Colors.red,
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  'ขาดทุน',
+              Row(
+                children: [
+                  Container(
+                    width: 10,
+                    height: 10,
+                    color: Color(0xFFFFBA00),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'เท่าทุน',
+                    style: TextStyle(
+                      fontSize: 20,
+                      letterSpacing: 2,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(
+                    width: 30,
+                  ),
+                  Container(
+                    width: 10,
+                    height: 10,
+                    color: Color.fromARGB(255, 148, 171, 0),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'กำไรพอประมาณ',
+                    style: TextStyle(
+                      fontSize: 20,
+                      letterSpacing: 2,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Container(
+                    width: 10,
+                    height: 10,
+                    color: Color.fromARGB(255, 0, 118, 49),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'กำไรเยอะ',
+                    style: TextStyle(
+                      fontSize: 20,
+                      letterSpacing: 2,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+              Center(
+                child: Text(
+                  'รายการ: Steak',
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
                     letterSpacing: 2,
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(
-                  width: 30,
-                ),
-                Container(
-                  width: 10,
-                  height: 10,
-                  color: Color.fromARGB(255, 255, 136, 0),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  'ขาดทุดน้อย',
-                  style: TextStyle(
-                    fontSize: 20,
-                    letterSpacing: 2,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 10,
+                    height: 10,
+                    color: Colors.grey,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Container(
-                  width: 10,
-                  height: 10,
-                  color: Color(0xFFFFBA00),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  'เท่าทุน',
-                  style: TextStyle(
-                    fontSize: 20,
-                    letterSpacing: 2,
+                  SizedBox(
+                    width: 10,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(
-                  width: 30,
-                ),
-                Container(
-                  width: 10,
-                  height: 10,
-                  color: Color.fromARGB(255, 148, 171, 0),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  'กำลังพอประมาณ',
-                  style: TextStyle(
-                    fontSize: 20,
-                    letterSpacing: 2,
+                  Text(
+                    'ต้นทุน: 500 บาท',
+                    style: TextStyle(
+                      fontSize: 20,
+                      letterSpacing: 2,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Container(
-                  width: 10,
-                  height: 10,
-                  color: Color.fromARGB(255, 0, 118, 49),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  'กำไรเยอะ',
-                  style: TextStyle(
-                    fontSize: 20,
-                    letterSpacing: 2,
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 10,
+                    height: 10,
+                    color: Colors.green,
                   ),
-                  textAlign: TextAlign.center,
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'ยอดที่ต้องการ: 25 ชิ้น',
+                    style: TextStyle(
+                      fontSize: 20,
+                      letterSpacing: 2,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Image.asset('assets/images/beaf-steak.jpg')
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        height: MediaQuery.of(context).size.height * 0.16,
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height * 0.06,
+              decoration: BoxDecoration(color: brown, borderRadius: BorderRadius.circular(10)),
+              child: Center(
+                child: TextButton(
+                  onPressed: () async {},
+                  child: Text(
+                    'จัดทำอาหาร',
+                    style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ],
-            ),
-            Center(
-              child: Text(
-                'รายการ: Steak',
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 2,
-                ),
-                textAlign: TextAlign.center,
               ),
             ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  width: 10,
-                  height: 10,
-                  color: Colors.grey,
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  'ต้นทุน: 500 บาท',
-                  style: TextStyle(
-                    fontSize: 20,
-                    letterSpacing: 2,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  width: 10,
-                  height: 10,
-                  color: Colors.green,
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  'ยอดที่ต้องการ: 25 ชิ้น',
-                  style: TextStyle(
-                    fontSize: 20,
-                    letterSpacing: 2,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
             SizedBox(
-              height: 10,
+              height: 5,
             ),
-            Image.asset('assets/images/beaf-steak.jpg')
+            Container(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height * 0.06,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: brown),
+              ),
+              child: Center(
+                child: TextButton(
+                  onPressed: () async {},
+                  child: Text(
+                    'ยกเลิก',
+                    style: TextStyle(fontSize: 20, color: brown, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
