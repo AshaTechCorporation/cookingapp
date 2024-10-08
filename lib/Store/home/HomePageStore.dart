@@ -437,49 +437,49 @@ class _HomePageStoreState extends State<HomePageStore> {
             SizedBox(
               height: size.height * 0.04,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-              child: Container(
-                height: size.height * 0.08,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: Color.fromARGB(255, 247, 198, 126),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'คุณมีคูปองส่วนลดอาหาร 80 ใบ',
-                        style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromARGB(255, 116, 12, 12), fontSize: 16),
-                      ),
-                      Row(
-                        children: [
-                          VerticalDivider(
-                            thickness: 2,
-                            color: Colors.orange,
-                          ),
-                          Container(
-                            height: size.height * 0.06,
-                            width: size.width * 0.25,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Colors.orange,
-                            ),
-                            child: Center(child: Text('ดู', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18))),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: size.height * 0.03,
-            ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+            //   child: Container(
+            //     height: size.height * 0.08,
+            //     width: double.infinity,
+            //     decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(5),
+            //       color: Color.fromARGB(255, 247, 198, 126),
+            //     ),
+            //     child: Padding(
+            //       padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+            //       child: Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           Text(
+            //             'คุณมีคูปองส่วนลดอาหาร 80 ใบ',
+            //             style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromARGB(255, 116, 12, 12), fontSize: 16),
+            //           ),
+            //           Row(
+            //             children: [
+            //               VerticalDivider(
+            //                 thickness: 2,
+            //                 color: Colors.orange,
+            //               ),
+            //               Container(
+            //                 height: size.height * 0.06,
+            //                 width: size.width * 0.25,
+            //                 decoration: BoxDecoration(
+            //                   borderRadius: BorderRadius.circular(5),
+            //                   color: Colors.orange,
+            //                 ),
+            //                 child: Center(child: Text('ดู', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18))),
+            //               ),
+            //             ],
+            //           ),
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: size.height * 0.03,
+            // ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
               child: Row(

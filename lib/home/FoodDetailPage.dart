@@ -95,29 +95,35 @@ class _FoodDetailPageState extends State<FoodDetailPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      '${widget.food.name}',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
+                    Expanded(
+                      flex: 10,
+                      child: Text(
+                        '${widget.food.name}',
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                    Column(
-                      children: [
-                        Text(
-                          '${widget.food.price}',
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
+                    Expanded(
+                      flex: 4,
+                      child: Column(
+                        children: [
+                          Text(
+                            '${widget.food.price}',
+                            style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        Text(
-                          'ราคา',
-                          style: TextStyle(
-                            fontSize: 20,
+                          Text(
+                            'ราคา',
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),
