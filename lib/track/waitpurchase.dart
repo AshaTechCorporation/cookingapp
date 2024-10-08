@@ -12,7 +12,7 @@ class Waitpurchase extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: white,
         title: Text(
-          'รอสรุปคำสั่งซื้อ',
+          'ชำระเงิน',
           style: TextStyle(fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold),
         ),
         bottom: PreferredSize(
@@ -29,7 +29,7 @@ class Waitpurchase extends StatelessWidget {
                         flex: 8,
                         child: TextFormField(
                           decoration: InputDecoration(
-                            hintText: 'ค้นหาเลข Tracking, Order, Container ',
+                            hintText: 'ค้นหาเลข Order',
                             hintStyle: TextStyle(fontSize: 13, color: greyuserinfo, fontWeight: FontWeight.bold),
                             border: InputBorder.none,
                             contentPadding: EdgeInsets.only(bottom: size.height * 0.018, left: size.width * 0.03),
@@ -144,16 +144,68 @@ class Waitpurchase extends StatelessWidget {
                                     width: size.width * 0.01,
                                   ),
                                   Image.asset(
-                                    'assets/icons/waitsumready.png',
+                                    'assets/icons/waitsum.png',
+                                    height: size.height * 0.035,
+                                  ),
+                                  SizedBox(
+                                    width: size.width * 0.01,
+                                  ),
+                                  SizedBox(
+                                    width: size.width * 0.035,
+                                    child: Divider(
+                                      color: red1,
+                                      thickness: 2,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: size.width * 0.01,
+                                  ),
+                                  Image.asset(
+                                    'assets/icons/waitingorderpayment.png',
                                     height: size.height * 0.035,
                                   ),
                                   SizedBox(
                                     width: size.width * 0.015,
                                   ),
                                   Text(
-                                    'สรุปยอดคำสั่งซื้อ',
+                                    'ชำระเงิน',
                                     style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: red1),
-                                  )
+                                  ),
+                                  SizedBox(
+                                    width: size.width * 0.01,
+                                  ),
+                                  Image.asset('assets/icons/greybox.png', height: size.height * 0.037),
+                                  SizedBox(
+                                    width: size.width * 0.01,
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                    child: Divider(
+                                      color: Colors.grey[500],
+                                      thickness: 2,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: size.width * 0.01,
+                                  ),
+                                  Image.asset('assets/icons/greybox.png', height: size.height * 0.037),
+                                  SizedBox(
+                                    width: size.width * 0.01,
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                    child: Divider(
+                                      color: Colors.grey[500],
+                                      thickness: 2,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: size.width * 0.01,
+                                  ),
+                                  Image.asset('assets/icons/correctgrey.png', height: size.height * 0.037),
+                                  SizedBox(
+                                    width: size.width * 0.01,
+                                  ),
                                 ],
                               ),
                             ],

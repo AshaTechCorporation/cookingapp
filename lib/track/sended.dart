@@ -12,7 +12,7 @@ class Sended extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: white,
           title: Text(
-            'จัดส่งสินค้าแล้ว',
+            'เสร็จสิ้น',
             style: TextStyle(fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold),
           ),
           bottom: PreferredSize(
@@ -29,7 +29,7 @@ class Sended extends StatelessWidget {
                           flex: 8,
                           child: TextFormField(
                             decoration: InputDecoration(
-                              hintText: 'ค้นหาเลข Tracking, Order, Container ',
+                              hintText: 'ค้นหาเลข, Order',
                               hintStyle: TextStyle(fontSize: 13, color: greyuserinfo, fontWeight: FontWeight.bold),
                               border: InputBorder.none,
                               contentPadding: EdgeInsets.only(bottom: size.height * 0.018, left: size.width * 0.03),
@@ -158,7 +158,7 @@ class Sended extends StatelessWidget {
                                       width: size.width * 0.01,
                                     ),
                                     Image.asset(
-                                      'assets/icons/processpurchase.png',
+                                      'assets/icons/waitingorderpayment.png',
                                       height: size.height * 0.037,
                                     ),
                                     SizedBox(
@@ -174,7 +174,7 @@ class Sended extends StatelessWidget {
                                     SizedBox(
                                       width: size.width * 0.01,
                                     ),
-                                    Image.asset('assets/icons/confirmorder.png', height: size.height * 0.037),
+                                    Image.asset('assets/icons/orderpending.png', height: size.height * 0.037),
                                     SizedBox(
                                       width: size.width * 0.01,
                                     ),
@@ -188,7 +188,7 @@ class Sended extends StatelessWidget {
                                     SizedBox(
                                       width: size.width * 0.01,
                                     ),
-                                    Image.asset('assets/icons/readytosend.png', height: size.height * 0.037),
+                                    Image.asset('assets/icons/packingtrack.png', height: size.height * 0.037),
                                     SizedBox(
                                       width: size.width * 0.01,
                                     ),
@@ -206,13 +206,15 @@ class Sended extends StatelessWidget {
                                     SizedBox(
                                       width: size.width * 0.25,
                                       child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Padding(
                                             padding: EdgeInsets.only(left: size.width * 0.01),
                                             child: Align(
                                               alignment: Alignment.centerLeft,
                                               child: Text(
-                                                'จัดส่งสินค้าสำเร็จ',
+                                                'เสร็จสิ้น',
                                                 style: TextStyle(fontSize: 12, color: red1, fontWeight: FontWeight.bold),
                                               ),
                                             ),
@@ -223,7 +225,7 @@ class Sended extends StatelessWidget {
                                               alignment: Alignment.centerLeft,
                                               child: Text(
                                                 'เลขที่คำสั่งซื้อ',
-                                                style: TextStyle(fontSize: 12, color: greyuserinfo, fontWeight: FontWeight.bold),
+                                                style: TextStyle(fontSize: 12, color: red1, fontWeight: FontWeight.bold),
                                               ),
                                             ),
                                           ),
@@ -235,7 +237,7 @@ class Sended extends StatelessWidget {
                                                 '0987654',
                                                 style: TextStyle(
                                                   fontSize: 12,
-                                                  color: greyuserinfo,
+                                                  color: red1,
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                               ),
