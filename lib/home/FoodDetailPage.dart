@@ -1,9 +1,11 @@
 import 'package:cookingapp/constants.dart';
+import 'package:cookingapp/models/menus.dart';
 import 'package:flutter/material.dart';
 
 class FoodDetailPage extends StatefulWidget {
-  const FoodDetailPage({super.key, required this.food});
-  final Map<String, dynamic> food;
+  const FoodDetailPage({super.key, required this.food, required this.image});
+  final Menus food;
+  final String image;
 
   @override
   State<FoodDetailPage> createState() => _FoodDetailPageState();
@@ -76,7 +78,7 @@ class _FoodDetailPageState extends State<FoodDetailPage> {
                 Positioned.fill(
                   child: SizedBox(
                     child: Image.asset(
-                      widget.food['image'],
+                      widget.image,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -94,7 +96,7 @@ class _FoodDetailPageState extends State<FoodDetailPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.food['name'],
+                      '${widget.food.name}',
                       style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
@@ -103,7 +105,7 @@ class _FoodDetailPageState extends State<FoodDetailPage> {
                     Column(
                       children: [
                         Text(
-                          '${widget.food['price']}',
+                          '${widget.food.price}',
                           style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,

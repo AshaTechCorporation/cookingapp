@@ -484,7 +484,7 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('ใส่ SMALL ลด 100.*', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20)),
+                  Text('ร้านอาหาร', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20)),
                   Container(
                     width: 35.0,
                     height: 35.0,

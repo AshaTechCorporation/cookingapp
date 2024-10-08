@@ -1,3 +1,4 @@
+import 'package:cookingapp/models/menus.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'restaurant.g.dart';
@@ -15,6 +16,7 @@ class Restaurant {
   final String? longitude;
   final String? open_hours;
   final String? status;
+  List<Menus>? menus;
 
   Restaurant(this.id, this.name, this.user_id, this.address, this.description, this.district_id, this.latitude, this.longitude, this.open_hours, this.province_id, this.status);
 
