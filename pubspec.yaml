@@ -44,11 +44,6 @@ dependencies:
   http: ^1.2.2
   dropdown_search: ^5.0.6
 
-  #สำหรับสร้างโมเดล
-  build_runner: ^2.4.9
-  json_serializable: ^6.8.0
-  json_annotation: ^4.9.0
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -59,6 +54,10 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
+  #สำหรับสร้างโมเดล
+  build_runner: ^2.4.9
+  json_serializable: ^6.8.0
+  json_annotation: ^4.9.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

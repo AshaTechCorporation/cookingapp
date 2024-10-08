@@ -230,7 +230,8 @@ class _DetailFoodPageState extends State<DetailFoodPage> {
                                               Container(
                                                 width: 40.0,
                                                 height: 40.0,
-                                                decoration: BoxDecoration(shape: BoxShape.circle, color: Color.fromARGB(255, 205, 248, 255)),
+                                                decoration: BoxDecoration(shape: BoxShape.circle, color: Color.fromARGB(255, 225, 251, 255)),
+                                                child: Icon(Icons.map, color: red1,),
                                               ),
                                               Padding(
                                                 padding: EdgeInsets.symmetric(
@@ -382,56 +383,60 @@ class _DetailFoodPageState extends State<DetailFoodPage> {
                   SizedBox(
                     height: size.height * 0.01,
                   ),
-                  Container(
-                    height: size.height * 0.5,
-                    width: size.width * 0.90,
-                    padding: EdgeInsets.symmetric(horizontal: 8),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10.0),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          spreadRadius: 1,
-                          blurRadius: 1,
-                          offset: Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: Wrap(
-                      children: List.generate(
-                        listFood.length,
-                        (index) => GestureDetector(
-                          onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) {
-                              return FoodDetailPage(food: listFood[index]);
-                            }));
-                          },
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                margin: EdgeInsets.all(8),
-                                height: 150,
-                                width: size.width * 0.385,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  image: DecorationImage(
-                                    image: AssetImage(
-                                      listFood[index]['image'],
+                  restaurant != null
+                      ? restaurant!.menus!.isNotEmpty
+                          ? Container(
+                              height: size.height * 0.5,
+                              width: size.width * 0.90,
+                              padding: EdgeInsets.symmetric(horizontal: 8),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10.0),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.2),
+                                    spreadRadius: 1,
+                                    blurRadius: 1,
+                                    offset: Offset(0, 2),
+                                  ),
+                                ],
+                              ),
+                              child: Wrap(
+                                children: List.generate(
+                                  restaurant!.menus!.length,
+                                  (index) => GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                        return FoodDetailPage(food: restaurant!.menus![index], image: 'assets/images/beaf-steak.jpg',);
+                                      }));
+                                    },
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.all(8),
+                                          height: 150,
+                                          width: size.width * 0.385,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(15),
+                                            image: DecorationImage(
+                                              image: AssetImage(
+                                                'assets/images/beaf-steak.jpg',
+                                              ),
+                                              fit: BoxFit.fill,
+                                            ),
+                                          ),
+                                        ),
+                                        Text('${restaurant!.menus![index].name}'),
+                                        Text('${restaurant!.menus![index].price}')
+                                      ],
                                     ),
-                                    fit: BoxFit.fill,
                                   ),
                                 ),
                               ),
-                              Text(listFood[index]['name']),
-                              Text('${listFood[index]['price']}')
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                            )
+                          : SizedBox()
+                      : SizedBox(),
                   SizedBox(
                     height: size.height * 0.05,
                   ),

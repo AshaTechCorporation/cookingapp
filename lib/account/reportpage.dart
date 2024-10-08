@@ -91,11 +91,12 @@ class _ReportProblemPageState extends State<ReportProblemPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // Image.asset(
-                        //   'assets/icons/moneyproblem.png', // ระบุ path ของรูปภาพที่คุณต้องการ
-                        //   width: 24,
-                        //   height: 24,
-                        // ),
+                        Image.asset(
+                          'assets/icons/byredcar.png', // ระบุ path ของรูปภาพที่คุณต้องการ
+                          width: 24,
+                          height: 24,
+                          color: red1,
+                        ),
                         const SizedBox(width: 8),
                         Text(
                           problemData[index]['title'],  // ต้องระบุ index เพื่อเข้าถึงข้อมูลในลิสต์

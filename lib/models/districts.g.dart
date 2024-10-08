@@ -13,7 +13,9 @@ Districts _$DistrictsFromJson(Map<String, dynamic> json) => Districts(
       (json['province_id'] as num?)?.toInt(),
       (json['district_id'] as num?)?.toInt(),
       json['zip_code'] as String?,
-      (json['districts'] as List<dynamic>?)?.map((e) => Provinecs.fromJson(e as Map<String, dynamic>)).toList(),
+      (json['sub_districts'] as List<dynamic>?)
+          ?.map((e) => Provinecs.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$DistrictsToJson(Districts instance) => <String, dynamic>{
@@ -23,5 +25,5 @@ Map<String, dynamic> _$DistrictsToJson(Districts instance) => <String, dynamic>{
       'province_id': instance.province_id,
       'district_id': instance.district_id,
       'zip_code': instance.zip_code,
-      'districts': instance.sub_districts,
+      'sub_districts': instance.sub_districts,
     };

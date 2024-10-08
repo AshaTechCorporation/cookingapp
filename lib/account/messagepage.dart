@@ -35,7 +35,7 @@ class _MessagePageState extends State<MessagePage> {
         child: Column(
           children: [
             SizedBox(
-              height: size.height * 0.003,
+              height: size.height * 0.002,
             ),
             AnimatedContainer(
               duration: Duration(milliseconds: 200),
@@ -44,17 +44,17 @@ class _MessagePageState extends State<MessagePage> {
               color: background,
               child: Column(
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Promotionpage(),
-                        ),
-                      );
-                    },
-                    // child: PictureSliderWidget(size: size),
-                  ),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //         builder: (context) => Promotionpage(),
+                  //       ),
+                  //     );
+                  //   },
+                  //   // child: PictureSliderWidget(size: size),
+                  // ),
                   SizedBox(
                     height: size.height * 0.02,
                   ),

@@ -345,157 +345,161 @@ class LineChartSample1State extends State<LineChartSample1> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          // title: const Text(
-          //   'ยอดการสั่งอาหาร',
-          //   style: TextStyle(
-          //     color: Colors.amber,
-          //     fontSize: 25,
-          //     fontWeight: FontWeight.bold,
-          //     letterSpacing: 2,
-          //   ),
-          //   textAlign: TextAlign.center,
-          // ),
+        title: const Text(
+          'ยอดรวมการสั่งอาหาร',
+          style: TextStyle(
+            color: Colors.amber,
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 2,
           ),
+          textAlign: TextAlign.center,
+        ),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 155, 17, 179),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: AspectRatio(
-                  aspectRatio: 1.5,
-                  child: Stack(
-                    children: <Widget>[
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: <Widget>[
-                          const Text(
-                            'ยอดการสั่งอาหาร',
-                            style: TextStyle(
-                              color: Colors.amber,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 2,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 16, left: 6),
-                              child: _LineChart(isShowingMainData: isShowingMainData),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                        ],
-                      ),
-                      // IconButton(
-                      //   icon: Icon(
-                      //     Icons.refresh,
-                      //     color: Colors.grey.withOpacity(isShowingMainData ? 1.0 : 0.5),
-                      //   ),
-                      //   onPressed: () {
-                      //     setState(() {
-                      //       isShowingMainData = !isShowingMainData;
-                      //     });
-                      //   },
-                      // )
-                    ],
-                  ),
-                ),
-              ),
-              Center(
-                child: Text(
-                  'รายการ: แกงเขียวหวาน',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 2,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 10,
-                    height: 10,
-                    color: Colors.grey,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'ต้นทุน: 500 บาท',
-                    style: TextStyle(
-                      fontSize: 20,
-                      letterSpacing: 2,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 10,
-                    height: 10,
-                    color: Colors.orange,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'กำไร: 800 บาท',
-                    style: TextStyle(
-                      fontSize: 20,
-                      letterSpacing: 2,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 10,
-                    height: 10,
-                    color: Colors.red,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'กำลังจะกำไร: 650 บาท',
-                    style: TextStyle(
-                      fontSize: 20,
-                      letterSpacing: 2,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+              // Container(
+              //   padding: EdgeInsets.all(8),
+              //   decoration: BoxDecoration(
+              //     color: const Color.fromARGB(255, 155, 17, 179),
+              //     borderRadius: BorderRadius.circular(10),
+              //   ),
+              //   child: AspectRatio(
+              //     aspectRatio: 1.5,
+              //     child: Stack(
+              //       children: <Widget>[
+              //         Column(
+              //           crossAxisAlignment: CrossAxisAlignment.stretch,
+              //           children: <Widget>[
+              //             const Text(
+              //               'ยอดการสั่งอาหาร',
+              //               style: TextStyle(
+              //                 color: Colors.amber,
+              //                 fontSize: 25,
+              //                 fontWeight: FontWeight.bold,
+              //                 letterSpacing: 2,
+              //               ),
+              //               textAlign: TextAlign.center,
+              //             ),
+              //             const SizedBox(
+              //               height: 20,
+              //             ),
+              //             Expanded(
+              //               child: Padding(
+              //                 padding: const EdgeInsets.only(right: 16, left: 6),
+              //                 child: _LineChart(isShowingMainData: isShowingMainData),
+              //               ),
+              //             ),
+              //             const SizedBox(
+              //               height: 10,
+              //             ),
+              //           ],
+              //         ),
+              //         // IconButton(
+              //         //   icon: Icon(
+              //         //     Icons.refresh,
+              //         //     color: Colors.grey.withOpacity(isShowingMainData ? 1.0 : 0.5),
+              //         //   ),
+              //         //   onPressed: () {
+              //         //     setState(() {
+              //         //       isShowingMainData = !isShowingMainData;
+              //         //     });
+              //         //   },
+              //         // )
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              // Center(
+              //   child: Text(
+              //     'รายการ: แกงเขียวหวาน',
+              //     style: TextStyle(
+              //       fontSize: 25,
+              //       fontWeight: FontWeight.bold,
+              //       letterSpacing: 2,
+              //     ),
+              //     textAlign: TextAlign.center,
+              //   ),
+              // ),
+              // Row(
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   children: [
+              //     Container(
+              //       width: 10,
+              //       height: 10,
+              //       color: Colors.grey,
+              //     ),
+              //     SizedBox(
+              //       width: 10,
+              //     ),
+              //     Text(
+              //       'ต้นทุน: 500 บาท',
+              //       style: TextStyle(
+              //         fontSize: 20,
+              //         letterSpacing: 2,
+              //       ),
+              //       textAlign: TextAlign.center,
+              //     ),
+              //   ],
+              // ),
+              // Row(
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   children: [
+              //     Container(
+              //       width: 10,
+              //       height: 10,
+              //       color: Colors.orange,
+              //     ),
+              //     SizedBox(
+              //       width: 10,
+              //     ),
+              //     Text(
+              //       'กำไร: 800 บาท',
+              //       style: TextStyle(
+              //         fontSize: 20,
+              //         letterSpacing: 2,
+              //       ),
+              //       textAlign: TextAlign.center,
+              //     ),
+              //   ],
+              // ),
+              // Row(
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   children: [
+              //     Container(
+              //       width: 10,
+              //       height: 10,
+              //       color: Colors.red,
+              //     ),
+              //     SizedBox(
+              //       width: 10,
+              //     ),
+              //     Text(
+              //       'กำลังจะกำไร: 650 บาท',
+              //       style: TextStyle(
+              //         fontSize: 20,
+              //         letterSpacing: 2,
+              //       ),
+              //       textAlign: TextAlign.center,
+              //     ),
+              //   ],
+              // ),
+              SizedBox(
+                height: 10,
               ),
               // SizedBox(
               //   width: double.infinity,
-              //   height: 250,
+              //   height: 130,
               //   child: SfRadialGauge(
               //     axes: <RadialAxis>[
               //       RadialAxis(
+              //         radiusFactor: 2,
               //         centerX: 0.5,
-              //         centerY: 0.8,
+              //         centerY: 0.9,
               //         startAngle: 180,
               //         endAngle: 0,
               //         showLabels: false,

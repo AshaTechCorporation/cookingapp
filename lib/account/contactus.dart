@@ -48,7 +48,7 @@ class _ContactusState extends State<Contactus> {
                               fontFamily: 'SukhumvitSet'),
                           children: <TextSpan>[
                         TextSpan(
-                          text: ' กับข้าว',
+                          text: ' Cooking App',
                           style: TextStyle(
                               color: Colors.red,
                               fontWeight: FontWeight.w800,
