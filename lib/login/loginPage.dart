@@ -1,4 +1,5 @@
-import 'package:cookingapp/Graphs/graphsPage.dart';
+import 'package:cookingapp/Store/Graphs/test3.dart';
+import 'package:cookingapp/Store/fristPAgeStore.dart';
 import 'package:cookingapp/constants.dart';
 import 'package:cookingapp/home/firstPage.dart';
 import 'package:cookingapp/login/Services/loginService.dart';
@@ -119,9 +120,9 @@ class _LoginPageState extends State<LoginPage> {
                           final token = await LoginService.login(email.text, password.text);
                           LoadingDialog.close(context);
                           if (token != null) {
-                            if (token['user_type'] == 'ร้านค้า') {
+                            if (token['user'] == 'ร้านค้า') {
                               Navigator.of(context, rootNavigator: true).pushReplacement(
-                                MaterialPageRoute(builder: (context) => LineChartSample1()),
+                                MaterialPageRoute(builder: (context) => FirstPageStore()),
                               );
                             } else {
                               Navigator.of(context, rootNavigator: true).pushReplacement(

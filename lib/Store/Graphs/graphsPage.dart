@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-// import 'package:syncfusion_flutter_gauges/gauges.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class _LineChart extends StatelessWidget {
   const _LineChart({required this.isShowingMainData});
@@ -345,223 +345,227 @@ class LineChartSample1State extends State<LineChartSample1> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          // title: const Text(
-          //   'ยอดการสั่งอาหาร',
-          //   style: TextStyle(
-          //     color: Colors.amber,
-          //     fontSize: 25,
-          //     fontWeight: FontWeight.bold,
-          //     letterSpacing: 2,
-          //   ),
-          //   textAlign: TextAlign.center,
-          // ),
+        title: const Text(
+          'ยอดรวมการสั่งอาหาร',
+          style: TextStyle(
+            color: Colors.amber,
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 2,
           ),
+          textAlign: TextAlign.center,
+        ),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 155, 17, 179),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: AspectRatio(
-                  aspectRatio: 1.5,
-                  child: Stack(
-                    children: <Widget>[
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: <Widget>[
-                          const Text(
-                            'ยอดการสั่งอาหาร',
-                            style: TextStyle(
-                              color: Colors.amber,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 2,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 16, left: 6),
-                              child: _LineChart(isShowingMainData: isShowingMainData),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                        ],
-                      ),
-                      // IconButton(
-                      //   icon: Icon(
-                      //     Icons.refresh,
-                      //     color: Colors.grey.withOpacity(isShowingMainData ? 1.0 : 0.5),
-                      //   ),
-                      //   onPressed: () {
-                      //     setState(() {
-                      //       isShowingMainData = !isShowingMainData;
-                      //     });
-                      //   },
-                      // )
-                    ],
-                  ),
-                ),
-              ),
-              Center(
-                child: Text(
-                  'รายการ: แกงเขียวหวาน',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 2,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 10,
-                    height: 10,
-                    color: Colors.grey,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'ต้นทุน: 500 บาท',
-                    style: TextStyle(
-                      fontSize: 20,
-                      letterSpacing: 2,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 10,
-                    height: 10,
-                    color: Colors.orange,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'กำไร: 800 บาท',
-                    style: TextStyle(
-                      fontSize: 20,
-                      letterSpacing: 2,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 10,
-                    height: 10,
-                    color: Colors.red,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    'กำลังจะกำไร: 650 บาท',
-                    style: TextStyle(
-                      fontSize: 20,
-                      letterSpacing: 2,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-              // SizedBox(
-              //   width: double.infinity,
-              //   height: 250,
-              //   child: SfRadialGauge(
-              //     axes: <RadialAxis>[
-              //       RadialAxis(
-              //         centerX: 0.5,
-              //         centerY: 0.8,
-              //         startAngle: 180,
-              //         endAngle: 0,
-              //         showLabels: false,
-              //         showAxisLine: false,
-              //         showTicks: false,
-              //         ticksPosition: ElementsPosition.outside,
-              //         labelsPosition: ElementsPosition.outside,
-              //         minimum: 1,
-              //         maximum: 101,
-              //         ranges: <GaugeRange>[
-              //           GaugeRange(
-              //             startValue: 0,
-              //             endValue: 20,
-              //             color: Colors.red,
-              //             sizeUnit: GaugeSizeUnit.factor,
-              //             // label: 'Slow',
-              //             // labelStyle: GaugeTextStyle(fontSize: 12),
-              //             startWidth: 0.4,
-              //             endWidth: 0.4,
-              //           ),
-              //           GaugeRange(
-              //             startValue: 21,
-              //             endValue: 40,
-              //             color: Color.fromARGB(255, 255, 136, 0),
-              //             sizeUnit: GaugeSizeUnit.factor,
-              //             // label: 'Slow',
-              //             // labelStyle: GaugeTextStyle(fontSize: 12),
-              //             startWidth: 0.4,
-              //             endWidth: 0.4,
-              //           ),
-              //           GaugeRange(
-              //             startValue: 41,
-              //             endValue: 60,
-              //             color: Color(0xFFFFBA00),
-              //             // label: 'Moderate',
-              //             // labelStyle: GaugeTextStyle(fontSize: 12),
-              //             startWidth: 0.4,
-              //             endWidth: 0.4,
-              //             sizeUnit: GaugeSizeUnit.factor,
-              //           ),
-              //           GaugeRange(
-              //             startValue: 61,
-              //             endValue: 80,
-              //             color: Color.fromARGB(255, 148, 171, 0),
-              //             // label: 'Fast',
-              //             // labelStyle: GaugeTextStyle(fontSize: 12),
-              //             sizeUnit: GaugeSizeUnit.factor,
-              //             startWidth: 0.4,
-              //             endWidth: 0.4,
-              //           ),
-              //           GaugeRange(
-              //             startValue: 81,
-              //             endValue: 101,
-              //             color: Color.fromARGB(255, 0, 118, 49),
-              //             // label: 'Fast',
-              //             // labelStyle: GaugeTextStyle(fontSize: 12),
-              //             sizeUnit: GaugeSizeUnit.factor,
-              //             startWidth: 0.4,
-              //             endWidth: 0.4,
-              //           ),
-              //         ],
-              //         pointers: <GaugePointer>[NeedlePointer(value: 60)],
-              //       ),
-              //     ],
+              // Container(
+              //   padding: EdgeInsets.all(8),
+              //   decoration: BoxDecoration(
+              //     color: const Color.fromARGB(255, 155, 17, 179),
+              //     borderRadius: BorderRadius.circular(10),
+              //   ),
+              //   child: AspectRatio(
+              //     aspectRatio: 1.5,
+              //     child: Stack(
+              //       children: <Widget>[
+              //         Column(
+              //           crossAxisAlignment: CrossAxisAlignment.stretch,
+              //           children: <Widget>[
+              //             const Text(
+              //               'ยอดการสั่งอาหาร',
+              //               style: TextStyle(
+              //                 color: Colors.amber,
+              //                 fontSize: 25,
+              //                 fontWeight: FontWeight.bold,
+              //                 letterSpacing: 2,
+              //               ),
+              //               textAlign: TextAlign.center,
+              //             ),
+              //             const SizedBox(
+              //               height: 20,
+              //             ),
+              //             Expanded(
+              //               child: Padding(
+              //                 padding: const EdgeInsets.only(right: 16, left: 6),
+              //                 child: _LineChart(isShowingMainData: isShowingMainData),
+              //               ),
+              //             ),
+              //             const SizedBox(
+              //               height: 10,
+              //             ),
+              //           ],
+              //         ),
+              //         // IconButton(
+              //         //   icon: Icon(
+              //         //     Icons.refresh,
+              //         //     color: Colors.grey.withOpacity(isShowingMainData ? 1.0 : 0.5),
+              //         //   ),
+              //         //   onPressed: () {
+              //         //     setState(() {
+              //         //       isShowingMainData = !isShowingMainData;
+              //         //     });
+              //         //   },
+              //         // )
+              //       ],
+              //     ),
               //   ),
               // ),
+              // Center(
+              //   child: Text(
+              //     'รายการ: แกงเขียวหวาน',
+              //     style: TextStyle(
+              //       fontSize: 25,
+              //       fontWeight: FontWeight.bold,
+              //       letterSpacing: 2,
+              //     ),
+              //     textAlign: TextAlign.center,
+              //   ),
+              // ),
+              // Row(
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   children: [
+              //     Container(
+              //       width: 10,
+              //       height: 10,
+              //       color: Colors.grey,
+              //     ),
+              //     SizedBox(
+              //       width: 10,
+              //     ),
+              //     Text(
+              //       'ต้นทุน: 500 บาท',
+              //       style: TextStyle(
+              //         fontSize: 20,
+              //         letterSpacing: 2,
+              //       ),
+              //       textAlign: TextAlign.center,
+              //     ),
+              //   ],
+              // ),
+              // Row(
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   children: [
+              //     Container(
+              //       width: 10,
+              //       height: 10,
+              //       color: Colors.orange,
+              //     ),
+              //     SizedBox(
+              //       width: 10,
+              //     ),
+              //     Text(
+              //       'กำไร: 800 บาท',
+              //       style: TextStyle(
+              //         fontSize: 20,
+              //         letterSpacing: 2,
+              //       ),
+              //       textAlign: TextAlign.center,
+              //     ),
+              //   ],
+              // ),
+              // Row(
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   children: [
+              //     Container(
+              //       width: 10,
+              //       height: 10,
+              //       color: Colors.red,
+              //     ),
+              //     SizedBox(
+              //       width: 10,
+              //     ),
+              //     Text(
+              //       'กำลังจะกำไร: 650 บาท',
+              //       style: TextStyle(
+              //         fontSize: 20,
+              //         letterSpacing: 2,
+              //       ),
+              //       textAlign: TextAlign.center,
+              //     ),
+              //   ],
+              // ),
+              SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                width: double.infinity,
+                height: 130,
+                child: SfRadialGauge(
+                  axes: <RadialAxis>[
+                    RadialAxis(
+                      radiusFactor: 2,
+                      centerX: 0.5,
+                      centerY: 0.9,
+                      startAngle: 180,
+                      endAngle: 0,
+                      showLabels: false,
+                      showAxisLine: false,
+                      showTicks: false,
+                      ticksPosition: ElementsPosition.outside,
+                      labelsPosition: ElementsPosition.outside,
+                      minimum: 1,
+                      maximum: 101,
+                      ranges: <GaugeRange>[
+                        GaugeRange(
+                          startValue: 0,
+                          endValue: 20,
+                          color: Colors.red,
+                          sizeUnit: GaugeSizeUnit.factor,
+                          // label: 'Slow',
+                          // labelStyle: GaugeTextStyle(fontSize: 12),
+                          startWidth: 0.4,
+                          endWidth: 0.4,
+                        ),
+                        GaugeRange(
+                          startValue: 21,
+                          endValue: 40,
+                          color: Color.fromARGB(255, 255, 136, 0),
+                          sizeUnit: GaugeSizeUnit.factor,
+                          // label: 'Slow',
+                          // labelStyle: GaugeTextStyle(fontSize: 12),
+                          startWidth: 0.4,
+                          endWidth: 0.4,
+                        ),
+                        GaugeRange(
+                          startValue: 41,
+                          endValue: 60,
+                          color: Color(0xFFFFBA00),
+                          // label: 'Moderate',
+                          // labelStyle: GaugeTextStyle(fontSize: 12),
+                          startWidth: 0.4,
+                          endWidth: 0.4,
+                          sizeUnit: GaugeSizeUnit.factor,
+                        ),
+                        GaugeRange(
+                          startValue: 61,
+                          endValue: 80,
+                          color: Color.fromARGB(255, 148, 171, 0),
+                          // label: 'Fast',
+                          // labelStyle: GaugeTextStyle(fontSize: 12),
+                          sizeUnit: GaugeSizeUnit.factor,
+                          startWidth: 0.4,
+                          endWidth: 0.4,
+                        ),
+                        GaugeRange(
+                          startValue: 81,
+                          endValue: 101,
+                          color: Color.fromARGB(255, 0, 118, 49),
+                          // label: 'Fast',
+                          // labelStyle: GaugeTextStyle(fontSize: 12),
+                          sizeUnit: GaugeSizeUnit.factor,
+                          startWidth: 0.4,
+                          endWidth: 0.4,
+                        ),
+                      ],
+                      pointers: <GaugePointer>[NeedlePointer(value: 60)],
+                    ),
+                  ],
+                ),
+              ),
               Row(
                 children: [
                   Container(
