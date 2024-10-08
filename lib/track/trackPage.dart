@@ -18,7 +18,7 @@ class _TrackPageState extends State<TrackPage> with SingleTickerProviderStateMix
   @override
   void initState() {
     super.initState();
-    tabController = TabController(length: 3, vsync: this);
+    tabController = TabController(length: 1, vsync: this);
   }
 
   @override
@@ -48,7 +48,7 @@ class _TrackPageState extends State<TrackPage> with SingleTickerProviderStateMix
         ),
         toolbarHeight: size.height * 0.1,
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(90.0),
+          preferredSize: Size.fromHeight(60.0),
           child: Column(
             children: [
               Container(
@@ -64,7 +64,7 @@ class _TrackPageState extends State<TrackPage> with SingleTickerProviderStateMix
                       flex: 8,
                       child: TextFormField(
                         decoration: InputDecoration(
-                          hintText: 'ค้นหาเลข Tracking, Order, Container ',
+                          hintText: 'ค้นหาเลข Order',
                           hintStyle: TextStyle(
                               fontSize: 13,
                               color: greyuserinfo,
@@ -104,24 +104,24 @@ class _TrackPageState extends State<TrackPage> with SingleTickerProviderStateMix
               SizedBox(
                 height: size.height * 0.025,
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Padding(
-                  padding: EdgeInsets.only(bottom: size.height * 0.01),
-                  child: Row(
-                    children: [
-                      buildTabItem(0, 'ฝากส่ง'),
-                      buildTabItem(1, 'ขนส่ง'),
-                      // Container(
-                      //   height: size.height * 0.03,
-                      //   width: size.width * 0.0015,
-                      //   color: greyuserinfo,
-                      // ),
-                      buildTabItem(2, 'ประวัติทั้งหมด'),
-                    ],
-                  ),
-                ),
-              ),
+              // SingleChildScrollView(
+              //   scrollDirection: Axis.horizontal,
+              //   child: Padding(
+              //     padding: EdgeInsets.only(bottom: size.height * 0.01),
+              //     child: Row(
+              //       children: [
+              //         buildTabItem(0, 'ฝากส่ง'),
+              //         buildTabItem(1, 'ขนส่ง'),
+              //         // Container(
+              //         //   height: size.height * 0.03,
+              //         //   width: size.width * 0.0015,
+              //         //   color: greyuserinfo,
+              //         // ),
+              //         buildTabItem(2, 'ประวัติทั้งหมด'),
+              //       ],
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -130,8 +130,8 @@ class _TrackPageState extends State<TrackPage> with SingleTickerProviderStateMix
         controller: tabController,
         children: [
           Palceanorderpage(),
-          Transporttrackpage(),
-          Allhistorypage(),
+          // Transporttrackpage(),
+          // Allhistorypage(),
         ],
       ),
     );
