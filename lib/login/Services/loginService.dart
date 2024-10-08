@@ -1,6 +1,5 @@
 import 'dart:convert' as convert;
 import 'package:cookingapp/constants.dart';
-import 'package:cookingapp/models/districts.dart';
 import 'package:cookingapp/models/provinecs.dart';
 import 'package:http/http.dart' as http;
 
@@ -20,7 +19,8 @@ class LoginService {
     });
     if (response.statusCode == 200) {
       final data = convert.jsonDecode(response.body);
-      return data['accessToken'];
+      final dataOut = {'token': data['access_token'], 'user': data['user_type']};
+      return dataOut;
     } else {
       final data = convert.jsonDecode(response.body);
       throw Exception(data['message']);
@@ -28,9 +28,10 @@ class LoginService {
   }
 
   static Future register({
+    String? user_type,
     String? first_name,
     String? last_name,
-    int? phone_number,
+    String? phone_number,
     String? birth_date,
     String? gender,
     String? username,
@@ -38,15 +39,39 @@ class LoginService {
     String? password_confirmation,
     String? name,
     String? address,
+    int? province_id,
+    int? district_id,
+    int? subdistrict_id,
+    double? latitude,
+    double? longitude,
   }) async {
     // final SharedPreferences prefs = await SharedPreferences.getInstance();
     // final domain = prefs.getString('domain');
+    var headers = {'Content-Type': 'application/json'};
     final url = Uri.https(publicUrl, 'api/auth/register');
-    final response = await http.post(url, body: {
-      'username': username,
-      'password': password,
-    });
-    if (response.statusCode == 200) {
+    final response = await http.post(
+      url,
+      headers: headers,
+      body: convert.jsonEncode({
+        'user_type': user_type,
+        'first_name': first_name,
+        'last_name': last_name,
+        'phone_number': phone_number,
+        'birth_date': birth_date,
+        'gender': gender,
+        'username': username,
+        'password': password,
+        'password_confirmation': password_confirmation,
+        'name': name,
+        'address': address,
+        'province_id': province_id,
+        'district_id': district_id,
+        'subdistrict_id': subdistrict_id,
+        'latitude': latitude,
+        'longitude': longitude,
+      }),
+    );
+    if (response.statusCode == 200 || response.statusCode == 201) {
       final data = convert.jsonDecode(response.body);
       return data['accessToken'];
     } else {

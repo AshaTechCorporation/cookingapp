@@ -1,4 +1,12 @@
+import 'package:cookingapp/account/ReportFormPage.dart';
+import 'package:cookingapp/account/accsettsing.dart';
+import 'package:cookingapp/account/contactus.dart';
+import 'package:cookingapp/account/guidepage.dart';
 import 'package:cookingapp/account/itemfav.dart';
+import 'package:cookingapp/account/messagepage.dart';
+import 'package:cookingapp/account/reportpage.dart';
+import 'package:cookingapp/account/tagpage.dart';
+import 'package:cookingapp/account/transactionshistory.dart';
 import 'package:cookingapp/account/widgets/topupwidget.dart';
 import 'package:cookingapp/constants.dart';
 import 'package:flutter/material.dart';
@@ -191,13 +199,27 @@ class _AccountPageState extends State<AccountPage> {
                       if (index == 0) {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => Itemfav()));
                       }
-                      if (index == 1) {}
-                      if (index == 2) {}
-                      if (index == 3) {}
-                      if (index == 4) {}
-                      if (index == 5) {}
-                      if (index == 6) {}
-                      if (index == 7) {}
+                      if (index == 1) {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Transactionhistorypage()));
+                      }
+                      if (index == 2) {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => TagsPage()));
+                      }
+                      if (index == 3) {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Guidepage()));
+                      }
+                      if (index == 4) {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ReportProblemPage()));
+                      }
+                      if (index == 5) {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => MessagePage()));
+                      }
+                      if (index == 6) {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Contactus()));
+                      }
+                      if (index == 7) {
+                         Navigator.push(context, MaterialPageRoute(builder: (context) => Accsetting(title: item.text,)));
+                      }
                       if (index == 8) {}
                     },
                   );

@@ -305,3 +305,147 @@ const List<Map<String, dynamic>> listProducts = [
     'sale': '1000+ '
   },
 ];
+
+const List<Map<String, dynamic>> topuphis = [
+  {
+    'id': 1,
+    'date': '26 ก.ย. 67',
+    'time': '16:50:54',
+    'detailLink': 'ดูรายละเอียด',
+    'by': 'mobile banking',
+    'amount': '500.00'
+  },
+  {
+    'id': 2,
+    'date': '26 ก.ย. 67',
+    'time': '16:50:54',
+    'detailLink': 'ดูรายละเอียด',
+    'by': 'mobile banking',
+    'amount': '500.00'
+  }
+];
+
+const List<Map<String, dynamic>> withdrownhis = [
+  {
+    'id': 1,
+    'date': '26 ก.ย. 67',
+    'time': '16:50:54',
+    'detailLink': 'ดูรายละเอียด',
+    'by': 'mobile banking',
+    'amount': '500.00'
+  },
+  {
+    'id': 2,
+    'date': '26 ก.ย. 67',
+    'time': '16:50:54',
+    'detailLink': 'ดูรายละเอียด',
+    'by': 'mobile banking',
+    'amount': '500.00'
+  }
+];
+
+const List<Map<String, dynamic>> statement = [
+  {
+    'id': 1,
+    'po': ' A523456',
+    'time': '20 ส.ค. 67 10:00',
+    'detailLink': 'ดูรายละเอียด',
+    'by': 'ค่าบริการ',
+    'amount': '00,000'
+  },
+  {
+    'id': 2,
+    'po': ' A523226',
+    'time': '21 ส.ค. 67 12:02',
+    'detailLink': 'ดูรายละเอียด',
+    'by': 'ค่าสินค้า',
+    'amount': '00,000'
+  },
+];
+
+const List<Map<String, dynamic>> accumulatedpoints = [
+  {
+    'id': 1,
+    'user': ' A523456',
+    'time': '20 ส.ค. 67 10:00',
+    'point': '10',
+    'status': true,
+  },
+  {
+    'id': 2,
+    'user': ' A523456',
+    'time': '20 ส.ค. 67 10:00',
+    'point': '10',
+    'status': false,
+  },
+  {
+    'id': 3,
+    'user': ' A231226',
+    'time': '23 ส.ค. 67 19:24',
+    'point': '10',
+    'status': true,
+  },
+  {
+    'id': 4,
+    'user': ' A123456',
+    'time': '20 ส.ค. 67 10:00',
+    'point': '300',
+    'status': false,
+  },
+];
+
+List<Map<String, dynamic>> guidelist = [
+  {
+    // 'image': 'assets/images/tag1.png',
+    'title': 'วิธี ...',
+    'subtitle': '',
+  },
+  {
+    // 'image': 'assets/images/tag1.png',
+    'title': 'วิธี ...',
+    'subtitle': '',
+  },
+  // เพิ่มรายการอื่น ๆ ตามต้องการ
+];
+
+const List<String> aboutQuestion = [
+  'คำถามที่พบบ่อย',
+  'เกี่ยวกับ Cooking',
+];
+
+List<Map<String, dynamic>> problemData = [
+  {
+    'id': 1,
+    // 'imagePath': 'assets/icons/bills.png',
+    'title': 'ติดตามสถานะบิลสั่งซื้อ และสินค้า',
+    'options': [
+      'ติดตามการสั่งซื้อ',
+      'ติดตามการจัดส่งสินค้า',
+      'ติดตามการรับเงินจากร้านค้า',
+      'ตรวจสอบยอดรวมที่ไม่ถูกต้อง',
+    ],
+  },
+  {
+    'id': 2,
+    // 'imagePath': 'assets/icons/importproblem.png',
+    'title': 'ปัญหาด้านการขนส่ง',
+    'options': [
+      'ติดตามการจัดส่งสินค้าในไทย',
+      'ขออัปเดตสินค้าไปยังสถานที่จัดส่ง',
+      'เปลี่ยนเส้นทางการจัดส่ง',
+      'ปัญหาสินค้าหาย / ปริมาณไม่ถูกต้อง',
+      'แจ้งสินค้าเสียหายที่เกิดขึ้นในไทย',
+    ],
+  },
+  {
+    'id': 3,
+    // 'imagePath': 'assets/icons/moneyproblem.png',
+    'title': 'ปัญหาด้านการเงิน',
+    'options': [
+      'เพิ่มเงิน / คืนเงิน / ถอนเงิน',
+      'ติดตามการรับเงินจากร้านของขวัญ',
+      'สอบถามการเปลี่ยนแปลง / ใบกำกับภาษี',
+      'ค่าธรรมเนียมที่ไม่ได้ถูกต้อง',
+    ],
+  },
+];

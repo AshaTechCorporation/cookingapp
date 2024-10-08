@@ -1,6 +1,9 @@
+import 'package:cookingapp/Graphs/graphsPage.dart';
 import 'package:cookingapp/constants.dart';
 import 'package:cookingapp/home/firstPage.dart';
+import 'package:cookingapp/login/Services/loginService.dart';
 import 'package:cookingapp/login/regisPage.dart';
+import 'package:cookingapp/widgets/LoadingDialog.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -110,10 +113,25 @@ class _LoginPageState extends State<LoginPage> {
                     height: size.height * 0.07,
                     width: size.width * 0.87,
                     child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context, rootNavigator: true).pushReplacement(
-                          MaterialPageRoute(builder: (context) => FirstPage()),
-                        );
+                      onPressed: () async {
+                        LoadingDialog.open(context);
+                        try {
+                          final token = await LoginService.login(email.text, password.text);
+                          LoadingDialog.close(context);
+                          if (token != null) {
+                            if (token['user_type'] == 'ร้านค้า') {
+                              Navigator.of(context, rootNavigator: true).pushReplacement(
+                                MaterialPageRoute(builder: (context) => LineChartSample1()),
+                              );
+                            } else {
+                              Navigator.of(context, rootNavigator: true).pushReplacement(
+                                MaterialPageRoute(builder: (context) => FirstPage()),
+                              );
+                            }
+                          }
+                        } catch (e) {
+                          LoadingDialog.close(context);
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: brown,

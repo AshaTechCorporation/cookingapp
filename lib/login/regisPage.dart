@@ -3,6 +3,7 @@ import 'package:cookingapp/constants.dart';
 import 'package:cookingapp/login/Services/loginService.dart';
 import 'package:cookingapp/models/districts.dart';
 import 'package:cookingapp/models/provinecs.dart';
+import 'package:cookingapp/widgets/LoadingDialog.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/gestures.dart';
@@ -26,55 +27,56 @@ class _RegisterpageState extends State<Registerpage> {
   final TextEditingController _importercodeController = TextEditingController();
   final TextEditingController _birthController = TextEditingController();
   final TextEditingController address = TextEditingController();
+  final TextEditingController name = TextEditingController();
 
-// dropdown
-  final List<String> subdistrict = [
-    '1',
-    '2',
-  ];
-  final List<String> zipcode = [
-    '3',
-    '4',
-  ];
+// // dropdown
+//   final List<String> subdistrict = [
+//     '1',
+//     '2',
+//   ];
+//   final List<String> zipcode = [
+//     '3',
+//     '4',
+//   ];
 
-  final List<String> _formatsent = [
-    '3',
-    '4',
-  ];
+//   final List<String> _formatsent = [
+//     '3',
+//     '4',
+//   ];
 
-  final List<String> totalsend = [
-    '5',
-    '6',
-  ];
+//   final List<String> totalsend = [
+//     '5',
+//     '6',
+//   ];
 
-  final List<String> sendoften = [
-    '7',
-    '8',
-  ];
+//   final List<String> sendoften = [
+//     '7',
+//     '8',
+//   ];
 
-  final List<String> importtype = [
-    '2',
-    '4',
-  ];
+//   final List<String> importtype = [
+//     '2',
+//     '4',
+//   ];
 
-  final List<String> userwant = [
-    '8',
-    '6',
-  ];
+//   final List<String> userwant = [
+//     '8',
+//     '6',
+//   ];
 
-  String? selectedsubdistrict;
+//   String? selectedsubdistrict;
 
-  String? selectedzipcode;
+//   String? selectedzipcode;
 
-  String? selectedtotalsend;
+//   String? selectedtotalsend;
 
-  String? selectedformatsent;
+//   String? selectedformatsent;
 
-  String? selectedsendoften;
+//   String? selectedsendoften;
 
-  String? selectedimporttype;
+//   String? selectedimporttype;
 
-  String? selecteduserwant;
+//   String? selecteduserwant;
 
 // checkbox
   String? _selectedGender;
@@ -296,10 +298,10 @@ class _RegisterpageState extends State<Registerpage> {
                         GestureDetector(
                           onTap: () {
                             setState(() {
-                              if (_selectedGender == 'Male') {
+                              if (_selectedGender == 'ชาย') {
                                 _selectedGender = null;
                               } else {
-                                _selectedGender = 'Male';
+                                _selectedGender = 'ชาย';
                               }
                             });
                           },
@@ -312,11 +314,11 @@ class _RegisterpageState extends State<Registerpage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 CustomCheckbox(
-                                  value: _selectedGender == 'Male',
+                                  value: _selectedGender == 'ชาย',
                                   onChanged: (bool? value) {
                                     setState(() {
                                       if (value == true) {
-                                        _selectedGender = 'Male';
+                                        _selectedGender = 'ชาย';
                                       } else {
                                         _selectedGender = null;
                                       }
@@ -340,10 +342,10 @@ class _RegisterpageState extends State<Registerpage> {
                     GestureDetector(
                       onTap: () {
                         setState(() {
-                          if (_selectedGender == 'Female') {
+                          if (_selectedGender == 'หญิง') {
                             _selectedGender = null;
                           } else {
-                            _selectedGender = 'Female';
+                            _selectedGender = 'หญิง';
                           }
                         });
                       },
@@ -355,11 +357,11 @@ class _RegisterpageState extends State<Registerpage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CustomCheckbox(
-                              value: _selectedGender == 'Female',
+                              value: _selectedGender == 'หญิง',
                               onChanged: (bool? value) {
                                 setState(() {
                                   if (value == true) {
-                                    _selectedGender = 'Female';
+                                    _selectedGender = 'หญิง';
                                   } else {
                                     _selectedGender = null;
                                   }
@@ -497,6 +499,36 @@ class _RegisterpageState extends State<Registerpage> {
                           ),
                           SizedBox(height: size.height * 0.02),
                           Container(
+                            // height: size.height * 0.052,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: white,
+                            ),
+                            child: TextFormField(
+                              controller: name,
+                              decoration: InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.grey,
+                                    width: 0.5,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.grey,
+                                    width: 0.5,
+                                  ),
+                                ),
+                                hintText: 'ชื่อร้านค้า',
+                                labelStyle: const TextStyle(),
+                                contentPadding: EdgeInsets.only(top: size.height * 0.01, left: size.height * 0.02),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: size.height * 0.01),
+                          Container(
                             height: MediaQuery.of(context).size.height * 0.07,
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
@@ -603,7 +635,7 @@ class _RegisterpageState extends State<Registerpage> {
                                         fontFamily: 'Prompt',
                                       ),
                                       dropdownSearchDecoration: InputDecoration(
-                                        hintText: 'จังหวัด',
+                                        hintText: 'อำเภอ',
                                         hintStyle: TextStyle(
                                           color: Colors.black45,
                                           fontFamily: 'Prompt',
@@ -668,7 +700,7 @@ class _RegisterpageState extends State<Registerpage> {
                                         fontFamily: 'Prompt',
                                       ),
                                       dropdownSearchDecoration: InputDecoration(
-                                        hintText: 'จังหวัด',
+                                        hintText: 'ตำบล',
                                         hintStyle: TextStyle(
                                           color: Colors.black45,
                                           fontFamily: 'Prompt',
@@ -679,7 +711,7 @@ class _RegisterpageState extends State<Registerpage> {
                                     ),
                                     onChanged: (value) {
                                       setState(() {
-                                        selcetDistricts = value;
+                                        selcetSubDistricts = value;
                                         // if (value != null) {
                                         //   getDistrits(id: value.id);
                                         // }
@@ -736,8 +768,32 @@ class _RegisterpageState extends State<Registerpage> {
           decoration: BoxDecoration(color: brown, borderRadius: BorderRadius.circular(10)),
           child: Center(
             child: TextButton(
-              onPressed: () {
-                print('succes');
+              onPressed: () async {
+                print('object');
+                // LoadingDialog.open(context);
+                // try {
+                await LoginService.register(
+                  user_type: widget.type == 'ร้านค้า' ? 'ร้านค้า' : 'บุคคล',
+                  first_name: _nameController.text,
+                  last_name: _lastnameController.text,
+                  phone_number: _telController.text,
+                  birth_date: _birthController.text,
+                  gender: _selectedGender,
+                  username: username.text,
+                  password: _passwordController.text,
+                  password_confirmation: _confirmPasswordController.text,
+                  address: address.text,
+                  name: name.text,
+                  province_id: widget.type == 'ร้านค้า' ? selcetProvinecs!.id : null,
+                  district_id: widget.type == 'ร้านค้า' ? selcetDistricts!.id : null,
+                  subdistrict_id: widget.type == 'ร้านค้า' ? selcetSubDistricts!.id : null,
+                  latitude: widget.type == 'ร้านค้า' ? 13.6789 : null,
+                  longitude: widget.type == 'ร้านค้า' ? 100.6145 : null,
+                );
+                // LoadingDialog.close(context);
+                // } catch (e) {
+                // LoadingDialog.close(context);
+                // }
               },
               child: Text(
                 'สมัครสมาชิก',
