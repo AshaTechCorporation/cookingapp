@@ -12,7 +12,7 @@ class Readytosend extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: white,
         title: Text(
-          'สินค้าเตรียมจัดส่ง',
+          'รอรับ',
           style: TextStyle(fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold),
         ),
         bottom: PreferredSize(
@@ -29,7 +29,7 @@ class Readytosend extends StatelessWidget {
                         flex: 8,
                         child: TextFormField(
                           decoration: InputDecoration(
-                            hintText: 'ค้นหาเลข Tracking, Order, Container ',
+                            hintText: 'ค้นหาเลข, Order',
                             hintStyle: TextStyle(fontSize: 13, color: greyuserinfo, fontWeight: FontWeight.bold),
                             border: InputBorder.none,
                             contentPadding: EdgeInsets.only(bottom: size.height * 0.018, left: size.width * 0.03),
@@ -158,7 +158,7 @@ class Readytosend extends StatelessWidget {
                                   width: size.width * 0.01,
                                 ),
                                 Image.asset(
-                                  'assets/icons/processpurchase.png',
+                                  'assets/icons/waitingorderpayment.png',
                                   height: size.height * 0.037,
                                 ),
                                 SizedBox(
@@ -174,7 +174,7 @@ class Readytosend extends StatelessWidget {
                                 SizedBox(
                                   width: size.width * 0.01,
                                 ),
-                                Image.asset('assets/icons/confirmorder.png', height: size.height * 0.037),
+                                Image.asset('assets/icons/orderpending.png', height: size.height * 0.037),
                                 SizedBox(
                                   width: size.width * 0.01,
                                 ),
@@ -188,29 +188,28 @@ class Readytosend extends StatelessWidget {
                                 SizedBox(
                                   width: size.width * 0.01,
                                 ),
-                                Image.asset('assets/icons/readytosend.png', height: size.height * 0.037),
+                                Image.asset('assets/icons/packingtrack.png', height: size.height * 0.037),
                                 SizedBox(
                                   width: size.width * 0.01,
                                 ),
                                 SizedBox(
                                   width: size.width * 0.3,
                                   child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'ร้านค้ากำลังเตรียมจัดส่ง',
+                                        'รอรับ',
                                         style: TextStyle(fontSize: 12, color: red1, fontWeight: FontWeight.bold),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.only(left: size.width * 0.01),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            'Ref no. 0123456789',
-                                            style: TextStyle(
-                                              fontSize: 12,
-                                              color: greyuserinfo,
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                      Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          'Ref no. 0123456789',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color: red1,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
                                       ),

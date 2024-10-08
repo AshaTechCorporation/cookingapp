@@ -17,7 +17,7 @@ class _WaitsumcardState extends State<Waitsumcard> {
       appBar: AppBar(
         backgroundColor: white,
         title: Text(
-          'รอสรุปยอด',
+          'สั่งซื้อ',
           style: TextStyle(
               fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold),
         ),
@@ -38,7 +38,7 @@ class _WaitsumcardState extends State<Waitsumcard> {
                         flex: 8,
                         child: TextFormField(
                           decoration: InputDecoration(
-                            hintText: 'ค้นหาเลข Tracking, Order, Container ',
+                            hintText: 'ค้นหาเลข Order',
                             hintStyle: TextStyle(
                                 fontSize: 13,
                                 color: greyuserinfo,
@@ -171,12 +171,64 @@ class _WaitsumcardState extends State<Waitsumcard> {
                                     width: size.width * 0.015,
                                   ),
                                   Text(
-                                    'รอสรุปยอด',
+                                    'สั่งซื้อ',
                                     style: TextStyle(
                                         fontSize: 13,
                                         fontWeight: FontWeight.bold,
                                         color: red1),
-                                  )
+                                  ),
+                                  SizedBox(
+                                    width: size.width * 0.01,
+                                  ),
+                                  Image.asset(
+                                    'assets/icons/greybox.png',
+                                    height: size.height * 0.035,
+                                  ),
+                                  SizedBox(
+                                    width: size.width * 0.01,
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                    child: Divider(
+                                      color: Colors.grey[500],
+                                      thickness: 2,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: size.width * 0.01,
+                                  ),
+                                  Image.asset('assets/icons/greybox.png', height: size.height * 0.037),
+                                  SizedBox(
+                                    width: size.width * 0.01,
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                    child: Divider(
+                                      color: Colors.grey[500],
+                                      thickness: 2,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: size.width * 0.01,
+                                  ),
+                                  Image.asset('assets/icons/greybox.png', height: size.height * 0.037),
+                                  SizedBox(
+                                    width: size.width * 0.01,
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                    child: Divider(
+                                      color: Colors.grey[500],
+                                      thickness: 2,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: size.width * 0.01,
+                                  ),
+                                  Image.asset('assets/icons/correctgrey.png', height: size.height * 0.037),
+                                  SizedBox(
+                                    width: size.width * 0.01,
+                                  ),
                                 ],
                               ),
                             ],
