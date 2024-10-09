@@ -2,8 +2,11 @@ import 'package:cookingapp/cart/widgets/CustomCheckbox.dart';
 import 'package:cookingapp/constants.dart';
 import 'package:cookingapp/login/Services/loginService.dart';
 import 'package:cookingapp/models/provinecs.dart';
+import 'package:cookingapp/widgets/Form.dart';
+import 'package:cookingapp/widgets/LoadingDialog.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart' as picker;
 
@@ -15,6 +18,7 @@ class Registerpage extends StatefulWidget {
 }
 
 class _RegisterpageState extends State<Registerpage> {
+  final registerFormKey = GlobalKey<FormState>();
   final TextEditingController username = TextEditingController();
   final TextEditingController _lastnameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -44,10 +48,37 @@ class _RegisterpageState extends State<Registerpage> {
 
   String? stringTime;
   String pickerDate = '';
+
+  double? lat = 0.0;
+  double? long = 0.0;
   @override
   void initState() {
     super.initState();
     getProvinecs();
+    getLocation();
+  }
+
+  getLocation() async {
+    LocationPermission permission;
+    permission = await Geolocator.requestPermission();
+
+    Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+
+    setState(() {
+      lat = position.latitude;
+      long = position.longitude;
+      print('lat: $lat long: $long');
+    });
+    // final map2 = await LoginService.getAddressFromCoordinates(lat!, long!);
+    // if (mounted) {
+    //   setState(() {
+    //     setState(() {
+    //       map = map2;
+    //     });
+    //   });
+    // }
   }
 
   Future<void> getProvinecs() async {
@@ -99,681 +130,503 @@ class _RegisterpageState extends State<Registerpage> {
         backgroundColor: Colors.white,
       ),
       backgroundColor: background,
-      body: SingleChildScrollView(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Image.asset(
-                  'assets/images/Newlogo.png',
-                  width: size.width * 0.59,
-                ),
-                SizedBox(
-                  height: size.height * 0.052,
-                  child: TextField(
+      body: Form(
+        key: registerFormKey,
+        child: SingleChildScrollView(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Image.asset(
+                    'assets/images/Newlogo.png',
+                    width: size.width * 0.59,
+                  ),
+                  FromRegister(
+                    width: size.width * 0.9,
                     controller: _nameController,
-                    decoration: InputDecoration(
-                      hintText: 'ชื่อ',
-                      labelStyle: const TextStyle(),
-                      contentPadding: EdgeInsets.only(top: size.height * 0.01, left: size.height * 0.02),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 0.5,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 0.5,
-                        ),
-                      ),
-                      fillColor: Colors.white,
-                      filled: true,
-                    ),
+                    hintText: 'ชื่อ',
+                    validator: (value) {
+                      if (value!.isEmpty) return 'กรุณากรอกรายละเอียด';
+                      return null;
+                    },
                   ),
-                ),
-                SizedBox(
-                  height: size.height * 0.01,
-                ),
-                Container(
-                  height: size.height * 0.052,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: white,
+                  SizedBox(
+                    height: size.height * 0.01,
                   ),
-                  child: TextField(
+                  FromRegister(
+                    width: size.width * 0.9,
                     controller: _lastnameController,
-                    decoration: InputDecoration(
-                      hintText: 'นามสกุล',
-                      labelStyle: const TextStyle(),
-                      contentPadding: EdgeInsets.only(top: size.height * 0.01, left: size.height * 0.02),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 0.5,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 0.5,
-                        ),
-                      ),
-                    ),
+                    hintText: 'นามสกุล',
+                    validator: (value) {
+                      if (value!.isEmpty) return 'กรุณากรอกรายละเอียด';
+                      return null;
+                    },
                   ),
-                ),
-                SizedBox(height: size.height * 0.01),
-                Container(
-                  height: size.height * 0.052,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: white,
-                  ),
-                  child: TextField(
+                  SizedBox(height: size.height * 0.01),
+                  FromRegister(
+                    width: size.width * 0.9,
                     controller: _telController,
-                    decoration: InputDecoration(
-                      hintText: 'เบอร์มือถือ',
-                      labelStyle: TextStyle(),
-                      contentPadding: EdgeInsets.only(top: size.height * 0.01, left: size.height * 0.02),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 0.5,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 0.5,
-                        ),
-                      ),
-                    ),
+                    hintText: 'เบอร์มือถือ',
+                    validator: (value) {
+                      if (value!.isEmpty) return 'กรุณากรอกรายละเอียด';
+                      return null;
+                    },
                   ),
-                ),
-                SizedBox(height: size.height * 0.01),
-                GestureDetector(
-                  onTap: () {
-                    picker.DatePicker.showDatePicker(
-                      context,
-                      showTitleActions: true,
-                      currentTime: DateTime.now(),
-                      locale: picker.LocaleType.th,
-                      minTime: DateTime(1900, 1, 1),
-                      maxTime: DateTime(2200, 1, 1),
-                      theme: picker.DatePickerTheme(
-                        containerHeight: size.height * 0.5,
-                        itemHeight: size.height * 0.075,
-                        titleHeight: size.height * 0.08,
-                        headerColor: brown,
-                        backgroundColor: Colors.white,
-                        itemStyle: TextStyle(color: brown, fontWeight: FontWeight.bold, fontSize: 20),
-                        doneStyle: TextStyle(color: red1, fontSize: 30, fontWeight: FontWeight.bold),
-                        cancelStyle: TextStyle(color: red1, fontSize: 30, fontWeight: FontWeight.bold),
-                      ),
-                      // onChanged: (date) {
-                      //   print('change $date in time zone ' + date.timeZoneOffset.inHours.toString());
-                      // },
-                      onConfirm: (date) async {
-                        setState(
-                          () {
-                            pickerDate = DateFormat('dd/MM/yyyy').format(date);
-                            stringTime = DateFormat('yyyy-MM-dd').format(date);
-                            print(stringTime);
-                          },
-                        );
-                      },
-                    );
-                  },
-                  child: Container(
-                    height: size.height * 0.052,
-                    width: double.infinity,
-                    padding: EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey,
-                        width: 0.5,
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                      color: white,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          pickerDate == '' ? 'เลือกวันที่' : pickerDate,
-                          style: TextStyle(
-                            // color: Color.fromARGB(255, 151, 150, 150),
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
+                  SizedBox(height: size.height * 0.01),
+                  GestureDetector(
+                    onTap: () {
+                      picker.DatePicker.showDatePicker(
+                        context,
+                        showTitleActions: true,
+                        currentTime: DateTime.now(),
+                        locale: picker.LocaleType.th,
+                        minTime: DateTime(1900, 1, 1),
+                        maxTime: DateTime(2200, 1, 1),
+                        theme: picker.DatePickerTheme(
+                          containerHeight: size.height * 0.5,
+                          itemHeight: size.height * 0.075,
+                          titleHeight: size.height * 0.08,
+                          headerColor: brown,
+                          backgroundColor: Colors.white,
+                          itemStyle: TextStyle(color: brown, fontWeight: FontWeight.bold, fontSize: 20),
+                          doneStyle: TextStyle(color: red1, fontSize: 30, fontWeight: FontWeight.bold),
+                          cancelStyle: TextStyle(color: red1, fontSize: 30, fontWeight: FontWeight.bold),
                         ),
-                        Icon(
-                          Icons.calendar_month_sharp,
-                          color: Color.fromARGB(255, 151, 150, 150),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                // Container(
-                //   height: size.height * 0.052,
-                //   decoration: BoxDecoration(
-                //     borderRadius: BorderRadius.circular(15),
-                //     color: white,
-                //   ),
-                //   child: TextField(
-                //     controller: _birthController,
-                //     decoration: InputDecoration(
-                //       hintText: 'วันเกิด',
-                //       labelStyle: TextStyle(),
-                //       contentPadding: EdgeInsets.only(top: size.height * 0.01, left: size.height * 0.02),
-                //       enabledBorder: OutlineInputBorder(
-                //         borderRadius: BorderRadius.circular(15.0),
-                //         borderSide: BorderSide(
-                //           color: Colors.grey,
-                //           width: 0.5,
-                //         ),
-                //       ),
-                //       focusedBorder: OutlineInputBorder(
-                //         borderRadius: BorderRadius.circular(15.0),
-                //         borderSide: BorderSide(
-                //           color: Colors.grey,
-                //           width: 0.5,
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ),
-
-                SizedBox(
-                  height: size.height * 0.02,
-                ),
-                Row(
-                  children: [
-                    Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: size.width * 0.01),
-                          child: Text(
-                            'เพศ',
-                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.grey),
-                          ),
-                        ),
-                        SizedBox(
-                          width: size.width * 0.4,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              if (_selectedGender == 'ชาย') {
-                                _selectedGender = null;
-                              } else {
-                                _selectedGender = 'ชาย';
-                              }
-                            });
-                          },
-                          child: Container(
-                            height: size.height * 0.043,
-                            width: size.width * 0.2,
-                            decoration:
-                                BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.grey, width: size.width * 0.001)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                CustomCheckbox(
-                                  value: _selectedGender == 'ชาย',
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      if (value == true) {
-                                        _selectedGender = 'ชาย';
-                                      } else {
-                                        _selectedGender = null;
-                                      }
-                                    });
-                                  },
-                                ),
-                                SizedBox(
-                                  width: size.width * 0.02,
-                                ),
-                                Text(
-                                  'ชาย',
-                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(width: size.width * 0.02),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          if (_selectedGender == 'หญิง') {
-                            _selectedGender = null;
-                          } else {
-                            _selectedGender = 'หญิง';
-                          }
-                        });
-                      },
-                      child: Container(
-                        height: size.height * 0.043,
-                        width: size.width * 0.2,
-                        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.grey, width: size.width * 0.001)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CustomCheckbox(
-                              value: _selectedGender == 'หญิง',
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  if (value == true) {
-                                    _selectedGender = 'หญิง';
-                                  } else {
-                                    _selectedGender = null;
-                                  }
-                                });
-                              },
-                            ),
-                            SizedBox(
-                              width: size.width * 0.02,
-                            ),
-                            Text(
-                              'หญิง',
-                              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: size.height * 0.025,
-                ),
-                Container(
-                  height: size.height * 0.052,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: white,
-                  ),
-                  child: TextField(
-                    controller: username,
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                        borderSide: BorderSide(
+                        // onChanged: (date) {
+                        //   print('change $date in time zone ' + date.timeZoneOffset.inHours.toString());
+                        // },
+                        onConfirm: (date) async {
+                          setState(
+                            () {
+                              pickerDate = DateFormat('dd/MM/yyyy').format(date);
+                              stringTime = DateFormat('yyyy-MM-dd').format(date);
+                              print(stringTime);
+                            },
+                          );
+                        },
+                      );
+                    },
+                    child: Container(
+                      height: size.height * 0.055,
+                      width: double.infinity,
+                      padding: EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        border: Border.all(
                           color: Colors.grey,
-                          width: 0.5,
                         ),
+                        borderRadius: BorderRadius.circular(15),
+                        color: white,
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 0.5,
-                        ),
-                      ),
-                      hintText: 'ผู้ใช้งาน',
-                      labelStyle: const TextStyle(),
-                      contentPadding: EdgeInsets.only(top: size.height * 0.01, left: size.height * 0.02),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: size.height * 0.025,
-                ),
-                Container(
-                  height: size.height * 0.052,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: white,
-                  ),
-                  child: TextField(
-                    controller: _passwordController,
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 0.5,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 0.5,
-                        ),
-                      ),
-                      suffixIcon: Icon(Icons.remove_red_eye_outlined),
-                      hintText: 'รหัสผ่าน',
-                      labelStyle: const TextStyle(),
-                      contentPadding: EdgeInsets.only(top: size.height * 0.01, left: size.height * 0.02),
-                    ),
-                    obscureText: true,
-                  ),
-                ),
-                SizedBox(height: size.height * 0.01),
-                Container(
-                  height: size.height * 0.052,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: white,
-                  ),
-                  child: TextField(
-                    controller: _confirmPasswordController,
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 0.5,
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 0.5,
-                        ),
-                      ),
-                      suffixIcon: Icon(Icons.remove_red_eye_outlined),
-                      hintText: 'ยืนยันรหัสผ่าน',
-                      labelStyle: const TextStyle(),
-                      contentPadding: EdgeInsets.only(top: size.height * 0.01, left: size.height * 0.02),
-                    ),
-                    obscureText: true,
-                  ),
-                ),
-                SizedBox(height: size.height * 0.01),
-                widget.type != 'ร้านค้า'
-                    ? SizedBox.shrink()
-                    : Column(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'ร้านค้า',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w200,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: size.height * 0.02),
-                          Container(
-                            // height: size.height * 0.052,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: white,
-                            ),
-                            child: TextFormField(
-                              controller: name,
-                              decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                  borderSide: BorderSide(
-                                    color: Colors.grey,
-                                    width: 0.5,
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                  borderSide: BorderSide(
-                                    color: Colors.grey,
-                                    width: 0.5,
-                                  ),
-                                ),
-                                hintText: 'ชื่อร้านค้า',
-                                labelStyle: const TextStyle(),
-                                contentPadding: EdgeInsets.only(top: size.height * 0.01, left: size.height * 0.02),
-                              ),
+                          Text(
+                            pickerDate == '' ? 'เลือกวันที่' : pickerDate,
+                            style: TextStyle(
+                              color: pickerDate == '' ? Color.fromARGB(255, 172, 172, 172) : null,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: size.height * 0.01),
-                          Container(
-                            height: MediaQuery.of(context).size.height * 0.07,
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15),
-                              border: Border.all(
-                                color: Colors.grey,
-                                width: 0.5,
-                              ),
-                            ),
-                            padding: EdgeInsets.all(8),
-                            child: DropdownSearch<Provinecs>(
-                              selectedItem: selcetProvinecs,
-                              // items: listProvinec,
-                              items: listProvinecs,
-                              itemAsString: (item) => item.name_th ?? '',
-                              popupProps: PopupProps.menu(
-                                constraints: BoxConstraints(maxHeight: 450),
-                                fit: FlexFit.loose,
-                                itemBuilder: (context, item, isSelected) => Container(
-                                  margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        item.name_th ?? '',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              dropdownDecoratorProps: DropDownDecoratorProps(
-                                baseStyle: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                  fontFamily: 'Prompt',
-                                ),
-                                dropdownSearchDecoration: InputDecoration(
-                                  hintText: 'จังหวัด',
-                                  hintStyle: TextStyle(
-                                    color: Colors.black45,
-                                    fontFamily: 'Prompt',
-                                  ),
-                                  border: InputBorder.none,
-                                  suffixIconColor: Colors.grey,
-                                ),
-                              ),
-                              onChanged: (value) {
-                                setState(() {
-                                  selcetProvinecs = value;
-                                  if (value != null) {
-                                    getDistrits(id: value.id!);
-                                  }
-                                });
-                              },
+                          Icon(
+                            Icons.calendar_month_sharp,
+                            color: Color.fromARGB(255, 151, 150, 150),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height * 0.02,
+                  ),
+                  Row(
+                    children: [
+                      Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: size.width * 0.01),
+                            child: Text(
+                              'เพศ',
+                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.grey),
                             ),
                           ),
-                          SizedBox(height: size.height * 0.01),
-                          selcetProvinecs == null || listDistricts.isEmpty
-                              ? SizedBox.shrink()
-                              : Container(
-                                  height: MediaQuery.of(context).size.height * 0.07,
-                                  width: MediaQuery.of(context).size.width,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(15),
-                                    border: Border.all(
-                                      color: Colors.grey,
-                                      width: 0.5,
-                                    ),
-                                  ),
-                                  padding: EdgeInsets.all(8),
-                                  child: DropdownSearch<Provinecs>(
-                                    selectedItem: selcetDistricts,
-                                    items: listDistricts,
-                                    itemAsString: (item) => item.name_th ?? '',
-                                    popupProps: PopupProps.menu(
-                                      constraints: BoxConstraints(maxHeight: 450),
-                                      fit: FlexFit.loose,
-                                      itemBuilder: (context, item, isSelected) => Container(
-                                        margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              item.name_th ?? '',
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    dropdownDecoratorProps: DropDownDecoratorProps(
-                                      baseStyle: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15,
-                                        fontFamily: 'Prompt',
-                                      ),
-                                      dropdownSearchDecoration: InputDecoration(
-                                        hintText: 'อำเภอ',
-                                        hintStyle: TextStyle(
-                                          color: Colors.black45,
-                                          fontFamily: 'Prompt',
-                                        ),
-                                        border: InputBorder.none,
-                                        suffixIconColor: Colors.grey,
-                                      ),
-                                    ),
-                                    onChanged: (value) {
+                          SizedBox(
+                            width: size.width * 0.4,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                if (_selectedGender == 'ชาย') {
+                                  _selectedGender = null;
+                                } else {
+                                  _selectedGender = 'ชาย';
+                                }
+                              });
+                            },
+                            child: Container(
+                              height: size.height * 0.043,
+                              width: size.width * 0.2,
+                              decoration:
+                                  BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.grey, width: size.width * 0.001)),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  CustomCheckbox(
+                                    value: _selectedGender == 'ชาย',
+                                    onChanged: (bool? value) {
                                       setState(() {
-                                        selcetDistricts = value;
-                                        if (value != null) {
-                                          getSubDistrits(id: value.id!);
+                                        if (value == true) {
+                                          _selectedGender = 'ชาย';
+                                        } else {
+                                          _selectedGender = null;
                                         }
                                       });
                                     },
                                   ),
-                                ),
-                          SizedBox(height: size.height * 0.01),
-                          selcetDistricts == null
-                              ? SizedBox.shrink()
-                              : Container(
-                                  height: MediaQuery.of(context).size.height * 0.07,
-                                  width: MediaQuery.of(context).size.width,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(15),
-                                    border: Border.all(
-                                      color: Colors.grey,
-                                      width: 0.5,
-                                    ),
+                                  SizedBox(
+                                    width: size.width * 0.02,
                                   ),
-                                  padding: EdgeInsets.all(8),
-                                  child: DropdownSearch<Provinecs>(
-                                    selectedItem: selcetSubDistricts,
-                                    // items: listProvinec,
-                                    items: listSubDistricts,
-                                    itemAsString: (item) => item.name_th ?? '',
-                                    popupProps: PopupProps.menu(
-                                      constraints: BoxConstraints(maxHeight: 450),
-                                      fit: FlexFit.loose,
-                                      itemBuilder: (context, item, isSelected) => Container(
-                                        margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              item.name_th ?? '',
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    dropdownDecoratorProps: DropDownDecoratorProps(
-                                      baseStyle: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15,
-                                        fontFamily: 'Prompt',
-                                      ),
-                                      dropdownSearchDecoration: InputDecoration(
-                                        hintText: 'ตำบล',
-                                        hintStyle: TextStyle(
-                                          color: Colors.black45,
-                                          fontFamily: 'Prompt',
-                                        ),
-                                        border: InputBorder.none,
-                                        suffixIconColor: Colors.grey,
-                                      ),
-                                    ),
-                                    onChanged: (value) {
-                                      setState(() {
-                                        selcetSubDistricts = value;
-                                        // if (value != null) {
-                                        //   getDistrits(id: value.id);
-                                        // }
-                                      });
-                                    },
+                                  Text(
+                                    'ชาย',
+                                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                                   ),
-                                ),
-                          SizedBox(height: size.height * 0.01),
-                          Container(
-                            // height: size.height * 0.052,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: white,
-                            ),
-                            child: TextFormField(
-                              controller: address,
-                              keyboardType: TextInputType.multiline,
-                              maxLines: 5,
-                              decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                  borderSide: BorderSide(
-                                    color: Colors.grey,
-                                    width: 0.5,
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                  borderSide: BorderSide(
-                                    color: Colors.grey,
-                                    width: 0.5,
-                                  ),
-                                ),
-                                hintText: 'ที่อยู่',
-                                labelStyle: const TextStyle(),
-                                contentPadding: EdgeInsets.only(top: size.height * 0.01, left: size.height * 0.02),
+                                ],
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: size.height * 0.03,
-                          ),
+                          )
                         ],
+                      ),
+                      SizedBox(width: size.width * 0.02),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            if (_selectedGender == 'หญิง') {
+                              _selectedGender = null;
+                            } else {
+                              _selectedGender = 'หญิง';
+                            }
+                          });
+                        },
+                        child: Container(
+                          height: size.height * 0.043,
+                          width: size.width * 0.2,
+                          decoration:
+                              BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.grey, width: size.width * 0.001)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CustomCheckbox(
+                                value: _selectedGender == 'หญิง',
+                                onChanged: (bool? value) {
+                                  setState(() {
+                                    if (value == true) {
+                                      _selectedGender = 'หญิง';
+                                    } else {
+                                      _selectedGender = null;
+                                    }
+                                  });
+                                },
+                              ),
+                              SizedBox(
+                                width: size.width * 0.02,
+                              ),
+                              Text(
+                                'หญิง',
+                                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                              ),
+                            ],
+                          ),
+                        ),
                       )
-              ],
+                    ],
+                  ),
+                  SizedBox(
+                    height: size.height * 0.01,
+                  ),
+                  FromRegister(
+                    width: size.width * 0.9,
+                    controller: username,
+                    hintText: 'ผู้ใช้งาน',
+                    validator: (value) {
+                      if (value!.isEmpty) return 'กรุณากรอกรายละเอียด';
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: size.height * 0.01,
+                  ),
+                  FromRegister(
+                    width: size.width * 0.9,
+                    controller: _passwordController,
+                    hintText: 'รหัสผ่าน',
+                    isPassword: true,
+                    validator: (value) {
+                      if (value!.isEmpty || value == '') {
+                        return 'กรุณากรอกรหัสผ่าน';
+                      }
+                      if (value.length < 8 || value.length > 20) {
+                        return 'รหัสผ่านต้องมีความยาว 8 - 20 ตัวอักษร';
+                      }
+                      if (value != _confirmPasswordController.text) {
+                        return 'รหัสผ่านไม่ตรงกัน';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: size.height * 0.01),
+                  FromRegister(
+                    width: size.width * 0.9,
+                    controller: _confirmPasswordController,
+                    hintText: 'ยืนยันรหัสผ่าน',
+                    isPassword: true,
+                    validator: (value) {
+                      if (value!.isEmpty || value == '') {
+                        return 'กรุณากรอกรหัสผ่าน';
+                      }
+                      if (value.length < 8 || value.length > 20) {
+                        return 'รหัสผ่านต้องมีความยาว 8 - 20 ตัวอักษร';
+                      }
+                      if (value != _passwordController.text) {
+                        return 'รหัสผ่านไม่ตรงกัน';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: size.height * 0.01),
+                  widget.type != 'ร้านค้า'
+                      ? SizedBox.shrink()
+                      : Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'ร้านค้า',
+                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.grey),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: size.height * 0.02),
+                            FromRegister(
+                              width: size.width * 0.9,
+                              controller: name,
+                              hintText: 'ชื่อร้านค้า',
+                              validator: (value) {
+                                if (value!.isEmpty) return 'กรุณากรอกรายละเอียด';
+                                return null;
+                              },
+                            ),
+                            SizedBox(height: size.height * 0.01),
+                            Container(
+                              height: MediaQuery.of(context).size.height * 0.07,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(15),
+                                border: Border.all(
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              padding: EdgeInsets.all(8),
+                              child: DropdownSearch<Provinecs>(
+                                selectedItem: selcetProvinecs,
+                                // items: listProvinec,
+                                items: listProvinecs,
+                                itemAsString: (item) => item.name_th ?? '',
+                                popupProps: PopupProps.menu(
+                                  constraints: BoxConstraints(maxHeight: 450),
+                                  fit: FlexFit.loose,
+                                  itemBuilder: (context, item, isSelected) => Container(
+                                    margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          item.name_th ?? '',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                dropdownDecoratorProps: DropDownDecoratorProps(
+                                  baseStyle: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                    fontFamily: 'Prompt',
+                                  ),
+                                  dropdownSearchDecoration: InputDecoration(
+                                    hintText: 'จังหวัด',
+                                    hintStyle: TextStyle(
+                                      color: Colors.black45,
+                                      fontFamily: 'Prompt',
+                                    ),
+                                    border: InputBorder.none,
+                                    suffixIconColor: Colors.grey,
+                                  ),
+                                ),
+                                onChanged: (value) {
+                                  setState(() {
+                                    selcetProvinecs = value;
+                                    if (value != null) {
+                                      getDistrits(id: value.id!);
+                                    }
+                                  });
+                                },
+                              ),
+                            ),
+                            SizedBox(height: size.height * 0.01),
+                            selcetProvinecs == null || listDistricts.isEmpty
+                                ? SizedBox.shrink()
+                                : Container(
+                                    height: MediaQuery.of(context).size.height * 0.07,
+                                    width: MediaQuery.of(context).size.width,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(15),
+                                      border: Border.all(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    padding: EdgeInsets.all(8),
+                                    child: DropdownSearch<Provinecs>(
+                                      selectedItem: selcetDistricts,
+                                      items: listDistricts,
+                                      itemAsString: (item) => item.name_th ?? '',
+                                      popupProps: PopupProps.menu(
+                                        constraints: BoxConstraints(maxHeight: 450),
+                                        fit: FlexFit.loose,
+                                        itemBuilder: (context, item, isSelected) => Container(
+                                          margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                item.name_th ?? '',
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      dropdownDecoratorProps: DropDownDecoratorProps(
+                                        baseStyle: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                          fontFamily: 'Prompt',
+                                        ),
+                                        dropdownSearchDecoration: InputDecoration(
+                                          hintText: 'อำเภอ',
+                                          hintStyle: TextStyle(
+                                            color: Colors.black45,
+                                            fontFamily: 'Prompt',
+                                          ),
+                                          border: InputBorder.none,
+                                          suffixIconColor: Colors.grey,
+                                        ),
+                                      ),
+                                      onChanged: (value) {
+                                        setState(() {
+                                          selcetDistricts = value;
+                                          if (value != null) {
+                                            getSubDistrits(id: value.id!);
+                                          }
+                                        });
+                                      },
+                                    ),
+                                  ),
+                            SizedBox(height: size.height * 0.01),
+                            selcetDistricts == null
+                                ? SizedBox.shrink()
+                                : Container(
+                                    height: MediaQuery.of(context).size.height * 0.07,
+                                    width: MediaQuery.of(context).size.width,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(15),
+                                      border: Border.all(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    padding: EdgeInsets.all(8),
+                                    child: DropdownSearch<Provinecs>(
+                                      selectedItem: selcetSubDistricts,
+                                      // items: listProvinec,
+                                      items: listSubDistricts,
+                                      itemAsString: (item) => item.name_th ?? '',
+                                      popupProps: PopupProps.menu(
+                                        constraints: BoxConstraints(maxHeight: 450),
+                                        fit: FlexFit.loose,
+                                        itemBuilder: (context, item, isSelected) => Container(
+                                          margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                item.name_th ?? '',
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      dropdownDecoratorProps: DropDownDecoratorProps(
+                                        baseStyle: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                          fontFamily: 'Prompt',
+                                        ),
+                                        dropdownSearchDecoration: InputDecoration(
+                                          hintText: 'ตำบล',
+                                          hintStyle: TextStyle(
+                                            color: Colors.black45,
+                                            fontFamily: 'Prompt',
+                                          ),
+                                          border: InputBorder.none,
+                                          suffixIconColor: Colors.grey,
+                                        ),
+                                      ),
+                                      onChanged: (value) {
+                                        setState(() {
+                                          selcetSubDistricts = value;
+                                          // if (value != null) {
+                                          //   getDistrits(id: value.id);
+                                          // }
+                                        });
+                                      },
+                                    ),
+                                  ),
+                            SizedBox(height: size.height * 0.01),
+                            FromRegister(
+                              width: size.width * 0.9,
+                              controller: address,
+                              hintText: 'ที่อยู่',
+                              keyboardType: TextInputType.multiline,
+                              validator: (value) {
+                                if (value!.isEmpty) return 'กรุณากรอกรายละเอียด';
+                                return null;
+                              },
+                            ),
+                            SizedBox(
+                              height: size.height * 0.03,
+                            ),
+                          ],
+                        )
+                ],
+              ),
             ),
           ),
         ),
@@ -786,31 +639,51 @@ class _RegisterpageState extends State<Registerpage> {
           child: Center(
             child: TextButton(
               onPressed: () async {
-                print('object');
-                // LoadingDialog.open(context);
-                // try {
-                await LoginService.register(
-                  user_type: widget.type == 'ร้านค้า' ? 'ร้านค้า' : 'บุคคล',
-                  first_name: _nameController.text,
-                  last_name: _lastnameController.text,
-                  phone_number: _telController.text,
-                  birth_date: stringTime,
-                  gender: _selectedGender,
-                  username: username.text,
-                  password: _passwordController.text,
-                  password_confirmation: _confirmPasswordController.text,
-                  address: address.text,
-                  name: name.text,
-                  province_id: widget.type == 'ร้านค้า' ? selcetProvinecs!.id : null,
-                  district_id: widget.type == 'ร้านค้า' ? selcetDistricts!.id : null,
-                  subdistrict_id: widget.type == 'ร้านค้า' ? selcetSubDistricts!.id : null,
-                  latitude: widget.type == 'ร้านค้า' ? 13.6789 : null,
-                  longitude: widget.type == 'ร้านค้า' ? 100.6145 : null,
-                );
-                // LoadingDialog.close(context);
-                // } catch (e) {
-                // LoadingDialog.close(context);
-                // }
+                if (registerFormKey.currentState!.validate()) {
+                  if (stringTime != null || stringTime != '') {
+                    LoadingDialog.open(context);
+                    try {
+                      await LoginService.register(
+                        user_type: widget.type == 'ร้านค้า' ? 'ร้านค้า' : 'บุคคล',
+                        first_name: _nameController.text,
+                        last_name: _lastnameController.text,
+                        phone_number: _telController.text,
+                        birth_date: stringTime,
+                        gender: _selectedGender,
+                        username: username.text,
+                        password: _passwordController.text,
+                        password_confirmation: _confirmPasswordController.text,
+                        address: address.text,
+                        name: name.text,
+                        province_id: widget.type == 'ร้านค้า' ? selcetProvinecs!.id : null,
+                        district_id: widget.type == 'ร้านค้า' ? selcetDistricts!.id : null,
+                        subdistrict_id: widget.type == 'ร้านค้า' ? selcetSubDistricts!.id : null,
+                        latitude: widget.type == 'ร้านค้า' ? lat : null,
+                        longitude: widget.type == 'ร้านค้า' ? long : null,
+                      );
+                      LoadingDialog.close(context);
+                      if (!mounted) return;
+                      Navigator.pop(context);
+                    } catch (e) {
+                      LoadingDialog.close(context);
+                      if (!mounted) return;
+                      showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                title: Text('แจ้งเตือน'),
+                                content: Text(e.toString()),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text('ตกลง'),
+                                  )
+                                ],
+                              ));
+                    }
+                  }
+                }
               },
               child: Text(
                 'สมัครสมาชิก',

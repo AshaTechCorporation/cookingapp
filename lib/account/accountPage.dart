@@ -239,8 +239,12 @@ class _AccountPageState extends State<AccountPage> {
                         await clearToken();
                         if (!mounted) return;
                         Navigator.of(context, rootNavigator: true).pushReplacement(
-                          MaterialPageRoute(builder: (context) => LoginPage()),
+                          MaterialPageRoute(
+                            builder: (context) => LoginPage(),
+                            // FirstPage(),
+                          ),
                         );
+                        // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginPage()), (route) => true);
                       }
                     },
                   );

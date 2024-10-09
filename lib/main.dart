@@ -11,6 +11,8 @@ void main() {
   runApp(const MyApp());
 }
 
+const kGoogleApiKey = "AIzaSyCv774tqTBhaXZ_xzac1N28CtlO0X3Uob4";
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

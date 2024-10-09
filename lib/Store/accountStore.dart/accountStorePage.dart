@@ -235,10 +235,13 @@ class _AccountStorePageState extends State<AccountStorePage> {
                       }
                       if (index == 8) {
                         await clearToken();
-                        if (!mounted) return;
                         Navigator.of(context, rootNavigator: true).pushReplacement(
-                          MaterialPageRoute(builder: (context) => LoginPage()),
+                          MaterialPageRoute(
+                            builder: (context) => LoginPage(),
+                            // FirstPage(),
+                          ),
                         );
+                        // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginPage()), (route) => true);
                       }
                     },
                   );

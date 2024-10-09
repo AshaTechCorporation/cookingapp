@@ -26,6 +26,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Color.fromARGB(81, 207, 124, 9),
         centerTitle: false,
         title: Text(
@@ -70,16 +71,16 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(height: size.height * 0.02),
                   SizedBox(
                     height: size.height * 0.06,
-                    child: TextField(
+                    child: TextFormField(
                       controller: email,
                       decoration: InputDecoration(
-                          prefixIcon: Image.asset('assets/images/userlogin.png'), labelText: 'รหัสผู้นำเข้า', labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
+                          prefixIcon: Image.asset('assets/images/userlogin.png'), labelText: 'รหัสผู้ใช้งาน', labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
                     ),
                   ),
                   SizedBox(height: size.height * 0.02),
                   SizedBox(
                     height: size.height * 0.06,
-                    child: TextField(
+                    child: TextFormField(
                       controller: password,
                       decoration: InputDecoration(
                         labelText: 'รหัสผ่าน',
@@ -130,12 +131,14 @@ class _LoginPageState extends State<LoginPage> {
                             final SharedPreferences prefs = await _prefs;
                             await prefs.setString('token', token['token']);
                             if (token['user'] == 'ร้านค้า') {
+                              //  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => FirstPageStore()), (route) => true);
                               Navigator.of(context, rootNavigator: true).pushReplacement(
                                 MaterialPageRoute(
                                   builder: (context) => FirstPageStore(),
                                 ),
                               );
                             } else {
+                              //  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginPage()), (route) => true);
                               Navigator.of(context, rootNavigator: true).pushReplacement(
                                 MaterialPageRoute(
                                   builder: (context) => PresenFoodPage(),

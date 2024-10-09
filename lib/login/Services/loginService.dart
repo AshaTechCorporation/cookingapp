@@ -1,7 +1,9 @@
 import 'dart:convert' as convert;
 import 'package:cookingapp/constants.dart';
+import 'package:cookingapp/main.dart';
 import 'package:cookingapp/models/provinecs.dart';
 import 'package:cookingapp/models/user.dart';
+import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -153,6 +155,23 @@ class LoginService {
     } else {
       final data = convert.jsonDecode(response.body);
       throw Exception(data['message']);
+    }
+  }
+
+  static Future<String> getAddressFromCoordinates(double latitude, double longitude) async {
+    try {
+      final res = await Dio().get(
+        'https://maps.googleapis.com/maps/api/geocode/json?latlng=$latitude,$longitude&language=th&key=$kGoogleApiKey',
+      );
+      final List results = res.data['results'];
+      if (results.isNotEmpty) {
+        return results[0]['formatted_address'];
+      } else {
+        return 'ไม่พบข้อมูล';
+      }
+    } on DioException catch (e) {
+      Future.error(e.message ?? '');
+      rethrow;
     }
   }
 }
