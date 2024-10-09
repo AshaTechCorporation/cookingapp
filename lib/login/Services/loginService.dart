@@ -157,21 +157,4 @@ class LoginService {
       throw Exception(data['message']);
     }
   }
-
-  static Future<String> getAddressFromCoordinates(double latitude, double longitude) async {
-    try {
-      final res = await Dio().get(
-        'https://maps.googleapis.com/maps/api/geocode/json?latlng=$latitude,$longitude&language=th&key=$kGoogleApiKey',
-      );
-      final List results = res.data['results'];
-      if (results.isNotEmpty) {
-        return results[0]['formatted_address'];
-      } else {
-        return 'ไม่พบข้อมูล';
-      }
-    } on DioException catch (e) {
-      Future.error(e.message ?? '');
-      rethrow;
-    }
-  }
 }

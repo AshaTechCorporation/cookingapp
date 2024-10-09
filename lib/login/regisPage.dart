@@ -71,14 +71,6 @@ class _RegisterpageState extends State<Registerpage> {
       long = position.longitude;
       print('lat: $lat long: $long');
     });
-    // final map2 = await LoginService.getAddressFromCoordinates(lat!, long!);
-    // if (mounted) {
-    //   setState(() {
-    //     setState(() {
-    //       map = map2;
-    //     });
-    //   });
-    // }
   }
 
   Future<void> getProvinecs() async {
