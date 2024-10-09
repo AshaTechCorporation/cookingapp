@@ -43,6 +43,7 @@ dependencies:
   collection: ^1.18.0
   http: ^1.2.2
   dropdown_search: ^5.0.6
+  flutter_datetime_picker_plus: ^2.2.0
 
 dev_dependencies:
   flutter_test:

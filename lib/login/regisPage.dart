@@ -1,13 +1,11 @@
 import 'package:cookingapp/cart/widgets/CustomCheckbox.dart';
 import 'package:cookingapp/constants.dart';
 import 'package:cookingapp/login/Services/loginService.dart';
-import 'package:cookingapp/models/districts.dart';
 import 'package:cookingapp/models/provinecs.dart';
-import 'package:cookingapp/widgets/LoadingDialog.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart' as picker;
 
 class Registerpage extends StatefulWidget {
   const Registerpage({super.key, required this.type});
@@ -29,55 +27,6 @@ class _RegisterpageState extends State<Registerpage> {
   final TextEditingController address = TextEditingController();
   final TextEditingController name = TextEditingController();
 
-// // dropdown
-//   final List<String> subdistrict = [
-//     '1',
-//     '2',
-//   ];
-//   final List<String> zipcode = [
-//     '3',
-//     '4',
-//   ];
-
-//   final List<String> _formatsent = [
-//     '3',
-//     '4',
-//   ];
-
-//   final List<String> totalsend = [
-//     '5',
-//     '6',
-//   ];
-
-//   final List<String> sendoften = [
-//     '7',
-//     '8',
-//   ];
-
-//   final List<String> importtype = [
-//     '2',
-//     '4',
-//   ];
-
-//   final List<String> userwant = [
-//     '8',
-//     '6',
-//   ];
-
-//   String? selectedsubdistrict;
-
-//   String? selectedzipcode;
-
-//   String? selectedtotalsend;
-
-//   String? selectedformatsent;
-
-//   String? selectedsendoften;
-
-//   String? selectedimporttype;
-
-//   String? selecteduserwant;
-
 // checkbox
   String? _selectedGender;
 
@@ -92,6 +41,9 @@ class _RegisterpageState extends State<Registerpage> {
   List<Provinecs> listProvinecs = [];
   List<Provinecs> listDistricts = [];
   List<Provinecs> listSubDistricts = [];
+
+  String? stringTime;
+  String pickerDate = '';
   @override
   void initState() {
     super.initState();
@@ -249,35 +201,100 @@ class _RegisterpageState extends State<Registerpage> {
                   ),
                 ),
                 SizedBox(height: size.height * 0.01),
-                Container(
-                  height: size.height * 0.052,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: white,
-                  ),
-                  child: TextField(
-                    controller: _birthController,
-                    decoration: InputDecoration(
-                      hintText: 'วันเกิด',
-                      labelStyle: TextStyle(),
-                      contentPadding: EdgeInsets.only(top: size.height * 0.01, left: size.height * 0.02),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 0.5,
-                        ),
+                GestureDetector(
+                  onTap: () {
+                    picker.DatePicker.showDatePicker(
+                      context,
+                      showTitleActions: true,
+                      currentTime: DateTime.now(),
+                      locale: picker.LocaleType.th,
+                      minTime: DateTime(1900, 1, 1),
+                      maxTime: DateTime(2200, 1, 1),
+                      theme: picker.DatePickerTheme(
+                        containerHeight: size.height * 0.5,
+                        itemHeight: size.height * 0.075,
+                        titleHeight: size.height * 0.08,
+                        headerColor: brown,
+                        backgroundColor: Colors.white,
+                        itemStyle: TextStyle(color: brown, fontWeight: FontWeight.bold, fontSize: 20),
+                        doneStyle: TextStyle(color: red1, fontSize: 30, fontWeight: FontWeight.bold),
+                        cancelStyle: TextStyle(color: red1, fontSize: 30, fontWeight: FontWeight.bold),
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 0.5,
-                        ),
+                      // onChanged: (date) {
+                      //   print('change $date in time zone ' + date.timeZoneOffset.inHours.toString());
+                      // },
+                      onConfirm: (date) async {
+                        setState(
+                          () {
+                            pickerDate = DateFormat('dd/MM/yyyy').format(date);
+                            stringTime = DateFormat('yyyy-MM-dd').format(date);
+                            print(stringTime);
+                          },
+                        );
+                      },
+                    );
+                  },
+                  child: Container(
+                    height: size.height * 0.052,
+                    width: double.infinity,
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 0.5,
                       ),
+                      borderRadius: BorderRadius.circular(15),
+                      color: white,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          pickerDate == '' ? 'เลือกวันที่' : pickerDate,
+                          style: TextStyle(
+                            // color: Color.fromARGB(255, 151, 150, 150),
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Icon(
+                          Icons.calendar_month_sharp,
+                          color: Color.fromARGB(255, 151, 150, 150),
+                        )
+                      ],
                     ),
                   ),
                 ),
+                // Container(
+                //   height: size.height * 0.052,
+                //   decoration: BoxDecoration(
+                //     borderRadius: BorderRadius.circular(15),
+                //     color: white,
+                //   ),
+                //   child: TextField(
+                //     controller: _birthController,
+                //     decoration: InputDecoration(
+                //       hintText: 'วันเกิด',
+                //       labelStyle: TextStyle(),
+                //       contentPadding: EdgeInsets.only(top: size.height * 0.01, left: size.height * 0.02),
+                //       enabledBorder: OutlineInputBorder(
+                //         borderRadius: BorderRadius.circular(15.0),
+                //         borderSide: BorderSide(
+                //           color: Colors.grey,
+                //           width: 0.5,
+                //         ),
+                //       ),
+                //       focusedBorder: OutlineInputBorder(
+                //         borderRadius: BorderRadius.circular(15.0),
+                //         borderSide: BorderSide(
+                //           color: Colors.grey,
+                //           width: 0.5,
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+
                 SizedBox(
                   height: size.height * 0.02,
                 ),
@@ -777,7 +794,7 @@ class _RegisterpageState extends State<Registerpage> {
                   first_name: _nameController.text,
                   last_name: _lastnameController.text,
                   phone_number: _telController.text,
-                  birth_date: _birthController.text,
+                  birth_date: stringTime,
                   gender: _selectedGender,
                   username: username.text,
                   password: _passwordController.text,
