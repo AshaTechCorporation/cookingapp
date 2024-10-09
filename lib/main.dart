@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cookingapp/home/firstPage.dart';
 import 'package:cookingapp/login/loginPage.dart';
+import 'package:cookingapp/welcomePage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,12 +19,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
           appBarTheme: AppBarTheme(titleTextStyle: TextStyle(fontFamily: 'SukhumvitSet', fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold)),
           fontFamily: 'SukhumvitSet'),
-      home: LoginPage(),
+      home: WelcomePage(),
     );
   }
 }

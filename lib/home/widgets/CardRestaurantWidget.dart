@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CardRestaurantWidget extends StatelessWidget {
-  CardRestaurantWidget({
-    super.key,
-    required this.size,
-    required this.press,
-    required this.image,
-    required this.name,
-    required this.address
-  });
+  CardRestaurantWidget({super.key, required this.size, required this.press, required this.image, required this.name, required this.address});
 
   final Size size;
   VoidCallback press;
@@ -23,6 +16,7 @@ class CardRestaurantWidget extends StatelessWidget {
       child: GestureDetector(
         onTap: press,
         child: Container(
+          margin: EdgeInsets.all(8),
           height: size.height * 0.30,
           width: size.width * 0.41,
           decoration: BoxDecoration(

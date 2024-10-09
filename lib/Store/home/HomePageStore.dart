@@ -24,14 +24,16 @@ class _HomePageStoreState extends State<HomePageStore> {
   final ScrollController scrollController = ScrollController();
   double appBarOpacity = 0.0;
   Color searchBarColor = Colors.transparent;
-  final List<String> items = [
-    'taobao',
-    '1688',
-  ];
-  String selectedValue = 'taobao';
   String selectedLanguage = 'ไทย';
+  int selectTab = 0;
 
   List<Restaurant> restaurants = [];
+
+  void selectTabBar({required int index}) {
+    setState(() {
+      selectTab = index;
+    });
+  }
 
   @override
   void initState() {
@@ -91,6 +93,7 @@ class _HomePageStoreState extends State<HomePageStore> {
             top: Radius.circular(30),
           ),
           child: AppBar(
+            automaticallyImplyLeading: false,
             backgroundColor: red1.withOpacity(appBarOpacity),
             elevation: appBarOpacity > 0.5 ? 4.0 : 0.0,
             title: Padding(
@@ -105,13 +108,13 @@ class _HomePageStoreState extends State<HomePageStore> {
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey, width: size.width * 0.001),
                       borderRadius: BorderRadius.circular(15),
-                      color: Color.lerp(Colors.transparent, Colors.white, appBarOpacity),
+                      color: Color.lerp(Colors.white, Colors.grey, appBarOpacity),
                     ),
                     child: IntrinsicHeight(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Container(
+                          SizedBox(
                             width: size.width * 0.33,
                             child: TextFormField(
                               decoration: InputDecoration(
@@ -122,60 +125,6 @@ class _HomePageStoreState extends State<HomePageStore> {
                               ),
                             ),
                           ),
-                          // Image.asset('assets/icons/cam.png'),
-                          // SizedBox(
-                          //   height: size.height * 0.05,
-                          //   width: size.width * 0.225,
-                          //   child: DropdownButtonHideUnderline(
-                          //     child: DecoratedBox(
-                          //       decoration: BoxDecoration(
-                          //         color: Colors.white,
-                          //         borderRadius: BorderRadius.circular(8),
-                          //         border: Border.all(color: Colors.white, width: 2),
-                          //       ),
-                          //       child: DropdownButton2<String>(
-                          //         isExpanded: true,
-                          //         hint: Align(
-                          //           alignment: Alignment.centerLeft,
-                          //           child: Text(
-                          //             'เลือกสินค้า',
-                          //             style: TextStyle(
-                          //               fontSize: 11,
-                          //               color: red1,
-                          //               fontWeight: FontWeight.bold,
-                          //             ),
-                          //           ),
-                          //         ),
-                          //         items: items
-                          //             .map((String item) => DropdownMenuItem<String>(
-                          //                   value: item,
-                          //                   child: Text(
-                          //                     item,
-                          //                     style: TextStyle(fontSize: 14, color: red1),
-                          //                   ),
-                          //                 ))
-                          //             .toList(),
-                          //         value: selectedValue,
-                          //         onChanged: (String? value) {
-                          //           setState(() {
-                          //             selectedValue = value!;
-                          //           });
-                          //           // getlistCategories(name: selectedValue);
-                          //         },
-                          //         buttonStyleData: ButtonStyleData(
-                          //           padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-                          //           width: size.width * 0.1,
-                          //         ),
-                          //         menuItemStyleData: MenuItemStyleData(
-                          //           height: size.height * 0.1,
-                          //         ),
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-                          // SizedBox(
-                          //   width: size.width * 0.001,
-                          // ),
                           GestureDetector(
                             onTap: () {},
                             child: Container(
@@ -279,7 +228,7 @@ class _HomePageStoreState extends State<HomePageStore> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: size.height * 0.3,
+              height: size.height * 0.25,
               child: Stack(
                 clipBehavior: Clip.none,
                 children: [
@@ -289,42 +238,7 @@ class _HomePageStoreState extends State<HomePageStore> {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  // Positioned(
-                  //   //bottom: MediaQuery.of(context).size.height * (-30 / 800),
-                  //   bottom: -20,
-                  //   left: 0,
-                  //   right: 0,
-                  //   child: Padding(
-                  //     padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  //     child: Row(
-                  //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  //       children: [
-                  //         ...List.generate(
-                  //           importwidget.length,
-                  //           (index) => GestureDetector(
-                  //             onTap: () {
-                  //               if (index == 0) {
-                  //                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  //                   return LineChartSample1();
-                  //                 }));
-                  //               }
-                  //               if (index == 1) {
-                  //                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  //                   return LineChartSample1();
-                  //                 }));
-                  //               }
-                  //             },
-                  //             child: Importwidget(
-                  //               size: size,
-                  //               title: importwidget[index]['name'],
-                  //               imagePath: importwidget[index]['images'],
-                  //               id: importwidget[index]['id'],
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
+
                   // )
                 ],
               ),
@@ -333,388 +247,109 @@ class _HomePageStoreState extends State<HomePageStore> {
               height: size.height * 0.02,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.07),
-                  child: Text(
-                    'บริการของเรา',
-                    style: TextStyle(fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                // GestureDetector(
-                //     onTap: () {
-                //       Navigator.push(context, MaterialPageRoute(builder: (context) {
-                //         return LineChartSample2();
-                //       }));
-                //     },
-                //     child: Image.asset(
-                //       'assets/icons/cam.png',
-                //       scale: 2,
-                //     )),
-                // GestureDetector(
-                //     onTap: () {
-                //       Navigator.push(context, MaterialPageRoute(builder: (context) {
-                //         return LineChartSample11();
-                //       }));
-                //     },
-                //     child: Image.asset(
-                //       'assets/icons/cam.png',
-                //       scale: 2,
-                //     )),
-                // GestureDetector(
-                //     onTap: () {
-                //       Navigator.push(context, MaterialPageRoute(builder: (context) {
-                //         return LineChartSample1();
-                //       }));
-                //     },
-                //     child: Image.asset(
-                //       'assets/icons/cam.png',
-                //       scale: 2,
-                //     )),
-              ],
-            ),
-            SizedBox(
-              height: size.height * 0.015,
-            ),
-            SizedBox(
-              height: size.height * 0.26,
-              child: ListView(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
-                    child: CardFoodWidget(size: size),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
-                    child: CardFoodWidget(size: size),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
-                    child: CardFoodWidget(size: size),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: size.height * 0.02,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-              child: Container(
-                height: size.height * 0.05,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: greymess,
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.notifications,
-                            size: 30,
-                            color: Colors.amber,
-                          ),
-                          Text('อาจมีความล่าช้า ต้องรอนานมากขึ้น'),
-                        ],
+                GestureDetector(
+                  onTap: () {
+                    selectTabBar(index: 0);
+                  },
+                  child: Container(
+                    height: size.height * 0.06,
+                    width: size.width * 0.44,
+                    decoration: BoxDecoration(
+                      color: selectTab == 0 ? red1 : Colors.white,
+                      border: Border.all(
+                        color: selectTab == 0 ? Colors.transparent : red1,
                       ),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        size: 20,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: size.height * 0.04,
-            ),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-            //   child: Container(
-            //     height: size.height * 0.08,
-            //     width: double.infinity,
-            //     decoration: BoxDecoration(
-            //       borderRadius: BorderRadius.circular(5),
-            //       color: Color.fromARGB(255, 247, 198, 126),
-            //     ),
-            //     child: Padding(
-            //       padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-            //       child: Row(
-            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //         children: [
-            //           Text(
-            //             'คุณมีคูปองส่วนลดอาหาร 80 ใบ',
-            //             style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromARGB(255, 116, 12, 12), fontSize: 16),
-            //           ),
-            //           Row(
-            //             children: [
-            //               VerticalDivider(
-            //                 thickness: 2,
-            //                 color: Colors.orange,
-            //               ),
-            //               Container(
-            //                 height: size.height * 0.06,
-            //                 width: size.width * 0.25,
-            //                 decoration: BoxDecoration(
-            //                   borderRadius: BorderRadius.circular(5),
-            //                   color: Colors.orange,
-            //                 ),
-            //                 child: Center(child: Text('ดู', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18))),
-            //               ),
-            //             ],
-            //           ),
-            //         ],
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: size.height * 0.03,
-            // ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('รายการอาหาร', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20)),
-                  Container(
-                    width: 35.0,
-                    height: 35.0,
-                    decoration: BoxDecoration(shape: BoxShape.circle, color: Color.fromARGB(255, 205, 248, 255)),
-                    child: Center(child: Icon(Icons.arrow_forward)),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: size.height * 0.02,
-            ),
-            restaurants.isNotEmpty
-                ? Padding(
-                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-                    child: SizedBox(
-                      height: size.height * 0.30,
-                      child: ListView(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        children: List.generate(
-                          restaurants.length,
-                          (index) => CardRestaurantWidget(
-                              size: size,
-                              name: restaurants[index].name!,
-                              address: restaurants[index].address!,
-                              image: 'assets/images/ramen-noodles.jpg',
-                              press: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => DetailFoodGraphs()));
-                              }),
+                      borderRadius: BorderRadius.circular(10.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          spreadRadius: 1,
+                          blurRadius: 1,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Text(
+                        'เปิดขายอาหาร',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: selectTab == 1 ? red1 : Colors.white,
                         ),
                       ),
                     ),
-                  )
+                  ),
+                ),
+                SizedBox(
+                  width: 15,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    selectTabBar(index: 1);
+                  },
+                  child: Container(
+                    height: size.height * 0.06,
+                    width: size.width * 0.44,
+                    decoration: BoxDecoration(
+                      color: selectTab == 1 ? red1 : Colors.white,
+                      border: Border.all(
+                        color: selectTab == 1 ? Colors.transparent : red1,
+                      ),
+                      borderRadius: BorderRadius.circular(10.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          spreadRadius: 1,
+                          blurRadius: 1,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Text(
+                        'ปิดขายอาหาร',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: selectTab == 0 ? red1 : Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            selectTab == 0
+                ? restaurants.isNotEmpty
+                    ? Padding(
+                        padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+                        child: Wrap(
+                          children: List.generate(
+                            restaurants.length,
+                            (index) => CardRestaurantWidget(
+                                size: size,
+                                name: restaurants[index].name!,
+                                address: restaurants[index].address!,
+                                image: 'assets/images/ramen-noodles.jpg',
+                                press: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => DetailFoodPage(
+                                                restaurant_id: restaurants[index].id,
+                                              )));
+                                }),
+                          ),
+                        ),
+                      )
+                    : SizedBox()
                 : SizedBox(),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-            //   child: SizedBox(
-            //     height: size.height * 0.30,
-            //     child: ListView(
-            //       shrinkWrap: true,
-            //       scrollDirection: Axis.horizontal,
-            //       children: List.generate(
-            //         8,
-            //         (index) => Padding(
-            //           padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
-            //           child: GestureDetector(
-            //             onTap: () {
-            //               Navigator.push(context, MaterialPageRoute(builder: (context) => DetailFoodPage()));
-            //             },
-            //             child: Container(
-            //               height: size.height * 0.30,
-            //               width: size.width * 0.41,
-            //               decoration: BoxDecoration(
-            //                 borderRadius: BorderRadius.circular(10),
-            //                 //color: Colors.amber
-            //               ),
-            //               child: Column(
-            //                 mainAxisAlignment: MainAxisAlignment.start,
-            //                 crossAxisAlignment: CrossAxisAlignment.start,
-            //                 children: [
-            //                   Container(
-            //                     height: size.height * 0.15,
-            //                     width: size.width * 0.41,
-            //                     decoration: BoxDecoration(
-            //                       borderRadius: BorderRadius.circular(10),
-            //                       image: DecorationImage(
-            //                         fit: BoxFit.fill,
-            //                         image: AssetImage("assets/images/ramen-noodles.jpg"),
-            //                       ),
-            //                     ),
-            //                   ),
-            //                   SizedBox(
-            //                     height: size.height * 0.01,
-            //                   ),
-            //                   Text('โปรโมชั่น'),
-            //                   Text(
-            //                     'Spicy Ramen Noodles',
-            //                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            //                     overflow: TextOverflow.ellipsis,
-            //                   ),
-            //                   Text(
-            //                     '45 นาที - 3 กม.',
-            //                     style: TextStyle(fontSize: 15),
-            //                     overflow: TextOverflow.ellipsis,
-            //                   ),
-            //                   Row(
-            //                     children: [
-            //                       Container(
-            //                         height: size.height * 0.03,
-            //                         width: size.width * 0.22,
-            //                         decoration: BoxDecoration(
-            //                           borderRadius: BorderRadius.circular(5),
-            //                           color: Color.fromARGB(255, 241, 214, 132),
-            //                         ),
-            //                         child: Center(child: Text('ร้านใช้โค้ดได้')),
-            //                       ),
-            //                       SizedBox(
-            //                         width: size.width * 0.01,
-            //                       ),
-            //                       Container(
-            //                         height: size.height * 0.03,
-            //                         width: size.width * 0.14,
-            //                         decoration: BoxDecoration(
-            //                           borderRadius: BorderRadius.circular(5),
-            //                           color: Color.fromARGB(255, 241, 214, 132),
-            //                         ),
-            //                         child: Center(child: Text('ลด 30%')),
-            //                       ),
-            //                     ],
-            //                   ),
-            //                 ],
-            //               ),
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: size.height * 0.02,
-            // ),
-            // Column(
-            //   children: List.generate(
-            //     8,
-            //     (index) => Padding(
-            //       padding: EdgeInsets.symmetric(horizontal: size.width * 0.02, vertical: size.height * 0.01),
-            //       child: Row(
-            //         children: [
-            //           Expanded(
-            //             flex: 3,
-            //             child: Container(
-            //               height: size.height * 0.15,
-            //               width: size.width * 0.30,
-            //               decoration: BoxDecoration(
-            //                 borderRadius: BorderRadius.circular(10),
-            //                 image: DecorationImage(
-            //                   fit: BoxFit.fill,
-            //                   image: AssetImage("assets/images/beaf-steak.jpg"),
-            //                 ),
-            //               ),
-            //             ),
-            //           ),
-            //           SizedBox(
-            //             width: size.width * 0.01,
-            //           ),
-            //           Expanded(
-            //               flex: 7,
-            //               child: Column(
-            //                 mainAxisAlignment: MainAxisAlignment.start,
-            //                 crossAxisAlignment: CrossAxisAlignment.start,
-            //                 children: [
-            //                   Text(
-            //                     'Beef Steak',
-            //                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            //                     overflow: TextOverflow.ellipsis,
-            //                   ),
-            //                   Row(
-            //                     children: [
-            //                       Icon(
-            //                         Icons.star,
-            //                         color: Colors.amber,
-            //                       ),
-            //                       Text('4.7 - อาหาร'),
-            //                     ],
-            //                   ),
-            //                   Row(
-            //                     children: [
-            //                       Icon(
-            //                         Icons.info_outline,
-            //                         color: brown,
-            //                       ),
-            //                       Text(
-            //                         '฿10 - ',
-            //                         style: TextStyle(color: Colors.red),
-            //                       ),
-            //                       Text(
-            //                         '30 นาทีขึ้นไป',
-            //                         style: TextStyle(color: Colors.black),
-            //                       ),
-            //                     ],
-            //                   ),
-            //                   Row(
-            //                     children: [
-            //                       Container(
-            //                         margin: EdgeInsets.all(3.0),
-            //                         padding: EdgeInsets.all(2.0),
-            //                         decoration: BoxDecoration(
-            //                           border: Border.all(color: Colors.blueAccent),
-            //                           borderRadius: BorderRadius.circular(10),
-            //                         ),
-            //                         child: Row(
-            //                           children: [
-            //                             Icon(
-            //                               Icons.countertops_outlined,
-            //                               color: brown,
-            //                             ),
-            //                             Text('ลดพิเศษสำหรับสมาชิก'),
-            //                           ],
-            //                         ),
-            //                       ),
-            //                       Container(
-            //                         margin: EdgeInsets.all(3.0),
-            //                         padding: EdgeInsets.all(2.0),
-            //                         decoration: BoxDecoration(
-            //                           border: Border.all(color: Colors.blueAccent),
-            //                           borderRadius: BorderRadius.circular(10),
-            //                         ),
-            //                         child: Row(
-            //                           children: [
-            //                             Icon(
-            //                               Icons.countertops_outlined,
-            //                               color: brown,
-            //                             ),
-            //                             Text('ลด ฿100'),
-            //                           ],
-            //                         ),
-            //                       )
-            //                     ],
-            //                   ),
-            //                 ],
-            //               )),
-            //         ],
-            //       ),
-            //     ),
-            //   ),
-            // ),
-
             SizedBox(
               height: size.height * 0.05,
             ),

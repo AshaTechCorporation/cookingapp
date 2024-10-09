@@ -2,10 +2,13 @@ import 'package:cookingapp/Store/Graphs/test3.dart';
 import 'package:cookingapp/Store/fristPAgeStore.dart';
 import 'package:cookingapp/constants.dart';
 import 'package:cookingapp/home/firstPage.dart';
+import 'package:cookingapp/home/homePage.dart';
+import 'package:cookingapp/home/persenFood.dart';
 import 'package:cookingapp/login/Services/loginService.dart';
 import 'package:cookingapp/login/regisPage.dart';
 import 'package:cookingapp/widgets/LoadingDialog.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -23,12 +26,11 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(74, 207, 124, 9),
+        backgroundColor: Color.fromARGB(81, 207, 124, 9),
         centerTitle: false,
         title: Text(
           'เข้าสู่ระบบ',
-          style: TextStyle(
-              fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
         ),
         // bottom: PreferredSize(
         //   preferredSize: Size.fromHeight(1.0),
@@ -47,9 +49,9 @@ class _LoginPageState extends State<LoginPage> {
               height: size.height * 0.29,
               width: double.infinity,
               decoration: BoxDecoration(
-                  color: Color.fromARGB(74, 207, 124, 9),
-                  borderRadius: BorderRadius.vertical(
-                      bottom: Radius.elliptical(100, 100))),
+                  image: DecorationImage(image: AssetImage('assets/images/backgroundLogin.png'), fit: BoxFit.fitWidth),
+                  // color:Color.fromARGB(81, 207, 124, 9),,
+                  borderRadius: BorderRadius.vertical(bottom: Radius.elliptical(100, 100))),
               child: Center(
                 child: SizedBox(
                   height: size.height * 0.25,
@@ -71,11 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: TextField(
                       controller: email,
                       decoration: InputDecoration(
-                          prefixIcon:
-                              Image.asset('assets/images/userlogin.png'),
-                          labelText: 'รหัสผู้นำเข้า',
-                          labelStyle: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.w600)),
+                          prefixIcon: Image.asset('assets/images/userlogin.png'), labelText: 'รหัสผู้นำเข้า', labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
                     ),
                   ),
                   SizedBox(height: size.height * 0.02),
@@ -85,8 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                       controller: password,
                       decoration: InputDecoration(
                         labelText: 'รหัสผ่าน',
-                        labelStyle: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w600),
+                        labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                         prefixIcon: Image.asset(
                           'assets/icons/password.png',
                           height: size.height * 0.001,
@@ -94,11 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                         suffixIcon: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           mainAxisSize: MainAxisSize.min,
-                          children: [
-                            GestureDetector(
-                                onTap: () {},
-                                child: Image.asset('assets/icons/eyepass.png'))
-                          ],
+                          children: [GestureDetector(onTap: () {}, child: Image.asset('assets/icons/eyepass.png'))],
                         ),
                       ),
                       obscureText: true,
@@ -130,42 +123,43 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () async {
                         LoadingDialog.open(context);
                         try {
-                          final token = await LoginService.login(
-                              email.text, password.text);
+                          final token = await LoginService.login(email.text, password.text);
                           LoadingDialog.close(context);
                           if (token != null) {
+                            final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+                            final SharedPreferences prefs = await _prefs;
+                            await prefs.setString('token', token['token']);
                             if (token['user'] == 'ร้านค้า') {
-                              Navigator.of(context, rootNavigator: true)
-                                  .pushReplacement(
+                              Navigator.of(context, rootNavigator: true).pushReplacement(
                                 MaterialPageRoute(
-                                    builder: (context) => FirstPageStore()),
+                                  builder: (context) => FirstPageStore(),
+                                ),
                               );
                             } else {
-                              Navigator.of(context, rootNavigator: true)
-                                  .pushReplacement(
+                              Navigator.of(context, rootNavigator: true).pushReplacement(
                                 MaterialPageRoute(
-                                    builder: (context) => FirstPage()),
+                                  builder: (context) => PresenFoodPage(),
+                                  // FirstPage(),
+                                ),
                               );
                             }
                           }
                         } catch (e) {
                           LoadingDialog.close(context);
                           showDialog(
-                            context: context,
-                            builder: (context) => 
-                           AlertDialog(
-                              title: Text('แจ้งเตือน'),
-                              content: Text(e.toString()),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                   Navigator.of(context).pop();
-                                  },
-                                  child: Text('ตกลง'),
-                                )
-                              ],
-                            )
-                          );
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                    title: Text('แจ้งเตือน'),
+                                    content: Text(e.toString()),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text('ตกลง'),
+                                      )
+                                    ],
+                                  ));
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -176,10 +170,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       child: const Text(
                         'เข้าสู่ระบบ',
-                        style: TextStyle(
-                            fontSize: 17,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 17, color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),

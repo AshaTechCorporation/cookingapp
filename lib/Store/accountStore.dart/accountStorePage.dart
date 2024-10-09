@@ -1,4 +1,3 @@
-import 'package:cookingapp/account/ReportFormPage.dart';
 import 'package:cookingapp/account/accsettsing.dart';
 import 'package:cookingapp/account/contactus.dart';
 import 'package:cookingapp/account/guidepage.dart';
@@ -7,17 +6,16 @@ import 'package:cookingapp/account/messagepage.dart';
 import 'package:cookingapp/account/reportpage.dart';
 import 'package:cookingapp/account/tagpage.dart';
 import 'package:cookingapp/account/transactionshistory.dart';
-import 'package:cookingapp/account/widgets/topupwidget.dart';
 import 'package:cookingapp/constants.dart';
 import 'package:cookingapp/login/loginPage.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AccountPage extends StatefulWidget {
-  const AccountPage({super.key});
+class AccountStorePage extends StatefulWidget {
+  const AccountStorePage({super.key});
 
   @override
-  State<AccountPage> createState() => _AccountPageState();
+  State<AccountStorePage> createState() => _AccountStorePageState();
 }
 
 class MenuItem {
@@ -27,7 +25,7 @@ class MenuItem {
   MenuItem({required this.imagePath, required this.text});
 }
 
-class _AccountPageState extends State<AccountPage> {
+class _AccountStorePageState extends State<AccountStorePage> {
   bool isGuangzhouSelected = true;
 
   Future<void> clearToken() async {

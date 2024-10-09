@@ -1,6 +1,6 @@
 import 'package:cookingapp/Store/Graphs/graphsPage.dart';
+import 'package:cookingapp/Store/accountStore.dart/accountStorePage.dart';
 import 'package:cookingapp/Store/home/HomePageStore.dart';
-import 'package:cookingapp/account/accountPage.dart';
 import 'package:cookingapp/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +29,7 @@ class _FirstPageStoreState extends State<FirstPageStore> {
       } else if (selectedIndex == 3) {
         // currentPage = CartPage();
       } else if (selectedIndex == 4) {
-        currentPage = AccountPage();
+        currentPage = AccountStorePage();
       }
     });
   }
