@@ -135,14 +135,20 @@ class _LoginPageState extends State<LoginPage> {
                             final SharedPreferences prefs = await _prefs;
                             await prefs.setString('token', token['token']);
                             if (token['user'] == 'ร้านค้า') {
-                              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => FirstPageStore()), (route) => true);
+                              // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => FirstPageStore()), (route) => true);
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                                return FirstPageStore();
+                              }));
                               // Navigator.of(context, rootNavigator: true).pushReplacement(
                               //   MaterialPageRoute(
                               //     builder: (context) => FirstPageStore(),
                               //   ),
                               // );
                             } else {
-                              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PresenFoodPage()), (route) => true);
+                              // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PresenFoodPage()), (route) => true);
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                                return PresenFoodPage();
+                              }));
                               // Navigator.of(context, rootNavigator: true).pushReplacement(
                               //   MaterialPageRoute(
                               //     builder: (context) => PresenFoodPage(),

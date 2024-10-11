@@ -51,6 +51,7 @@ class _AccountStorePageState extends State<AccountStorePage> {
             topRight: Radius.circular(30.0),
           ),
           child: AppBar(
+            // automaticallyImplyLeading: false,
             flexibleSpace: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(

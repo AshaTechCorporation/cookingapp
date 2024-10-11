@@ -60,6 +60,7 @@ class _TagsPageState extends State<TagsPage> with SingleTickerProviderStateMixin
           Expanded(
             child: TabBarView(
               controller: _tabController,
+              physics: NeverScrollableScrollPhysics(),
               children: [
                 _buildTagContent(size),
                 _buildTagContent(size),
@@ -115,7 +116,7 @@ class _TagsPageState extends State<TagsPage> with SingleTickerProviderStateMixin
   Widget _buildTabItem(int index, String title) {
     final size = MediaQuery.of(context).size;
     bool isSelected = _tabController.index == index;
-    
+
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -200,7 +201,7 @@ class _TagsPageState extends State<TagsPage> with SingleTickerProviderStateMixin
     );
   }
 
-  Widget _buildCard(Size size,  String title, String date) {
+  Widget _buildCard(Size size, String title, String date) {
     return Card(
       color: Colors.white,
       shape: RoundedRectangleBorder(

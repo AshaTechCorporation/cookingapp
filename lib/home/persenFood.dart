@@ -70,7 +70,8 @@ class _PresenFoodPageState extends State<PresenFoodPage> {
           ),
           child: AppBar(
             automaticallyImplyLeading: false,
-            backgroundColor: red1.withOpacity(appBarOpacity),
+            // backgroundColor: red1.withOpacity(appBarOpacity),
+            backgroundColor: Color.fromARGB(81, 207, 124, 9),
             elevation: appBarOpacity > 0.5 ? 4.0 : 0.0,
             title: Padding(
               padding: EdgeInsets.only(top: size.height * 0.01),
@@ -137,33 +138,45 @@ class _PresenFoodPageState extends State<PresenFoodPage> {
           ),
         ),
       ),
-      body: Column(
+      body: Stack(
         children: [
-          restaurants.isNotEmpty
-              ? Padding(
-                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-                  child: SingleChildScrollView(
-                    child: Wrap(
-                      children: List.generate(
-                        restaurants.length,
-                        (index) => CardRestaurantWidget(
-                            size: size,
-                            name: restaurants[index].name!,
-                            address: restaurants[index].address!,
-                            image: 'assets/images/ramen-noodles.jpg',
-                            press: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => DetailFoodPage(
-                                            restaurant_id: restaurants[index].id,
-                                          )));
-                            }),
+          Container(
+            height: size.height * 0.4,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                image: DecorationImage(image: AssetImage('assets/images/backgroundLogin.png'), fit: BoxFit.fitWidth),
+                // color:Color.fromARGB(81, 207, 124, 9),,
+                borderRadius: BorderRadius.vertical(bottom: Radius.elliptical(100, 100))),
+          ),
+          Column(
+            children: [
+              restaurants.isNotEmpty
+                  ? Padding(
+                      padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+                      child: SingleChildScrollView(
+                        child: Wrap(
+                          children: List.generate(
+                            restaurants.length,
+                            (index) => CardRestaurantWidget(
+                                size: size,
+                                name: restaurants[index].name!,
+                                address: restaurants[index].address!,
+                                image: 'assets/images/ramen-noodles.jpg',
+                                press: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => DetailFoodPage(
+                                                restaurant_id: restaurants[index].id,
+                                              )));
+                                }),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                )
-              : SizedBox(),
+                    )
+                  : SizedBox(),
+            ],
+          ),
         ],
       ),
     );
