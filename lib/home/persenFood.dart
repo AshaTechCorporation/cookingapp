@@ -69,6 +69,7 @@ class _PresenFoodPageState extends State<PresenFoodPage> {
             top: Radius.circular(30),
           ),
           child: AppBar(
+            automaticallyImplyLeading: false,
             backgroundColor: red1.withOpacity(appBarOpacity),
             elevation: appBarOpacity > 0.5 ? 4.0 : 0.0,
             title: Padding(

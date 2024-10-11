@@ -1,6 +1,7 @@
 import 'package:cookingapp/Store/Graphs/test3.dart';
 import 'package:cookingapp/Store/fristPAgeStore.dart';
 import 'package:cookingapp/constants.dart';
+import 'package:cookingapp/extension/ApiExeption.dart';
 import 'package:cookingapp/home/firstPage.dart';
 import 'package:cookingapp/home/homePage.dart';
 import 'package:cookingapp/home/persenFood.dart';
@@ -20,11 +21,12 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
+  bool seePassword = true;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: background,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Color.fromARGB(81, 207, 124, 9),
@@ -33,13 +35,6 @@ class _LoginPageState extends State<LoginPage> {
           'เข้าสู่ระบบ',
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
         ),
-        // bottom: PreferredSize(
-        //   preferredSize: Size.fromHeight(1.0),
-        //   child: Container(
-        //     color: Colors.grey,
-        //     height: 1.0,
-        //   ),
-        // ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -92,10 +87,19 @@ class _LoginPageState extends State<LoginPage> {
                         suffixIcon: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           mainAxisSize: MainAxisSize.min,
-                          children: [GestureDetector(onTap: () {}, child: Image.asset('assets/icons/eyepass.png'))],
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                setState(() => seePassword = !seePassword);
+                              },
+                              child: Icon(
+                                !seePassword ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                              ),
+                            )
+                          ],
                         ),
                       ),
-                      obscureText: true,
+                      obscureText: seePassword,
                     ),
                   ),
                   Row(
@@ -131,23 +135,23 @@ class _LoginPageState extends State<LoginPage> {
                             final SharedPreferences prefs = await _prefs;
                             await prefs.setString('token', token['token']);
                             if (token['user'] == 'ร้านค้า') {
-                              //  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => FirstPageStore()), (route) => true);
-                              Navigator.of(context, rootNavigator: true).pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (context) => FirstPageStore(),
-                                ),
-                              );
+                              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => FirstPageStore()), (route) => true);
+                              // Navigator.of(context, rootNavigator: true).pushReplacement(
+                              //   MaterialPageRoute(
+                              //     builder: (context) => FirstPageStore(),
+                              //   ),
+                              // );
                             } else {
-                              //  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginPage()), (route) => true);
-                              Navigator.of(context, rootNavigator: true).pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (context) => PresenFoodPage(),
-                                  // FirstPage(),
-                                ),
-                              );
+                              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PresenFoodPage()), (route) => true);
+                              // Navigator.of(context, rootNavigator: true).pushReplacement(
+                              //   MaterialPageRoute(
+                              //     builder: (context) => PresenFoodPage(),
+                              //     // FirstPage(),
+                              //   ),
+                              // );
                             }
                           }
-                        } catch (e) {
+                        } on ApiException catch (e) {
                           LoadingDialog.close(context);
                           showDialog(
                               context: context,

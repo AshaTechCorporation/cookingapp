@@ -9,7 +9,9 @@ import 'package:cookingapp/account/tagpage.dart';
 import 'package:cookingapp/account/transactionshistory.dart';
 import 'package:cookingapp/account/widgets/topupwidget.dart';
 import 'package:cookingapp/constants.dart';
+import 'package:cookingapp/login/Services/loginService.dart';
 import 'package:cookingapp/login/loginPage.dart';
+import 'package:cookingapp/widgets/LoadingDialog.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -236,14 +238,38 @@ class _AccountPageState extends State<AccountPage> {
                                     )));
                       }
                       if (index == 8) {
-                        await clearToken();
-                        if (!mounted) return;
-                        Navigator.of(context, rootNavigator: true).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => LoginPage(),
-                            // FirstPage(),
-                          ),
-                        );
+                        final out = await showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                                  title: Text('แจ้งเตือน'),
+                                  content: Text('ยืนยันที่จะออกจากระบบ'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context, false);
+                                      },
+                                      child: Text('ยกเลิก'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context, true);
+                                      },
+                                      child: Text('ตกลง'),
+                                    ),
+                                  ],
+                                ));
+                        if (out == true) {
+                          LoadingDialog.open(context);
+                          await LoginService.logout();
+                          await clearToken();
+                          LoadingDialog.close(context);
+                          Navigator.of(context, rootNavigator: true).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => LoginPage(),
+                              // FirstPage(),
+                            ),
+                          );
+                        }
                         // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginPage()), (route) => true);
                       }
                     },

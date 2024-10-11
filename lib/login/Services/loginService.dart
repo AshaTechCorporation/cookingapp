@@ -1,9 +1,8 @@
 import 'dart:convert' as convert;
 import 'package:cookingapp/constants.dart';
-import 'package:cookingapp/main.dart';
+import 'package:cookingapp/extension/ApiExeption.dart';
 import 'package:cookingapp/models/provinecs.dart';
 import 'package:cookingapp/models/user.dart';
-import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -27,7 +26,7 @@ class LoginService {
       return dataOut;
     } else {
       final data = convert.jsonDecode(response.body);
-      throw Exception(data['message']);
+      throw ApiException(data['message']);
     }
   }
 
@@ -145,6 +144,24 @@ class LoginService {
     final token = prefs.getString('token');
     var headers = {'Authorization': 'Bearer $token', 'Content-Type': 'application/json'};
     final url = Uri.https(publicUrl, 'api/auth/me');
+    final response = await http.post(
+      url,
+      headers: headers,
+    );
+    if (response.statusCode == 200) {
+      final data = convert.jsonDecode(response.body);
+      return User.fromJson(data);
+    } else {
+      final data = convert.jsonDecode(response.body);
+      throw Exception(data['message']);
+    }
+  }
+
+  static Future<User> logout() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+    var headers = {'Authorization': 'Bearer $token', 'Content-Type': 'application/json'};
+    final url = Uri.https(publicUrl, 'api/auth/logout');
     final response = await http.post(
       url,
       headers: headers,
