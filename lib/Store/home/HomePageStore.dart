@@ -2,6 +2,7 @@ import 'package:cookingapp/Store/Graphs/DetailFoodGraphs.dart';
 import 'package:cookingapp/Store/Graphs/graphsPage.dart';
 import 'package:cookingapp/Store/Graphs/test3.dart';
 import 'package:cookingapp/Store/Graphs/testGraphs.dart';
+import 'package:cookingapp/Store/home/addItem/createItem.dart';
 import 'package:cookingapp/constants.dart';
 import 'package:cookingapp/home/detailFoodPage.dart';
 import 'package:cookingapp/home/services/homeApi.dart';
@@ -356,6 +357,20 @@ class _HomePageStoreState extends State<HomePageStore> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: red1,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(width: 3, color: brown),
+          borderRadius: BorderRadius.circular(100),
+        ),
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return CreateItemPage();
+          }));
+        },
+        tooltip: 'เพิ่มรายการ',
+        child: const Icon(Icons.add),
+      ), //
     );
   }
 }

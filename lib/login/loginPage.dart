@@ -69,7 +69,10 @@ class _LoginPageState extends State<LoginPage> {
                     child: TextFormField(
                       controller: email,
                       decoration: InputDecoration(
-                          prefixIcon: Image.asset('assets/images/userlogin.png'), labelText: 'รหัสผู้ใช้งาน', labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
+                        prefixIcon: Image.asset('assets/images/userlogin.png'),
+                        labelText: 'รหัสผู้ใช้งาน',
+                        labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                      ),
                     ),
                   ),
                   SizedBox(height: size.height * 0.02),

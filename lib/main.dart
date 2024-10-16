@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:cookingapp/home/firstPage.dart';
-import 'package:cookingapp/login/loginPage.dart';
 import 'package:cookingapp/welcomePage.dart';
 import 'package:flutter/material.dart';
 
