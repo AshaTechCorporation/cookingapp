@@ -606,7 +606,7 @@ class _RegisterpageState extends State<Registerpage> {
                               width: size.width * 0.9,
                               controller: address,
                               hintText: 'ที่อยู่',
-                              keyboardType: TextInputType.multiline,
+                              keyboardType: TextInputType.text,
                               validator: (value) {
                                 if (value!.isEmpty) return 'กรุณากรอกรายละเอียด';
                                 return null;

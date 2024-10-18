@@ -231,7 +231,10 @@ class _DetailFoodPageState extends State<DetailFoodPage> {
                                                 width: 40.0,
                                                 height: 40.0,
                                                 decoration: BoxDecoration(shape: BoxShape.circle, color: Color.fromARGB(255, 225, 251, 255)),
-                                                child: Icon(Icons.map, color: red1,),
+                                                child: Icon(
+                                                  Icons.map,
+                                                  color: red1,
+                                                ),
                                               ),
                                               Padding(
                                                 padding: EdgeInsets.symmetric(
@@ -407,7 +410,10 @@ class _DetailFoodPageState extends State<DetailFoodPage> {
                                   (index) => GestureDetector(
                                     onTap: () {
                                       Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                        return FoodDetailPage(food: restaurant!.menus![index], image: 'assets/images/beaf-steak.jpg',);
+                                        return FoodDetailPage(
+                                          food: restaurant!.menus![index],
+                                          image: 'assets/images/beaf-steak.jpg',
+                                        );
                                       }));
                                     },
                                     child: Column(

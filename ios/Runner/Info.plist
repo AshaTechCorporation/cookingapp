@@ -47,6 +47,10 @@
 	<string>Older devices need location.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Need location when in use</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>อนุญาตเข้าถึงคลังภาพ เพื่อใช้การตั้งค่าโปรไฟล์</string>
+	<key>NSCameraUsageDescription</key>
+	<string>อนุญาตเข้าถึงกล้อง เพื่อใช้ในการถ่ายรูปบัญชีผู้ใช้</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

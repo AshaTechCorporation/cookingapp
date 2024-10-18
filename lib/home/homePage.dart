@@ -332,158 +332,230 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               SizedBox(
-                height: size.height * 0.06,
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.07),
-                    child: Text(
-                      'บริการของเรา',
-                      style: TextStyle(fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  // GestureDetector(
-                  //     onTap: () {
-                  //       Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  //         return LineChartSample2();
-                  //       }));
-                  //     },
-                  //     child: Image.asset(
-                  //       'assets/icons/cam.png',
-                  //       scale: 2,
-                  //     )),
-                  // GestureDetector(
-                  //     onTap: () {
-                  //       Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  //         return LineChartSample11();
-                  //       }));
-                  //     },
-                  //     child: Image.asset(
-                  //       'assets/icons/cam.png',
-                  //       scale: 2,
-                  //     )),
-                  // GestureDetector(
-                  //     onTap: () {
-                  //       Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  //         return LineChartSample1();
-                  //       }));
-                  //     },
-                  //     child: Image.asset(
-                  //       'assets/icons/cam.png',
-                  //       scale: 2,
-                  //     )),
-                ],
-              ),
-              SizedBox(
                 height: size.height * 0.015,
               ),
-              SizedBox(
-                height: size.height * 0.26,
-                child: ListView(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
+
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.021),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
-                      child: CardFoodWidget(size: size),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('ค้นหาสิ่งที่คุณชอบ', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20)),
+                        Container(
+                          height: size.height * 0.04,
+                          width: size.width * 0.4,
+                          padding: EdgeInsets.all(2),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            border: Border.all(color: brown),
+                            color: Color.fromARGB(174, 241, 220, 155),
+                          ),
+                          child: Center(child: Text('หมวดหมู่ทั้งหมด', style: TextStyle(fontWeight: FontWeight.bold, color: brown, fontSize: 15))),
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
-                      child: CardFoodWidget(size: size),
+                    SizedBox(
+                      height: size.height * 0.015,
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
-                      child: CardFoodWidget(size: size),
+                    GridView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 4,
+                        crossAxisSpacing: 5,
+                        mainAxisSpacing: 25,
+                      ),
+                      itemBuilder: (context, index) => Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.asset(
+                            itemManu[index]['imageAssetPath'],
+                            width: size.width * 0.2,
+                            height: size.width * 0.18,
+                          ),
+                          Text(
+                            itemManu[index]['name'],
+                            style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      itemCount: itemManu.length,
                     ),
+                    // Row(
+                    //   children: List.generate(
+                    //       itemManu.length,
+                    //       (index) => Column(
+                    //             children: [
+                    //               Image.asset(
+                    //                 itemManu[index]['imageAssetPath'],
+                    //                 width: size.width * 0.2,
+                    //               ),
+                    //               Text(
+                    //                 itemManu[index]['name'],
+                    //                 style: TextStyle(fontSize: 12),
+                    //               ),
+                    //             ],
+                    //           )),
+                    // )
                   ],
                 ),
               ),
               SizedBox(
-                height: size.height * 0.02,
+                height: size.height * 0.015,
               ),
+              // Row(
+              //   children: [
+              //     Padding(
+              //       padding: EdgeInsets.symmetric(horizontal: size.width * 0.07),
+              //       child: Text(
+              //         'บริการของเรา',
+              //         style: TextStyle(fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold),
+              //       ),
+              //     ),
+              //     // GestureDetector(
+              //     //     onTap: () {
+              //     //       Navigator.push(context, MaterialPageRoute(builder: (context) {
+              //     //         return LineChartSample2();
+              //     //       }));
+              //     //     },
+              //     //     child: Image.asset(
+              //     //       'assets/icons/cam.png',
+              //     //       scale: 2,
+              //     //     )),
+              //     // GestureDetector(
+              //     //     onTap: () {
+              //     //       Navigator.push(context, MaterialPageRoute(builder: (context) {
+              //     //         return LineChartSample11();
+              //     //       }));
+              //     //     },
+              //     //     child: Image.asset(
+              //     //       'assets/icons/cam.png',
+              //     //       scale: 2,
+              //     //     )),
+              //     // GestureDetector(
+              //     //     onTap: () {
+              //     //       Navigator.push(context, MaterialPageRoute(builder: (context) {
+              //     //         return LineChartSample1();
+              //     //       }));
+              //     //     },
+              //     //     child: Image.asset(
+              //     //       'assets/icons/cam.png',
+              //     //       scale: 2,
+              //     //     )),
+              //   ],
+              // ),
+              // SizedBox(
+              //   height: size.height * 0.015,
+              // ),
+              // SizedBox(
+              //   height: size.height * 0.26,
+              //   child: ListView(
+              //     shrinkWrap: true,
+              //     scrollDirection: Axis.horizontal,
+              //     children: [
+              //       Padding(
+              //         padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
+              //         child: CardFoodWidget(size: size),
+              //       ),
+              //       Padding(
+              //         padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
+              //         child: CardFoodWidget(size: size),
+              //       ),
+              //       Padding(
+              //         padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
+              //         child: CardFoodWidget(size: size),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: size.height * 0.02,
+              // ),
+              // Padding(
+              //   padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+              //   child: Container(
+              //     height: size.height * 0.05,
+              //     width: double.infinity,
+              //     decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.circular(10),
+              //       color: greymess,
+              //     ),
+              //     child: Padding(
+              //       padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+              //       child: Row(
+              //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //         children: [
+              //           Row(
+              //             children: [
+              //               Icon(
+              //                 Icons.notifications,
+              //                 size: 30,
+              //                 color: Colors.amber,
+              //               ),
+              //               Text('อาจมีความล่าช้า ต้องรอนานมากขึ้น'),
+              //             ],
+              //           ),
+              //           Icon(
+              //             Icons.arrow_forward_ios,
+              //             size: 20,
+              //             color: Colors.grey,
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: size.height * 0.04,
+              // ),
+              // Padding(
+              //   padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+              //   child: Container(
+              //     height: size.height * 0.08,
+              //     width: double.infinity,
+              //     decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.circular(5),
+              //       color: Color.fromARGB(255, 247, 198, 126),
+              //     ),
+              //     child: Padding(
+              //       padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+              //       child: Row(
+              //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //         children: [
+              //           Text(
+              //             'คุณมีคูปองส่วนลดอาหาร 80 ใบ',
+              //             style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromARGB(255, 116, 12, 12), fontSize: 16),
+              //           ),
+              //           Row(
+              //             children: [
+              //               VerticalDivider(
+              //                 thickness: 2,
+              //                 color: Colors.orange,
+              //               ),
+              //               Container(
+              //                 height: size.height * 0.06,
+              //                 width: size.width * 0.25,
+              //                 decoration: BoxDecoration(
+              //                   borderRadius: BorderRadius.circular(5),
+              //                   color: Colors.orange,
+              //                 ),
+              //                 child: Center(child: Text('ดู', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18))),
+              //               ),
+              //             ],
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: size.height * 0.03,
+              // ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-                child: Container(
-                  height: size.height * 0.05,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: greymess,
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.notifications,
-                              size: 30,
-                              color: Colors.amber,
-                            ),
-                            Text('อาจมีความล่าช้า ต้องรอนานมากขึ้น'),
-                          ],
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 20,
-                          color: Colors.grey,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: size.height * 0.04,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-                child: Container(
-                  height: size.height * 0.08,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: Color.fromARGB(255, 247, 198, 126),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'คุณมีคูปองส่วนลดอาหาร 80 ใบ',
-                          style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromARGB(255, 116, 12, 12), fontSize: 16),
-                        ),
-                        Row(
-                          children: [
-                            VerticalDivider(
-                              thickness: 2,
-                              color: Colors.orange,
-                            ),
-                            Container(
-                              height: size.height * 0.06,
-                              width: size.width * 0.25,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Colors.orange,
-                              ),
-                              child: Center(child: Text('ดู', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 18))),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: size.height * 0.03,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: size.width * 0.021),
+                padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -497,9 +569,9 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: size.height * 0.02,
-              ),
+              // SizedBox(
+              //   height: size.height * 0.02,
+              // ),
 
               restaurants.isNotEmpty
                   ? Padding(
@@ -516,6 +588,8 @@ class _HomePageState extends State<HomePage> {
                                 name: restaurants[index].name!,
                                 address: restaurants[index].address!,
                                 image: 'assets/images/ramen-noodles.jpg',
+                                km: '',
+                                rate: '',
                                 press: () {
                                   Navigator.push(
                                       context,
@@ -614,8 +688,12 @@ class _HomePageState extends State<HomePage> {
               //     ),
               //   ),
               // ),
-              SizedBox(
-                height: size.height * 0.02,
+              // SizedBox(
+              //   height: size.height * 0.02,
+              // ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Text('เมนูแนะนำสำหรับคุณ', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20)),
               ),
               Column(
                 children: List.generate(
@@ -731,4 +809,39 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  List<Map<String, dynamic>> itemManu = [
+    {
+      'name': 'อาหารตามสั่ง',
+      'imageAssetPath': 'assets/images/1.png',
+    },
+    {
+      'name': 'พิซซ่า',
+      'imageAssetPath': 'assets/images/2.png',
+    },
+    {
+      'name': 'อาหารทะเล',
+      'imageAssetPath': 'assets/images/3.png',
+    },
+    {
+      'name': 'ราเมง',
+      'imageAssetPath': 'assets/images/4.png',
+    },
+    {
+      'name': 'เมนูเส้น',
+      'imageAssetPath': 'assets/images/5.png',
+    },
+    {
+      'name': 'โจ๊ก',
+      'imageAssetPath': 'assets/images/6.png',
+    },
+    {
+      'name': 'ผลไม้',
+      'imageAssetPath': 'assets/images/7.png',
+    },
+    {
+      'name': 'อาหารสุขภาพ',
+      'imageAssetPath': 'assets/images/8.png',
+    },
+  ];
 }

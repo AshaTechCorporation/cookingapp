@@ -39,9 +39,9 @@ class _FromRegisterState extends State<FromRegister> {
         Container(
             margin: EdgeInsets.only(top: 5),
             width: widget.width,
-            height: widget.keyboardType == TextInputType.multiline ? null : size.height * 0.085,
+            height: widget.keyboardType == TextInputType.text ? null : size.height * 0.085,
             child: TextFormField(
-              maxLines: widget.keyboardType == TextInputType.multiline ? 5 : 1,
+              maxLines: widget.keyboardType == TextInputType.text ? 5 : 1,
               // cursorColor: kPrimaryColor,
               controller: widget.controller,
               validator: widget.validator,

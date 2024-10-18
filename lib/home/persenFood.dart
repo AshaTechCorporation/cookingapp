@@ -1,8 +1,9 @@
 import 'package:cookingapp/constants.dart';
-import 'package:cookingapp/home/detailFoodPage.dart';
+import 'package:cookingapp/home/detailFood/DetailFoodNew.dart';
 import 'package:cookingapp/home/firstPage.dart';
 import 'package:cookingapp/home/services/homeApi.dart';
 import 'package:cookingapp/home/widgets/CardRestaurantWidget.dart';
+import 'package:cookingapp/model/food.dart';
 import 'package:cookingapp/models/restaurant.dart';
 import 'package:cookingapp/widgets/LoadingDialog.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class PresenFoodPage extends StatefulWidget {
 class _PresenFoodPageState extends State<PresenFoodPage> {
   final ScrollController scrollController = ScrollController();
   double appBarOpacity = 0.0;
+  int selectTab = 0;
   List<Restaurant> restaurants = [];
 
   @override
@@ -57,6 +59,14 @@ class _PresenFoodPageState extends State<PresenFoodPage> {
       print(e);
     }
   }
+
+  List<String> manuFoods = [
+    'ผัดกระเพรา',
+    'ผัดพริกแกง',
+    'ต้มยำ',
+    'ผัดพริกเกลือ',
+    'อาหารจานเดียว',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -148,34 +158,80 @@ class _PresenFoodPageState extends State<PresenFoodPage> {
                 // color:Color.fromARGB(81, 207, 124, 9),,
                 borderRadius: BorderRadius.vertical(bottom: Radius.elliptical(100, 100))),
           ),
-          Column(
-            children: [
-              restaurants.isNotEmpty
-                  ? Padding(
-                      padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-                      child: SingleChildScrollView(
-                        child: Wrap(
-                          children: List.generate(
-                            restaurants.length,
-                            (index) => CardRestaurantWidget(
-                                size: size,
-                                name: restaurants[index].name!,
-                                address: restaurants[index].address!,
-                                image: 'assets/images/ramen-noodles.jpg',
-                                press: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => DetailFoodPage(
-                                                restaurant_id: restaurants[index].id,
-                                              )));
-                                }),
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: List.generate(
+                        manuFoods.length,
+                        (index) => GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectTab = index;
+                            });
+                          },
+                          child: Container(
+                            margin: EdgeInsets.symmetric(
+                              horizontal: 3,
+                            ),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 4,
+                            ),
+                            height: size.height * 0.04,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: selectTab == index ? brown : Colors.grey,
+                              ),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Center(
+                              child: Text(
+                                manuFoods[index],
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: selectTab == index ? brown : Colors.black,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    )
-                  : SizedBox(),
-            ],
+                    ),
+                  ),
+                ),
+                foods.isNotEmpty
+                    ? Padding(
+                        padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+                        child: SingleChildScrollView(
+                          child: Wrap(
+                            children: List.generate(
+                              foods.length,
+                              (index) => CardRestaurantWidget(
+                                  size: size,
+                                  name: foods[index].name,
+                                  address: 'ร้านอาหารใกล้ฉัน',
+                                  image: foods[index].image,
+                                  km: foods[index].reviews.toString(),
+                                  rate: foods[index].rate.toString(),
+                                  press: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => DetailFoodNewPage(
+                                                  food: foods[index],
+                                                )));
+                                  }),
+                            ),
+                          ),
+                        ),
+                      )
+                    : SizedBox(),
+              ],
+            ),
           ),
         ],
       ),

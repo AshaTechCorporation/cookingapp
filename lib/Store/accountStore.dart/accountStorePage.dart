@@ -64,7 +64,7 @@ class _AccountStorePageState extends State<AccountStorePage> {
                 ),
               ),
               child: Padding(
-                padding: EdgeInsets.only(left: size.width * 0.03),
+                padding: EdgeInsets.only(left: size.width * 0.03, right: size.width * 0.03),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -72,6 +72,7 @@ class _AccountStorePageState extends State<AccountStorePage> {
                     Row(
                       children: [
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               'A123456',
@@ -125,10 +126,9 @@ class _AccountStorePageState extends State<AccountStorePage> {
                       height: size.height * 0.009,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -141,7 +141,6 @@ class _AccountStorePageState extends State<AccountStorePage> {
                             )
                           ],
                         ),
-                        Spacer(),
                         Column(
                           children: [
                             Padding(

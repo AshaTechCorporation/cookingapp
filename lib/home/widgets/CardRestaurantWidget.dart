@@ -1,12 +1,13 @@
+import 'package:cookingapp/constants.dart';
 import 'package:flutter/material.dart';
 
 class CardRestaurantWidget extends StatelessWidget {
-  CardRestaurantWidget({super.key, required this.size, required this.press, required this.image, required this.name, required this.address});
+  CardRestaurantWidget({super.key, required this.size, required this.press, required this.image, required this.name, required this.address, required this.rate, required this.km});
 
   final Size size;
   VoidCallback press;
   final String image;
-  final String name;
+  final String name, rate, km;
   final String address;
 
   @override
@@ -41,7 +42,7 @@ class CardRestaurantWidget extends StatelessWidget {
               SizedBox(
                 height: size.height * 0.01,
               ),
-              Text('โปรโมชั่น'),
+              // Text('โปรโมชั่น'),
               Text(
                 '$name',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -52,28 +53,45 @@ class CardRestaurantWidget extends StatelessWidget {
                 style: TextStyle(fontSize: 15),
                 overflow: TextOverflow.ellipsis,
               ),
+
               Row(
                 children: [
                   Container(
                     height: size.height * 0.03,
-                    width: size.width * 0.22,
+                    padding: EdgeInsets.all(2),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
                       color: Color.fromARGB(255, 241, 214, 132),
                     ),
-                    child: Center(child: Text('ร้านใช้โค้ดได้')),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(' $km k.m.'),
+                      ],
+                    ),
                   ),
                   SizedBox(
-                    width: size.width * 0.01,
+                    width: size.width * 0.02,
                   ),
                   Container(
                     height: size.height * 0.03,
                     width: size.width * 0.14,
+                    padding: EdgeInsets.all(2),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
                       color: Color.fromARGB(255, 241, 214, 132),
                     ),
-                    child: Center(child: Text('ลด 30%')),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Icon(
+                          Icons.star,
+                          color: red1,
+                        ),
+                        Text(rate),
+                      ],
+                    ),
                   ),
                 ],
               ),
