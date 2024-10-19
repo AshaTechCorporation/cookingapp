@@ -195,13 +195,66 @@ class _DetailFoodNewPageState extends State<DetailFoodNewPage> {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      'รายละเอียดรายการอาหาร ..........\n\n\n\n\n',
+                                      'รายละเอียดรายการอาหาร .........',
                                       style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black38, fontSize: 16),
                                     ),
                                   ],
                                 ),
                               ),
                               Divider(),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: size.width * 0.02,
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'ราคาอาหาร',
+                                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          '18 ตุลาคม 2567 - 19 ตุลาคม 2567',
+                                          style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black38, fontSize: 16),
+                                        ),
+                                        Text(
+                                          '50',
+                                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          '20 ตุลาคม 2567 - 21 ตุลาคม 2567',
+                                          style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black38, fontSize: 16),
+                                        ),
+                                        Text(
+                                          '65',
+                                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          '22 ตุลาคม 2567 - 24 ตุลาคม 2567',
+                                          style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black38, fontSize: 16),
+                                        ),
+                                        Text(
+                                          '80',
+                                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
                               // Padding(
                               //   padding: EdgeInsets.symmetric(
                               //     horizontal: size.width * 0.02,
@@ -257,7 +310,7 @@ class _DetailFoodNewPageState extends State<DetailFoodNewPage> {
                               //     ],
                               //   ),
                               // ),
-                              // Divider(),
+                              Divider(),
 
                               Padding(
                                 padding: EdgeInsets.symmetric(

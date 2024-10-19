@@ -1,4 +1,5 @@
 import 'package:cookingapp/constants.dart';
+import 'package:cookingapp/home/Search/searchPage.dart';
 import 'package:cookingapp/home/detailFood/DetailFoodNew.dart';
 import 'package:cookingapp/home/firstPage.dart';
 import 'package:cookingapp/home/services/homeApi.dart';
@@ -88,52 +89,63 @@ class _PresenFoodPageState extends State<PresenFoodPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    height: size.height * 0.045,
-                    width: size.width * 0.85,
-                    padding: EdgeInsets.all(size.height * 0.005),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey, width: size.width * 0.001),
-                      borderRadius: BorderRadius.circular(15),
-                      color: Color.lerp(Colors.transparent, Colors.white, appBarOpacity),
-                    ),
-                    child: IntrinsicHeight(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            width: size.width * 0.33,
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: 'ค้นหาสินค้า',
-                                hintStyle: TextStyle(),
-                                contentPadding: EdgeInsets.only(left: size.width * 0.02, bottom: size.height * 0.01),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return SearchPage();
+                      }));
+                    },
+                    child: Container(
+                      height: size.height * 0.045,
+                      width: size.width * 0.85,
+                      padding: EdgeInsets.all(size.height * 0.005),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey, width: size.width * 0.001),
+                        borderRadius: BorderRadius.circular(15),
+                        color: Color.lerp(Colors.transparent, Colors.white, appBarOpacity),
+                      ),
+                      child: IntrinsicHeight(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              width: size.width * 0.33,
+                              // child: TextFormField(
+                              //   decoration: InputDecoration(
+                              //     border: InputBorder.none,
+                              //     hintText: 'ค้นหาสินค้า',
+                              //     hintStyle: TextStyle(),
+                              //     contentPadding: EdgeInsets.only(left: size.width * 0.02, bottom: size.height * 0.01),
+                              //   ),
+                              // ),
+                              child: Text(
+                                'ค้นหาสินค้า',
+                                style: TextStyle(fontSize: 15, color: Colors.grey),
                               ),
                             ),
-                          ),
-                          Image.asset(
-                            'assets/icons/cam.png',
-                            color: red1,
-                          ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                              height: size.height * 0.05,
-                              width: size.width * 0.264,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: red1,
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'ค้นหา',
-                                  style: TextStyle(color: Colors.white),
+                            // Image.asset(
+                            //   'assets/icons/cam.png',
+                            //   color: red1,
+                            // ),
+                            GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                height: size.height * 0.05,
+                                width: size.width * 0.264,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: red1,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'ค้นหา',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),

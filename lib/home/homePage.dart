@@ -1,5 +1,6 @@
 import 'package:cookingapp/Store/Graphs/graphsPage.dart';
 import 'package:cookingapp/constants.dart';
+import 'package:cookingapp/home/Search/searchPage.dart';
 import 'package:cookingapp/home/detailFoodPage.dart';
 import 'package:cookingapp/home/services/homeApi.dart';
 import 'package:cookingapp/home/widgets/CardFoodWidget.dart';
@@ -95,105 +96,116 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    height: size.height * 0.045,
-                    width: size.width * 0.70,
-                    padding: EdgeInsets.all(size.height * 0.005),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey, width: size.width * 0.001),
-                      borderRadius: BorderRadius.circular(15),
-                      color: Color.lerp(Colors.transparent, Colors.white, appBarOpacity),
-                    ),
-                    child: IntrinsicHeight(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            width: size.width * 0.33,
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: 'ค้นหาสินค้า',
-                                hintStyle: TextStyle(),
-                                contentPadding: EdgeInsets.only(left: size.width * 0.02, bottom: size.height * 0.01),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        return SearchPage();
+                      }));
+                    },
+                    child: Container(
+                      height: size.height * 0.045,
+                      width: size.width * 0.70,
+                      padding: EdgeInsets.all(size.height * 0.005),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey, width: size.width * 0.001),
+                        borderRadius: BorderRadius.circular(15),
+                        color: Color.lerp(Colors.transparent, Colors.white, appBarOpacity),
+                      ),
+                      child: IntrinsicHeight(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              width: size.width * 0.33,
+                              // child: TextFormField(
+                              //   decoration: InputDecoration(
+                              //     border: InputBorder.none,
+                              //     hintText: 'ค้นหาสินค้า',
+                              //     hintStyle: TextStyle(),
+                              //     contentPadding: EdgeInsets.only(left: size.width * 0.02, bottom: size.height * 0.01),
+                              //   ),
+                              // ),
+                              child: Text(
+                                'ค้นหาสินค้า',
+                                style: TextStyle(fontSize: 15, color: Colors.grey),
                               ),
                             ),
-                          ),
-                          Image.asset(
-                            'assets/icons/cam.png',
-                            color: red1,
-                          ),
-                          // SizedBox(
-                          //   height: size.height * 0.05,
-                          //   width: size.width * 0.225,
-                          // child: DropdownButtonHideUnderline(
-                          //   child: DecoratedBox(
-                          //     decoration: BoxDecoration(
-                          //       color: Colors.white,
-                          //       borderRadius: BorderRadius.circular(8),
-                          //       border: Border.all(color: Colors.white, width: 2),
-                          //     ),
-                          //     child: DropdownButton2<String>(
-                          //       isExpanded: true,
-                          //       hint: Align(
-                          //         alignment: Alignment.centerLeft,
-                          //         child: Text(
-                          //           'เลือกสินค้า',
-                          //           style: TextStyle(
-                          //             fontSize: 11,
-                          //             color: red1,
-                          //             fontWeight: FontWeight.bold,
-                          //           ),
-                          //         ),
-                          //       ),
-                          //       items: items
-                          //           .map((String item) => DropdownMenuItem<String>(
-                          //                 value: item,
-                          //                 child: Text(
-                          //                   item,
-                          //                   style: TextStyle(fontSize: 14, color: red1),
-                          //                 ),
-                          //               ))
-                          //           .toList(),
-                          //       value: selectedValue,
-                          //       onChanged: (String? value) {
-                          //         setState(() {
-                          //           selectedValue = value!;
-                          //         });
-                          //         // getlistCategories(name: selectedValue);
-                          //       },
-                          //       buttonStyleData: ButtonStyleData(
-                          //         padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-                          //         width: size.width * 0.1,
-                          //       ),
-                          //       menuItemStyleData: MenuItemStyleData(
-                          //         height: size.height * 0.1,
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-                          //),
-                          // SizedBox(
-                          //   width: size.width * 0.001,
-                          // ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                              height: size.height * 0.05,
-                              width: size.width * 0.25,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: red1,
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'ค้นหา',
-                                  style: TextStyle(color: Colors.white),
+                            // Image.asset(
+                            //   'assets/icons/cam.png',
+                            //   color: red1,
+                            // ),
+                            // SizedBox(
+                            //   height: size.height * 0.05,
+                            //   width: size.width * 0.225,
+                            // child: DropdownButtonHideUnderline(
+                            //   child: DecoratedBox(
+                            //     decoration: BoxDecoration(
+                            //       color: Colors.white,
+                            //       borderRadius: BorderRadius.circular(8),
+                            //       border: Border.all(color: Colors.white, width: 2),
+                            //     ),
+                            //     child: DropdownButton2<String>(
+                            //       isExpanded: true,
+                            //       hint: Align(
+                            //         alignment: Alignment.centerLeft,
+                            //         child: Text(
+                            //           'เลือกสินค้า',
+                            //           style: TextStyle(
+                            //             fontSize: 11,
+                            //             color: red1,
+                            //             fontWeight: FontWeight.bold,
+                            //           ),
+                            //         ),
+                            //       ),
+                            //       items: items
+                            //           .map((String item) => DropdownMenuItem<String>(
+                            //                 value: item,
+                            //                 child: Text(
+                            //                   item,
+                            //                   style: TextStyle(fontSize: 14, color: red1),
+                            //                 ),
+                            //               ))
+                            //           .toList(),
+                            //       value: selectedValue,
+                            //       onChanged: (String? value) {
+                            //         setState(() {
+                            //           selectedValue = value!;
+                            //         });
+                            //         // getlistCategories(name: selectedValue);
+                            //       },
+                            //       buttonStyleData: ButtonStyleData(
+                            //         padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+                            //         width: size.width * 0.1,
+                            //       ),
+                            //       menuItemStyleData: MenuItemStyleData(
+                            //         height: size.height * 0.1,
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
+                            //),
+                            // SizedBox(
+                            //   width: size.width * 0.001,
+                            // ),
+                            GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                height: size.height * 0.05,
+                                width: size.width * 0.25,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: red1,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'ค้นหา',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
