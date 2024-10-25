@@ -78,12 +78,12 @@ class _SearchPageState extends State<SearchPage> {
                               km: foods[index].reviews.toString(),
                               rate: foods[index].rate.toString(),
                               press: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => DetailFoodNewPage(
-                                              food: foods[index],
-                                            )));
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) => DetailFoodNewPage(
+                                //               food: foods[index],
+                                //             )));
                               }),
                         ),
                       ),

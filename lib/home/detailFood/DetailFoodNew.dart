@@ -1,12 +1,13 @@
 import 'package:cookingapp/constants.dart';
 import 'package:cookingapp/home/FoodDetailPage.dart';
 import 'package:cookingapp/model/food.dart';
+import 'package:cookingapp/models/menus.dart';
 import 'package:cookingapp/models/restaurant.dart';
 import 'package:flutter/material.dart';
 
 class DetailFoodNewPage extends StatefulWidget {
   DetailFoodNewPage({super.key, required this.food});
-  Food food;
+  Menus food;
 
   @override
   State<DetailFoodNewPage> createState() => _DetailFoodNewPageState();
@@ -130,8 +131,8 @@ class _DetailFoodNewPageState extends State<DetailFoodNewPage> {
                 children: [
                   Positioned.fill(
                     child: SizedBox(
-                      child: Image.asset(
-                        widget.food.image,
+                      child: Image.network(
+                        widget.food.photo_url ?? 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -173,14 +174,14 @@ class _DetailFoodNewPageState extends State<DetailFoodNewPage> {
                                     Expanded(
                                       flex: 12,
                                       child: Text(
-                                        widget.food.name,
+                                        widget.food.name ?? '',
                                         style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 22),
                                       ),
                                     ),
                                     Expanded(
                                       flex: 2,
                                       child: Text(
-                                        widget.food.cal.toStringAsFixed(0),
+                                        double.parse(widget.food.price ?? '0').toStringAsFixed(0),
                                         style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 22),
                                       ),
                                     ),
@@ -191,11 +192,10 @@ class _DetailFoodNewPageState extends State<DetailFoodNewPage> {
                                 padding: EdgeInsets.symmetric(
                                   horizontal: size.width * 0.02,
                                 ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                child: Wrap(
                                   children: [
                                     Text(
-                                      'รายละเอียดรายการอาหาร .........',
+                                      widget.food.description ?? ' - ',
                                       style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black38, fontSize: 16),
                                     ),
                                   ],

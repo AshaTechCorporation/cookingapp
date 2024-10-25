@@ -35,7 +35,7 @@ class CardRestaurantWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: AssetImage("$image"),
+                    image: NetworkImage("$image"),
                   ),
                 ),
               ),
@@ -67,32 +67,35 @@ class CardRestaurantWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text(' $km k.m.'),
+                        Text(
+                          km,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ],
                     ),
                   ),
                   SizedBox(
                     width: size.width * 0.02,
                   ),
-                  Container(
-                    height: size.height * 0.03,
-                    width: size.width * 0.14,
-                    padding: EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Color.fromARGB(255, 241, 214, 132),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Icon(
-                          Icons.star,
-                          color: red1,
-                        ),
-                        Text(rate),
-                      ],
-                    ),
-                  ),
+                  // Container(
+                  //   height: size.height * 0.03,
+                  //   width: size.width * 0.14,
+                  //   padding: EdgeInsets.all(2),
+                  //   decoration: BoxDecoration(
+                  //     borderRadius: BorderRadius.circular(5),
+                  //     color: Color.fromARGB(255, 241, 214, 132),
+                  //   ),
+                  //   child: Row(
+                  //     crossAxisAlignment: CrossAxisAlignment.end,
+                  //     children: [
+                  //       Icon(
+                  //         Icons.star,
+                  //         color: red1,
+                  //       ),
+                  //       Text(rate),
+                  //     ],
+                  //   ),
+                  // ),
                 ],
               ),
             ],
