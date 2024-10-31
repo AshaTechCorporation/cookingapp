@@ -19,7 +19,7 @@ class LoginService {
     final response = await http.post(url, body: {
       'username': username,
       'password': password,
-    });
+    }).timeout(const Duration(seconds: 15));
     if (response.statusCode == 200) {
       final data = convert.jsonDecode(response.body);
       final dataOut = {'token': data['access_token'], 'user': data['user_type']};

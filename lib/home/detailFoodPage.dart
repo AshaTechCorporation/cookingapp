@@ -426,8 +426,8 @@ class _DetailFoodPageState extends State<DetailFoodPage> {
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(15),
                                             image: DecorationImage(
-                                              image: AssetImage(
-                                                'assets/images/beaf-steak.jpg',
+                                              image: NetworkImage(
+                                                restaurant!.menus![index].photo_url ?? 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
                                               ),
                                               fit: BoxFit.fill,
                                             ),

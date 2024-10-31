@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cookingapp/constants.dart';
 import 'package:cookingapp/model/food.dart';
 import 'package:cookingapp/widgets/Form.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -19,22 +20,31 @@ class _CreateItemPageState extends State<CreateItemPage> {
   final TextEditingController priceFood = TextEditingController();
   final TextEditingController remark = TextEditingController();
 
-  bool status = false;
+  Food? selectType;
+
+  bool status = true;
 
   ImagePicker picker = ImagePicker();
   XFile? image;
+  String? imageSelect;
 
   @override
   void initState() {
     super.initState();
-    nameFood.text = widget.foods?.name ?? '';
-    priceFood.text = widget.foods?.cal.toString() ?? '0.0';
-    status = widget.foods?.isLiked ?? false;
+    if (widget.foods != null) {
+      nameFood.text = widget.foods?.name ?? '';
+      priceFood.text = widget.foods?.cal.toString() ?? '0.0';
+      status = widget.foods?.isLiked ?? false;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final underlineInputBorder = UnderlineInputBorder(
+      borderRadius: BorderRadius.circular(30),
+      borderSide: BorderSide(color: Colors.black, width: 1),
+    );
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
@@ -60,6 +70,118 @@ class _CreateItemPageState extends State<CreateItemPage> {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
+                widget.foods != null
+                    ? SizedBox.shrink()
+                    : Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                'หมวดหมู่',
+                                style: TextStyle(fontSize: 18, color: Colors.black),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: size.height * 0.01,
+                          ),
+                          Container(
+                            height: MediaQuery.of(context).size.height * 0.07,
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(81, 207, 124, 9),
+                              borderRadius: BorderRadius.circular(15),
+                              border: Border.all(
+                                color: Colors.grey,
+                              ),
+                            ),
+                            padding: EdgeInsets.all(8),
+                            child: DropdownSearch<Food>(
+                              selectedItem: selectType,
+                              items: foods,
+                              itemAsString: (item) => item.name,
+                              popupProps: PopupProps.dialog(
+                                showSearchBox: true,
+                                fit: FlexFit.loose,
+                                dialogProps: DialogProps(
+                                  backgroundColor: Color.fromARGB(243, 202, 202, 202),
+                                ),
+                                containerBuilder: (context, popupWidget) => Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(25),
+                                    border: Border.all(color: Colors.grey, width: 3),
+                                  ),
+                                  child: popupWidget,
+                                ),
+                                searchFieldProps: TextFieldProps(
+                                  cursorColor: Colors.black,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    // fontFamily: 'Prompt',
+                                  ),
+                                  decoration: InputDecoration(
+                                    hintText: 'รายการอาหาร',
+                                    hintStyle: TextStyle(color: Color.fromARGB(255, 73, 73, 73)),
+                                    prefixIcon: Icon(Icons.search),
+                                    prefixIconColor: Colors.black,
+                                    enabledBorder: underlineInputBorder,
+                                    focusedBorder: underlineInputBorder,
+                                  ),
+                                ),
+                                itemBuilder: (context, item, isSelected) => Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        item.name,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      Divider(
+                                        color: Colors.black,
+                                        thickness: 1.5,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              dropdownDecoratorProps: DropDownDecoratorProps(
+                                baseStyle: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                  // fontFamily: 'Prompt',
+                                ),
+                                dropdownSearchDecoration: InputDecoration(
+                                  hintText: 'รายการอาหาร',
+                                  hintStyle: TextStyle(
+                                    color: Colors.black,
+                                    // fontFamily: 'Prompt',
+                                  ),
+                                  border: InputBorder.none,
+                                  suffixIconColor: Colors.grey,
+                                ),
+                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  image = null;
+                                  selectType = value;
+                                  nameFood.text = value!.name;
+                                  imageSelect = value.image;
+                                  priceFood.text = value.cal.toString();
+                                });
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            height: size.height * 0.01,
+                          ),
+                        ],
+                      ),
                 Row(
                   children: [
                     Text(
@@ -169,29 +291,64 @@ class _CreateItemPageState extends State<CreateItemPage> {
                                   ),
                                 ],
                               )
-                            : GestureDetector(
-                                onTap: () async {
-                                  final img = await picker.pickImage(source: ImageSource.gallery);
-                                  setState(() {
-                                    image = img;
-                                  });
-                                },
-                                child: Center(
-                                  child: Container(
-                                    width: size.width * 0.3,
-                                    height: size.width * 0.3,
-                                    decoration: BoxDecoration(
-                                      color: Color.fromARGB(134, 244, 208, 150),
-                                      borderRadius: BorderRadius.circular(100),
+                            : imageSelect != null
+                                ? Stack(
+                                    children: [
+                                      Image.asset(
+                                        imageSelect!,
+                                        fit: BoxFit.cover,
+                                        width: size.width * 0.9,
+                                        height: size.height * 0.3,
+                                      ),
+                                      Positioned(
+                                        right: 0,
+                                        child: GestureDetector(
+                                          onTap: () async {
+                                            final img = await picker.pickImage(source: ImageSource.gallery);
+                                            setState(() {
+                                              image = img;
+                                            });
+                                          },
+                                          child: Container(
+                                            width: size.width * 0.1,
+                                            height: size.width * 0.1,
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey,
+                                              borderRadius: BorderRadius.circular(100),
+                                            ),
+                                            child: Icon(
+                                              Icons.edit,
+                                              size: 25,
+                                              color: Colors.red,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                : GestureDetector(
+                                    onTap: () async {
+                                      final img = await picker.pickImage(source: ImageSource.gallery);
+                                      setState(() {
+                                        image = img;
+                                      });
+                                    },
+                                    child: Center(
+                                      child: Container(
+                                        width: size.width * 0.3,
+                                        height: size.width * 0.3,
+                                        decoration: BoxDecoration(
+                                          color: Color.fromARGB(134, 244, 208, 150),
+                                          borderRadius: BorderRadius.circular(100),
+                                        ),
+                                        child: Icon(
+                                          Icons.add,
+                                          size: 50,
+                                          color: red1,
+                                        ),
+                                      ),
                                     ),
-                                    child: Icon(
-                                      Icons.add,
-                                      size: 50,
-                                      color: red1,
-                                    ),
-                                  ),
-                                ),
-                              )),
+                                  )),
                 SizedBox(
                   height: size.height * 0.01,
                 ),
@@ -301,7 +458,7 @@ class _CreateItemPageState extends State<CreateItemPage> {
               child: TextButton(
                 onPressed: () async {},
                 child: Text(
-                  'เพิ่มรายการ',
+                  widget.foods == null ? 'เพิ่มรายการ' : 'แก้ไขรายการ',
                   style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
                 ),
               ),

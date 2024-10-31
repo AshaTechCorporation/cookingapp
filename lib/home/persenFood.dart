@@ -23,7 +23,7 @@ class PresenFoodPage extends StatefulWidget {
 }
 
 class _PresenFoodPageState extends State<PresenFoodPage> {
-  String selectMenu = '';
+  String selectMenu = 'ค้นหา';
   final ScrollController scrollController = ScrollController();
   double appBarOpacity = 0.0;
   int selectTab = 0;
@@ -88,6 +88,11 @@ class _PresenFoodPageState extends State<PresenFoodPage> {
   }
 
   List<String> manuFoods = [
+    'ผัดกระเพรา',
+    'ผัดพริกแกง',
+    'ต้มยำ',
+    'ผัดพริกเกลือ',
+    'อาหารจานเดียว',
     'ผัดกระเพรา',
     'ผัดพริกแกง',
     'ต้มยำ',
@@ -309,7 +314,8 @@ class _PresenFoodPageState extends State<PresenFoodPage> {
                           ),
                         ),
                         itemBuilder: (context, item, isSelected) => Container(
-                          margin: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                          margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                          padding: EdgeInsets.symmetric(horizontal: 5),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -366,7 +372,7 @@ class _PresenFoodPageState extends State<PresenFoodPage> {
                                   address: 'ร้านอาหารใกล้ฉัน',
                                   image: menus[index].photo_url ?? 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
                                   km: menus[index].distance ?? ' - ',
-                                  rate: menus[index].price.toString(),
+                                  // rate: menus[index].price.toString(),
                                   press: () {
                                     Navigator.push(
                                         context,

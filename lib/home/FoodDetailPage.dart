@@ -1,4 +1,5 @@
 import 'package:cookingapp/constants.dart';
+import 'package:cookingapp/home/Reserve/reservePage.dart';
 import 'package:cookingapp/models/menus.dart';
 import 'package:flutter/material.dart';
 
@@ -149,18 +150,28 @@ class _FoodDetailPageState extends State<FoodDetailPage> {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(16),
-        child: Container(
-          width: size.width * 0.8,
-          height: size.height * 0.06,
-          decoration: BoxDecoration(
-            color: red1,
-            borderRadius: BorderRadius.circular(10),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ReservePage(
+                          food: widget.food,
+                        )));
+          },
+          child: Container(
+            width: size.width * 0.8,
+            height: size.height * 0.06,
+            decoration: BoxDecoration(
+              color: brown,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Center(
+                child: Text(
+              'จองอาหาร',
+              style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+            )),
           ),
-          child: Center(
-              child: Text(
-            'จองอาหาร',
-            style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-          )),
         ),
       ),
     );

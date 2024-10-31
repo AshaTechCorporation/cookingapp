@@ -41,12 +41,40 @@ class _TrackPageState extends State<TrackPage> with SingleTickerProviderStateMix
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: white,
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    spreadRadius: 1,
+                    blurRadius: 1,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Center(
+                child: Icon(
+                  Icons.arrow_back_ios_new,
+                  color: brown,
+                  size: 20,
+                ),
+              ),
+            ),
+          ),
+        ),
         title: Text(
           'ติดตามสถานะ',
-          style: TextStyle(
-              fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
         ),
-        toolbarHeight: size.height * 0.1,
+        // toolbarHeight: size.height * 0.1,
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(60.0),
           child: Column(
@@ -54,10 +82,7 @@ class _TrackPageState extends State<TrackPage> with SingleTickerProviderStateMix
               Container(
                 width: size.width * 0.95,
                 height: size.height * 0.04,
-                decoration: BoxDecoration(
-                    color: white,
-                    borderRadius: BorderRadius.circular(13),
-                    border: Border.all(color: greyuserinfo, width: 0.5)),
+                decoration: BoxDecoration(color: white, borderRadius: BorderRadius.circular(13), border: Border.all(color: greyuserinfo, width: 0.5)),
                 child: Row(
                   children: [
                     Expanded(
@@ -65,14 +90,9 @@ class _TrackPageState extends State<TrackPage> with SingleTickerProviderStateMix
                       child: TextFormField(
                         decoration: InputDecoration(
                           hintText: 'ค้นหาเลข Order',
-                          hintStyle: TextStyle(
-                              fontSize: 13,
-                              color: greyuserinfo,
-                              fontWeight: FontWeight.bold),
+                          hintStyle: TextStyle(fontSize: 13, color: greyuserinfo, fontWeight: FontWeight.bold),
                           border: InputBorder.none,
-                          contentPadding: EdgeInsets.only(
-                              bottom: size.height * 0.018,
-                              left: size.width * 0.03),
+                          contentPadding: EdgeInsets.only(bottom: size.height * 0.018, left: size.width * 0.03),
                         ),
                       ),
                     ),
@@ -89,10 +109,7 @@ class _TrackPageState extends State<TrackPage> with SingleTickerProviderStateMix
                           child: Center(
                             child: Text(
                               'ค้นหา',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.bold),
+                              style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -150,8 +167,7 @@ class _TrackPageState extends State<TrackPage> with SingleTickerProviderStateMix
       },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: size.height * 0.01),
-        padding: EdgeInsets.symmetric(
-            horizontal: size.width * 0.05, vertical: size.height * 0.008),
+        padding: EdgeInsets.symmetric(horizontal: size.width * 0.05, vertical: size.height * 0.008),
         decoration: BoxDecoration(
           color: isSelected ? red1 : Colors.white,
           borderRadius: BorderRadius.circular(15),

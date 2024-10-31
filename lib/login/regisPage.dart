@@ -56,6 +56,10 @@ class _RegisterpageState extends State<Registerpage> {
     super.initState();
     getProvinecs();
     getLocation();
+    _isSelectedList = List<bool>.filled(
+      manuFoods.length,
+      false,
+    );
   }
 
   getLocation() async {
@@ -93,6 +97,20 @@ class _RegisterpageState extends State<Registerpage> {
       listSubDistricts = listSubDis;
     });
   }
+
+  List<String> manuFoods = [
+    'ผัดกระเพรา',
+    'ผัดพริกแกง',
+    'ต้มยำ',
+    'ผัดพริกเกลือ',
+    'อาหารจานเดียว',
+    'ผัดกระเพรา',
+    'ผัดพริกแกง',
+    'ต้มยำ',
+    'ผัดพริกเกลือ',
+    'อาหารจานเดียว',
+  ];
+  List<bool> _isSelectedList = [];
 
   // final _formKey = GlobalKey<FormState>();
   @override
@@ -388,6 +406,50 @@ class _RegisterpageState extends State<Registerpage> {
                     },
                   ),
                   SizedBox(height: size.height * 0.01),
+                  widget.type == 'ร้านค้า'
+                      ? SizedBox.shrink()
+                      : Column(
+                          children: [
+                            Wrap(
+                              children: List.generate(
+                                manuFoods.length,
+                                (index) => GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      _isSelectedList[index] = !_isSelectedList[index];
+                                    });
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.all(6),
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 4,
+                                    ),
+                                    height: size.height * 0.04,
+                                    width: size.width * 0.25,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        // color: selectTab == index ? brown : Colors.grey,
+                                        color: _isSelectedList[index] ? Colors.green : Colors.black,
+                                      ),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        manuFoods[index],
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: _isSelectedList[index] ? Colors.green : Colors.black,
+                                          // color: selectTab == index ? brown : Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: size.height * 0.01),
+                          ],
+                        ),
                   widget.type != 'ร้านค้า'
                       ? SizedBox.shrink()
                       : Column(

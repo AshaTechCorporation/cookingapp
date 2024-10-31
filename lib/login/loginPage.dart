@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cookingapp/Store/Graphs/test3.dart';
 import 'package:cookingapp/Store/fristPAgeStore.dart';
 import 'package:cookingapp/constants.dart';
@@ -9,6 +11,7 @@ import 'package:cookingapp/login/Services/loginService.dart';
 import 'package:cookingapp/login/regisPage.dart';
 import 'package:cookingapp/widgets/LoadingDialog.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
@@ -138,29 +141,112 @@ class _LoginPageState extends State<LoginPage> {
                             final SharedPreferences prefs = await _prefs;
                             await prefs.setString('token', token['token']);
                             if (token['user'] == 'ร้านค้า') {
-                              // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => FirstPageStore()), (route) => true);
                               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
                                 return FirstPageStore();
                               }));
-                              // Navigator.of(context, rootNavigator: true).pushReplacement(
-                              //   MaterialPageRoute(
-                              //     builder: (context) => FirstPageStore(),
-                              //   ),
-                              // );
                             } else {
-                              // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => PresenFoodPage()), (route) => true);
                               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
                                 return PresenFoodPage();
                               }));
-                              // Navigator.of(context, rootNavigator: true).pushReplacement(
-                              //   MaterialPageRoute(
-                              //     builder: (context) => PresenFoodPage(),
-                              //     // FirstPage(),
-                              //   ),
-                              // );
                             }
                           }
                         } on ApiException catch (e) {
+                          LoadingDialog.close(context);
+                          showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                    title: Text('แจ้งเตือน'),
+                                    content: Text(e.toString()),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text('ตกลง'),
+                                      )
+                                    ],
+                                  ));
+                        } on ClientException catch (e) {
+                          LoadingDialog.close(context);
+                          showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                    title: Text('แจ้งเตือน'),
+                                    content: Text(e.toString()),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text('ตกลง'),
+                                      )
+                                    ],
+                                  ));
+                        } on SocketException catch (e) {
+                          LoadingDialog.close(context);
+                          showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                    title: Text('แจ้งเตือน'),
+                                    content: Text(e.toString()),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text('ตกลง'),
+                                      )
+                                    ],
+                                  ));
+                        } on HttpException catch (e) {
+                          LoadingDialog.close(context);
+                          showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                    title: Text('แจ้งเตือน'),
+                                    content: Text(e.toString()),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text('ตกลง'),
+                                      )
+                                    ],
+                                  ));
+                        } on FormatException catch (e) {
+                          LoadingDialog.close(context);
+                          showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                    title: Text('แจ้งเตือน'),
+                                    content: Text(e.toString()),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text('ตกลง'),
+                                      )
+                                    ],
+                                  ));
+                        } on Exception catch (e) {
+                          LoadingDialog.close(context);
+                          showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                    title: Text('แจ้งเตือน'),
+                                    content: Text(e.toString()),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text('ตกลง'),
+                                      )
+                                    ],
+                                  ));
+                        } catch (e) {
                           LoadingDialog.close(context);
                           showDialog(
                               context: context,
@@ -236,7 +322,7 @@ class _LoginPageState extends State<LoginPage> {
               height: size.height * 0.06,
               width: size.width * 0.91,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: background,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Center(

@@ -331,31 +331,68 @@ class _HomePageStoreState extends State<HomePageStore> {
                         child: Wrap(
                           children: List.generate(
                             foods.length,
-                            (index) => CardRestaurantWidget(
-                                size: size,
-                                name: foods[index].name,
-                                address: '',
-                                image: foods[index].image,
-                                km: foods[index].reviews.toString(),
-                                rate: foods[index].rate.toString(),
-                                press: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                    return CreateItemPage(
-                                      foods: foods[index],
-                                    );
-                                  }));
-                                  // Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //         builder: (context) => DetailFoodPage(
-                                  //               restaurant_id: restaurants[index].id,
-                                  //             )));
-                                }),
+                            (index) {
+                              return foods[index].isLiked == false
+                                  ? SizedBox.shrink()
+                                  : CardRestaurantWidget2(
+                                      size: size,
+                                      name: foods[index].name,
+                                      address: '',
+                                      image: foods[index].image,
+                                      km: foods[index].reviews.toString(),
+                                      rate: foods[index].rate.toString(),
+                                      press: () {
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                          return CreateItemPage(
+                                            foods: foods[index],
+                                          );
+                                        }));
+                                        // Navigator.push(
+                                        //     context,
+                                        //     MaterialPageRoute(
+                                        //         builder: (context) => DetailFoodPage(
+                                        //               restaurant_id: restaurants[index].id,
+                                        //             )));
+                                      });
+                            },
                           ),
                         ),
                       )
                     : SizedBox()
-                : SizedBox(),
+                : foods.isNotEmpty
+                    ? Padding(
+                        padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+                        child: Wrap(
+                          children: List.generate(
+                            foods.length,
+                            (index) {
+                              return foods[index].isLiked == true
+                                  ? SizedBox.shrink()
+                                  : CardRestaurantWidget2(
+                                      size: size,
+                                      name: foods[index].name,
+                                      address: '',
+                                      image: foods[index].image,
+                                      km: foods[index].reviews.toString(),
+                                      rate: foods[index].rate.toString(),
+                                      press: () {
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                          return CreateItemPage(
+                                            foods: foods[index],
+                                          );
+                                        }));
+                                        // Navigator.push(
+                                        //     context,
+                                        //     MaterialPageRoute(
+                                        //         builder: (context) => DetailFoodPage(
+                                        //               restaurant_id: restaurants[index].id,
+                                        //             )));
+                                      });
+                            },
+                          ),
+                        ),
+                      )
+                    : SizedBox(),
             SizedBox(
               height: size.height * 0.05,
             ),

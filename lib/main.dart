@@ -18,13 +18,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'กับข้าว',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-          appBarTheme: AppBarTheme(titleTextStyle: TextStyle(fontFamily: 'SukhumvitSet', fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold)),
-          fontFamily: 'SukhumvitSet'),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+        appBarTheme: AppBarTheme(titleTextStyle: TextStyle(fontFamily: 'Prompt', fontSize: 17, color: Colors.black, fontWeight: FontWeight.bold)),
+        fontFamily: 'Prompt',
+      ),
       home: WelcomePage(),
     );
   }

@@ -6,6 +6,7 @@ const kprimaryColor = Color(0xff568A9F);
 Color color1 = Color(int.parse('0xffcd7f32'));
 Color color2 = Color(int.parse('0xfffbbc80'));
 Color red1 = Color(0xffcb800b);
+Color red2 = Color.fromARGB(132, 252, 195, 104);
 Color arrowcolor = Color(0xffd9d9d9);
 Color background = Color(0xfff5f5f5);
 Color white = Color(0xffffffff);

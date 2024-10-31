@@ -78,7 +78,7 @@ class _FirstPageStoreState extends State<FirstPageStore> {
         buttonBackgroundColor: brown,
         items: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
             child: Column(
               children: [
                 Image.asset(
@@ -98,7 +98,7 @@ class _FirstPageStoreState extends State<FirstPageStore> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
             child: Column(
               children: [
                 Image.asset(
@@ -118,7 +118,7 @@ class _FirstPageStoreState extends State<FirstPageStore> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
             child: Column(
               children: [
                 Image.asset(

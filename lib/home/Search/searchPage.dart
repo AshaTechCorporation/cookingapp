@@ -70,7 +70,7 @@ class _SearchPageState extends State<SearchPage> {
                       child: Wrap(
                         children: List.generate(
                           foods.length,
-                          (index) => CardRestaurantWidget(
+                          (index) => CardRestaurantWidget2(
                               size: size,
                               name: foods[index].name,
                               address: 'ร้านอาหารใกล้ฉัน',

@@ -358,7 +358,7 @@ class _HomePageState extends State<HomePage> {
                         Text('ค้นหาสิ่งที่คุณชอบ', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 20)),
                         Container(
                           height: size.height * 0.04,
-                          width: size.width * 0.4,
+                          width: size.width * 0.38,
                           padding: EdgeInsets.all(2),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
@@ -597,11 +597,11 @@ class _HomePageState extends State<HomePage> {
                             restaurants.length,
                             (index) => CardRestaurantWidget(
                                 size: size,
-                                name: restaurants[index].name!,
-                                address: restaurants[index].address!,
-                                image: 'assets/images/ramen-noodles.jpg',
-                                km: '',
-                                rate: '',
+                                name: restaurants[index].name ?? ' - ',
+                                address: restaurants[index].address ?? ' - ',
+                                image: 'https://s359.kapook.com/rq/580/435/50/pagebuilder/29e40ab6-f3b1-42f8-a0fb-31b2475c0db4.jpg',
+                                km: restaurants[index].description ?? ' - ',
+                                rate: restaurants[index].open_hours ?? ' - ',
                                 press: () {
                                   Navigator.push(
                                       context,
@@ -711,14 +711,14 @@ class _HomePageState extends State<HomePage> {
                 children: List.generate(
                   8,
                   (index) => Padding(
-                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.02, vertical: size.height * 0.01),
+                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.01, vertical: size.height * 0.01),
                     child: Row(
                       children: [
                         Expanded(
                           flex: 3,
                           child: Container(
                             height: size.height * 0.15,
-                            width: size.width * 0.30,
+                            width: size.width * 0.28,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               image: DecorationImage(

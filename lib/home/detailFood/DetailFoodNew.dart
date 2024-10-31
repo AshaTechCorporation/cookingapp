@@ -1,5 +1,6 @@
 import 'package:cookingapp/constants.dart';
 import 'package:cookingapp/home/FoodDetailPage.dart';
+import 'package:cookingapp/home/Reserve/reservePage.dart';
 import 'package:cookingapp/model/food.dart';
 import 'package:cookingapp/models/menus.dart';
 import 'package:cookingapp/models/restaurant.dart';
@@ -417,7 +418,14 @@ class _DetailFoodNewPageState extends State<DetailFoodNewPage> {
           decoration: BoxDecoration(color: brown, borderRadius: BorderRadius.circular(10)),
           child: Center(
             child: TextButton(
-              onPressed: () async {},
+              onPressed: () async {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ReservePage(
+                              food: widget.food,
+                            )));
+              },
               child: Text(
                 'จองอาหาร',
                 style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),

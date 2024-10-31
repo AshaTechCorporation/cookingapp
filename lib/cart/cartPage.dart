@@ -88,33 +88,35 @@ class _CartPageState extends State<CartPage> {
   Widget buildBottomBar(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return SizedBox(
-      height: size.height * 0.075,
-      child: BottomAppBar(
-        color: white,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            buildCheckbox('ทั้งหมด', isSelected, selectAll),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: red1,
-                padding: EdgeInsets.symmetric(
-                  horizontal: size.width * 0.05,
-                  vertical: size.height * 0.007,
+    return SafeArea(
+      child: SizedBox(
+        height: size.height * 0.075,
+        child: BottomAppBar(
+          color: white,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              buildCheckbox('ทั้งหมด', isSelected, selectAll),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: red1,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: size.width * 0.05,
+                    vertical: size.height * 0.007,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                child: const Text(
+                  'สั่งซื้อสินค้า',
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
               ),
-              child: const Text(
-                'สั่งซื้อสินค้า',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -133,29 +135,24 @@ class _CartPageState extends State<CartPage> {
         ),
         title: const Text(
           'รถเข็น',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-            fontSize: 17
-          ),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 17),
         ),
       ),
-      body: ListView.builder(
-        itemCount: storeItemsSelection.length,
-        itemBuilder: (context, index) {
-          return StoreItem(
-            storeName: storeNames[index],
-            isSelected: storeItemsSelection[index],
-            onSelectionChanged: (isSelected) =>
-                updateStoreSelection(index, isSelected),
-            productItemsSelection: productItemsSelection[index],
-            onProductSelectionChanged: (productIndex, isSelected) =>
-                updateProductSelection(index, productIndex, isSelected),
-            onDeleteStore: () => deleteStore(index),
-            onDeleteProduct: (productIndex) =>
-                deleteProduct(index, productIndex),
-          );
-        },
+      body: SafeArea(
+        child: ListView.builder(
+          itemCount: storeItemsSelection.length,
+          itemBuilder: (context, index) {
+            return StoreItem(
+              storeName: storeNames[index],
+              isSelected: storeItemsSelection[index],
+              onSelectionChanged: (isSelected) => updateStoreSelection(index, isSelected),
+              productItemsSelection: productItemsSelection[index],
+              onProductSelectionChanged: (productIndex, isSelected) => updateProductSelection(index, productIndex, isSelected),
+              onDeleteStore: () => deleteStore(index),
+              onDeleteProduct: (productIndex) => deleteProduct(index, productIndex),
+            );
+          },
+        ),
       ),
       bottomNavigationBar: buildBottomBar(context),
     );
