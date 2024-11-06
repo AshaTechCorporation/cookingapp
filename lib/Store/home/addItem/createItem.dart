@@ -19,8 +19,23 @@ class _CreateItemPageState extends State<CreateItemPage> {
   final TextEditingController nameFood = TextEditingController();
   final TextEditingController priceFood = TextEditingController();
   final TextEditingController remark = TextEditingController();
-
+  final TextEditingController ingredient1 = TextEditingController();
+  final TextEditingController ingredient2 = TextEditingController();
+  final TextEditingController ingredient3 = TextEditingController();
+  final TextEditingController ingredient4 = TextEditingController();
+  final TextEditingController ingredient5 = TextEditingController();
+  final TextEditingController ingredientG1 = TextEditingController();
+  final TextEditingController ingredientG2 = TextEditingController();
+  final TextEditingController ingredientG3 = TextEditingController();
+  final TextEditingController ingredientG4 = TextEditingController();
+  final TextEditingController ingredientG5 = TextEditingController();
   Food? selectType;
+  int count = 1;
+  int iG1 = 0;
+  int iG2 = 0;
+  int iG3 = 0;
+  int iG4 = 0;
+  int iG5 = 0;
 
   bool status = true;
 
@@ -35,6 +50,22 @@ class _CreateItemPageState extends State<CreateItemPage> {
       nameFood.text = widget.foods?.name ?? '';
       priceFood.text = widget.foods?.cal.toString() ?? '0.0';
       status = widget.foods?.isLiked ?? false;
+      remark.text = widget.foods?.remark ?? '';
+      ingredient1.text = widget.foods?.pig ?? '';
+      ingredient2.text = widget.foods?.basil ?? '';
+      ingredient3.text = widget.foods?.garlic ?? '';
+      ingredient4.text = widget.foods?.chili ?? '';
+      ingredient5.text = widget.foods?.sauce ?? '';
+      ingredientG1.text = widget.foods?.pigG.toString() ?? '';
+      ingredientG2.text = widget.foods?.basilG.toString() ?? '';
+      ingredientG3.text = widget.foods?.garlicG.toString() ?? '';
+      ingredientG4.text = widget.foods?.chiliG.toString() ?? '';
+      ingredientG5.text = widget.foods?.sauceG.toString() ?? '';
+      iG1 = widget.foods?.pigG ?? 0;
+      iG2 = widget.foods?.basilG ?? 0;
+      iG3 = widget.foods?.garlicG ?? 0;
+      iG4 = widget.foods?.chiliG ?? 0;
+      iG5 = widget.foods?.sauceG ?? 0;
     }
   }
 
@@ -173,6 +204,22 @@ class _CreateItemPageState extends State<CreateItemPage> {
                                   nameFood.text = value!.name;
                                   imageSelect = value.image;
                                   priceFood.text = value.cal.toString();
+                                  remark.text = value.remark;
+                                  ingredient1.text = value.pig;
+                                  ingredient2.text = value.basil;
+                                  ingredient3.text = value.garlic;
+                                  ingredient4.text = value.chili;
+                                  ingredient5.text = value.sauce;
+                                  ingredientG1.text = value.pigG.toString();
+                                  ingredientG2.text = value.basilG.toString();
+                                  ingredientG3.text = value.garlicG.toString();
+                                  ingredientG4.text = value.chiliG.toString();
+                                  ingredientG5.text = value.sauceG.toString();
+                                  iG1 = value.pigG;
+                                  iG2 = value.basilG;
+                                  iG3 = value.garlicG;
+                                  iG4 = value.chiliG;
+                                  iG5 = value.sauceG;
                                 });
                               },
                             ),
@@ -418,6 +465,171 @@ class _CreateItemPageState extends State<CreateItemPage> {
                           height: size.height * 0.02,
                         )
                       ],
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: size.height * 0.01,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'ส่วนผสม',
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            if (count > 1) {
+                              setState(() {
+                                count -= 1;
+                                ingredientG1.text = (iG1 * count).toString();
+                                ingredientG2.text = (iG2 * count).toString();
+                                ingredientG3.text = (iG3 * count).toString();
+                                ingredientG4.text = (iG4 * count).toString();
+                                ingredientG5.text = (iG5 * count).toString();
+                              });
+                            }
+                          },
+                          child: Container(
+                            width: size.width * 0.08,
+                            height: size.height * 0.03,
+                            decoration: BoxDecoration(
+                              color: red1,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Icon(Icons.remove),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          count.toString(),
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              count += 1;
+                              ingredientG1.text = (iG1 * count).toString();
+                              ingredientG2.text = (iG2 * count).toString();
+                              ingredientG3.text = (iG3 * count).toString();
+                              ingredientG4.text = (iG4 * count).toString();
+                              ingredientG5.text = (iG5 * count).toString();
+                            });
+                          },
+                          child: Container(
+                            width: size.width * 0.08,
+                            height: size.height * 0.03,
+                            decoration: BoxDecoration(
+                              color: red1,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Icon(Icons.add),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: size.height * 0.01,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    FromRegister(
+                      width: size.width * 0.6,
+                      controller: ingredient1,
+                      hintText: 'ส่วนผสม',
+                    ),
+                    FromRegister(
+                      width: size.width * 0.3,
+                      controller: ingredientG1,
+                      hintText: 'กรัม',
+                      labelText: 'กรัม/ช้อนโต๊ะ',
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: size.height * 0.01,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    FromRegister(
+                      width: size.width * 0.6,
+                      controller: ingredient2,
+                      hintText: 'ส่วนผสม',
+                    ),
+                    FromRegister(
+                      width: size.width * 0.3,
+                      controller: ingredientG2,
+                      hintText: 'กรัม',
+                      labelText: 'กรัม/ช้อนโต๊ะ',
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: size.height * 0.01,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    FromRegister(
+                      width: size.width * 0.6,
+                      controller: ingredient3,
+                      hintText: 'ส่วนผสม',
+                    ),
+                    FromRegister(
+                      width: size.width * 0.3,
+                      controller: ingredientG3,
+                      hintText: 'กรัม',
+                      labelText: 'กรัม/ช้อนโต๊ะ',
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: size.height * 0.01,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    FromRegister(
+                      width: size.width * 0.6,
+                      controller: ingredient4,
+                      hintText: 'ส่วนผสม',
+                    ),
+                    FromRegister(
+                      width: size.width * 0.3,
+                      controller: ingredientG4,
+                      hintText: 'กรัม',
+                      labelText: 'กรัม/ช้อนโต๊ะ',
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: size.height * 0.01,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    FromRegister(
+                      width: size.width * 0.6,
+                      controller: ingredient5,
+                      hintText: 'ส่วนผสม',
+                    ),
+                    FromRegister(
+                      width: size.width * 0.3,
+                      controller: ingredientG5,
+                      hintText: 'กรัม',
+                      labelText: 'กรัม/ช้อนโต๊ะ',
                     ),
                   ],
                 ),

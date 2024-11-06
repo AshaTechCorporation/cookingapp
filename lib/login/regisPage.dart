@@ -428,17 +428,16 @@ class _RegisterpageState extends State<Registerpage> {
                                     width: size.width * 0.25,
                                     decoration: BoxDecoration(
                                       border: Border.all(
-                                        // color: selectTab == index ? brown : Colors.grey,
-                                        color: _isSelectedList[index] ? Colors.green : Colors.black,
+                                        color: _isSelectedList[index] ? red2 : Colors.grey,
                                       ),
+                                      color: _isSelectedList[index] ? red1 : Colors.white,
                                       borderRadius: BorderRadius.circular(15),
                                     ),
                                     child: Center(
                                       child: Text(
                                         manuFoods[index],
                                         style: TextStyle(
-                                          fontSize: 12,
-                                          color: _isSelectedList[index] ? Colors.green : Colors.black,
+                                          fontSize: 13, color: _isSelectedList[index] ? Colors.white : Colors.black, fontWeight: _isSelectedList[index] ? FontWeight.bold : null,
                                           // color: selectTab == index ? brown : Colors.black,
                                         ),
                                       ),

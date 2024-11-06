@@ -3,6 +3,7 @@ import 'package:cookingapp/Store/Graphs/graphsPage.dart';
 import 'package:cookingapp/Store/Graphs/test3.dart';
 import 'package:cookingapp/Store/Graphs/testGraphs.dart';
 import 'package:cookingapp/Store/home/addItem/createItem.dart';
+import 'package:cookingapp/Store/home/detailFood/DetailFoodStorePage.dart';
 import 'package:cookingapp/constants.dart';
 import 'package:cookingapp/home/detailFoodPage.dart';
 import 'package:cookingapp/home/services/homeApi.dart';
@@ -337,22 +338,24 @@ class _HomePageStoreState extends State<HomePageStore> {
                                   : CardRestaurantWidget2(
                                       size: size,
                                       name: foods[index].name,
-                                      address: '',
+                                      address: 'รอดำเนินการ',
                                       image: foods[index].image,
                                       km: foods[index].reviews.toString(),
                                       rate: foods[index].rate.toString(),
                                       press: () {
-                                        Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                          return CreateItemPage(
-                                            foods: foods[index],
-                                          );
-                                        }));
-                                        // Navigator.push(
-                                        //     context,
-                                        //     MaterialPageRoute(
-                                        //         builder: (context) => DetailFoodPage(
-                                        //               restaurant_id: restaurants[index].id,
-                                        //             )));
+                                        // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                        //   return CreateItemPage(
+                                        //     foods: foods[index],
+                                        //   );
+                                        // }));
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => DetailFoodStorePage(
+                                              foods: foods[index],
+                                            ),
+                                          ),
+                                        );
                                       });
                             },
                           ),
@@ -371,7 +374,7 @@ class _HomePageStoreState extends State<HomePageStore> {
                                   : CardRestaurantWidget2(
                                       size: size,
                                       name: foods[index].name,
-                                      address: '',
+                                      address: 'ปิดขาย',
                                       image: foods[index].image,
                                       km: foods[index].reviews.toString(),
                                       rate: foods[index].rate.toString(),

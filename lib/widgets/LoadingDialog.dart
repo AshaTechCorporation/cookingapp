@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class LoadingDialog {
   static Future<void> open(BuildContext context) async {
@@ -12,9 +13,11 @@ class LoadingDialog {
           children: [
             Positioned(
               child: SizedBox(
-                width: 80,
-                height: 80,
-                child: CircularProgressIndicator(),
+                width: 250,
+                height: 250,
+                child: Lottie.asset(
+                  "assets/images/Animation - 1730718776864.json",
+                ),
               ),
             ),
           ],

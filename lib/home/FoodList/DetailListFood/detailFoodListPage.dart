@@ -55,7 +55,7 @@ class _DetailFoodListPageState extends State<DetailFoodListPage> {
             Container(
               margin: EdgeInsetsDirectional.symmetric(vertical: 4),
               padding: EdgeInsets.all(16),
-              height: size.height * 0.1,
+              height: size.height * 0.12,
               width: size.width * 0.92,
               decoration: BoxDecoration(
                 color: widget.status == 'พร้อมรับ' ? Color.fromARGB(172, 114, 237, 118) : red2,

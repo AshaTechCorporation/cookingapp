@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cookingapp/Store/fristPAgeStore.dart';
 import 'package:cookingapp/constants.dart';
 import 'package:cookingapp/home/persenFood.dart';
+import 'package:cookingapp/home/personFoodNew.dart';
 import 'package:cookingapp/login/Services/loginService.dart';
 import 'package:cookingapp/login/loginPage.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +45,8 @@ class _WelcomePageState extends State<WelcomePage> {
       } else {
         Navigator.of(context, rootNavigator: true).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => PresenFoodPage(),
+            builder: (context) => PersonFoodNewPage(),
+            //  PresenFoodPage(),
             // FirstPage(),
           ),
         );
@@ -78,7 +80,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   width: size.width * 0.8,
                 ),
                 Text(
-                  'ยินดีตอนรับ',
+                  'ยินดีต้อนรับ',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: brown,

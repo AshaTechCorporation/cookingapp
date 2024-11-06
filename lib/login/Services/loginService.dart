@@ -15,7 +15,7 @@ class LoginService {
   ) async {
     // final SharedPreferences prefs = await SharedPreferences.getInstance();
     // final domain = prefs.getString('domain');
-    final url = Uri.https(publicUrl, 'api/auth/login');
+    final url = Uri.https(publicUrl, '/api/auth/login');
     final response = await http.post(url, body: {
       'username': username,
       'password': password,
@@ -51,7 +51,7 @@ class LoginService {
     // final SharedPreferences prefs = await SharedPreferences.getInstance();
     // final domain = prefs.getString('domain');
     var headers = {'Content-Type': 'application/json'};
-    final url = Uri.https(publicUrl, 'api/auth/register');
+    final url = Uri.https(publicUrl, '/auth/register');
     final response = await http.post(
       url,
       headers: headers,
@@ -125,7 +125,7 @@ class LoginService {
     // final SharedPreferences prefs = await SharedPreferences.getInstance();
     // final token = prefs.getString('token');
     var headers = {'Content-Type': 'application/json'};
-    final url = Uri.https(publicUrl, 'api/districts/filter/$id', {
+    final url = Uri.https(publicUrl, '/api/districts/filter/$id', {
       // "branchId": "$baranchid",
     });
     final response = await http.get(url, headers: headers);
@@ -143,7 +143,7 @@ class LoginService {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
     var headers = {'Authorization': 'Bearer $token', 'Content-Type': 'application/json'};
-    final url = Uri.https(publicUrl, 'api/auth/me');
+    final url = Uri.https(publicUrl, '/api/auth/me');
     final response = await http.post(
       url,
       headers: headers,
@@ -161,7 +161,7 @@ class LoginService {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
     var headers = {'Authorization': 'Bearer $token', 'Content-Type': 'application/json'};
-    final url = Uri.https(publicUrl, 'api/auth/logout');
+    final url = Uri.https(publicUrl, '/api/auth/logout');
     final response = await http.post(
       url,
       headers: headers,

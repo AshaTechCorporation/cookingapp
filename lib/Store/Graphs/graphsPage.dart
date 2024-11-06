@@ -666,6 +666,7 @@ class LineChartSample1State extends State<LineChartSample1> {
                   ),
                 ],
               ),
+
               // SfLinearGauge(
               //     minimum: 0.0,
               //     maximum: 100.0,

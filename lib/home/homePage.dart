@@ -844,8 +844,8 @@ class _HomePageState extends State<HomePage> {
       'imageAssetPath': 'assets/images/5.png',
     },
     {
-      'name': 'โจ๊ก',
-      'imageAssetPath': 'assets/images/6.png',
+      'name': 'อาหารญี่ปุ่น',
+      'imageAssetPath': 'assets/images/japan.png',
     },
     {
       'name': 'ผลไม้',

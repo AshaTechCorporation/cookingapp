@@ -1,4 +1,5 @@
 import 'package:cookingapp/Store/Graphs/graphsPage.dart';
+import 'package:cookingapp/Store/accountStore.dart/accountStoreNewPage.dart';
 import 'package:cookingapp/Store/accountStore.dart/accountStorePage.dart';
 import 'package:cookingapp/Store/home/HomePageStore.dart';
 import 'package:cookingapp/constants.dart';
@@ -26,7 +27,8 @@ class _FirstPageStoreState extends State<FirstPageStore> {
       } else if (selectedIndex == 1) {
         currentPage = LineChartSample1();
       } else if (selectedIndex == 2) {
-        currentPage = AccountStorePage();
+        currentPage = AccountStoreNewPage();
+        //  currentPage = AccountStorePage();
       }
       // else if (selectedIndex == 3) {
       //   // currentPage = CartPage();

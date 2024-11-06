@@ -7,6 +7,7 @@ import 'package:cookingapp/extension/ApiExeption.dart';
 import 'package:cookingapp/home/firstPage.dart';
 import 'package:cookingapp/home/homePage.dart';
 import 'package:cookingapp/home/persenFood.dart';
+import 'package:cookingapp/home/personFoodNew.dart';
 import 'package:cookingapp/login/Services/loginService.dart';
 import 'package:cookingapp/login/regisPage.dart';
 import 'package:cookingapp/widgets/LoadingDialog.dart';
@@ -145,9 +146,11 @@ class _LoginPageState extends State<LoginPage> {
                                 return FirstPageStore();
                               }));
                             } else {
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-                                return PresenFoodPage();
-                              }));
+                              Navigator.of(context, rootNavigator: true).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) => PersonFoodNewPage(),
+                                ),
+                              );
                             }
                           }
                         } on ApiException catch (e) {
