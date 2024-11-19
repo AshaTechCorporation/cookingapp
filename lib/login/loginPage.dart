@@ -32,7 +32,36 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: background,
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    spreadRadius: 1,
+                    blurRadius: 1,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Center(
+                child: Icon(
+                  Icons.arrow_back_ios_new,
+                  color: brown,
+                  size: 20,
+                ),
+              ),
+            ),
+          ),
+        ),
+        // automaticallyImplyLeading: false,
         backgroundColor: Color.fromARGB(81, 207, 124, 9),
         centerTitle: false,
         title: Text(

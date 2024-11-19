@@ -1,5 +1,7 @@
+import 'package:cookingapp/constants.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class _LineChart extends StatelessWidget {
@@ -344,6 +346,7 @@ class LineChartSample1State extends State<LineChartSample1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text(
@@ -666,7 +669,38 @@ class LineChartSample1State extends State<LineChartSample1> {
                   ),
                 ],
               ),
-
+              SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.7,
+                child: SfCalendar(
+                  view: CalendarView.month,
+                  dataSource: MeetingDateSource(_getDataSource()),
+                  todayHighlightColor: red1,
+                  cellBorderColor: Colors.blue,
+                  showNavigationArrow: true,
+                  cellEndPadding: 5,
+                  showCurrentTimeIndicator: true,
+                  weekNumberStyle: const WeekNumberStyle(
+                    backgroundColor: Colors.pink,
+                    textStyle: TextStyle(color: Colors.white, fontSize: 15),
+                  ),
+                  selectionDecoration: BoxDecoration(
+                    color: Colors.transparent,
+                    border: Border.all(color: red1, width: 2),
+                    borderRadius: const BorderRadius.all(Radius.circular(4)),
+                    shape: BoxShape.rectangle,
+                  ),
+                  monthViewSettings: MonthViewSettings(
+                    appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
+                    showAgenda: true,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 50,
+              ),
               // SfLinearGauge(
               //     minimum: 0.0,
               //     maximum: 100.0,
@@ -692,43 +726,53 @@ class LineChartSample1State extends State<LineChartSample1> {
               //     ),
               //   ],
               // ),
-              Center(
-                child: Text(
-                  'รายชื่อผู้ซื้อ',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 2,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              SizedBox(
-                height: 300,
-                child: ListView.builder(
-                    itemCount: listPerson.length,
-                    itemBuilder: (context, index) => Container(
-                          margin: EdgeInsets.all(8),
-                          padding: EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text('ลำดับที่ ${index + 1}'),
-                              Text('คุณ. ${listPerson[index]['name']}'),
-                              Text('จำนวน: ${listPerson[index]['total']}'),
-                            ],
-                          ),
-                        )),
-              ),
+              // Center(
+              //   child: Text(
+              //     'รายชื่อผู้ซื้อ',
+              //     style: TextStyle(
+              //       fontSize: 25,
+              //       fontWeight: FontWeight.bold,
+              //       letterSpacing: 2,
+              //     ),
+              //     textAlign: TextAlign.center,
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 300,
+              //   child: ListView.builder(
+              //       itemCount: listPerson.length,
+              //       itemBuilder: (context, index) => Container(
+              //             margin: EdgeInsets.all(8),
+              //             padding: EdgeInsets.all(8),
+              //             decoration: BoxDecoration(
+              //               border: Border.all(color: Colors.grey),
+              //               borderRadius: BorderRadius.circular(10),
+              //             ),
+              //             child: Row(
+              //               mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //               children: [
+              //                 Text('ลำดับที่ ${index + 1}'),
+              //                 Text('คุณ. ${listPerson[index]['name']}'),
+              //                 Text('จำนวน: ${listPerson[index]['total']}'),
+              //               ],
+              //             ),
+              //           )),
+              // ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  List<Meeting> _getDataSource() {
+    List<Meeting> meets = <Meeting>[
+      Meeting('ทำอาหาร', DateTime.now(), DateTime(2024, 11, 22), red1, true),
+      Meeting('กับข้าว', DateTime.now(), DateTime(2024, 11, 21), red1, true),
+      Meeting('กระเพรา', DateTime(2024, 11, 20), DateTime(2024, 11, 25), red1, true),
+    ];
+    // meets.add(Meeting('ทำอาหาร', DateTime.now(), DateTime.now().add(Duration(minutes: 30)), Colors.pink, true));
+    return meets;
   }
 
   final List<Map<String, dynamic>> listPerson = [
@@ -765,4 +809,43 @@ class LineChartSample1State extends State<LineChartSample1> {
       'total': 3,
     },
   ];
+}
+
+class MeetingDateSource extends CalendarDataSource {
+  MeetingDateSource(List<Meeting> source) {
+    appointments = source;
+  }
+  @override
+  String getSubject(int index) {
+    return appointments![index].eventname;
+  }
+
+  @override
+  DateTime getStartTime(int index) {
+    return appointments![index].from;
+  }
+
+  @override
+  DateTime getEndTime(int index) {
+    return appointments![index].to;
+  }
+
+  @override
+  Color getColor(int index) {
+    return appointments![index].bgclr;
+  }
+
+  @override
+  bool isAllDay(int index) {
+    return appointments![index].bval;
+  }
+}
+
+class Meeting {
+  Meeting(this.eventname, this.from, this.to, this.bgclr, this.bval);
+  String eventname;
+  DateTime from;
+  DateTime to;
+  Color bgclr;
+  bool bval;
 }

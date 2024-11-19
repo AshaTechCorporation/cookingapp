@@ -48,10 +48,7 @@ class _AddresspageState extends State<Addresspage> {
                   ),
                   Text(
                     'ที่อยู่',
-                    style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600,
-                        color: headingtext),
+                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: headingtext),
                   )
                 ],
               ),
@@ -76,10 +73,7 @@ class _AddresspageState extends State<Addresspage> {
                           padding: EdgeInsets.symmetric(horizontal: 9),
                           child: Text(
                             'ค่าเริ่มต้น',
-                            style: TextStyle(
-                                color: Color(0xff4077c2),
-                                fontSize: 13,
-                                fontWeight: FontWeight.bold),
+                            style: TextStyle(color: Color(0xff4077c2), fontSize: 13, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ],
@@ -91,20 +85,14 @@ class _AddresspageState extends State<Addresspage> {
                       children: [
                         Text(
                           'Girati Sukapat',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 13),
+                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 13),
                         ),
                         SizedBox(
                           width: size.width * 0.04,
                         ),
                         Text(
                           '097 123 4567',
-                          style: TextStyle(
-                              fontSize: 13,
-                              color: headingtext,
-                              fontWeight: FontWeight.w600),
+                          style: TextStyle(fontSize: 13, color: headingtext, fontWeight: FontWeight.w600),
                         ),
                       ],
                     ),
@@ -120,9 +108,9 @@ class _AddresspageState extends State<Addresspage> {
                           height: size.height * 0.075,
                           width: size.width * 0.6,
                           child: Text(
-                              '111/222 หมู่บ้าน กขค ถนน กขคม แขวง กขคม แขวง กขค, กรุงเทพมหานคครม 10222',style: TextStyle(
-                                color: headingtext
-                              ),),
+                            '111/222 หมู่บ้าน กขค ถนน กขคม แขวง กขคม แขวง กขค, กรุงเทพมหานคครม 10222',
+                            style: TextStyle(color: headingtext),
+                          ),
                         ),
                         Expanded(
                           child: Align(
@@ -153,14 +141,14 @@ class _AddresspageState extends State<Addresspage> {
             ),
             Container(
               color: arrowcolor,
-              height: size.height *0.001,
+              height: size.height * 0.001,
             ),
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Addnewaddresspage()));
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => Addnewaddresspage()));
               },
               child: Container(
                 height: size.height * 0.04,
@@ -172,8 +160,7 @@ class _AddresspageState extends State<Addresspage> {
                   children: [
                     Text(
                       'เพิ่มที่อยู่ใหม่',
-                      style:
-                          TextStyle(color: red1, fontWeight: FontWeight.bold),
+                      style: TextStyle(color: red1, fontWeight: FontWeight.bold),
                     )
                   ],
                 ),

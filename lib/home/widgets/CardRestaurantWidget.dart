@@ -53,51 +53,52 @@ class CardRestaurantWidget2 extends StatelessWidget {
                 style: TextStyle(fontSize: 15),
                 overflow: TextOverflow.ellipsis,
               ),
-
-              Row(
-                children: [
-                  Container(
-                    height: size.height * 0.03,
-                    padding: EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Color.fromARGB(255, 241, 214, 132),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.end,
+              km == ''
+                  ? SizedBox.shrink()
+                  : Row(
                       children: [
-                        Text(
-                          km,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        Container(
+                          height: size.height * 0.03,
+                          padding: EdgeInsets.all(2),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: Color.fromARGB(255, 241, 214, 132),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                km,
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
                         ),
+                        SizedBox(
+                          width: size.width * 0.02,
+                        ),
+                        // Container(
+                        //   height: size.height * 0.03,
+                        //   width: size.width * 0.14,
+                        //   padding: EdgeInsets.all(2),
+                        //   decoration: BoxDecoration(
+                        //     borderRadius: BorderRadius.circular(5),
+                        //     color: Color.fromARGB(255, 241, 214, 132),
+                        //   ),
+                        //   child: Row(
+                        //     crossAxisAlignment: CrossAxisAlignment.end,
+                        //     children: [
+                        //       Icon(
+                        //         Icons.star,
+                        //         color: red1,
+                        //       ),
+                        //       Text(rate),
+                        //     ],
+                        //   ),
+                        // ),
                       ],
                     ),
-                  ),
-                  SizedBox(
-                    width: size.width * 0.02,
-                  ),
-                  // Container(
-                  //   height: size.height * 0.03,
-                  //   width: size.width * 0.14,
-                  //   padding: EdgeInsets.all(2),
-                  //   decoration: BoxDecoration(
-                  //     borderRadius: BorderRadius.circular(5),
-                  //     color: Color.fromARGB(255, 241, 214, 132),
-                  //   ),
-                  //   child: Row(
-                  //     crossAxisAlignment: CrossAxisAlignment.end,
-                  //     children: [
-                  //       Icon(
-                  //         Icons.star,
-                  //         color: red1,
-                  //       ),
-                  //       Text(rate),
-                  //     ],
-                  //   ),
-                  // ),
-                ],
-              ),
             ],
           ),
         ),
@@ -159,7 +160,7 @@ class CardRestaurantWidget extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
               ),
-              km == null
+              km == ''
                   ? SizedBox.shrink()
                   : Row(
                       children: [
@@ -184,7 +185,7 @@ class CardRestaurantWidget extends StatelessWidget {
                         SizedBox(
                           width: size.width * 0.02,
                         ),
-                        rate == null
+                        rate == ''
                             ? SizedBox.shrink()
                             : Container(
                                 height: size.height * 0.03,

@@ -9,7 +9,6 @@ import 'package:cookingapp/model/food.dart';
 import 'package:cookingapp/models/menus.dart';
 import 'package:cookingapp/models/restaurant.dart';
 import 'package:cookingapp/widgets/LoadingDialog.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';

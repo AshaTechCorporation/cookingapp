@@ -253,7 +253,7 @@ class _FoodListPageState extends State<FoodListPage> {
                                       style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18),
                                     ),
                                     Text(
-                                      'กำลังดำเนินการ',
+                                      'พร้อมรับ',
                                       style: TextStyle(fontWeight: FontWeight.bold, color: red1, fontSize: 15),
                                     ),
                                   ],
@@ -439,119 +439,143 @@ class _FoodListPageState extends State<FoodListPage> {
                     : selectTab == 2
                         ? Column(
                             children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                    return DetailFoodListPage(
-                                      status: 'พร้อมรับ',
-                                    );
-                                  }));
-                                },
-                                child: Container(
-                                  margin: EdgeInsetsDirectional.symmetric(vertical: 4),
-                                  height: size.height * 0.18,
-                                  width: size.width * 0.92,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(0.2),
-                                        spreadRadius: 1,
-                                        blurRadius: 1,
-                                        offset: Offset(0, 2),
-                                      ),
-                                    ],
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.06, vertical: size.width * 0.02),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'เลขที่ 202411010002',
-                                              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18),
-                                            ),
-                                            Text(
-                                              'กำลังดำเนินการ',
-                                              style: TextStyle(fontWeight: FontWeight.bold, color: red1, fontSize: 15),
-                                            ),
-                                          ],
-                                        ),
-                                        Text(
-                                          'ร้าน ข้าวแกง',
-                                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18),
-                                        ),
-                                        Text(
-                                          'วันที่สั่ง: 31/10/24 16:12',
-                                          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18),
-                                        ),
-                                        // Text(
-                                        //   'หมายเหตุ: ..........',
-                                        //   style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18),
-                                        // ),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'ยอดรวม:',
-                                              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18),
-                                            ),
-                                            Text(
-                                              '฿ 1,000',
-                                              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18),
-                                            ),
-                                          ],
-                                        ),
-                                        Divider(),
-                                        // Row(
-                                        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        //   children: [
-                                        //     Container(
-                                        //       width: size.width * 0.35,
-                                        //       height: size.height * 0.05,
-                                        //       decoration: BoxDecoration(color: Colors.grey, borderRadius: BorderRadius.circular(15)),
-                                        //       child: Center(
-                                        //         child: TextButton(
-                                        //           onPressed: () async {},
-                                        //           child: Text(
-                                        //             'ร้องเรียน',
-                                        //             style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
-                                        //           ),
-                                        //         ),
-                                        //       ),
-                                        //     ),
-                                        //     Container(
-                                        //       width: size.width * 0.35,
-                                        //       height: size.height * 0.05,
-                                        //       decoration: BoxDecoration(color: brown, borderRadius: BorderRadius.circular(15)),
-                                        //       child: Center(
-                                        //         child: TextButton(
-                                        //           onPressed: () async {},
-                                        //           child: Text(
-                                        //             'รับอาหาร',
-                                        //             style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
-                                        //           ),
-                                        //         ),
-                                        //       ),
-                                        //     ),
-                                        //   ],
-                                        // )
-                                      ],
-                                    ),
-                                  ),
-                                ),
+                              FoodList(
+                                size: size,
+                                status: 'พร้อมรับ',
                               ),
                             ],
                           )
                         : Column(
-                            children: [],
+                            children: [
+                              FoodList(
+                                size: size,
+                                status: 'เสร็จสิ้น',
+                              ),
+                            ],
                           )
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class FoodList extends StatelessWidget {
+  const FoodList({
+    super.key,
+    required this.size,
+    required this.status,
+  });
+
+  final Size size;
+  final String status;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return DetailFoodListPage(
+            status: status,
+          );
+        }));
+      },
+      child: Container(
+        margin: EdgeInsetsDirectional.symmetric(vertical: 4),
+        height: size.height * 0.18,
+        width: size.width * 0.92,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              spreadRadius: 1,
+              blurRadius: 1,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: size.width * 0.06, vertical: size.width * 0.02),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'เลขที่ 202411010002',
+                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18),
+                  ),
+                  Text(
+                    status,
+                    style: TextStyle(fontWeight: FontWeight.bold, color: red1, fontSize: 15),
+                  ),
+                ],
+              ),
+              Text(
+                'ร้าน ข้าวแกง',
+                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18),
+              ),
+              Text(
+                'วันที่สั่ง: 31/10/24 16:12',
+                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18),
+              ),
+              // Text(
+              //   'หมายเหตุ: ..........',
+              //   style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18),
+              // ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'ยอดรวม:',
+                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18),
+                  ),
+                  Text(
+                    '฿ 1,000',
+                    style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 18),
+                  ),
+                ],
+              ),
+              Divider(),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Container(
+              //       width: size.width * 0.35,
+              //       height: size.height * 0.05,
+              //       decoration: BoxDecoration(color: Colors.grey, borderRadius: BorderRadius.circular(15)),
+              //       child: Center(
+              //         child: TextButton(
+              //           onPressed: () async {},
+              //           child: Text(
+              //             'ร้องเรียน',
+              //             style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //     Container(
+              //       width: size.width * 0.35,
+              //       height: size.height * 0.05,
+              //       decoration: BoxDecoration(color: brown, borderRadius: BorderRadius.circular(15)),
+              //       child: Center(
+              //         child: TextButton(
+              //           onPressed: () async {},
+              //           child: Text(
+              //             'รับอาหาร',
+              //             style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // )
+            ],
+          ),
         ),
       ),
     );

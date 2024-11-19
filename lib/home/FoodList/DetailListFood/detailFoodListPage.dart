@@ -1,4 +1,5 @@
 import 'package:cookingapp/constants.dart';
+import 'package:cookingapp/home/FoodList/DetailListFood/RePortFood/rePortFoodPage.dart';
 import 'package:flutter/material.dart';
 
 class DetailFoodListPage extends StatefulWidget {
@@ -46,7 +47,7 @@ class _DetailFoodListPageState extends State<DetailFoodListPage> {
           ),
         ),
         centerTitle: false,
-        title: Text('รายดารสั่งซื้อ'),
+        title: Text('รายการสั่งซื้อ'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -227,7 +228,11 @@ class _DetailFoodListPageState extends State<DetailFoodListPage> {
                     decoration: BoxDecoration(color: Colors.grey, borderRadius: BorderRadius.circular(15)),
                     child: Center(
                       child: TextButton(
-                        onPressed: () async {},
+                        onPressed: () async {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            return RePortFoodPage();
+                          }));
+                        },
                         child: Text(
                           'ร้องเรียน',
                           style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),

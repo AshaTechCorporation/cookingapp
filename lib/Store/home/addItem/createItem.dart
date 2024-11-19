@@ -6,6 +6,8 @@ import 'package:cookingapp/widgets/Form.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart' as pickerdate;
 
 class CreateItemPage extends StatefulWidget {
   CreateItemPage({super.key, this.foods});
@@ -43,12 +45,22 @@ class _CreateItemPageState extends State<CreateItemPage> {
   XFile? image;
   String? imageSelect;
 
+  String startSell = '';
+  String endSell = '';
+
+  List<List<TextEditingController>> history = [];
+
   @override
   void initState() {
     super.initState();
+    TextEditingController name = TextEditingController();
+    TextEditingController type = TextEditingController();
+    TextEditingController startDate = TextEditingController();
+    TextEditingController endDate = TextEditingController();
+    history.add([name, type, startDate, endDate]);
     if (widget.foods != null) {
       nameFood.text = widget.foods?.name ?? '';
-      priceFood.text = widget.foods?.cal.toString() ?? '0.0';
+      priceFood.text = widget.foods?.reviews.toString() ?? '0.0';
       status = widget.foods?.isLiked ?? false;
       remark.text = widget.foods?.remark ?? '';
       ingredient1.text = widget.foods?.pig ?? '';
@@ -203,7 +215,7 @@ class _CreateItemPageState extends State<CreateItemPage> {
                                   selectType = value;
                                   nameFood.text = value!.name;
                                   imageSelect = value.image;
-                                  priceFood.text = value.cal.toString();
+                                  // priceFood.text = value.cal.toString();
                                   remark.text = value.remark;
                                   ingredient1.text = value.pig;
                                   ingredient2.text = value.basil;
@@ -406,13 +418,13 @@ class _CreateItemPageState extends State<CreateItemPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'ราคา',
+                          'จำนวนขายทั้งหมด',
                           style: TextStyle(fontSize: 18, color: Colors.black),
                         ),
                         FromRegister(
                           width: size.width * 0.45,
                           controller: priceFood,
-                          hintText: 'ราคา',
+                          hintText: 'จำนวนขายทั้งหมด',
                         ),
                       ],
                     ),
@@ -467,6 +479,192 @@ class _CreateItemPageState extends State<CreateItemPage> {
                       ],
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: size.height * 0.01,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        pickerdate.DatePicker.showDatePicker(
+                          context,
+                          showTitleActions: true,
+                          currentTime: DateTime.now(),
+                          locale: pickerdate.LocaleType.th,
+                          minTime: DateTime(1900, 1, 1),
+                          maxTime: DateTime(2200, 1, 1),
+                          theme: pickerdate.DatePickerTheme(
+                            containerHeight: size.height * 0.5,
+                            itemHeight: size.height * 0.075,
+                            titleHeight: size.height * 0.08,
+                            headerColor: brown,
+                            backgroundColor: Colors.white,
+                            itemStyle: TextStyle(color: brown, fontWeight: FontWeight.bold, fontSize: 20),
+                            doneStyle: TextStyle(color: red1, fontSize: 30, fontWeight: FontWeight.bold),
+                            cancelStyle: TextStyle(color: red1, fontSize: 30, fontWeight: FontWeight.bold),
+                          ),
+                          // onChanged: (date) {
+                          //   print('change $date in time zone ' + date.timeZoneOffset.inHours.toString());
+                          // },
+                          onConfirm: (date) async {
+                            setState(
+                              () {
+                                startSell = DateFormat('dd/MM/yyyy').format(date);
+                                // stringTime = DateFormat('yyyy-MM-dd').format(date);
+                              },
+                            );
+                          },
+                        );
+                      },
+                      child: Container(
+                        height: size.height * 0.07,
+                        width: size.width * 0.45,
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey,
+                          ),
+                          borderRadius: BorderRadius.circular(15),
+                          color: white,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              startSell == '' ? 'เริ่มขาย' : startSell,
+                              style: TextStyle(
+                                color: startSell == '' ? Color.fromARGB(255, 172, 172, 172) : null,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Icon(
+                              Icons.calendar_month_sharp,
+                              color: Color.fromARGB(255, 151, 150, 150),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        pickerdate.DatePicker.showDatePicker(
+                          context,
+                          showTitleActions: true,
+                          currentTime: DateTime.now(),
+                          locale: pickerdate.LocaleType.th,
+                          minTime: DateTime(1900, 1, 1),
+                          maxTime: DateTime(2200, 1, 1),
+                          theme: pickerdate.DatePickerTheme(
+                            containerHeight: size.height * 0.5,
+                            itemHeight: size.height * 0.075,
+                            titleHeight: size.height * 0.08,
+                            headerColor: brown,
+                            backgroundColor: Colors.white,
+                            itemStyle: TextStyle(color: brown, fontWeight: FontWeight.bold, fontSize: 20),
+                            doneStyle: TextStyle(color: red1, fontSize: 30, fontWeight: FontWeight.bold),
+                            cancelStyle: TextStyle(color: red1, fontSize: 30, fontWeight: FontWeight.bold),
+                          ),
+                          // onChanged: (date) {
+                          //   print('change $date in time zone ' + date.timeZoneOffset.inHours.toString());
+                          // },
+                          onConfirm: (date) async {
+                            setState(
+                              () {
+                                endSell = DateFormat('dd/MM/yyyy').format(date);
+                                // stringTime = DateFormat('yyyy-MM-dd').format(date);
+                              },
+                            );
+                          },
+                        );
+                      },
+                      child: Container(
+                        height: size.height * 0.07,
+                        width: size.width * 0.45,
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey,
+                          ),
+                          borderRadius: BorderRadius.circular(15),
+                          color: white,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              endSell == '' ? 'สิ้นสุดการขาย' : endSell,
+                              style: TextStyle(
+                                color: endSell == '' ? Color.fromARGB(255, 172, 172, 172) : null,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Icon(
+                              Icons.calendar_month_sharp,
+                              color: Color.fromARGB(255, 151, 150, 150),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'เรทราคา',
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                    ),
+                  ],
+                ),
+                Column(
+                    children: List.generate(
+                  history.length,
+                  (index) => Experience(
+                    index: index,
+                    price: history[index][0],
+                    unitStart: history[index][1],
+                    unitEnd: history[index][2],
+                    onTap: () {
+                      setState(() {
+                        history.removeAt(index);
+                      });
+                    },
+                  ),
+                )),
+                SizedBox(
+                  height: size.height * 0.01,
+                ),
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      TextEditingController name = TextEditingController();
+                      TextEditingController type = TextEditingController();
+                      TextEditingController startDate = TextEditingController();
+                      TextEditingController endDate = TextEditingController();
+                      history.add([name, type, startDate, endDate]);
+                    });
+                  },
+                  child: Center(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      padding: EdgeInsets.all(8),
+                      decoration: BoxDecoration(color: Colors.grey, borderRadius: BorderRadius.circular(15)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.add_circle_rounded),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text('เพิ่มวันที่'),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: size.height * 0.01,
@@ -639,7 +837,7 @@ class _CreateItemPageState extends State<CreateItemPage> {
                 Row(
                   children: [
                     Text(
-                      'รายละเอียด',
+                      'วิธีทำอาหาร',
                       style: TextStyle(fontSize: 18, color: Colors.black),
                     ),
                   ],
@@ -668,7 +866,31 @@ class _CreateItemPageState extends State<CreateItemPage> {
             decoration: BoxDecoration(color: brown, borderRadius: BorderRadius.circular(10)),
             child: Center(
               child: TextButton(
-                onPressed: () async {},
+                onPressed: () async {
+                  final out = await showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                            title: Text('ยืนยัน'),
+                            content: Text('ยืนยันที่จะเปิดขายรายการอาหาร'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context, false);
+                                },
+                                child: Text('ยกเลิก'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context, true);
+                                },
+                                child: Text('ตกลง'),
+                              )
+                            ],
+                          ));
+                  if (out == true) {
+                    Navigator.pop(context);
+                  }
+                },
                 child: Text(
                   widget.foods == null ? 'เพิ่มรายการ' : 'แก้ไขรายการ',
                   style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
@@ -678,6 +900,102 @@ class _CreateItemPageState extends State<CreateItemPage> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class Experience extends StatelessWidget {
+  Experience({
+    super.key,
+    this.index,
+    required this.price,
+    required this.unitStart,
+    required this.unitEnd,
+    this.onTap,
+  });
+
+  int? index;
+  TextEditingController price = TextEditingController();
+  TextEditingController unitStart = TextEditingController();
+  TextEditingController unitEnd = TextEditingController();
+
+  void Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return ListView(
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      physics: const ClampingScrollPhysics(),
+      children: [
+        Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              width: double.infinity,
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: red2,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('${index! + 1}.'),
+                  SizedBox(
+                    height: size.height * 0.01,
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      FromRegister(
+                        width: size.width * 0.3,
+                        controller: unitStart,
+                        hintText: 'เริ่มที่จำนวน',
+                        labelText: 'เริ่มที่จำนวน',
+                        // focusNode: FocusNode(),
+                      ),
+                      FromRegister(
+                        width: size.width * 0.3,
+                        controller: unitEnd,
+                        hintText: 'สิ้นสุดที่จำนวน',
+                        labelText: 'สิ้นสุดที่จำนวน',
+                        // focusNode: FocusNode(),
+                      ),
+                      FromRegister(
+                        width: size.width * 0.25,
+                        controller: price,
+                        hintText: 'ราคา',
+                        labelText: 'ราคา',
+                        // focusNode: FocusNode(),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Positioned(
+              right: 0,
+              top: 0,
+              child: GestureDetector(
+                onTap: onTap,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.red,
+                  ),
+                  child: Column(
+                    children: [Icon(Icons.remove)],
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ],
     );
   }
 }

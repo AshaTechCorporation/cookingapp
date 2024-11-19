@@ -1,6 +1,8 @@
+import 'package:cookingapp/Store/Graphs/graphsPage.dart';
 import 'package:cookingapp/constants.dart';
 import 'package:cookingapp/model/food.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class DetailFoodStorePage extends StatefulWidget {
@@ -364,68 +366,213 @@ class _DetailFoodStorePageState extends State<DetailFoodStorePage> {
               SizedBox(
                 height: size.height * 0.4,
               ),
+              // Container(
+              //   // height: size.height * 0.44,
+              //   width: size.width * 0.92,
+              //   decoration: BoxDecoration(
+              //     color: Colors.white,
+              //     borderRadius: BorderRadius.circular(10.0),
+              //     boxShadow: [
+              //       BoxShadow(
+              //         color: Colors.black.withOpacity(0.2),
+              //         spreadRadius: 1,
+              //         blurRadius: 1,
+              //         offset: Offset(0, 2),
+              //       ),
+              //     ],
+              //   ),
+              //   child: Column(
+              //     mainAxisAlignment: MainAxisAlignment.start,
+              //     crossAxisAlignment: CrossAxisAlignment.start,
+              //     children: [
+              //       SizedBox(
+              //         height: size.height * 0.02,
+              //       ),
+              //       Padding(
+              //         padding: EdgeInsets.symmetric(horizontal: size.width * 0.02, vertical: size.width * 0.02),
+              //         child: Row(
+              //           crossAxisAlignment: CrossAxisAlignment.start,
+              //           children: [
+              //             Expanded(
+              //               flex: 12,
+              //               child: Text(
+              //                 widget.foods.name,
+              //                 style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 22),
+              //               ),
+              //             ),
+              //             Expanded(
+              //               flex: 2,
+              //               child: Text(
+              //                 widget.foods.cal.toStringAsFixed(0),
+              //                 style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 22),
+              //               ),
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //       // Padding(
+              //       //   padding: EdgeInsets.symmetric(
+              //       //     horizontal: size.width * 0.02,
+              //       //   ),
+              //       //   child: Wrap(
+              //       //     children: [
+              //       //       Text(
+              //       //         widget.food.description ?? ' - ',
+              //       //         style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black38, fontSize: 16),
+              //       //       ),
+              //       //     ],
+              //       //   ),
+              //       // ),
+              //       Divider(),
+              //       Padding(
+              //         padding: EdgeInsets.symmetric(
+              //           horizontal: size.width * 0.02,
+              //         ),
+              //         child: Column(
+              //           crossAxisAlignment: CrossAxisAlignment.start,
+              //           children: [
+              //             Text(
+              //               'ราคาอาหาร',
+              //               style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16),
+              //             ),
+              //             Row(
+              //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //               children: [
+              //                 Text(
+              //                   '18 ตุลาคม 2567 - 19 ตุลาคม 2567',
+              //                   style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black38, fontSize: 16),
+              //                 ),
+              //                 Text(
+              //                   '50',
+              //                   style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16),
+              //                 ),
+              //               ],
+              //             ),
+              //             Row(
+              //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //               children: [
+              //                 Text(
+              //                   '20 ตุลาคม 2567 - 21 ตุลาคม 2567',
+              //                   style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black38, fontSize: 16),
+              //                 ),
+              //                 Text(
+              //                   '65',
+              //                   style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16),
+              //                 ),
+              //               ],
+              //             ),
+              //             Row(
+              //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //               children: [
+              //                 Text(
+              //                   '22 ตุลาคม 2567 - 24 ตุลาคม 2567',
+              //                   style: TextStyle(fontWeight: FontWeight.w500, color: Colors.black38, fontSize: 16),
+              //                 ),
+              //                 Text(
+              //                   '80',
+              //                   style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 16),
+              //                 ),
+              //               ],
+              //             ),
+              //           ],
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+
+              Container(
+                height: MediaQuery.of(context).size.height * 0.7,
+                padding: EdgeInsets.all(8),
+                child: SfCalendar(
+                  view: CalendarView.month,
+                  dataSource: MeetingDateSource(_getDataSource()),
+                  todayHighlightColor: red1,
+                  cellBorderColor: Colors.blue,
+                  showNavigationArrow: true,
+                  cellEndPadding: 5,
+                  showCurrentTimeIndicator: true,
+                  weekNumberStyle: const WeekNumberStyle(
+                    backgroundColor: Colors.pink,
+                    textStyle: TextStyle(color: Colors.white, fontSize: 15),
+                  ),
+                  selectionDecoration: BoxDecoration(
+                    color: Colors.transparent,
+                    border: Border.all(color: red1, width: 2),
+                    borderRadius: const BorderRadius.all(Radius.circular(4)),
+                    shape: BoxShape.rectangle,
+                  ),
+                  monthViewSettings: MonthViewSettings(
+                    appointmentDisplayMode: MonthAppointmentDisplayMode.appointment,
+                    showAgenda: true,
+                  ),
+                ),
+              ),
               SizedBox(
-                  height: 300,
-                  child: SfRadialGauge(
-                    axes: <RadialAxis>[
-                      RadialAxis(
-                          startAngle: 180,
-                          endAngle: 360,
-                          radiusFactor: 0.9,
-                          canScaleToFit: true,
-                          interval: 10,
-                          showLabels: false,
-                          showAxisLine: false,
-                          pointers: <GaugePointer>[
-                            MarkerPointer(
-                                value: widget.foods.reviews.toDouble(),
-                                // elevation: _elevation,
-                                markerWidth: 25,
-                                markerHeight: 25,
-                                color: const Color(0xFFF67280),
-                                markerType: MarkerType.circle,
-                                markerOffset: -7)
-                          ],
-                          annotations: <GaugeAnnotation>[
-                            GaugeAnnotation(
-                                angle: 175,
-                                positionFactor: 0.8,
-                                widget: Text('ยอดขาย',
-                                    style: TextStyle(
-                                        // fontSize: isCardView ? 12 : 16,
-                                        fontWeight: FontWeight.bold))),
-                            GaugeAnnotation(
-                                angle: 270,
-                                positionFactor: 0.1,
-                                widget: Text(
-                                  'จำนวนจอง ${widget.foods.reviews}\n\nยอดที่ต้องการ 60 ',
-                                  style: TextStyle(
-                                      // fontSize: isCardView ? 12 : 16,
-                                      fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.center,
-                                )),
-                            GaugeAnnotation(
-                                angle: 5,
-                                positionFactor: 0.8,
-                                widget: Text('Max',
-                                    style: TextStyle(
-                                        // fontSize: isCardView ? 12 : 16,
-                                        fontWeight: FontWeight.bold)))
-                          ],
-                          ranges: <GaugeRange>[
-                            GaugeRange(
-                              startValue: 0,
-                              endValue: 100,
-                              sizeUnit: GaugeSizeUnit.factor,
-                              gradient: const SweepGradient(colors: <Color>[Color(0xFFAB64F5), Color(0xFF62DBF6)], stops: <double>[0.25, 0.75]),
-                              startWidth: 0.4,
-                              endWidth: 0.4,
-                              color: const Color(0xFF00A8B5),
-                            )
-                          ],
-                          showTicks: false),
-                    ],
-                  )),
+                height: size.height * 0.05,
+              ),
+              //   SizedBox(
+              //       height: 300,
+              //       child: SfRadialGauge(
+              //         axes: <RadialAxis>[
+              //           RadialAxis(
+              //               startAngle: 180,
+              //               endAngle: 360,
+              //               radiusFactor: 0.9,
+              //               canScaleToFit: true,
+              //               interval: 10,
+              //               showLabels: false,
+              //               showAxisLine: false,
+              //               pointers: <GaugePointer>[
+              //                 MarkerPointer(
+              //                     value: widget.foods.reviews.toDouble(),
+              //                     // elevation: _elevation,
+              //                     markerWidth: 25,
+              //                     markerHeight: 25,
+              //                     color: const Color(0xFFF67280),
+              //                     markerType: MarkerType.circle,
+              //                     markerOffset: -7)
+              //               ],
+              //               annotations: <GaugeAnnotation>[
+              //                 GaugeAnnotation(
+              //                     angle: 175,
+              //                     positionFactor: 0.8,
+              //                     widget: Text('ยอดขาย',
+              //                         style: TextStyle(
+              //                             // fontSize: isCardView ? 12 : 16,
+              //                             fontWeight: FontWeight.bold))),
+              //                 GaugeAnnotation(
+              //                     angle: 270,
+              //                     positionFactor: 0.1,
+              //                     widget: Text(
+              //                       'จำนวนจอง ${widget.foods.reviews}\n\nยอดที่ต้องการ 60 ',
+              //                       style: TextStyle(
+              //                           // fontSize: isCardView ? 12 : 16,
+              //                           fontWeight: FontWeight.bold),
+              //                       textAlign: TextAlign.center,
+              //                     )),
+              //                 GaugeAnnotation(
+              //                     angle: 5,
+              //                     positionFactor: 0.8,
+              //                     widget: Text('Max',
+              //                         style: TextStyle(
+              //                             // fontSize: isCardView ? 12 : 16,
+              //                             fontWeight: FontWeight.bold)))
+              //               ],
+              //               ranges: <GaugeRange>[
+              //                 GaugeRange(
+              //                   startValue: 0,
+              //                   endValue: 100,
+              //                   sizeUnit: GaugeSizeUnit.factor,
+              //                   gradient: const SweepGradient(colors: <Color>[Color(0xFFAB64F5), Color(0xFF62DBF6)], stops: <double>[0.25, 0.75]),
+              //                   startWidth: 0.4,
+              //                   endWidth: 0.4,
+              //                   color: const Color(0xFF00A8B5),
+              //                 )
+              //               ],
+              //               showTicks: false),
+              //         ],
+              //       )),
             ],
           )),
       bottomNavigationBar: BottomAppBar(
@@ -466,5 +613,13 @@ class _DetailFoodStorePageState extends State<DetailFoodStorePage> {
         ),
       ),
     );
+  }
+
+  List<Meeting> _getDataSource() {
+    List<Meeting> meets = <Meeting>[
+      Meeting(widget.foods.name, DateTime(2024, 11, 18), DateTime(2024, 11, 24), red1, true),
+    ];
+    // meets.add(Meeting('ทำอาหาร', DateTime.now(), DateTime.now().add(Duration(minutes: 30)), Colors.pink, true));
+    return meets;
   }
 }

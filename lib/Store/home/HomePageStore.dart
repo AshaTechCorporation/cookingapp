@@ -13,7 +13,6 @@ import 'package:cookingapp/home/widgets/importwidget.dart';
 import 'package:cookingapp/model/food.dart';
 import 'package:cookingapp/models/restaurant.dart';
 import 'package:cookingapp/widgets/LoadingDialog.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
 class HomePageStore extends StatefulWidget {
@@ -340,7 +339,7 @@ class _HomePageStoreState extends State<HomePageStore> {
                                       name: foods[index].name,
                                       address: 'รอดำเนินการ',
                                       image: foods[index].image,
-                                      km: foods[index].reviews.toString(),
+                                      km: 'จำนวนคนจอง ${foods[index].reviews.toString()}',
                                       rate: foods[index].rate.toString(),
                                       press: () {
                                         // Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -376,7 +375,7 @@ class _HomePageStoreState extends State<HomePageStore> {
                                       name: foods[index].name,
                                       address: 'ปิดขาย',
                                       image: foods[index].image,
-                                      km: foods[index].reviews.toString(),
+                                      km: '',
                                       rate: foods[index].rate.toString(),
                                       press: () {
                                         Navigator.push(context, MaterialPageRoute(builder: (context) {

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cookingapp/welcomePage.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting('th');
     return MaterialApp(
       title: 'กับข้าว',
       debugShowCheckedModeBanner: false,

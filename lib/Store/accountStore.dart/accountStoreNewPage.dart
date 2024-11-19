@@ -1,6 +1,7 @@
 import 'package:cookingapp/Store/accountStore.dart/editAccount/editAccountStorePage.dart';
 import 'package:cookingapp/constants.dart';
 import 'package:cookingapp/home/AccountNew/TopUpCash/topUpCashPage.dart';
+import 'package:cookingapp/home/personFoodNew.dart';
 import 'package:cookingapp/login/Services/loginService.dart';
 import 'package:cookingapp/login/loginPage.dart';
 import 'package:cookingapp/widgets/LoadingDialog.dart';
@@ -373,7 +374,7 @@ class _AccountStoreNewPageState extends State<AccountStoreNewPage> {
                                       LoadingDialog.close(context);
                                       Navigator.of(context, rootNavigator: true).pushReplacement(
                                         MaterialPageRoute(
-                                          builder: (context) => LoginPage(),
+                                          builder: (context) => PersonFoodNewPage(),
                                         ),
                                       );
                                     }

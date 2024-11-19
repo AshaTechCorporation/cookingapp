@@ -32,7 +32,7 @@ class _WelcomePageState extends State<WelcomePage> {
     if (token == null) {
       if (!mounted) return;
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-        return LoginPage();
+        return PersonFoodNewPage();
       }));
     } else {
       final user = await LoginService.getProfile();

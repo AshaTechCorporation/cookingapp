@@ -1,6 +1,9 @@
 import 'package:cookingapp/constants.dart';
 import 'package:cookingapp/home/AccountNew/TopUpCash/topUpCashPage.dart';
 import 'package:cookingapp/home/AccountNew/editAccount/editAccountPage.dart';
+import 'package:cookingapp/home/personFoodNew.dart';
+import 'package:cookingapp/information/commentPage.dart';
+import 'package:cookingapp/information/informationPage.dart';
 import 'package:cookingapp/login/Services/loginService.dart';
 import 'package:cookingapp/login/loginPage.dart';
 import 'package:cookingapp/login/regisPage.dart';
@@ -16,11 +19,27 @@ class AccountNewPage extends StatefulWidget {
 }
 
 class _AccountNewPageState extends State<AccountNewPage> {
+  String? token;
+
+  @override
+  void initState() {
+    super.initState();
+    loadToken();
+  }
+
   Future<void> clearToken() async {
     final _prefs = await SharedPreferences.getInstance();
     SharedPreferences prefs = _prefs;
     prefs = await SharedPreferences.getInstance();
     await prefs.remove('token');
+  }
+
+  Future<void> loadToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    final token2 = prefs.getString('token');
+    setState(() {
+      token = token2;
+    });
   }
 
   @override
@@ -104,365 +123,416 @@ class _AccountNewPageState extends State<AccountNewPage> {
                       ),
                     ),
                   ),
-                  Positioned(
-                    bottom: MediaQuery.of(context).size.height * (-40 / 800),
-                    // bottom: -40,
-                    left: 15,
-                    child: Row(
-                      children: [
-                        Container(
-                          height: size.height * 0.12,
-                          width: size.width * 0.92,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10.0),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.2),
-                                spreadRadius: 1,
-                                blurRadius: 1,
-                                offset: Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: size.width * 0.06, vertical: size.width * 0.02),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Balance',
-                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                                    ),
-                                    Text(
-                                      '฿ 1,000',
-                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                  token == null
+                      ? SizedBox.shrink()
+                      : Positioned(
+                          bottom: MediaQuery.of(context).size.height * (-40 / 800),
+                          // bottom: -40,
+                          left: 15,
+                          child: Row(
+                            children: [
+                              Container(
+                                height: size.height * 0.12,
+                                width: size.width * 0.92,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.2),
+                                      spreadRadius: 1,
+                                      blurRadius: 1,
+                                      offset: Offset(0, 2),
                                     ),
                                   ],
                                 ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                      return TopUpCashPage();
-                                    }));
-                                  },
-                                  child: CircleAvatar(
-                                    backgroundColor: red2,
-                                    radius: 35,
-                                    child: Container(
-                                      height: 50,
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                        // color: Color.fromARGB(255, 56, 56, 56),
-                                        borderRadius: BorderRadius.circular(20),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.06, vertical: size.width * 0.02),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Balance',
+                                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                                          ),
+                                          Text(
+                                            '฿ 1,000',
+                                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                                          ),
+                                        ],
                                       ),
-                                      child: Image.asset(
-                                        'assets/images/next_svgrepo.png',
-                                        // color: red1,
-                                        fit: BoxFit.fill,
+                                      GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                            return TopUpCashPage();
+                                          }));
+                                        },
+                                        child: CircleAvatar(
+                                          backgroundColor: red2,
+                                          radius: 35,
+                                          child: Container(
+                                            height: 50,
+                                            width: 50,
+                                            decoration: BoxDecoration(
+                                              // color: Color.fromARGB(255, 56, 56, 56),
+                                              borderRadius: BorderRadius.circular(20),
+                                            ),
+                                            child: Image.asset(
+                                              'assets/images/next_svgrepo.png',
+                                              // color: red1,
+                                              fit: BoxFit.fill,
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                    ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
+                              )
+                            ],
                           ),
                         )
-                      ],
-                    ),
-                  )
                 ],
               ),
             ),
             SizedBox(
               height: size.height * 0.065,
             ),
-            Container(
-              height: size.height * 0.1,
-              width: size.width * 0.92,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    spreadRadius: 1,
-                    blurRadius: 1,
-                    offset: Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: size.width * 0.06, vertical: size.width * 0.02),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      flex: 10,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'รายการที่ชอบ',
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                          ),
-                          Text(
-                            '1',
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-                          ),
-                        ],
+            token == null
+                ? Column(
+                    children: [
+                      SizedBox(
+                        height: size.height * 0.15,
                       ),
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: CircleAvatar(
-                        backgroundColor: red2,
-                        radius: 35,
-                        child: Container(
-                          height: 50,
-                          width: 50,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            return LoginPage();
+                          }));
+                        },
+                        child: AnimatedContainer(
+                          height: size.height * 0.08,
+                          width: size.width * 0.55,
                           decoration: BoxDecoration(
-                            // color: Color.fromARGB(255, 56, 56, 56),
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(8),
+                            color: token == null ? Colors.green : red1,
                           ),
-                          child: Image.asset(
-                            'assets/images/next_svgrepo.com (1).png',
-                            // color: red1,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              height: size.height * 0.015,
-            ),
-            Container(
-              height: size.height * 0.1,
-              width: size.width * 0.92,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10.0),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    spreadRadius: 1,
-                    blurRadius: 1,
-                    offset: Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: size.width * 0.06, vertical: size.width * 0.02),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      flex: 10,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'รีวิวร้านค้า',
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: CircleAvatar(
-                        backgroundColor: red2,
-                        radius: 35,
-                        child: Container(
-                          height: 50,
-                          width: 50,
-                          decoration: BoxDecoration(
-                            // color: Color.fromARGB(255, 56, 56, 56),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Image.asset(
-                            'assets/images/next_svgrepo.com (2).png',
-                            // color: red1,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              height: size.height * 0.015,
-            ),
-            Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: size.width * 0.04,
-                ),
-                child: Column(
-                  children: List.generate(
-                      setting.length,
-                      (index) => Column(
+                          duration: Duration(milliseconds: 300),
+                          curve: Curves.slowMiddle,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              ListTile(
-                                contentPadding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-                                leading: Image.asset(
-                                  setting[index]['image'],
-                                  //width: size.width * 0.04,
-                                  height: size.height * 0.025,
-                                  fit: BoxFit.fill,
-                                  // color: Colors.grey,
+                              Text(
+                                token == null ? 'เข้าสู่ระบบ' : 'ออกจากระบบ',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                title: Text(
-                                  setting[index]['title'],
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                                ),
-                                trailing: Icon(
-                                  Icons.keyboard_arrow_right,
-                                  size: 40,
-                                ),
-                                onTap: () async {
-                                  print(index);
-                                  if (index == 0) {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                      return TopUpCashPage();
-                                    }));
-                                  } else if (index == 1) {
-                                  } else if (index == 2) {
-                                  } else if (index == 3) {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                      return EditAccountPage();
-                                    }));
-                                  } else {
-                                    final out = await showDialog(
-                                        context: context,
-                                        builder: (context) => AlertDialog(
-                                              title: Text('แจ้งเตือน'),
-                                              content: Text('ยืนยันที่จะออกจากระบบ'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () {
-                                                    Navigator.pop(context, false);
-                                                  },
-                                                  child: Text('ยกเลิก'),
-                                                ),
-                                                TextButton(
-                                                  onPressed: () {
-                                                    Navigator.pop(context, true);
-                                                  },
-                                                  child: Text('ตกลง'),
-                                                ),
-                                              ],
-                                            ));
-                                    if (out == true) {
-                                      LoadingDialog.open(context);
-                                      await LoginService.logout();
-                                      await clearToken();
-                                      LoadingDialog.close(context);
-                                      Navigator.of(context, rootNavigator: true).pushReplacement(
-                                        MaterialPageRoute(
-                                          builder: (context) => LoginPage(),
-                                        ),
-                                      );
-                                    }
-                                  }
-                                },
                               ),
-                              Divider(),
                             ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                : Column(
+                    children: [
+                      Container(
+                        height: size.height * 0.1,
+                        width: size.width * 0.92,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.2),
+                              spreadRadius: 1,
+                              blurRadius: 1,
+                              offset: Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: size.width * 0.06, vertical: size.width * 0.02),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                flex: 10,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'รายการที่ชอบ',
+                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                                    ),
+                                    Text(
+                                      '1',
+                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                flex: 3,
+                                child: CircleAvatar(
+                                  backgroundColor: red2,
+                                  radius: 35,
+                                  child: Container(
+                                    height: 50,
+                                    width: 50,
+                                    decoration: BoxDecoration(
+                                      // color: Color.fromARGB(255, 56, 56, 56),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Image.asset(
+                                      'assets/images/next_svgrepo.com (1).png',
+                                      // color: red1,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: size.height * 0.015,
+                      ),
+                      Container(
+                        height: size.height * 0.1,
+                        width: size.width * 0.92,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.2),
+                              spreadRadius: 1,
+                              blurRadius: 1,
+                              offset: Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: size.width * 0.06, vertical: size.width * 0.02),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                flex: 10,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'รีวิวร้านค้า',
+                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                flex: 3,
+                                child: CircleAvatar(
+                                  backgroundColor: red2,
+                                  radius: 35,
+                                  child: Container(
+                                    height: 50,
+                                    width: 50,
+                                    decoration: BoxDecoration(
+                                      // color: Color.fromARGB(255, 56, 56, 56),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Image.asset(
+                                      'assets/images/next_svgrepo.com (2).png',
+                                      // color: red1,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: size.height * 0.015,
+                      ),
+                      Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: size.width * 0.04,
+                          ),
+                          child: Column(
+                            children: List.generate(
+                                setting.length,
+                                (index) => Column(
+                                      children: [
+                                        ListTile(
+                                          contentPadding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+                                          leading: Image.asset(
+                                            setting[index]['image'],
+                                            //width: size.width * 0.04,
+                                            height: size.height * 0.025,
+                                            fit: BoxFit.fill,
+                                            // color: Colors.grey,
+                                          ),
+                                          title: Text(
+                                            setting[index]['title'],
+                                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                                          ),
+                                          trailing: Icon(
+                                            Icons.keyboard_arrow_right,
+                                            size: 40,
+                                          ),
+                                          onTap: () async {
+                                            print(index);
+                                            if (index == 0) {
+                                              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                                return TopUpCashPage();
+                                              }));
+                                            } else if (index == 1) {
+                                              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                                return InformationPage();
+                                              }));
+                                            } else if (index == 2) {
+                                              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                                return CommentPage();
+                                              }));
+                                            } else if (index == 3) {
+                                              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                                return EditAccountPage();
+                                              }));
+                                            } else {
+                                              final out = await showDialog(
+                                                  context: context,
+                                                  builder: (context) => AlertDialog(
+                                                        title: Text('แจ้งเตือน'),
+                                                        content: Text('ยืนยันที่จะออกจากระบบ'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () {
+                                                              Navigator.pop(context, false);
+                                                            },
+                                                            child: Text('ยกเลิก'),
+                                                          ),
+                                                          TextButton(
+                                                            onPressed: () {
+                                                              Navigator.pop(context, true);
+                                                            },
+                                                            child: Text('ตกลง'),
+                                                          ),
+                                                        ],
+                                                      ));
+                                              if (out == true) {
+                                                LoadingDialog.open(context);
+                                                await LoginService.logout();
+                                                await clearToken();
+                                                LoadingDialog.close(context);
+                                                Navigator.of(context, rootNavigator: true).pushReplacement(
+                                                  MaterialPageRoute(
+                                                    builder: (context) => PersonFoodNewPage(),
+                                                  ),
+                                                );
+                                              }
+                                            }
+                                          },
+                                        ),
+                                        Divider(),
+                                      ],
+                                    )),
                           )),
-                )),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(
-            //     horizontal: size.width * 0.04,
-            //   ),
-            //   child: Column(
-            //     children: [
-            //       ListTile(
-            //         contentPadding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-            //         leading: Image.asset(
-            //           'assets/icons/setting.png',
-            //           //width: size.width * 0.04,
-            //           height: size.height * 0.035,
-            //           fit: BoxFit.fill,
-            //           color: Colors.grey,
-            //         ),
-            //         title: Text(
-            //           'ตั้งค่า',
-            //           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-            //         ),
-            //         trailing: Icon(
-            //           Icons.keyboard_arrow_right,
-            //           size: 40,
-            //         ),
-            //       ),
-            //       Divider(),
-            //       ListTile(
-            //         contentPadding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-            //         leading: Image.asset(
-            //           'assets/images/Vector-2.png',
-            //           //width: size.width * 0.04,
-            //           height: size.height * 0.035,
-            //           fit: BoxFit.fill,
-            //           color: Colors.grey,
-            //         ),
-            //         title: Text(
-            //           'ออกจากระบบ',
-            //           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-            //         ),
-            //         trailing: Icon(
-            //           Icons.keyboard_arrow_right,
-            //           size: 40,
-            //         ),
-            //         onTap: () async {
-            //           final out = await showDialog(
-            //               context: context,
-            //               builder: (context) => AlertDialog(
-            //                     title: Text('แจ้งเตือน'),
-            //                     content: Text('ยืนยันที่จะออกจากระบบ'),
-            //                     actions: [
-            //                       TextButton(
-            //                         onPressed: () {
-            //                           Navigator.pop(context, false);
-            //                         },
-            //                         child: Text('ยกเลิก'),
-            //                       ),
-            //                       TextButton(
-            //                         onPressed: () {
-            //                           Navigator.pop(context, true);
-            //                         },
-            //                         child: Text('ตกลง'),
-            //                       ),
-            //                     ],
-            //                   ));
-            //           if (out == true) {
-            //             LoadingDialog.open(context);
-            //             await LoginService.logout();
-            //             await clearToken();
-            //             LoadingDialog.close(context);
-            //             Navigator.of(context, rootNavigator: true).pushReplacement(
-            //               MaterialPageRoute(
-            //                 builder: (context) => LoginPage(),
-            //               ),
-            //             );
-            //           }
-            //         },
-            //       ),
-            //       Divider(),
-            //     ],
-            //   ),
-            // ),
+                      // Padding(
+                      //   padding: EdgeInsets.symmetric(
+                      //     horizontal: size.width * 0.04,
+                      //   ),
+                      //   child: Column(
+                      //     children: [
+                      //       ListTile(
+                      //         contentPadding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+                      //         leading: Image.asset(
+                      //           'assets/icons/setting.png',
+                      //           //width: size.width * 0.04,
+                      //           height: size.height * 0.035,
+                      //           fit: BoxFit.fill,
+                      //           color: Colors.grey,
+                      //         ),
+                      //         title: Text(
+                      //           'ตั้งค่า',
+                      //           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                      //         ),
+                      //         trailing: Icon(
+                      //           Icons.keyboard_arrow_right,
+                      //           size: 40,
+                      //         ),
+                      //       ),
+                      //       Divider(),
+                      //       ListTile(
+                      //         contentPadding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+                      //         leading: Image.asset(
+                      //           'assets/images/Vector-2.png',
+                      //           //width: size.width * 0.04,
+                      //           height: size.height * 0.035,
+                      //           fit: BoxFit.fill,
+                      //           color: Colors.grey,
+                      //         ),
+                      //         title: Text(
+                      //           'ออกจากระบบ',
+                      //           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                      //         ),
+                      //         trailing: Icon(
+                      //           Icons.keyboard_arrow_right,
+                      //           size: 40,
+                      //         ),
+                      //         onTap: () async {
+                      //           final out = await showDialog(
+                      //               context: context,
+                      //               builder: (context) => AlertDialog(
+                      //                     title: Text('แจ้งเตือน'),
+                      //                     content: Text('ยืนยันที่จะออกจากระบบ'),
+                      //                     actions: [
+                      //                       TextButton(
+                      //                         onPressed: () {
+                      //                           Navigator.pop(context, false);
+                      //                         },
+                      //                         child: Text('ยกเลิก'),
+                      //                       ),
+                      //                       TextButton(
+                      //                         onPressed: () {
+                      //                           Navigator.pop(context, true);
+                      //                         },
+                      //                         child: Text('ตกลง'),
+                      //                       ),
+                      //                     ],
+                      //                   ));
+                      //           if (out == true) {
+                      //             LoadingDialog.open(context);
+                      //             await LoginService.logout();
+                      //             await clearToken();
+                      //             LoadingDialog.close(context);
+                      //             Navigator.of(context, rootNavigator: true).pushReplacement(
+                      //               MaterialPageRoute(
+                      //                 builder: (context) => LoginPage(),
+                      //               ),
+                      //             );
+                      //           }
+                      //         },
+                      //       ),
+                      //       Divider(),
+                      //     ],
+                      //   ),
+                      // ),
+                    ],
+                  )
           ],
         ),
       ),

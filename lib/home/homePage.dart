@@ -8,8 +8,8 @@ import 'package:cookingapp/home/widgets/CardRestaurantWidget.dart';
 import 'package:cookingapp/home/widgets/importwidget.dart';
 import 'package:cookingapp/models/restaurant.dart';
 import 'package:cookingapp/widgets/LoadingDialog.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -91,6 +91,35 @@ class _HomePageState extends State<HomePage> {
           child: AppBar(
             backgroundColor: red1.withOpacity(appBarOpacity),
             elevation: appBarOpacity > 0.5 ? 4.0 : 0.0,
+            leading: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        spreadRadius: 1,
+                        blurRadius: 1,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child: Icon(
+                      Icons.arrow_back_ios_new,
+                      color: brown,
+                      size: 20,
+                    ),
+                  ),
+                ),
+              ),
+            ),
             title: Padding(
               padding: EdgeInsets.only(top: size.height * 0.01),
               child: Row(
