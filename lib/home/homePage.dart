@@ -46,6 +46,7 @@ class _HomePageState extends State<HomePage> {
       if (newOpacity != appBarOpacity) {
         setState(() {
           appBarOpacity = newOpacity;
+          print(appBarOpacity);
         });
       }
     });

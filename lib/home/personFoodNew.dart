@@ -33,7 +33,7 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
   double? lat;
   double? long;
   String? token;
-  bool slide = true;
+  bool slide = false;
   List<File> files = [];
   List<Widget> widgets = [];
   // final List<VideoPlayerController> listvideo = [];
@@ -43,6 +43,7 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
 
   double appBarOpacity = 0.1;
   double appBarOpacityTab = 0.1;
+  bool checkTab = false;
 
   ui.Image? maskImage;
 
@@ -109,10 +110,9 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
       // }
     });
     scrollControllerTab.addListener(() {
-      double offset = scrollControllerTab.offset;
-      print(offset);
+      print(scrollControllerTab.offset);
       setState(() {
-        appBarOpacityTab = offset;
+        appBarOpacityTab = scrollControllerTab.offset;
       });
     });
   }
@@ -233,6 +233,8 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
     // for (var controller in listvideo) {
     //   controller.dispose();
     // }
+    scrollControllerTab.dispose();
+    scrollController.dispose();
     super.dispose();
   }
 
@@ -312,19 +314,19 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                             //   'เข้าหน้าหลัก',
                             //   style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.white),
                             // ),
-                            Switch(
-                              value: slide,
-                              onChanged: (v) async {
-                                final prefs = await SharedPreferences.getInstance();
-                                await prefs.setBool('ability', v);
-                                setState(() {
-                                  slide = v;
-                                });
-                              },
-                              activeColor: red1,
-                              inactiveThumbColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                            ),
+                            // Switch(
+                            //   value: slide,
+                            //   onChanged: (v) async {
+                            //     final prefs = await SharedPreferences.getInstance();
+                            //     await prefs.setBool('ability', v);
+                            //     setState(() {
+                            //       slide = v;
+                            //     });
+                            //   },
+                            //   activeColor: red1,
+                            //   inactiveThumbColor: Colors.white,
+                            //   inactiveTrackColor: Colors.grey,
+                            // ),
                             appBarOpacityTab <= 0.0 ? SizedBox(height: size.height * 0.25) : SizedBox.shrink(),
                             Expanded(
                               flex: 4,
@@ -523,8 +525,8 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                                       height: menus[index].restaurant_id == 2 || menus[index].restaurant_id == 6 ? size.height * 0.35 : size.height * 0.2,
                                       width: double.infinity,
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        border: Border.all(color: red1),
+                                        // borderRadius: BorderRadius.circular(10),
+                                        // border: Border.all(color: red1),
                                         image: DecorationImage(
                                           // colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.dstOut),
                                           // colorFilter: ColorFilter.matrix(
@@ -568,11 +570,11 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                                                 // height: size.height * 0.03,
                                                 padding: EdgeInsets.all(2),
                                                 decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(5),
-                                                  color: Color.fromARGB(217, 241, 214, 132),
-                                                  // color: ui.Color.fromARGB(197, 255, 255, 255),
-                                                  // color: red1,
-                                                ),
+                                                    // borderRadius: BorderRadius.circular(5),
+                                                    // color: Color.fromARGB(217, 241, 214, 132),
+                                                    // color: ui.Color.fromARGB(197, 255, 255, 255),
+                                                    // color: red1,
+                                                    ),
                                                 child: Column(
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
@@ -703,19 +705,19 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                             //   'เข้าหน้าหลัก',
                             //   style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.white),
                             // ),
-                            Switch(
-                              value: slide,
-                              onChanged: (v) async {
-                                final prefs = await SharedPreferences.getInstance();
-                                await prefs.setBool('ability', v);
-                                setState(() {
-                                  slide = v;
-                                });
-                              },
-                              activeColor: red1,
-                              inactiveThumbColor: Colors.white,
-                              inactiveTrackColor: Colors.grey,
-                            ),
+                            // Switch(
+                            //   value: slide,
+                            //   onChanged: (v) async {
+                            //     final prefs = await SharedPreferences.getInstance();
+                            //     await prefs.setBool('ability', v);
+                            //     setState(() {
+                            //       slide = v;
+                            //     });
+                            //   },
+                            //   activeColor: red1,
+                            //   inactiveThumbColor: Colors.white,
+                            //   inactiveTrackColor: Colors.grey,
+                            // ),
                             appBarOpacityTab <= 0.0 ? SizedBox(height: size.height * 0.25) : SizedBox.shrink(),
                             Expanded(
                               flex: 4,
@@ -725,6 +727,9 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                                   GridView.builder(
                                     shrinkWrap: true,
                                     physics: NeverScrollableScrollPhysics(),
+                                    // physics: checkTab
+                                    //     ? NeverScrollableScrollPhysics() // ล็อคการเลื่อน
+                                    //     : AlwaysScrollableScrollPhysics(), // ปลดล็อค
                                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 1,
                                       crossAxisSpacing: 1,
@@ -740,12 +745,12 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                                           Container(
                                             padding: EdgeInsets.all(2),
                                             decoration: BoxDecoration(
-                                              // color: red1,
-                                              borderRadius: BorderRadius.circular(20),
-                                              border: Border.all(color: red1, width: 3),
-                                            ),
+                                                // color: red1,
+                                                // borderRadius: BorderRadius.circular(20),
+                                                // border: Border.all(color: red1, width: 3),
+                                                ),
                                             child: ClipRRect(
-                                              borderRadius: BorderRadius.circular(20),
+                                              // borderRadius: BorderRadius.circular(20),
                                               child: Image.asset(
                                                 itemManu[index]['imageAssetPath'],
                                                 width: size.width * 0.25,
@@ -851,12 +856,12 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
 
   List<Map<String, dynamic>> itemManu = [
     {
-      'name': 'อาหารตามสั่ง',
-      'imageAssetPath': 'assets/images/Newlogo.png',
-    },
-    {
       'name': 'พิซซ่า',
       'imageAssetPath': 'assets/images/2.png',
+    },
+    {
+      'name': 'อาหารตามสั่ง',
+      'imageAssetPath': 'assets/images/Newlogo.png',
     },
     {
       'name': 'อาหารทะเล',
