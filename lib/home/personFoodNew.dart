@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
+import 'dart:ui' as ui;
+import 'package:image/image.dart' as img;
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cookingapp/constants.dart';
@@ -34,13 +36,15 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
   bool slide = true;
   List<File> files = [];
   List<Widget> widgets = [];
-  final List<VideoPlayerController> listvideo = [];
+  // final List<VideoPlayerController> listvideo = [];
   // late VideoPlayerController _controllervideo;
   final ScrollController scrollController = ScrollController();
   final ScrollController scrollControllerTab = ScrollController();
 
   double appBarOpacity = 0.1;
-  double appBarOpacityTab = 0.2;
+  double appBarOpacityTab = 0.1;
+
+  ui.Image? maskImage;
 
   Future<File> createFileFromAsset(String asset) async {
     ByteData data = await rootBundle.load(asset);
@@ -123,7 +127,7 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
         ..setLooping(true)
         ..setVolume(0)
         ..play();
-      listvideo.add(controller);
+      // listvideo.add(controller);
     }
   }
 
@@ -135,6 +139,13 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
         createFileFromAsset('assets/images/v3.mp4'),
       ],
     );
+
+    List<String> listVideo = [
+      'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+      'https://samplelib.com/lib/preview/mp4/sample-5s.mp4',
+      'https://samplelib.com/lib/preview/mp4/sample-10s.mp4',
+      'https://samplelib.com/lib/preview/mp4/sample-15s.mp4',
+    ];
 
     files.addAll(fs);
 
@@ -162,6 +173,7 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
     // await getlistRestaurants(lat: position.latitude, long: position.longitude);
   }
 
+  List<Uint8List> transparentImages = [];
   //ดึงข้อมูล api Restaurants
   Future<void> getlistRestaurants({required double lat, required double long}) async {
     try {
@@ -273,7 +285,7 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                   ),
           ),
           Container(
-            color: Color.fromARGB(133, 0, 0, 0),
+            color: Color.fromARGB(170, 0, 0, 0),
             child: Row(
               children: [
                 slide == true
@@ -286,14 +298,20 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => FirstPage()));
+                                if (token == null) {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                    return LoginPage();
+                                  }));
+                                } else {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => FirstPage()));
+                                }
                               },
                               child: Image.asset('assets/images/Newlogo.png'),
                             ),
-                            Text(
-                              'เข้าหน้าหลัก',
-                              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.white),
-                            ),
+                            // Text(
+                            //   'เข้าหน้าหลัก',
+                            //   style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.white),
+                            // ),
                             Switch(
                               value: slide,
                               onChanged: (v) async {
@@ -307,7 +325,7 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                               inactiveThumbColor: Colors.white,
                               inactiveTrackColor: Colors.grey,
                             ),
-                            appBarOpacityTab <= 0.0 ? SizedBox(height: size.height * 0.25) : SizedBox(height: size.height * 0.05),
+                            appBarOpacityTab <= 0.0 ? SizedBox(height: size.height * 0.25) : SizedBox.shrink(),
                             Expanded(
                               flex: 4,
                               child: ListView(
@@ -331,9 +349,9 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                                           Container(
                                             padding: EdgeInsets.all(2),
                                             decoration: BoxDecoration(
-                                              color: red1,
+                                              // color: red1,
                                               borderRadius: BorderRadius.circular(20),
-                                              border: Border.all(color: red1),
+                                              border: Border.all(color: red1, width: 3),
                                             ),
                                             child: ClipRRect(
                                               borderRadius: BorderRadius.circular(20),
@@ -341,7 +359,7 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                                                 itemManu[index]['imageAssetPath'],
                                                 width: size.width * 0.25,
                                                 height: size.width * 0.13,
-                                                fit: BoxFit.fitWidth,
+                                                fit: BoxFit.fill,
                                               ),
                                             ),
                                           ),
@@ -357,74 +375,75 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                                 ],
                               ),
                             ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            GestureDetector(
-                              onTap: () async {
-                                if (token == null) {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                    return LoginPage();
-                                  }));
-                                } else {
-                                  final out = await showDialog(
-                                      context: context,
-                                      builder: (context) => AlertDialog(
-                                            title: Text('แจ้งเตือน'),
-                                            content: Text('ยืนยันที่จะออกจากระบบ'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context, false);
-                                                },
-                                                child: Text('ยกเลิก'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context, true);
-                                                },
-                                                child: Text('ตกลง'),
-                                              ),
-                                            ],
-                                          ));
-                                  if (out == true) {
-                                    LoadingDialog.open(context);
-                                    await LoginService.logout();
-                                    await clearToken();
-                                    LoadingDialog.close(context);
-                                    Navigator.of(context, rootNavigator: true).pushReplacement(
-                                      MaterialPageRoute(
-                                        builder: (context) => PersonFoodNewPage(),
-                                      ),
-                                    );
-                                  }
-                                }
-                              },
-                              child: AnimatedContainer(
-                                height: size.height * 0.05,
-                                width: size.width * 0.25,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: token == null ? Colors.green : red1,
-                                ),
-                                duration: Duration(milliseconds: 300),
-                                curve: Curves.slowMiddle,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      token == null ? 'เข้าสู่ระบบ' : 'ออกจากระบบ',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+                            // SizedBox(
+                            //   height: 10,
+                            // ),
+                            // GestureDetector(
+                            //   onTap: () async {
+                            //     if (token == null) {
+                            //       Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            //         return LoginPage();
+                            //       }));
+                            //     } else {
+                            //       final out = await showDialog(
+                            //           context: context,
+                            //           builder: (context) => AlertDialog(
+                            //                 title: Text('แจ้งเตือน'),
+                            //                 content: Text('ยืนยันที่จะออกจากระบบ'),
+                            //                 actions: [
+                            //                   TextButton(
+                            //                     onPressed: () {
+                            //                       Navigator.pop(context, false);
+                            //                     },
+                            //                     child: Text('ยกเลิก'),
+                            //                   ),
+                            //                   TextButton(
+                            //                     onPressed: () {
+                            //                       Navigator.pop(context, true);
+                            //                     },
+                            //                     child: Text('ตกลง'),
+                            //                   ),
+                            //                 ],
+                            //               ));
+                            //       if (out == true) {
+                            //         LoadingDialog.open(context);
+                            //         await LoginService.logout();
+                            //         await clearToken();
+                            //         LoadingDialog.close(context);
+                            //         Navigator.of(context, rootNavigator: true).pushReplacement(
+                            //           MaterialPageRoute(
+                            //             builder: (context) => PersonFoodNewPage(),
+                            //           ),
+                            //         );
+                            //       }
+                            //     }
+                            //   },
+                            //   child: AnimatedContainer(
+                            //     height: size.height * 0.05,
+                            //     width: size.width * 0.25,
+                            //     decoration: BoxDecoration(
+                            //       borderRadius: BorderRadius.circular(8),
+                            //       color: token == null ? Colors.green : red1,
+                            //     ),
+                            //     duration: Duration(milliseconds: 300),
+                            //     curve: Curves.slowMiddle,
+                            //     child: Column(
+                            //       mainAxisAlignment: MainAxisAlignment.center,
+                            //       crossAxisAlignment: CrossAxisAlignment.center,
+                            //       children: [
+                            //         Text(
+                            //           token == null ? 'เข้าสู่ระบบ' : 'ออกจากระบบ',
+                            //           style: TextStyle(
+                            //             color: Colors.white,
+                            //             fontSize: 10,
+                            //             fontWeight: FontWeight.bold,
+                            //           ),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   ),
+                            // ),
+
                             SizedBox(
                               height: 20,
                             ),
@@ -477,92 +496,110 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                       //         ),
                       // ),
 
-                      Container(
-                        // color: Color.fromARGB(133, 0, 0, 0),
-                        child: CustomScrollView(
-                          controller: scrollController,
-                          slivers: [
-                            // เพิ่มช่องว่างที่ด้านบน
-                            SliverPadding(
-                              padding: appBarOpacity <= 0.0 ? EdgeInsets.only(top: 300) : EdgeInsets.only(top: 0), // กำหนดความสูงของช่องว่าง
-                            ),
+                      CustomScrollView(
+                        controller: scrollController,
+                        slivers: [
+                          // เพิ่มช่องว่างที่ด้านบน
+                          SliverPadding(
+                            padding: appBarOpacity <= 0.0 ? EdgeInsets.only(top: 300) : EdgeInsets.only(top: 0), // กำหนดความสูงของช่องว่าง
+                          ),
 
-                            // สร้างรายการ
-                            SliverList(
-                              delegate: SliverChildBuilderDelegate(
-                                (BuildContext context, int index) {
-                                  return Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.05, vertical: 15),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) => DetailFoodNewPage(
-                                                      food: menus[index],
-                                                    )));
-                                      },
-                                      child: Container(
-                                        height: size.height * 0.2,
-                                        width: double.infinity,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          border: Border.all(color: red1),
-                                          image: DecorationImage(
-                                            // colorFilter: ColorFilter.mode(Colors.black.withAlpha(100), BlendMode.dstOut),
-                                            colorFilter: ColorFilter.matrix(<double>[
-                                              1, 0, 0, 0, 0, // Red
-                                              0, 1, 0, 0, 0, // Green
-                                              0, 0, 1, 0, 0, // Blue
-                                              2, 0, 0, 0, 0, // Alpha
-                                            ]),
-                                            fit: BoxFit.fill,
-                                            image: NetworkImage(
-                                              menus[index].photo_url ?? 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
-                                            ),
+                          // สร้างรายการ
+                          SliverList(
+                            delegate: SliverChildBuilderDelegate(
+                              (BuildContext context, int index) {
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.05, vertical: 15),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => DetailFoodNewPage(
+                                                    food: menus[index],
+                                                  )));
+                                    },
+                                    child: Container(
+                                      height: menus[index].restaurant_id == 2 || menus[index].restaurant_id == 6 ? size.height * 0.35 : size.height * 0.2,
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(color: red1),
+                                        image: DecorationImage(
+                                          // colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.dstOut),
+                                          // colorFilter: ColorFilter.matrix(
+                                          //   <double>[
+                                          //     -0.5, 0, 0, 0, 255, // Red
+                                          //     0, -0.5, 0, 0, 255, // Green
+                                          //     0, 0, -0.5, 0, 255, // Blue
+                                          //     0.8, 0, 0, 0, 0, // Alpha
+                                          //   ],
+                                          // ),
+                                          fit: BoxFit.fill,
+                                          image: NetworkImage(
+                                            menus[index].photo_url ?? 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
                                           ),
                                         ),
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.end,
-                                          crossAxisAlignment: slide == false ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-                                          children: [
-                                            Column(
-                                              children: [
-                                                Container(
-                                                  // height: size.height * 0.03,
-                                                  padding: EdgeInsets.all(2),
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(5),
-                                                    color: Color.fromARGB(217, 241, 214, 132),
-                                                  ),
-                                                  child: Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                    children: [
-                                                      Text(
-                                                        menus[index].name ?? '',
-                                                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: red1),
-                                                        overflow: TextOverflow.ellipsis,
-                                                      ),
-                                                      Text(
-                                                        '${menus[index].distance ?? ' - '}',
-                                                        style: TextStyle(fontWeight: FontWeight.bold, color: red1),
-                                                      ),
-                                                    ],
-                                                  ),
+                                      ),
+                                      child: Stack(
+                                        // mainAxisAlignment: MainAxisAlignment.end,
+                                        // crossAxisAlignment: slide == false ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                                        children: [
+                                          // AnimatedPositioned(
+                                          //   duration: Duration(microseconds: 1),
+                                          //   child: ColorFiltered(
+                                          //     colorFilter: ColorFilter.mode(
+                                          //       Colors.transparent,
+                                          //       BlendMode.multiply,
+                                          //     ),
+                                          //     child: SizedBox(
+                                          //       width: double.infinity,
+                                          //       child: Image.network(
+                                          //         menus[index].photo_url ?? 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
+                                          //         fit: BoxFit.fill,
+                                          //       ),
+                                          //     ),
+                                          //   ),
+                                          // ),
+                                          Column(
+                                            mainAxisAlignment: MainAxisAlignment.end,
+                                            children: [
+                                              Container(
+                                                // height: size.height * 0.03,
+                                                padding: EdgeInsets.all(2),
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(5),
+                                                  color: Color.fromARGB(217, 241, 214, 132),
+                                                  // color: ui.Color.fromARGB(197, 255, 255, 255),
+                                                  // color: red1,
                                                 ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      menus[index].name ?? '',
+                                                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                                                      overflow: TextOverflow.ellipsis,
+                                                    ),
+                                                    Text(
+                                                      '${menus[index].distance ?? ' - '}',
+                                                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  );
-                                },
-                                childCount: menus.length, // จำนวนไอเทมในลิสต์
-                              ),
+                                  ),
+                                );
+                              },
+                              childCount: menus.length, // จำนวนไอเทมในลิสต์
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                       // Container(
                       //   decoration: BoxDecoration(
@@ -652,14 +689,20 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => FirstPage()));
+                                if (token == null) {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                    return LoginPage();
+                                  }));
+                                } else {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => FirstPage()));
+                                }
                               },
                               child: Image.asset('assets/images/Newlogo.png'),
                             ),
-                            Text(
-                              'เข้าหน้าหลัก',
-                              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.white),
-                            ),
+                            // Text(
+                            //   'เข้าหน้าหลัก',
+                            //   style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.white),
+                            // ),
                             Switch(
                               value: slide,
                               onChanged: (v) async {
@@ -673,7 +716,7 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                               inactiveThumbColor: Colors.white,
                               inactiveTrackColor: Colors.grey,
                             ),
-                            appBarOpacityTab <= 0.0 ? SizedBox(height: size.height * 0.25) : SizedBox(height: size.height * 0.05),
+                            appBarOpacityTab <= 0.0 ? SizedBox(height: size.height * 0.25) : SizedBox.shrink(),
                             Expanded(
                               flex: 4,
                               child: ListView(
@@ -697,9 +740,9 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                                           Container(
                                             padding: EdgeInsets.all(2),
                                             decoration: BoxDecoration(
-                                              color: red1,
+                                              // color: red1,
                                               borderRadius: BorderRadius.circular(20),
-                                              border: Border.all(color: red1),
+                                              border: Border.all(color: red1, width: 3),
                                             ),
                                             child: ClipRRect(
                                               borderRadius: BorderRadius.circular(20),
@@ -707,7 +750,7 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                                                 itemManu[index]['imageAssetPath'],
                                                 width: size.width * 0.25,
                                                 height: size.width * 0.13,
-                                                fit: BoxFit.fitWidth,
+                                                fit: BoxFit.fill,
                                               ),
                                             ),
                                           ),
@@ -723,74 +766,75 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                                 ],
                               ),
                             ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            GestureDetector(
-                              onTap: () async {
-                                if (token == null) {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                    return LoginPage();
-                                  }));
-                                } else {
-                                  final out = await showDialog(
-                                      context: context,
-                                      builder: (context) => AlertDialog(
-                                            title: Text('แจ้งเตือน'),
-                                            content: Text('ยืนยันที่จะออกจากระบบ'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context, false);
-                                                },
-                                                child: Text('ยกเลิก'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () {
-                                                  Navigator.pop(context, true);
-                                                },
-                                                child: Text('ตกลง'),
-                                              ),
-                                            ],
-                                          ));
-                                  if (out == true) {
-                                    LoadingDialog.open(context);
-                                    await LoginService.logout();
-                                    await clearToken();
-                                    LoadingDialog.close(context);
-                                    Navigator.of(context, rootNavigator: true).pushReplacement(
-                                      MaterialPageRoute(
-                                        builder: (context) => PersonFoodNewPage(),
-                                      ),
-                                    );
-                                  }
-                                }
-                              },
-                              child: AnimatedContainer(
-                                height: size.height * 0.05,
-                                width: size.width * 0.25,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: token == null ? Colors.green : red1,
-                                ),
-                                duration: Duration(milliseconds: 300),
-                                curve: Curves.slowMiddle,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      token == null ? 'เข้าสู่ระบบ' : 'ออกจากระบบ',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+                            // SizedBox(
+                            //   height: 10,
+                            // ),
+                            // GestureDetector(
+                            //   onTap: () async {
+                            //     if (token == null) {
+                            //       Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            //         return LoginPage();
+                            //       }));
+                            //     } else {
+                            //       final out = await showDialog(
+                            //           context: context,
+                            //           builder: (context) => AlertDialog(
+                            //                 title: Text('แจ้งเตือน'),
+                            //                 content: Text('ยืนยันที่จะออกจากระบบ'),
+                            //                 actions: [
+                            //                   TextButton(
+                            //                     onPressed: () {
+                            //                       Navigator.pop(context, false);
+                            //                     },
+                            //                     child: Text('ยกเลิก'),
+                            //                   ),
+                            //                   TextButton(
+                            //                     onPressed: () {
+                            //                       Navigator.pop(context, true);
+                            //                     },
+                            //                     child: Text('ตกลง'),
+                            //                   ),
+                            //                 ],
+                            //               ));
+                            //       if (out == true) {
+                            //         LoadingDialog.open(context);
+                            //         await LoginService.logout();
+                            //         await clearToken();
+                            //         LoadingDialog.close(context);
+                            //         Navigator.of(context, rootNavigator: true).pushReplacement(
+                            //           MaterialPageRoute(
+                            //             builder: (context) => PersonFoodNewPage(),
+                            //           ),
+                            //         );
+                            //       }
+                            //     }
+                            //   },
+                            //   child: AnimatedContainer(
+                            //     height: size.height * 0.05,
+                            //     width: size.width * 0.25,
+                            //     decoration: BoxDecoration(
+                            //       borderRadius: BorderRadius.circular(8),
+                            //       color: token == null ? Colors.green : red1,
+                            //     ),
+                            //     duration: Duration(milliseconds: 300),
+                            //     curve: Curves.slowMiddle,
+                            //     child: Column(
+                            //       mainAxisAlignment: MainAxisAlignment.center,
+                            //       crossAxisAlignment: CrossAxisAlignment.center,
+                            //       children: [
+                            //         Text(
+                            //           token == null ? 'เข้าสู่ระบบ' : 'ออกจากระบบ',
+                            //           style: TextStyle(
+                            //             color: Colors.white,
+                            //             fontSize: 10,
+                            //             fontWeight: FontWeight.bold,
+                            //           ),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   ),
+                            // ),
+
                             SizedBox(
                               height: 20,
                             ),
@@ -808,7 +852,7 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
   List<Map<String, dynamic>> itemManu = [
     {
       'name': 'อาหารตามสั่ง',
-      'imageAssetPath': 'assets/images/1.png',
+      'imageAssetPath': 'assets/images/Newlogo.png',
     },
     {
       'name': 'พิซซ่า',
@@ -896,15 +940,18 @@ class VideoScreenState extends State<VideoScreen> {
   void initState() {
     super.initState();
 
+    // _controller = VideoPlayerController.networkUrl(Uri.parse(widget.file))
     _controller = VideoPlayerController.file(widget.file)
       ..initialize().then((_) {
         setState(() {});
-        _controller
-          ..setLooping(true)
-          ..setVolume(0)
-          ..seekTo(Duration.zero)
-          ..play();
+      }).catchError((error) {
+        print("Error: $error");
       });
+    _controller
+      ..setLooping(true)
+      ..setVolume(0)
+      ..seekTo(Duration.zero)
+      ..play();
   }
 
   @override
