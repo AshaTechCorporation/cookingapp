@@ -41,8 +41,8 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
   final ScrollController scrollController = ScrollController();
   final ScrollController scrollControllerTab = ScrollController();
 
-  double appBarOpacity = 0.1;
-  double appBarOpacityTab = 0.1;
+  double appBarOpacity = 200.0;
+  double appBarOpacityTab = 200.0;
   bool checkTab = false;
 
   ui.Image? maskImage;
@@ -327,7 +327,14 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                             //   inactiveThumbColor: Colors.white,
                             //   inactiveTrackColor: Colors.grey,
                             // ),
-                            appBarOpacityTab <= 0.0 ? SizedBox(height: size.height * 0.25) : SizedBox.shrink(),
+                            //  appBarOpacityTab <= 1.0 ? SizedBox(height: size.height * 0.025) : SizedBox.shrink(),
+                            appBarOpacityTab <= 25.0 ? SizedBox(height: size.height * 0.05) : SizedBox.shrink(),
+                            appBarOpacityTab <= 50.0 ? SizedBox(height: size.height * 0.05) : SizedBox.shrink(),
+                            appBarOpacityTab <= 75.0 ? SizedBox(height: size.height * 0.05) : SizedBox.shrink(),
+                            appBarOpacityTab <= 100.0 ? SizedBox(height: size.height * 0.05) : SizedBox.shrink(),
+                            appBarOpacityTab <= 125.0 ? SizedBox(height: size.height * 0.05) : SizedBox.shrink(),
+                            appBarOpacityTab <= 150.0 ? SizedBox(height: size.height * 0.05) : SizedBox.shrink(),
+
                             Expanded(
                               flex: 4,
                               child: ListView(
@@ -453,232 +460,331 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                         ),
                       ),
                 Expanded(
-                  child: Stack(
-                    children: [
-                      // AnimatedPositioned(
-                      //   duration: Duration(microseconds: 1),
-                      //   // child: files.isEmpty
-                      //   //     ? Image.asset(
-                      //   //         'assets/images/Screenshot 2567-11-05 at 16.32.13.png',
-                      //   //         fit: BoxFit.cover,
-                      //   //       )
-                      //   //     : VideoCarousel(
-                      //   //         files: files,
-                      //   //         height: size.height,
-                      //   //       ),
-                      //   child: files.isEmpty
-                      //       ? SizedBox.shrink()
-                      //       : CarouselSlider(
-                      //           // itemCount: banners.length,
-                      //           // itemBuilder: (context, index, realIndex) {
-                      //           //   List<Widget> widgets = [];
-                      //           //   for (var i = 0; i < files.length; i++) {
-                      //           //     widgets.add(VideoScreen(
-                      //           //       files[i],
-                      //           //     ));
-                      //           //   }
-                      //           //   return VideoPlayer(
-                      //           //     _controllervideo,
-                      //           //   );
-                      //           //   // return Image.asset(
-                      //           //   //   banners[index],
-                      //           //   //   fit: BoxFit.cover,
-                      //           //   // );
-                      //           // },
-                      //           items: widgets,
-                      //           options: CarouselOptions(
-                      //               viewportFraction: 1,
-                      //               enlargeCenterPage: true,
-                      //               scrollDirection: Axis.vertical,
-                      //               height: size.height,
-                      //               autoPlay: true,
-                      //               autoPlayInterval: Duration(
-                      //                 seconds: 8,
-                      //               )),
-                      //         ),
-                      // ),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        // AnimatedPositioned(
+                        //   duration: Duration(microseconds: 1),
+                        //   // child: files.isEmpty
+                        //   //     ? Image.asset(
+                        //   //         'assets/images/Screenshot 2567-11-05 at 16.32.13.png',
+                        //   //         fit: BoxFit.cover,
+                        //   //       )
+                        //   //     : VideoCarousel(
+                        //   //         files: files,
+                        //   //         height: size.height,
+                        //   //       ),
+                        //   child: files.isEmpty
+                        //       ? SizedBox.shrink()
+                        //       : CarouselSlider(
+                        //           // itemCount: banners.length,
+                        //           // itemBuilder: (context, index, realIndex) {
+                        //           //   List<Widget> widgets = [];
+                        //           //   for (var i = 0; i < files.length; i++) {
+                        //           //     widgets.add(VideoScreen(
+                        //           //       files[i],
+                        //           //     ));
+                        //           //   }
+                        //           //   return VideoPlayer(
+                        //           //     _controllervideo,
+                        //           //   );
+                        //           //   // return Image.asset(
+                        //           //   //   banners[index],
+                        //           //   //   fit: BoxFit.cover,
+                        //           //   // );
+                        //           // },
+                        //           items: widgets,
+                        //           options: CarouselOptions(
+                        //               viewportFraction: 1,
+                        //               enlargeCenterPage: true,
+                        //               scrollDirection: Axis.vertical,
+                        //               height: size.height,
+                        //               autoPlay: true,
+                        //               autoPlayInterval: Duration(
+                        //                 seconds: 8,
+                        //               )),
+                        //         ),
+                        // ),
 
-                      CustomScrollView(
-                        controller: scrollController,
-                        slivers: [
-                          // เพิ่มช่องว่างที่ด้านบน
-                          SliverPadding(
-                            padding: appBarOpacity <= 0.0 ? EdgeInsets.only(top: 300) : EdgeInsets.only(top: 0), // กำหนดความสูงของช่องว่าง
+                        // CustomScrollView(
+                        //   controller: scrollController,
+                        //   slivers: [
+                        //     // เพิ่มช่องว่างที่ด้านบน
+                        //     // SliverPadding(padding: appBarOpacity <= 1.0 ? EdgeInsets.only(top: 300) : EdgeInsets.only(top: 0)
+                        //     //     ),
+                        //     SliverPadding(padding: appBarOpacity <= 10.0 ? EdgeInsets.only(top: size.height * 0.035) : EdgeInsets.only(top: 0)),
+                        //     SliverPadding(padding: appBarOpacity <= 20.0 ? EdgeInsets.only(top: size.height * 0.035) : EdgeInsets.only(top: 0)),
+                        //     SliverPadding(padding: appBarOpacity <= 30.0 ? EdgeInsets.only(top: size.height * 0.035) : EdgeInsets.only(top: 0)),
+                        //     SliverPadding(padding: appBarOpacity <= 40.0 ? EdgeInsets.only(top: size.height * 0.035) : EdgeInsets.only(top: 0)),
+                        //     SliverPadding(padding: appBarOpacity <= 50.0 ? EdgeInsets.only(top: size.height * 0.035) : EdgeInsets.only(top: 0)),
+                        //     SliverPadding(padding: appBarOpacity <= 60.0 ? EdgeInsets.only(top: size.height * 0.035) : EdgeInsets.only(top: 0)),
+                        //     SliverPadding(padding: appBarOpacity <= 70.0 ? EdgeInsets.only(top: size.height * 0.035) : EdgeInsets.only(top: 0)),
+                        //     SliverPadding(padding: appBarOpacity <= 80.0 ? EdgeInsets.only(top: size.height * 0.035) : EdgeInsets.only(top: 0)),
+                        //     SliverPadding(padding: appBarOpacity <= 90.0 ? EdgeInsets.only(top: size.height * 0.035) : EdgeInsets.only(top: 0)),
+                        //     SliverPadding(padding: appBarOpacity <= 100.0 ? EdgeInsets.only(top: size.height * 0.035) : EdgeInsets.only(top: 0)),
+                        //     SliverPadding(padding: appBarOpacity <= 125.0 ? EdgeInsets.only(top: size.height * 0.035) : EdgeInsets.only(top: 0)),
+                        //     SliverPadding(padding: appBarOpacity <= 150.0 ? EdgeInsets.only(top: size.height * 0.035) : EdgeInsets.only(top: 0)),
+                        //     // สร้างรายการ
+                        //     SliverList(
+                        //       delegate: SliverChildBuilderDelegate(
+                        //         (BuildContext context, int index) {
+                        //           return Padding(
+                        //             padding: EdgeInsets.symmetric(horizontal: size.width * 0.05, vertical: 15),
+                        //             child: GestureDetector(
+                        //               onTap: () {
+                        //                 Navigator.push(
+                        //                     context,
+                        //                     MaterialPageRoute(
+                        //                         builder: (context) => DetailFoodNewPage(
+                        //                               food: menus[index],
+                        //                             )));
+                        //               },
+                        //               child: Container(
+                        //                 height: menus[index].restaurant_id == 2 || menus[index].restaurant_id == 6 ? size.height * 0.35 : size.height * 0.2,
+                        //                 width: double.infinity,
+                        //                 decoration: BoxDecoration(
+                        //                   // borderRadius: BorderRadius.circular(10),
+                        //                   // border: Border.all(color: red1),
+                        //                   image: DecorationImage(
+                        //                     // colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.dstOut),
+                        //                     // colorFilter: ColorFilter.matrix(
+                        //                     //   <double>[
+                        //                     //     -0.5, 0, 0, 0, 255, // Red
+                        //                     //     0, -0.5, 0, 0, 255, // Green
+                        //                     //     0, 0, -0.5, 0, 255, // Blue
+                        //                     //     0.8, 0, 0, 0, 0, // Alpha
+                        //                     //   ],
+                        //                     // ),
+                        //                     fit: BoxFit.fill,
+                        //                     image: NetworkImage(
+                        //                       menus[index].photo_url ?? 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
+                        //                     ),
+                        //                   ),
+                        //                 ),
+                        //                 child: Stack(
+                        //                   // mainAxisAlignment: MainAxisAlignment.end,
+                        //                   // crossAxisAlignment: slide == false ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                        //                   children: [
+                        //                     // AnimatedPositioned(
+                        //                     //   duration: Duration(microseconds: 1),
+                        //                     //   child: ColorFiltered(
+                        //                     //     colorFilter: ColorFilter.mode(
+                        //                     //       Colors.transparent,
+                        //                     //       BlendMode.multiply,
+                        //                     //     ),
+                        //                     //     child: SizedBox(
+                        //                     //       width: double.infinity,
+                        //                     //       child: Image.network(
+                        //                     //         menus[index].photo_url ?? 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
+                        //                     //         fit: BoxFit.fill,
+                        //                     //       ),
+                        //                     //     ),
+                        //                     //   ),
+                        //                     // ),
+                        //                     Column(
+                        //                       mainAxisAlignment: MainAxisAlignment.end,
+                        //                       children: [
+                        //                         Container(
+                        //                           // height: size.height * 0.03,
+                        //                           padding: EdgeInsets.all(2),
+                        //                           decoration: BoxDecoration(
+                        //                               // borderRadius: BorderRadius.circular(5),
+                        //                               // color: Color.fromARGB(217, 241, 214, 132),
+                        //                               // color: ui.Color.fromARGB(197, 255, 255, 255),
+                        //                               // color: red1,
+                        //                               ),
+                        //                           child: Column(
+                        //                             crossAxisAlignment: CrossAxisAlignment.start,
+                        //                             children: [
+                        //                               Text(
+                        //                                 menus[index].name ?? '',
+                        //                                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                        //                                 overflow: TextOverflow.ellipsis,
+                        //                               ),
+                        //                               Text(
+                        //                                 '${menus[index].distance ?? ' - '}',
+                        //                                 style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                        //                               ),
+                        //                             ],
+                        //                           ),
+                        //                         ),
+                        //                       ],
+                        //                     ),
+                        //                   ],
+                        //                 ),
+                        //               ),
+                        //             ),
+                        //           );
+                        //         },
+                        //         childCount: menus.length, // จำนวนไอเทมในลิสต์
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
+
+                        // Container(
+                        //   decoration: BoxDecoration(
+                        //     borderRadius: BorderRadius.only(topLeft: Radius.circular(1), topRight: Radius.circular(1)),
+                        //     // color: Color.fromARGB(255, 229, 230, 240),
+                        //     color: Colors.transparent,
+                        //   ),
+                        //   child: menus.isNotEmpty
+                        //       ? SingleChildScrollView(
+                        //           child: Column(
+                        //             children: List.generate(
+                        //               menus.length,
+                        //               (index) => Padding(
+                        //                 padding: EdgeInsets.symmetric(horizontal: size.width * 0.05, vertical: 15),
+                        //                 child: GestureDetector(
+                        //                   onTap: () {
+                        //                     Navigator.push(
+                        //                         context,
+                        //                         MaterialPageRoute(
+                        //                             builder: (context) => DetailFoodNewPage(
+                        //                                   food: menus[index],
+                        //                                 )));
+                        //                   },
+                        //                   child: Container(
+                        //                     height: size.height * 0.2,
+                        //                     width: double.infinity,
+                        //                     decoration: BoxDecoration(
+                        //                       borderRadius: BorderRadius.circular(10),
+                        //                       image: DecorationImage(
+                        //                         colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.dstOut),
+                        //                         fit: BoxFit.fill,
+                        //                         image: NetworkImage(
+                        //                           menus[index].photo_url ?? 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
+                        //                         ),
+                        //                       ),
+                        //                     ),
+                        //                     child: Column(
+                        //                       mainAxisAlignment: MainAxisAlignment.end,
+                        //                       crossAxisAlignment: slide == false ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                        //                       children: [
+                        //                         Column(
+                        //                           children: [
+                        //                             Container(
+                        //                               // height: size.height * 0.03,
+                        //                               padding: EdgeInsets.all(2),
+                        //                               decoration: BoxDecoration(
+                        //                                 borderRadius: BorderRadius.circular(5),
+                        //                                 color: Color.fromARGB(217, 241, 214, 132),
+                        //                               ),
+                        //                               child: Column(
+                        //                                 crossAxisAlignment: CrossAxisAlignment.start,
+                        //                                 children: [
+                        //                                   Text(
+                        //                                     menus[index].name ?? '',
+                        //                                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: red1),
+                        //                                     overflow: TextOverflow.ellipsis,
+                        //                                   ),
+                        //                                   Text(
+                        //                                     '${menus[index].distance ?? ' - '}',
+                        //                                     style: TextStyle(fontWeight: FontWeight.bold, color: red1),
+                        //                                   ),
+                        //                                 ],
+                        //                               ),
+                        //                             ),
+                        //                           ],
+                        //                         ),
+                        //                       ],
+                        //                     ),
+                        //                   ),
+                        //                 ),
+                        //               ),
+                        //             ),
+                        //           ),
+                        //         )
+                        //       : SizedBox(),
+                        // ),
+                        appBarOpacity <= 10.0 ? SizedBox(height: size.height * 0.035) : SizedBox.shrink(),
+                        appBarOpacity <= 20.0 ? SizedBox(height: size.height * 0.035) : SizedBox.shrink(),
+                        appBarOpacity <= 30.0 ? SizedBox(height: size.height * 0.035) : SizedBox.shrink(),
+                        appBarOpacity <= 40.0 ? SizedBox(height: size.height * 0.035) : SizedBox.shrink(),
+                        appBarOpacity <= 50.0 ? SizedBox(height: size.height * 0.035) : SizedBox.shrink(),
+                        appBarOpacity <= 60.0 ? SizedBox(height: size.height * 0.035) : SizedBox.shrink(),
+                        appBarOpacity <= 70.0 ? SizedBox(height: size.height * 0.035) : SizedBox.shrink(),
+                        appBarOpacity <= 80.0 ? SizedBox(height: size.height * 0.035) : SizedBox.shrink(),
+                        appBarOpacity <= 90.0 ? SizedBox(height: size.height * 0.035) : SizedBox.shrink(),
+                        appBarOpacity <= 100.0 ? SizedBox(height: size.height * 0.035) : SizedBox.shrink(),
+                        appBarOpacity <= 125.0 ? SizedBox(height: size.height * 0.035) : SizedBox.shrink(),
+                        appBarOpacity <= 150.0 ? SizedBox(height: size.height * 0.035) : SizedBox.shrink(),
+                        Container(
+                          height: size.height,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(1), topRight: Radius.circular(1)),
+                            // color: Color.fromARGB(255, 229, 230, 240),
+                            color: Colors.transparent,
                           ),
-
-                          // สร้างรายการ
-                          SliverList(
-                            delegate: SliverChildBuilderDelegate(
-                              (BuildContext context, int index) {
-                                return Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: size.width * 0.05, vertical: 15),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) => DetailFoodNewPage(
-                                                    food: menus[index],
-                                                  )));
-                                    },
-                                    child: Container(
-                                      height: menus[index].restaurant_id == 2 || menus[index].restaurant_id == 6 ? size.height * 0.35 : size.height * 0.2,
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(
-                                        // borderRadius: BorderRadius.circular(10),
-                                        // border: Border.all(color: red1),
-                                        image: DecorationImage(
-                                          // colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.4), BlendMode.dstOut),
-                                          // colorFilter: ColorFilter.matrix(
-                                          //   <double>[
-                                          //     -0.5, 0, 0, 0, 255, // Red
-                                          //     0, -0.5, 0, 0, 255, // Green
-                                          //     0, 0, -0.5, 0, 255, // Blue
-                                          //     0.8, 0, 0, 0, 0, // Alpha
-                                          //   ],
-                                          // ),
-                                          fit: BoxFit.fill,
-                                          image: NetworkImage(
-                                            menus[index].photo_url ?? 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
+                          child: menus.isNotEmpty
+                              ? ListView.builder(
+                                  controller: scrollController,
+                                  itemCount: menus.length,
+                                  itemBuilder: (context, index) {
+                                    return Padding(
+                                      padding: EdgeInsets.symmetric(horizontal: size.width * 0.05, vertical: 15),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => DetailFoodNewPage(
+                                                        food: menus[index],
+                                                      )));
+                                        },
+                                        child: Container(
+                                          height: size.height * 0.2,
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(10),
+                                            image: DecorationImage(
+                                              colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.dstOut),
+                                              fit: BoxFit.fill,
+                                              image: NetworkImage(
+                                                menus[index].photo_url ?? 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                      child: Stack(
-                                        // mainAxisAlignment: MainAxisAlignment.end,
-                                        // crossAxisAlignment: slide == false ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-                                        children: [
-                                          // AnimatedPositioned(
-                                          //   duration: Duration(microseconds: 1),
-                                          //   child: ColorFiltered(
-                                          //     colorFilter: ColorFilter.mode(
-                                          //       Colors.transparent,
-                                          //       BlendMode.multiply,
-                                          //     ),
-                                          //     child: SizedBox(
-                                          //       width: double.infinity,
-                                          //       child: Image.network(
-                                          //         menus[index].photo_url ?? 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
-                                          //         fit: BoxFit.fill,
-                                          //       ),
-                                          //     ),
-                                          //   ),
-                                          // ),
-                                          Column(
+                                          child: Column(
                                             mainAxisAlignment: MainAxisAlignment.end,
+                                            crossAxisAlignment: slide == false ? CrossAxisAlignment.end : CrossAxisAlignment.start,
                                             children: [
-                                              Container(
-                                                // height: size.height * 0.03,
-                                                padding: EdgeInsets.all(2),
-                                                decoration: BoxDecoration(
-                                                    // borderRadius: BorderRadius.circular(5),
-                                                    // color: Color.fromARGB(217, 241, 214, 132),
-                                                    // color: ui.Color.fromARGB(197, 255, 255, 255),
-                                                    // color: red1,
+                                              Column(
+                                                children: [
+                                                  Container(
+                                                    // height: size.height * 0.03,
+                                                    padding: EdgeInsets.all(2),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(5),
+                                                      color: Color.fromARGB(217, 241, 214, 132),
                                                     ),
-                                                child: Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      menus[index].name ?? '',
-                                                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
-                                                      overflow: TextOverflow.ellipsis,
+                                                    child: Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: [
+                                                        Text(
+                                                          menus[index].name ?? '',
+                                                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: red1),
+                                                          overflow: TextOverflow.ellipsis,
+                                                        ),
+                                                        Text(
+                                                          '${menus[index].distance ?? ' - '}',
+                                                          style: TextStyle(fontWeight: FontWeight.bold, color: red1),
+                                                        ),
+                                                      ],
                                                     ),
-                                                    Text(
-                                                      '${menus[index].distance ?? ' - '}',
-                                                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-                                                    ),
-                                                  ],
-                                                ),
+                                                  ),
+                                                ],
                                               ),
                                             ],
                                           ),
-                                        ],
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                );
-                              },
-                              childCount: menus.length, // จำนวนไอเทมในลิสต์
-                            ),
-                          ),
-                        ],
-                      ),
-                      // Container(
-                      //   decoration: BoxDecoration(
-                      //     borderRadius: BorderRadius.only(topLeft: Radius.circular(1), topRight: Radius.circular(1)),
-                      //     // color: Color.fromARGB(255, 229, 230, 240),
-                      //     color: Colors.transparent,
-                      //   ),
-                      //   child: menus.isNotEmpty
-                      //       ? SingleChildScrollView(
-                      //           child: Column(
-                      //             children: List.generate(
-                      //               menus.length,
-                      //               (index) => Padding(
-                      //                 padding: EdgeInsets.symmetric(horizontal: size.width * 0.05, vertical: 15),
-                      //                 child: GestureDetector(
-                      //                   onTap: () {
-                      //                     Navigator.push(
-                      //                         context,
-                      //                         MaterialPageRoute(
-                      //                             builder: (context) => DetailFoodNewPage(
-                      //                                   food: menus[index],
-                      //                                 )));
-                      //                   },
-                      //                   child: Container(
-                      //                     height: size.height * 0.2,
-                      //                     width: double.infinity,
-                      //                     decoration: BoxDecoration(
-                      //                       borderRadius: BorderRadius.circular(10),
-                      //                       image: DecorationImage(
-                      //                         colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.dstOut),
-                      //                         fit: BoxFit.fill,
-                      //                         image: NetworkImage(
-                      //                           menus[index].photo_url ?? 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg',
-                      //                         ),
-                      //                       ),
-                      //                     ),
-                      //                     child: Column(
-                      //                       mainAxisAlignment: MainAxisAlignment.end,
-                      //                       crossAxisAlignment: slide == false ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-                      //                       children: [
-                      //                         Column(
-                      //                           children: [
-                      //                             Container(
-                      //                               // height: size.height * 0.03,
-                      //                               padding: EdgeInsets.all(2),
-                      //                               decoration: BoxDecoration(
-                      //                                 borderRadius: BorderRadius.circular(5),
-                      //                                 color: Color.fromARGB(217, 241, 214, 132),
-                      //                               ),
-                      //                               child: Column(
-                      //                                 crossAxisAlignment: CrossAxisAlignment.start,
-                      //                                 children: [
-                      //                                   Text(
-                      //                                     menus[index].name ?? '',
-                      //                                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: red1),
-                      //                                     overflow: TextOverflow.ellipsis,
-                      //                                   ),
-                      //                                   Text(
-                      //                                     '${menus[index].distance ?? ' - '}',
-                      //                                     style: TextStyle(fontWeight: FontWeight.bold, color: red1),
-                      //                                   ),
-                      //                                 ],
-                      //                               ),
-                      //                             ),
-                      //                           ],
-                      //                         ),
-                      //                       ],
-                      //                     ),
-                      //                   ),
-                      //                 ),
-                      //               ),
-                      //             ),
-                      //           ),
-                      //         )
-                      //       : SizedBox(),
-                      // ),
-                    ],
+                                    );
+                                  })
+                              : SizedBox(),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 slide == false
@@ -718,7 +824,19 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                             //   inactiveThumbColor: Colors.white,
                             //   inactiveTrackColor: Colors.grey,
                             // ),
-                            appBarOpacityTab <= 0.0 ? SizedBox(height: size.height * 0.25) : SizedBox.shrink(),
+                            //  appBarOpacityTab <= 1.0 ? SizedBox(height: size.height * 0.025) : SizedBox.shrink(),
+                            appBarOpacityTab <= 10.0 ? SizedBox(height: size.height * 0.02) : SizedBox.shrink(),
+                            appBarOpacityTab <= 20.0 ? SizedBox(height: size.height * 0.02) : SizedBox.shrink(),
+                            appBarOpacityTab <= 30.0 ? SizedBox(height: size.height * 0.02) : SizedBox.shrink(),
+                            appBarOpacityTab <= 40.0 ? SizedBox(height: size.height * 0.02) : SizedBox.shrink(),
+                            appBarOpacityTab <= 50.0 ? SizedBox(height: size.height * 0.02) : SizedBox.shrink(),
+                            appBarOpacityTab <= 60.0 ? SizedBox(height: size.height * 0.02) : SizedBox.shrink(),
+                            appBarOpacityTab <= 70.0 ? SizedBox(height: size.height * 0.02) : SizedBox.shrink(),
+                            appBarOpacityTab <= 80.0 ? SizedBox(height: size.height * 0.02) : SizedBox.shrink(),
+                            appBarOpacityTab <= 90.0 ? SizedBox(height: size.height * 0.02) : SizedBox.shrink(),
+                            appBarOpacityTab <= 100.0 ? SizedBox(height: size.height * 0.02) : SizedBox.shrink(),
+                            appBarOpacityTab <= 125.0 ? SizedBox(height: size.height * 0.02) : SizedBox.shrink(),
+                            appBarOpacityTab <= 150.0 ? SizedBox(height: size.height * 0.02) : SizedBox.shrink(),
                             Expanded(
                               flex: 4,
                               child: ListView(
@@ -727,9 +845,6 @@ class _PersonFoodNewPageState extends State<PersonFoodNewPage> {
                                   GridView.builder(
                                     shrinkWrap: true,
                                     physics: NeverScrollableScrollPhysics(),
-                                    // physics: checkTab
-                                    //     ? NeverScrollableScrollPhysics() // ล็อคการเลื่อน
-                                    //     : AlwaysScrollableScrollPhysics(), // ปลดล็อค
                                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 1,
                                       crossAxisSpacing: 1,
